@@ -663,7 +663,7 @@
         "$.code"
       ]
     },
-    " BusinessService": {
+    "BusinessService": {
       "masterName": "BusinessService",
       "isStateLevel": true,
       "uniqueKeys": [
