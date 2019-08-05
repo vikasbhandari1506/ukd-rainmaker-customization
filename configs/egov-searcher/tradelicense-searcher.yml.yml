@@ -1,0 +1,26 @@
+SearchDefinitions:
+  moduleName: tl-searcher
+  summary: TradeLicense Search
+  version: 1.0.0
+  definitions:
+    - name: opensearch
+      query:
+        baseQuery: select array_to_json(array_agg(row_to_json(data))) from ( select tradelicense.tenantid, tradelicense.applicationnumber, tradelicense.licensenumber,  tradelicense.applicationdate, tradelicense.status, tradelicense.tradename, (select (select array_agg(row_to_json(ownerIds)) from (select owners .id from eg_tl_owner owners where owners.tradelicensedetailid = tradelicensedetail.id and owners.active=true) ownerIds) as ownerIds) from eg_tl_tradelicense tradelicense left join eg_tl_tradelicensedetail tradelicensedetail  on tradelicense.id =tradelicensedetail.tradelicenseid $where ) data;
+        groupBy:
+        orderBy:
+      searchParams:
+        condition: AND
+        params:
+          - name: tradelicense.tenantid
+            isMandatory: false
+            jsonPath: $.searchCriteria.tenantId
+          - name: tradelicense.applicationnumber
+            isMandatory: false
+            jsonPath: $.searchCriteria.applicationNumber
+          - name: tradelicense.licensenumber
+            isMandatory: false
+            jsonPath: $.searchCriteria.licenseNumber
+      output:
+        jsonFormat: {"ResponseInfo": {},"TradeLicenses": []}
+        outJsonPath: $.TradeLicenses
+        responseInfoPath: $.ResponseInfo
