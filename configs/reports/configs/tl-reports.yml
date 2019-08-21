@@ -134,9 +134,9 @@ ReportDefinitions:
       INNER JOIN eg_user tluser ON tluser.uuid = tlowner.id
       group by tradelicensedetailid
     ) tlown ON tlown.tradelicensedetailid = tld.id
-    LEFT OUTER JOIN egcl_receiptheader receipt ON receipt.consumercode = tl.applicationnumber  and receipt.status != 'Cancelled'
-    LEFT OUTER JOIN egcl_receiptinstrument as ri ON ri.receiptheader = receipt.id
-    LEFT OUTER JOIN egcl_instrumentheader as ih ON ih.id = ri.instrumentheader and ih.instrumentstatus != 'CANCELLED'
+    LEFT OUTER JOIN egcl_receiptheader_v1 receipt ON receipt.consumercode = tl.applicationnumber  and receipt.status != 'Cancelled'
+    LEFT OUTER JOIN egcl_receiptinstrument_v1 as ri ON ri.receiptheader = receipt.id
+    LEFT OUTER JOIN egcl_instrumentheader_v1 as ih ON ih.id = ri.instrumentheader and ih.instrumentstatus != 'CANCELLED'
     WHERE tl.Status in ('APPROVED', 'PAID', 'CANCELLED') AND tl.tenantId LIKE $tenantid
 
 - reportName: StateTradeLicenseCancelledRegistryReport
