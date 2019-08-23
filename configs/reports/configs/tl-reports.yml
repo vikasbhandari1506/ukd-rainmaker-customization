@@ -16,12 +16,12 @@ ReportDefinitions:
     source: tl
     total: false
   - name: g8issuedate
-    label: report.tl.g8issuedate
+    label: report.tl.MSC5/MSC2issuedate
     type: string
     source: tl
     total: false
   - name: g8receiptno
-    label: report.tl.g8receiptno
+    label: report.tl.MSC5/MSC2receiptno
     type: string
     source: tl
     total: false
@@ -75,11 +75,6 @@ ReportDefinitions:
     type: string
     source: tl
     total: true
-  - name: acc
-    label: report.tl.accessorycategories
-    type: string
-    source: tl
-    total: false
   - name: tradeName
     label: report.tl.tradeName
     type: string
@@ -112,7 +107,6 @@ ReportDefinitions:
       to_char(To_timestamp(receipt.receiptdate / 1000), 'DD/MM/YYYY') as receiptIssueDate , 
       receipt.receiptnumber,
       tradeTypeName,
-      'NA' as acc, 
       name,
       mobilenumber,
       ih.bankid,
