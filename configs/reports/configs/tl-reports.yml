@@ -296,12 +296,12 @@ ReportDefinitions:
     source: tl
     total: false
   - name: g8issuedate
-    label: report.tl.g8issuedate
+    label: report.tl.MSC5/MSC2issuedate
     type: string
     source: tl
     total: false
   - name: g8receiptno
-    label: report.tl.g8receiptno
+    label: report.tl.MSC5/MSC2receiptno
     type: string
     source: tl
     total: false
