@@ -55,7 +55,7 @@ ReportDefinitions:
     type: string
     source: tl
     total: false
-  - name: transactionumber
+  - name: transactionnumber
     label: report.tl.transactionumber
     type: string
     source: tl
@@ -193,7 +193,7 @@ ReportDefinitions:
     type: string
     source: tl
     total: false
-  - name: transactionumber
+  - name: transactionnumber
     label: report.tl.transactionumber
     type: string
     source: tl
@@ -335,7 +335,7 @@ ReportDefinitions:
     type: string
     source: tl
     total: false
-  - name: transactionumber
+  - name: transactionnumber
     label: report.tl.transactionumber
     type: string
     source: tl
