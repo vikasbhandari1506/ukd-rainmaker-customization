@@ -74,7 +74,7 @@ ReportDefinitions:
     label: report.tl.tradetype
     type: string
     source: tl
-    total: true
+    total: false
   - name: tradeName
     label: report.tl.tradeName
     type: string
