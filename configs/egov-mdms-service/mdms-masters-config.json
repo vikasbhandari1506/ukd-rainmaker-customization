@@ -669,13 +669,6 @@
       "uniqueKeys": [
         "$.code"
       ]
-    },
-    "RoadType": {
-      "masterName": "RoadType",
-      "isStateLevel": true,
-      "uniqueKeys": [
-        "$.code"
-      ]
     }
   }
 }
