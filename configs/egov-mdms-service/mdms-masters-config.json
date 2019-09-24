@@ -669,6 +669,20 @@
       "uniqueKeys": [
         "$.code"
       ]
+    },
+    "RoadType": {
+      "masterName": "RoadType",
+      "isStateLevel": true,
+      "uniqueKeys": [
+        "$.code"
+      ]
+    },
+    "DepreciationAppreciation": {
+      "masterName": "DepreciationAppreciation",
+      "isStateLevel": true,
+      "uniqueKeys": [
+        "$.code"
+      ]
     }
   }
 }
