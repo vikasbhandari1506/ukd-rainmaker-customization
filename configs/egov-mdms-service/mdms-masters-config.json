@@ -579,7 +579,14 @@
       "masterName": "CancerCess",
       "isStateLevel": true,
       "uniqueKeys": []
-    }
+    },
+    "RoadType": {
+        "masterName": "RoadType",
+        "isStateLevel": true,
+        "uniqueKeys": [
+          "$.code"
+        ]
+      }
   },
   "TradeLicense": {
     "ApplicationType": {
@@ -665,13 +672,6 @@
     },
     "BusinessService": {
       "masterName": "BusinessService",
-      "isStateLevel": true,
-      "uniqueKeys": [
-        "$.code"
-      ]
-    },
-    "RoadType": {
-      "masterName": "RoadType",
       "isStateLevel": true,
       "uniqueKeys": [
         "$.code"
