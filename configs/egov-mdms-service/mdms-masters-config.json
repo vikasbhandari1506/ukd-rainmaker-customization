@@ -580,6 +580,11 @@
             "isStateLevel": true,
             "uniqueKeys": []
         },
+        "TaxRate":{
+            "masterName": "TaxRate",
+            "isStateLevel": true,
+            "uniqueKeys": []
+        },
         "RoadType": {
             "masterName": "RoadType",
             "isStateLevel": true,
