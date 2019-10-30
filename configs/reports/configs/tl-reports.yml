@@ -613,7 +613,7 @@ ReportDefinitions:
         count(*) as total,
         SUM(CASE status when 'REJECTED' then 1 else 0 end) as rejected,
         SUM(CASE status when 'INITIATED' then 1 else 0 end) as initiated,
-        SUM(CASE status when 'PAID' then 1 else 0 end) as paid,
+        SUM(CASE status when 'PENDINGAPPROVAL' then 1 else 0 end) as paid,
         SUM(CASE status when 'APPROVED' then 1 else 0 end) as approved,
         SUM(CASE status when 'APPLIED' then 1 else 0 end) as applied,
         SUM(CASE status when 'CANCELLED' then 1 else 0 end) as cancelled
