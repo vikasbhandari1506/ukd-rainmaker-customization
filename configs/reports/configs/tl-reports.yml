@@ -596,7 +596,7 @@ ReportDefinitions:
     total: true
   - name: applicationnumber
     label: TL_APPLICATIONNUMBER
-    type: number
+    type: string
     source: tl
     total: true
   searchParams:
