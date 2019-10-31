@@ -563,7 +563,7 @@ ReportDefinitions:
     label: report.tl.total
     type: string
     source: tl
-    total: false
+    total: true
   - name: initiated
     label: TL_INITIATED
     type: number
@@ -594,9 +594,9 @@ ReportDefinitions:
     type: number
     source: tl
     total: true
-  - name: applicationnumber
-    label: TL_APPLICATIONNUMBER
-    type: string
+  - name: pendingpayment
+    label: TL_PENDINGPAYMENT
+    type: number
     source: tl
     total: true
   searchParams:
@@ -616,7 +616,7 @@ ReportDefinitions:
      SELECT 
         initcap(split_part(tenantId, '.', 2)) as tenantId, 
         count(*) as total,
-        applicationnumber as applicationnumber,
+        SUM(CASE status when 'PENDINGPAYMENT' then 1 else 0 end) as pendingpayment,
         SUM(CASE status when 'REJECTED' then 1 else 0 end) as rejected,
         SUM(CASE status when 'INITIATED' then 1 else 0 end) as initiated,
         SUM(CASE status when 'PENDINGAPPROVAL' then 1 else 0 end) as pendingapproval,
@@ -625,7 +625,7 @@ ReportDefinitions:
         SUM(CASE status when 'CANCELLED' then 1 else 0 end) as cancelled
       FROM eg_tl_tradelicense as tl
       WHERE tl.tenantid != 'pb.testing'
-  groupby: GROUP BY tenantid,applicationnumber
+  groupby: GROUP BY tenantid
   orderby: ORDER BY tenantid
 
 
