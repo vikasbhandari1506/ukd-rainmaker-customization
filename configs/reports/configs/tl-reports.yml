@@ -616,7 +616,7 @@ ReportDefinitions:
      SELECT 
         initcap(split_part(tenantId, '.', 2)) as tenantId, 
         count(*) as total,
-        applicationnumber as applicationnumber,
+        SUM(applicationnumber) as applicationnumber,
         SUM(CASE status when 'REJECTED' then 1 else 0 end) as rejected,
         SUM(CASE status when 'INITIATED' then 1 else 0 end) as initiated,
         SUM(CASE status when 'PENDINGAPPROVAL' then 1 else 0 end) as pendingapproval,
