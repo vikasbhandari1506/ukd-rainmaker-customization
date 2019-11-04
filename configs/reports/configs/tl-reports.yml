@@ -662,7 +662,7 @@ ReportDefinitions:
     type: singlevaluelist
     pattern: http://egov-mdms-service:8080/egov-mdms-service/v1/_get?tenantId=$tenantid&moduleName=tenant&masterName=tenants|$.MdmsRes.tenant.tenants.*.code|$.MdmsRes.tenant.tenants.*.name
     source: tl
-    wrapper: false
+    wrapper: true
     isMandatory: false
     searchClause: AND tl.tenantId = $ulb
   query: SELECT COUNT(applicationnumber) as total,message.message as status from eg_tl_tradelicense tl LEFT OUTER JOIN message ON split_part(message.code,'_',2) = status AND message.locale = 'en_IN' WHERE 1=1
