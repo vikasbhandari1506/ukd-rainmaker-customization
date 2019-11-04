@@ -413,7 +413,43 @@ ReportDefinitions:
     INNER JOIN egcl_instrumentheader_v1 as ih ON ih.id = ri.instrumentheader
     WHERE tl.tenantId LIKE $tenantid
 
-
+- reportName: StateULBReport
+  summary: Nummber of applications by there status state level
+  version: 1.0.0
+  moduleName: rainmaker-tl
+  sourceColumns:
+  - name: status
+    label: report.tl.status
+    type: string
+    source: tl
+    total: false
+  - name: total
+    label: report.tl.total
+    type: string
+    source: tl
+    total: true
+  searchParams:
+  - name: fromDate
+    label: reports.tl.fromDate
+    type: epoch
+    source: tl
+    isMandatory: false
+    searchClause: AND tl.lastmodifiedtime >= $fromDate
+  - name: toDate
+    label: reports.tl.toDate
+    type: epoch
+    source: tl
+    isMandatory: false
+    searchClause: AND tl.lastmodifiedtime <= $toDate
+  - name: ulb
+    label: ULB
+    type: singlevaluelist
+    pattern: http://egov-mdms-service:8080/egov-mdms-service/v1/_get?tenantId=$tenantid&moduleName=tenant&masterName=tenants|$.MdmsRes.tenant.tenants.*.code|$.MdmsRes.tenant.tenants.*.name
+    source: tl
+    wrapper: true
+    isMandatory: false
+    searchClause: AND tl.tenantId = $ulb
+    
 - reportName: TradeWiseCollectionReport
   summary: Collection according to tradeTypes
   version: 1.0.0
@@ -527,7 +563,7 @@ ReportDefinitions:
     label: report.tl.total
     type: string
     source: tl
-    total: false
+    total: true
   - name: initiated
     label: TL_INITIATED
     type: number
@@ -538,8 +574,8 @@ ReportDefinitions:
     type: number
     source: tl
     total: true
-  - name: paid
-    label: TL_PAID
+  - name: pendingapproval
+    label: TL_PENDINGAPPROVAL
     type: number
     source: tl
     total: true
@@ -555,6 +591,11 @@ ReportDefinitions:
     total: true
   - name: cancelled
     label: TL_CANCELLED
+    type: number
+    source: tl
+    total: true
+  - name: pendingpayment
+    label: TL_PENDINGPAYMENT
     type: number
     source: tl
     total: true
@@ -575,9 +616,10 @@ ReportDefinitions:
      SELECT 
         initcap(split_part(tenantId, '.', 2)) as tenantId, 
         count(*) as total,
+        SUM(CASE status when 'PENDINGPAYMENT' then 1 else 0 end) as pendingpayment,
         SUM(CASE status when 'REJECTED' then 1 else 0 end) as rejected,
         SUM(CASE status when 'INITIATED' then 1 else 0 end) as initiated,
-        SUM(CASE status when 'PAID' then 1 else 0 end) as paid,
+        SUM(CASE status when 'PENDINGAPPROVAL' then 1 else 0 end) as pendingapproval,
         SUM(CASE status when 'APPROVED' then 1 else 0 end) as approved,
         SUM(CASE status when 'APPLIED' then 1 else 0 end) as applied,
         SUM(CASE status when 'CANCELLED' then 1 else 0 end) as cancelled
@@ -697,9 +739,9 @@ ReportDefinitions:
     INNER JOIN eg_tl_tradelicensedetail tld ON tld.tradelicenseid = tl.id 
     INNER JOIN 
       (SELECT tradelicensedetailid,message.message as tradeSubType FROM eg_tl_tradeunit 
-      LEFT OUTER JOIN message ON CONCAT('TL_',split_part(tradeType, '.', 2)) = message.code AND message.locale='en_IN') tlunit ON tlunit.tradelicensedetailid = tld.id 
-      LEFT OUTER JOIN (SELECT * FROM egcl_receiptheader WHERE collectiontype = 'ONLINE' and status != 'Cancelled') AS onl ON onl.consumercode = tl.applicationnumber 
-      LEFT OUTER JOIN (SELECT * FROM egcl_receiptheader WHERE collectiontype = 'COUNTER' and status != 'Cancelled') AS offl ON offl.consumercode = tl.applicationnumber WHERE tl.status IN ('APPROVED','PAID','REJECTED', 'CANCELLED')
+      LEFT OUTER JOIN message ON CONCAT('TRADELICENSE_TRADETYPE_',split_part(tradeType, '.', 2)) = message.code AND message.locale='en_IN') tlunit ON tlunit.tradelicensedetailid = tld.id 
+      LEFT OUTER JOIN (SELECT * FROM egcl_receiptheader_v1 WHERE collectiontype = 'ONLINE' and status != 'Cancelled') AS onl ON onl.consumercode = tl.applicationnumber 
+      LEFT OUTER JOIN (SELECT * FROM egcl_receiptheader_v1 WHERE collectiontype = 'COUNTER' and status != 'Cancelled') AS offl ON offl.consumercode = tl.applicationnumber WHERE tl.status IN ('APPROVED','PAID','REJECTED', 'CANCELLED')
 
   groupby: GROUP BY tl.tenantId,tradeSubType
   orderby: ORDER BY tl.tenantId asc
