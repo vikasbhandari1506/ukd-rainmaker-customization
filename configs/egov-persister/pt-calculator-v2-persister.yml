@@ -7,7 +7,7 @@ serviceMaps:
    fromTopic: save-pt-billingslab
    isTransaction: true
    queryMaps:
-    - query: INSERT INTO eg_pt_Billingslab_v2(id, tenantid, propertyType, propertySubType, usageCategoryMajor, usageCategoryMinor, usageCategorySubMinor, usageCategoryDetail, ownerShipCategory, subOwnerShipCategory, fromFloor, toFloor, areaType, fromPlotSize, toPlotSize, occupancyType, unitRate, unbuiltunitrate, arvpercent, isPropertyMultiFloored, createdby, createdtime, lastmodifiedby, lastmodifiedtime) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, cast(? as double precision), cast(? as double precision), ?, ?, cast(? as double precision), ?, ?, ?, ?, ?, ?, ?, ?, ?);
+    - query: INSERT INTO eg_pt_Billingslab_v2(id, tenantid, propertyType, roadType, constructionType, ward, mohalla, fromDate, toDate, unitRate, createdby, createdtime, lastmodifiedby, lastmodifiedtime) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
 
       basePath: BillingSlab.*
       jsonMaps:
@@ -18,47 +18,27 @@ serviceMaps:
 
        - jsonPath: $.BillingSlab.*.propertyType
 
-       - jsonPath: $.BillingSlab.*.propertySubType
+       - jsonPath: $.BillingSlab.*.roadType
 
-       - jsonPath: $.BillingSlab.*.usageCategoryMajor
+       - jsonPath: $.BillingSlab.*.constructionType
 
-       - jsonPath: $.BillingSlab.*.usageCategoryMinor
+       - jsonPath: $.BillingSlab.*.ward
 
-       - jsonPath: $.BillingSlab.*.usageCategorySubMinor
+       - jsonPath: $.BillingSlab.*.mohalla
 
-       - jsonPath: $.BillingSlab.*.usageCategoryDetail
+       - jsonPath: $.BillingSlab.*.fromDate
 
-       - jsonPath: $.BillingSlab.*.ownerShipCategory
+       - jsonPath: $.BillingSlab.*.toDate
 
-       - jsonPath: $.BillingSlab.*.subOwnerShipCategory
-
-       - jsonPath: $.BillingSlab.*.fromFloor
-
-       - jsonPath: $.BillingSlab.*.toFloor
-
-       - jsonPath: $.BillingSlab.*.areaType
-
-       - jsonPath: $.BillingSlab.*.fromPlotSize
-
-       - jsonPath: $.BillingSlab.*.toPlotSize
-       
-       - jsonPath: $.BillingSlab.*.occupancyType
-       
        - jsonPath: $.BillingSlab.*.unitRate
-       
-       - jsonPath: $.BillingSlab.*.unBuiltUnitRate
-       
-       - jsonPath: $.BillingSlab.*.arvPercent
-       
-       - jsonPath: $.BillingSlab.*.isPropertyMultiFloored
-              
+
        - jsonPath: $.BillingSlab.*.auditDetails.createdBy
 
        - jsonPath: $.BillingSlab.*.auditDetails.createdTime
 
-       - jsonPath: $.BillingSlab.*.auditDetails.lastmodifiedBy
+       - jsonPath: $.BillingSlab.*.auditDetails.lastModifiedBy
 
-       - jsonPath: $.BillingSlab.*.auditDetails.lastmodifiedTime
+       - jsonPath: $.BillingSlab.*.auditDetails.lastModifiedTime
 
 
  - version: 1.0
@@ -68,51 +48,101 @@ serviceMaps:
    isTransaction: true
    queryMaps:
 
-    - query: UPDATE eg_pt_Billingslab_v2 SET propertyType=?, propertySubType=?, usageCategoryMajor=?, usageCategoryMinor=?, usageCategorySubMinor=?, usageCategoryDetail=?, ownerShipCategory=?, subOwnerShipCategory=?, fromFloor=cast(? as double precision), toFloor=cast(? as double precision), areaType=?, fromPlotSize=?,  toPlotSize=cast(? as double precision), occupancyType=?, unitRate=?, unbuiltunitrate=?, arvpercent=?, isPropertyMultiFloored=?, lastmodifiedby=?, lastmodifiedtime=? WHERE tenantid=? AND id=?;
+    - query: UPDATE eg_pt_Billingslab_v2 SET propertyType = ?, roadType = ?, constructionType = ?, ward = ?, mohalla = ?, fromDate = ?, toDate = ?, unitRate = ?, createdby = ?, createdtime = ?, lastmodifiedby = ?, lastmodifiedtime = ? WHERE tenantid=? AND id=?;
 
       basePath: BillingSlab.*
       jsonMaps:
 
        - jsonPath: $.BillingSlab.*.propertyType
 
-       - jsonPath: $.BillingSlab.*.propertySubType
+       - jsonPath: $.BillingSlab.*.roadType
 
-       - jsonPath: $.BillingSlab.*.usageCategoryMajor
+       - jsonPath: $.BillingSlab.*.constructionType
 
-       - jsonPath: $.BillingSlab.*.usageCategoryMinor
+       - jsonPath: $.BillingSlab.*.ward
 
-       - jsonPath: $.BillingSlab.*.usageCategorySubMinor
+       - jsonPath: $.BillingSlab.*.mohalla
 
-       - jsonPath: $.BillingSlab.*.usageCategoryDetail
+       - jsonPath: $.BillingSlab.*.fromDate
 
-       - jsonPath: $.BillingSlab.*.ownerShipCategory
-
-       - jsonPath: $.BillingSlab.*.subOwnerShipCategory
-
-       - jsonPath: $.BillingSlab.*.fromFloor
-
-       - jsonPath: $.BillingSlab.*.toFloor
-
-       - jsonPath: $.BillingSlab.*.areaType
-
-       - jsonPath: $.BillingSlab.*.fromPlotSize
-
-       - jsonPath: $.BillingSlab.*.toPlotSize
-       
-       - jsonPath: $.BillingSlab.*.occupancyType
+       - jsonPath: $.BillingSlab.*.toDate
 
        - jsonPath: $.BillingSlab.*.unitRate
-       
-       - jsonPath: $.BillingSlab.*.unBuiltUnitRate
-       
-       - jsonPath: $.BillingSlab.*.arvPercent
-       
-       - jsonPath: $.BillingSlab.*.isPropertyMultiFloored
-              
-       - jsonPath: $.BillingSlab.*.auditDetails.lastmodifiedBy
 
-       - jsonPath: $.BillingSlab.*.auditDetails.lastmodifiedTime
+       - jsonPath: $.BillingSlab.*.auditDetails.createdBy
+
+       - jsonPath: $.BillingSlab.*.auditDetails.createdTime
+
+       - jsonPath: $.BillingSlab.*.auditDetails.lastModifiedBy
+
+       - jsonPath: $.BillingSlab.*.auditDetails.lastModifiedTime
 
        - jsonPath: $.BillingSlab.*.tenantId
 
        - jsonPath: $.BillingSlab.*.id
+
+
+
+ - version: 1.0
+   name: pt-calculator
+   description: Persists the pt-calculator related records to db
+   fromTopic: save-pt-assessment
+   isTransaction: true
+   queryMaps:
+    - query: INSERT INTO eg_pt_assessment(uuid, tenantId, assessmentNumber, demandId, propertyId, assessmentYear, createdby, createdtime, lastmodifiedby, lastmodifiedtime) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+
+      basePath: Assessment.*
+      jsonMaps:
+
+       - jsonPath: $.Assessment.*.uuid
+
+       - jsonPath: $.Assessment.*.tenantId
+
+       - jsonPath: $.Assessment.*.assessmentNumber
+
+       - jsonPath: $.Assessment.*.demandId
+
+       - jsonPath: $.Assessment.*.propertyId
+
+       - jsonPath: $.Assessment.*.assessmentYear
+
+       - jsonPath: $.Assessment.*.auditDetails.createdBy
+
+       - jsonPath: $.Assessment.*.auditDetails.createdTime
+
+       - jsonPath: $.Assessment.*.auditDetails.lastModifiedBy
+
+       - jsonPath: $.Assessment.*.auditDetails.lastModifiedTime
+
+
+ - version: 1.0
+   name: pt-calculator
+   description: Persists the pt-calculator related records to db
+   fromTopic: update-pt-assessment
+   isTransaction: true
+   queryMaps:
+
+    - query: UPDATE eg_pt_assessment SET assessmentNumber = ?, demandId = ?, propertyId = ?, assessmentYear = ?, createdby = ?, createdtime = ?, lastmodifiedby = ?, lastmodifiedtime = ? WHERE tenantId=? AND uuid=?;
+
+      basePath: Assessment.*
+      jsonMaps:
+
+       - jsonPath: $.Assessment.*.assessmentNumber
+
+       - jsonPath: $.Assessment.*.demandId
+
+       - jsonPath: $.Assessment.*.propertyId
+
+       - jsonPath: $.Assessment.*.assessmentYear
+
+       - jsonPath: $.Assessment.*.auditDetails.createdBy
+
+       - jsonPath: $.Assessment.*.auditDetails.createdTime
+
+       - jsonPath: $.Assessment.*.auditDetails.lastModifiedBy
+
+       - jsonPath: $.Assessment.*.auditDetails.lastModifiedTime
+
+       - jsonPath: $.Assessment.*.tenantId
+
+       - jsonPath: $.Assessment.*.uuid
