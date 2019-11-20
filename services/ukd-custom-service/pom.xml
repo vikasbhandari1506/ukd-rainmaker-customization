@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>org.egov</groupId>
-	<artifactId>rainmaker-custom-service</artifactId>
+	<artifactId>ukd-custom-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>rainmaker-custom-service</name>
-	<description>Demo project for Spring Boot</description>
+	<name>ukd-custom-service</name>
+	<description>ukd custom service</description>
 
 	<properties>
 		<java.version>1.8</java.version>
