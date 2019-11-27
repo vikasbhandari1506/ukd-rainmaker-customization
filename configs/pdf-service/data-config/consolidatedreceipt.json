@@ -154,7 +154,7 @@
               },
               { 
                 "path": "http://pt-services-v2:8080/pt-services-v2/property/_search",
-                "queryParam": "tenantId={$.paymentDetails[0].tenantid}&ids={{consumerID}}",
+                "queryParam": "tenantId='$.paymentDetails[0].tenantid'&ids='$.paymentDetails[0].bill.consumerCode'",
                 "apiRequest": null,
                 "responseMapping":[
                   {             
