@@ -6,9 +6,10 @@
         "style": "noc-table",
         "table": {
           "widths": [
-            60,
             "*",
-            120
+            "*",
+            "*",
+            "*"
           ],
           "body": [
             [
@@ -297,6 +298,77 @@
             "text": [
               {
                 "text": "OWNERSHIP INFORMATION ",
+                "bold": true
+              }
+            ],
+            "alignment": "left"
+          }         
+        ]
+      },
+      {
+        "style": "next-noc-table",
+        "table": {
+          "widths": [
+            "*",
+            "*",
+            "*",
+            "*"
+          ],
+          "body": [
+            [
+              {
+                "text": "Owner Name : ",
+                "border": [
+                  true,
+                  true,
+                  false,
+                  true
+                ],
+                "style": "receipt-table-value"
+              },
+              {
+                "text": "{{ownerName}}",
+                "border": [
+                  false,
+                  true,
+                  true,
+                  true
+                ],
+                "style": "receipt-table"
+              },
+              {
+                "text": "Gaurdian Name : ",
+                "border": [
+                  false,
+                  true,
+                  false,
+                  true
+                ],
+                "style": "receipt-table-value"
+              },
+              {
+                "text": "{{buildingName}}",
+                "border": [
+                  false,
+                  true,
+                  true,
+                  true
+                ],
+                "style": "receipt-table"
+              }
+            ]
+           
+          ]
+        },
+        "layout": {}
+      },
+      {
+        "style": "receipt-approver",
+        "columns": [
+          {
+            "text": [
+              {
+                "text": "PAYABLE AMOUNT",
                 "bold": true
               }
             ],
