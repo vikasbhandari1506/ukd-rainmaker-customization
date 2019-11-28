@@ -108,10 +108,10 @@
                   "path": "$.paymentDetails[0].totalDue"
                 }
               },
-              {
+	           {
                 "variable": "logoImage",                        
                 "url":"https://raw.githubusercontent.com/egovernments/egov-web-app/master/web/rainmaker/dev-packages/egov-ui-kit-dev/src/assets/images/pblogo.png",
-                "type":"image"
+                "type":"image"      
               }
             ]
           },
@@ -145,57 +145,8 @@
                     {
                       "variable":"email",
                       "value":"$.MdmsRes.tenant.tenants[0].emailId"
-                    },
-                     {
-                        "variable": "muncipalityName",                        
-                        "value":"$.MdmsRes.tenant.tenants[0].city.muncipalityName"                             
-                      }
+                    }
                   ]
-              },
-              { 
-                "path": "http://pt-services-v2:8080/pt-services-v2/property/_search",
-                "queryParam": "tenantId='$.paymentDetails[0].tenantid'&ids='$.paymentDetails[0].bill.consumerCode'",
-                "apiRequest": null,
-                "responseMapping":[
-                  {             
-                    "variable":"oldPropertyId",
-                    "value":"$.Properties.oldPropertyId"
-                  },
-                  {
-                    "variable":"assessmentNumber",
-                    "value":"$.Properties.propertyDetails[0].assessmentNumber"
-                  },
-                  {
-                    "variable":"houseNo",
-                    "value":"$.Properties.address.doorNo"
-                  },
-                  {
-                    "variable":"buildingName",
-                    "value":"$.Properties.address.buildingName"
-                  },
-                  {
-                    "variable": "street",                        
-                    "value":"$.Properties.address.street"
-                           
-                  },
-                  {
-                    "variable": "locality",                        
-                    "value":"$.Properties.address.locality.name"                             
-                  },
-                  {
-                    "variable": "ownerName",                        
-                    "value":"$.Properties.propertyDetails[0].owners[0].name"
-                           
-                  },
-                  {
-                    "variable": "gaurdianName",                        
-                    "value":"$.Properties.propertyDetails[0].owners[0].fatherOrHusbandName"                             
-                  },
-                  {
-                    "variable": "financialYear",                        
-                    "value":"$.Properties.propertyDetails[0].financialYear"                             
-                  }
-                ]
               }
             ]
           }

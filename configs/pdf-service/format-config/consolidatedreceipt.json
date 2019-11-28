@@ -3,6 +3,69 @@
   "config": {
     "content": [
       {
+        "style": "noc-head",
+        "table": {
+          "widths": [
+            60,
+            "*",
+            120
+          ],
+          "body": [
+            [
+              {
+                "image": "{{logoImage}}",
+                "width": 50,
+                "height": 61.25
+              },
+              {
+                "stack": [
+                  {
+                    "text": "Amritsar Municipal Corportaion",
+                    "style": "receipt-logo-header"
+                  },
+                  {
+                    "text": "{{serviceType}} payment Receipt",
+                    "style": "receipt-logo-sub-header"
+                  }
+                ],
+                "alignment": "left",
+                "margin": [
+                  0,
+                  10,
+                  0,
+                  0
+                ]
+              },
+              {
+                "stack": [
+                  {
+                    "text": "{{address}}"
+                  },
+                  {
+                    "text": "{{phoneNumber}}"
+                  },
+                  {
+                    "text": "{{website}}"
+                  },
+                  {
+                    "text": "{{email}}"
+                  }
+                ],
+                "alignment": "right",
+                "color": "#484848",
+                "margin": [
+                  -100,
+                  0,
+                  -25,
+                  0
+                ]
+              }
+            ]
+          ]
+        },
+        "layout": "noBorders"
+      },
+      {
         "style": "noc-table",
         "table": {
           "widths": [
@@ -14,43 +77,6 @@
           "body": [
             [
               {
-                "image": "{{logoImage}}",
-                "alignment": "center",
-                "border": [
-                  true,
-                  true,
-                  true,
-                  true
-                ],
-                "width": 50,
-                "height": 50
-              },
-              {
-                "stack": [
-                  {
-                    "text": "{{muncipalityName}}",
-                    "style": "receipt-logo-header"
-                  },
-                  {
-                    "text": "{{serviceType}} payment Receipt",
-                    "style": "receipt-logo-sub-header"
-                  }
-                ],
-                "alignment": "center",
-                "border": [
-                  true,
-                  true,
-                  true,
-                  true
-                ],
-                "margin": [
-                  0,
-                  10,
-                  0,
-                  0
-                ]
-              },
-              {
                 "text": "Receipt No.",
                 "border": [
                   true,
@@ -59,86 +85,24 @@
                   false
                 ],
                 "style": "receipt-table-value"
-              }
-            ]
-          ]
-        },
-        "layout": {}
-      },
-      {
-        "style": "receipt-approver",
-        "columns": [
-          {
-            "text": [
-              {
-                "text": "Date : ",
-                "bold": true
               },
               {
-                "text": "{{paymentDate}}",
-                "bold": false
-              }
-            ],
-            "alignment": "left"
-          }          
-        ]
-      },
-      {
-        "style": "receipt-approver",
-        "columns": [
-          {
-            "text": [
-              {
-                "text": "Billing Year : ",
-                "bold": true
-              },
-              {
-                "text": "{{financialYear}}",
-                "bold": false
-              }
-            ],
-            "alignment": "left"
-          }         
-        ]
-      },
-      {
-        "style": "next-noc-table",
-        "table": {
-          "widths": [
-            "*",
-            "*",
-            "*",
-            "*"
-          ],
-          "body": [
-            [
-              {
-                "text": "Exiting Property ID : ",
-                "border": [
-                  true,
-                  true,
-                  false,
-                  true
-                ],
-                "style": "receipt-table-value"
-              },
-              {
-                "text": "{{oldPropertyId}}",
+                "text": "{{receiptNo}}",
                 "border": [
                   false,
                   true,
-                  true,
-                  true
+                  false,
+                  false
                 ],
                 "style": "receipt-table"
               },
               {
-                "text": "Property Unique ID : ",
+                "text": "Consumer ID",
                 "border": [
                   false,
                   true,
                   false,
-                  true
+                  false
                 ],
                 "style": "receipt-table-value"
               },
@@ -148,287 +112,95 @@
                   false,
                   true,
                   true,
-                  true
-                ],
-                "style": "receipt-table"
-              },
-              {
-                "text": "Assessment No : ",
-                "border": [
-                  false,
-                  true,
-                  false,
-                  true
-                ],
-                "style": "receipt-table-value"
-              },
-              {
-                "text": "{{assessmentNumber}}",
-                "border": [
-                  false,
-                  true,
-                  true,
-                  true
-                ],
-                "style": "receipt-table"
-              }
-            ]
-           
-          ]
-        },
-        "layout": {}
-      },
-      {
-        "style": "receipt-approver",
-        "columns": [
-          {
-            "text": [
-              {
-                "text": "PROPERTY ADDRESS ",
-                "bold": true
-              }
-            ],
-            "alignment": "left"
-          }         
-        ]
-      },
-      {
-        "style": "next-noc-table",
-        "table": {
-          "widths": [
-            "*",
-            "*",
-            "*",
-            "*"
-          ],
-          "body": [
-            [
-              {
-                "text": "House/Door No. : ",
-                "border": [
-                  true,
-                  true,
-                  false,
-                  true
-                ],
-                "style": "receipt-table-value"
-              },
-              {
-                "text": "{{houseNo}}",
-                "border": [
-                  false,
-                  true,
-                  true,
-                  true
-                ],
-                "style": "receipt-table"
-              },
-              {
-                "text": "Building/Colony Name : ",
-                "border": [
-                  false,
-                  true,
-                  false,
-                  true
-                ],
-                "style": "receipt-table-value"
-              },
-              {
-                "text": "{{buildingName}}",
-                "border": [
-                  false,
-                  true,
-                  true,
-                  true
+                  false
                 ],
                 "style": "receipt-table"
               }
             ],
             [
               {
-                "text": "Street Name : ",
+                "text": "Payment Date",
                 "border": [
                   true,
-                  true,
                   false,
-                  true
+                  false,
+                  false
                 ],
                 "style": "receipt-table-value"
               },
               {
-                "text": "{{street}}",
+                "text": "{{paymentDate}}",
                 "border": [
                   false,
-                  true,
-                  true,
-                  true
+                  false,
+                  false,
+                  false
                 ],
                 "style": "receipt-table"
               },
               {
-                "text": "Locality/Mohalla : ",
+                "text": "Payer Name",
                 "border": [
                   false,
-                  true,
                   false,
-                  true
+                  false,
+                  false
                 ],
                 "style": "receipt-table-value"
               },
               {
-                "text": "{{locality}}",
+                "text": "{{payerName}}",
                 "border": [
                   false,
+                  false,
                   true,
-                  true,
-                  true
+                  false
                 ],
                 "style": "receipt-table"
-              }
-            ]
-           
-          ]
-        },
-        "layout": {}
-      },
-      {
-        "style": "receipt-approver",
-        "columns": [
-          {
-            "text": [
-              {
-                "text": "OWNERSHIP INFORMATION ",
-                "bold": true
               }
             ],
-            "alignment": "left"
-          }         
-        ]
-      },
-      {
-        "style": "next-noc-table",
-        "table": {
-          "widths": [
-            "*",
-            "*",
-            "*",
-            "*"
-          ],
-          "body": [
             [
               {
-                "text": "Owner Name : ",
+                "text": "Payer Contact",
                 "border": [
                   true,
-                  true,
+                  false,
                   false,
                   true
                 ],
                 "style": "receipt-table-value"
               },
               {
-                "text": "{{ownerName}}",
+                "text": "{{payerContact}}",
                 "border": [
                   false,
-                  true,
-                  true,
+                  false,
+                  false,
                   true
                 ],
                 "style": "receipt-table"
               },
               {
-                "text": "Gaurdian Name : ",
+                "text" : " ",
                 "border": [
                   false,
-                  true,
+                  false,
                   false,
                   true
                 ],
                 "style": "receipt-table-value"
               },
               {
-                "text": "{{buildingName}}",
+                "text" : " ",
                 "border": [
                   false,
-                  true,
+                  false,
                   true,
                   true
                 ],
                 "style": "receipt-table"
               }
             ]
-           
-          ]
-        },
-        "layout": {}
-      },
-      {
-        "style": "receipt-approver",
-        "columns": [
-          {
-            "text": [
-              {
-                "text": "PAYABLE AMOUNT",
-                "bold": true
-              }
-            ],
-            "alignment": "left"
-          }         
-        ]
-      },
-      {
-        "style": "next-noc-table",
-        "table": {
-          "widths": [
-            "*",
-            "*",
-            "*",
-            "*"
-          ],
-          "body": [
-            [
-              {
-                "text": "Owner Name : ",
-                "border": [
-                  true,
-                  true,
-                  false,
-                  true
-                ],
-                "style": "receipt-table-value"
-              },
-              {
-                "text": "{{ownerName}}",
-                "border": [
-                  false,
-                  true,
-                  true,
-                  true
-                ],
-                "style": "receipt-table"
-              },
-              {
-                "text": "Gaurdian Name : ",
-                "border": [
-                  false,
-                  true,
-                  false,
-                  true
-                ],
-                "style": "receipt-table-value"
-              },
-              {
-                "text": "{{buildingName}}",
-                "border": [
-                  false,
-                  true,
-                  true,
-                  true
-                ],
-                "style": "receipt-table"
-              }
-            ]
-           
           ]
         },
         "layout": {}
@@ -571,7 +343,7 @@
             ],
             [
               {
-                "text": "MSC5/MSC2 Receipt No.",
+                "text": "G8 Receipt No.",
                 "border": [
                   true,
                   false,
@@ -591,7 +363,7 @@
                 "style": "receipt-table"
               },
               {
-                "text": "MSC5/MSC2 Receipt Date",
+                "text": "G8 Receipt Date",
                 "border": [
                   false,
                   false,
