@@ -86,31 +86,45 @@
                },
                {
                   "variable":"propertyTax",
-                  "value":"$.paymentDetails[0].bill.billDetails[0].billAccountDetails[?(@.taxHeadCode=='PT_TAX')].amount"
+                  "value":{
+                     "path":"$.paymentDetails[0].bill.billDetails[0].billAccountDetails[?(@.taxHeadCode=='PT_TAX')].amount"
+                 }               
                },
                {
                  "variable":"arrear",
-                 "value":"$.paymentDetails[0].bill.billDetails[1].billAccountDetails[?(@.taxHeadCode=='PT_TAX')].amount"
+                 "value":{
+                    "path":"$.paymentDetails[0].bill.billDetails[1].billAccountDetails[?(@.taxHeadCode=='PT_TAX')].amount"
+                 }
                },
                {
                   "variable":"penalty",
-                  "value":"$.paymentDetails[0].bill.billDetails[0].billAccountDetails[?(@.taxHeadCode=='PT_TIME_PENALTY')].amount"
+                  "value":{
+                     "path":"$.paymentDetails[0].bill.billDetails[0].billAccountDetails[?(@.taxHeadCode=='PT_TIME_PENALTY')].amount"
+                  }
                },
                {
                   "variable":"rebate",
-                  "value":"$.paymentDetails[0].bill.billDetails[0].billAccountDetails[?(@.taxHeadCode=='PT_TIME_REBATE')].amount"
+                  "value":{
+                     "path":"$.paymentDetails[0].bill.billDetails[0].billAccountDetails[?(@.taxHeadCode=='PT_TIME_REBATE')].amount"
+                  }
                },
                {
                   "variable":"interest",
-                  "value":"$.paymentDetails[0].bill.billDetails[0].billAccountDetails[?(@.taxHeadCode=='PT_TIME_INTEREST')].amount"
+                  "value":{
+                     "path":"$.paymentDetails[0].bill.billDetails[0].billAccountDetails[?(@.taxHeadCode=='PT_TIME_INTEREST')].amount"
+                  }
                },                
                {
                   "variable":"roundOff",
-                  "value":"$.paymentDetails[0].bill.billDetails[0].billAccountDetails[?(@.taxHeadCode=='PT_ROUNDOFF')].amount"
+                  "value":{
+                     "path":"$.paymentDetails[0].bill.billDetails[0].billAccountDetails[?(@.taxHeadCode=='PT_ROUNDOFF')].amount"
+                  }
                },
                {
                   "variable":"total",
-                  "value":"$.paymentDetails[0].bill.totalAmount"
+                  "value":{
+                     "path":"$.paymentDetails[0].bill.totalAmount"
+                  }
                },
                {
                  "variable": "paymentDate", 
@@ -173,7 +187,7 @@
                          "variable": "muncipalityName",                        
                          "value":"$.MdmsRes.tenant.tenants[0].city.muncipalityName"                             
                       },
-             {
+                      {
                         "variable": "logoImage",                        
                         "value":"$.MdmsRes.tenant.tenants[0].logoId",
                         "type":"image"      
