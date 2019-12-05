@@ -6,13 +6,25 @@
           "style": "noctable",
           "table": {
             "widths": [
-              "65%",
-              "35"
+              "100",
+              "300",
+              "*"
              
             ],
             "body": [
               [
-                
+                {
+                  "text": "{{logoImage}}",
+                  "alignment": "center",
+                  "border": [
+                    true,
+                    true,
+                    true,
+                    true
+                  ],
+                  "width": 50,
+                  "height": 50
+                },
                 {
                   "stack": [
                     {
@@ -39,24 +51,29 @@
                   ]
                 },
                 {
-                  "text": "Receipt No.",
-                  "border": [
-                    true,
-                    true,
-                    false,
-                    true
+                  "stack": [
+                    {
+                      "text": "Receipt No.",
+                      "border": [
+                        true,
+                        true,
+                        false,
+                        true
+                      ],
+                      "style": "receipttablevalue"
+                    },
+                    {
+                      "text": "{{receiptNo}}",
+                      "border": [
+                        false,
+                        true,
+                        true,
+                        true
+                       ],
+                      "style": "receipttable"
+                    }
                   ],
-                  "style": "receipttablevalue"
-                },
-                {
-                  "text": "{{receiptNo}}",
-                  "border": [
-                    false,
-                    true,
-                    true,
-                    true
-                  ],
-                  "style": "receipttable"
+                  "alignment": "center"
                 }
               ]
             ]
