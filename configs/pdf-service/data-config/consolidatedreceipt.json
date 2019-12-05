@@ -163,7 +163,7 @@
           {
             "externalAPI": [     
               { 
-                  "path": "http://localhost:8091/egov-mdms-service/v1/_get",
+                  "path": "http://egov-mdms-service:8080/egov-mdms-service/v1/_get",
                   "queryParam": "moduleName=tenant&masterName=tenants&tenantId=uk&filter=%5B?(@.code=='$.tenantId')%5D",
                   "apiRequest": null,
                   "responseMapping":[
@@ -195,7 +195,7 @@
                   ]
               },
               { 
-                "path": "http://localhost:8092/pt-services-v2/property/_search",
+                "path": "http://pt-services-v2:8080/pt-services-v2/property/_search",
                 "queryParam": "tenantId='$.tenantId'&ids='$.Payments.paymentDetails[0].bill.consumerCode'",
                 "apiRequest": null,
                 "responseMapping":[
