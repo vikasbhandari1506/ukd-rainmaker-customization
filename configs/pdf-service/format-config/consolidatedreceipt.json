@@ -6,15 +6,15 @@
           "style": "noctable",
           "table": {
             "widths": [
-              "100",
-              "300",
+              "10%",
+              "60%",
               "*"
              
             ],
             "body": [
               [
                 {
-                  "text": "{{logoImage}}",
+                  "image": "{{logoImage}}",
                   "alignment": "center",
                   "border": [
                     true,
@@ -23,7 +23,7 @@
                     true
                   ],
                   "width": 50,
-                  "height": 50
+                  "height": 61.25
                 },
                 {
                   "stack": [
@@ -135,7 +135,7 @@
                   "style": "receipttablevalue"
                 },
                 {
-                  "text": "oldpropertyid",
+                  "text": "{{oldPropertyId}}",
                   "border": [
                     false,
                     true,
@@ -155,7 +155,7 @@
                   "style": "receipttablevalue"
                 },
                 {
-                  "text": "consumerID",
+                  "text": "{{consumerID}}",
                   "border": [
                     false,
                     true,
@@ -175,7 +175,7 @@
                   "style": "receipttablevalue"
                 },
                 {
-                  "text": "assessmentNumber",
+                  "text": "{{assessmentNumber}}",
                   "border": [
                     false,
                     true,
