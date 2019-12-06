@@ -32,7 +32,7 @@
                       "style": "receiptlogoheader"
                     },
                     {
-                      "text": "{{serviceType}} payment Receipt",
+                      "text": "{{serviceType}} Payment Receipt",
                       "style": "receiptlogosubheader"
                     }
                   ],
@@ -115,12 +115,10 @@
           "style": "nextnoctable",
           "table": {
             "widths": [
-              "13%",
-              "20%",
-              "13%",
-              "21%",
-              "13%",
-              "20%"
+              "25%",
+              "25%",
+              "25%",
+              "25%"
             ],
             "body": [
               [
@@ -156,26 +154,6 @@
                 },
                 {
                   "text": "{{consumerID}}",
-                  "border": [
-                    false,
-                    true,
-                    true,
-                    true
-                  ],
-                  "style": "receipttable"
-                },
-                {
-                  "text": "Assessment No : ",
-                  "border": [
-                    false,
-                    true,
-                    false,
-                    true
-                  ],
-                  "style": "receipttablevalue"
-                },
-                {
-                  "text": "{{assessmentNumber}}",
                   "border": [
                     false,
                     true,
