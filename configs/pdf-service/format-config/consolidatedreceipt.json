@@ -676,7 +676,7 @@
               ],
               [
                 {
-                  "text": "MCS5/MCS2 Receipt No : ",
+                  "text": "MSC5/MSC2 Receipt No : ",
                   "border": [
                     true,
                     true,
@@ -696,7 +696,7 @@
                   "style": "receipttable"
                 },
                 {
-                  "text": "MCS5/MCS2 Receipt Issue Date: ",
+                  "text": "MSC5/MSC2 Receipt Date: ",
                   "border": [
                     false,
                     true,
