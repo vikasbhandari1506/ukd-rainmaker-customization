@@ -595,6 +595,7 @@ ReportDefinitions:
 
 
 - reportName: StateLevelStatus
+  reportLabel: report.state.level.status
   summary: Nummber of applications by there status state level
   version: 1.0.0
   moduleName: rainmaker-tl
