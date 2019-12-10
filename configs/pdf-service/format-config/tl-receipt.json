@@ -1,6 +1,9 @@
 {
   "key": "tl-receipt",
   "config": {
+    "defaultStyle": {
+      "font": "Cambay"
+     },
     "content": [
       {
           "style": "noctable",
@@ -846,7 +849,6 @@
       },
       "receiptlogoheader": {
         "color": "#000000",
-        "fontFamily": "Roboto",
         "fontSize": 14,
         "bold": true,
         "letterSpacing": 0.74,
@@ -859,7 +861,6 @@
       },
       "receiptlogosubheader": {
         "color": "#000000",
-        "fontFamily": "Roboto",
         "fontSize": 12,
         "letterSpacing": 0.6
       },
@@ -910,7 +911,6 @@
       },
       "receiptapprover": {
         "fontSize": 12,
-        "fontFamily": "Roboto",
         "bold": true,
         "margin": [
           -20,
@@ -922,7 +922,6 @@
       },
       "designation": {
         "fontSize": 12,
-        "fontFamily": "Roboto",
         "bold": true,
         "margin": [
           -20,
@@ -933,8 +932,7 @@
         "color": "#000000"
       },
       "applicationdtls": {
-        "fontSize": 12,
-        "fontFamily": "Roboto",
+        "fontSize": 10,
         "bold": true,
         "margin": [
           -20,
@@ -955,7 +953,7 @@
         "color": "#484848"
       },
       "ptdisclaimer": {
-        "fontSize": 12,
+        "fontSize": 10,
         "margin": [
           -27,
           30,
@@ -965,7 +963,7 @@
         "color": "#484848"
       },
       "ptdisclaimervalue": {
-        "fontSize": 10,
+        "fontSize": 8,
         "margin": [
           2,
           5,
