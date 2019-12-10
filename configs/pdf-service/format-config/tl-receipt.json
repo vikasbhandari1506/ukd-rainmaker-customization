@@ -910,7 +910,7 @@
         ]
       },
       "receiptapprover": {
-        "fontSize": 12,
+        "fontSize": 10,
         "bold": true,
         "margin": [
           -20,
