@@ -81,13 +81,13 @@ ReportDefinitions:
     type: epoch
     source: tl
     isMandatory: false
-    searchClause: AND receipt.createddate >= $fromDate
+    searchClause: AND pd.receiptdate >= $fromDate
   - name: toDate
     label: reports.tl.toDate
     type: epoch
     source: tl
     isMandatory: false
-    searchClause: AND receipt.createddate  <= $toDate 
+    searchClause: AND pd.receiptdate  <= $toDate 
   query: |
     SELECT 
       licensenumber,
@@ -338,13 +338,13 @@ ReportDefinitions:
     type: epoch
     source: tl
     isMandatory: false
-    searchClause: AND receipt.createddate >= $fromDate
+    searchClause: AND pd.receiptdate >= $fromDate
   - name: toDate
     label: reports.tl.toDate
     type: epoch
     source: tl
     isMandatory: false
-    searchClause: AND receipt.createddate  <= $toDate 
+    searchClause: AND pd.receiptdate  <= $toDate 
   query: |
     SELECT 
       licensenumber,
