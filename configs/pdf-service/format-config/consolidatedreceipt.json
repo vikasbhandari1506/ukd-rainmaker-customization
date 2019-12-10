@@ -842,7 +842,7 @@
           "color": "#000000",
           "bold": false,
           "fontSize": 10,
-          "fontWeight": 500,
+          "fontWeight": 400,
           "margin": [
             0,
             5,
@@ -882,7 +882,7 @@
           "color": "#484848"
         },
         "ptdisclaimervalue": {
-          "fontSize": 10,
+          "fontSize": 8,
           "margin": [
             2,
             5,
