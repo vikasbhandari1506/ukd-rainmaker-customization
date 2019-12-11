@@ -801,13 +801,7 @@
                 "bold": true
               }
             ],
-            "alignment": "right",
-            "margin": [
-              0,
-              0,
-              -10,
-              1
-            ]
+            "alignment": "right"
           }
         ]
       },
@@ -888,7 +882,7 @@
       "receipttablevalue": {
         "color": "#000000",
         "bold": true,
-        "fontSize": 9,
+        "fontSize": 10,
         "fontWeight": 400,
         "margin": [
           0,
@@ -900,7 +894,7 @@
       "receipttable": {
         "color": "#000000",
         "bold": false,
-        "fontSize": 9,
+        "fontSize": 10,
         "fontWeight": 400,
         "margin": [
           0,
