@@ -35,7 +35,7 @@
                       "style": "receiptlogoheader"
                     },
                     {
-                      "text": "{{serviceType}} payment Receipt",
+                      "text": "{{serviceType}} {{payment_receipt}}",
                       "style": "receiptlogosubheader"
                     }
                   ],
@@ -56,7 +56,7 @@
                 {
                   "stack": [
                     {
-                      "text": "Receipt No.",
+                      "text": "{{receipt_no}}",
                       "border": [
                         true,
                         true,
@@ -89,7 +89,7 @@
           {
             "text": [
               {
-                "text": "Application Type : ",
+                "text": "{{application_type}} : ",
                 "bold": true
               },
               {
@@ -102,7 +102,7 @@
           {
             "text": [
               {
-                "text": "Old License No. : ",
+                "text": "{{old_license}}. : ",
                 "bold": true
               },
               {
@@ -120,7 +120,7 @@
           {
             "text": [
               {
-                "text": "Application No. : ",
+                "text": "{{application_no}} : ",
                 "bold": true
               },
               {
@@ -133,7 +133,7 @@
           {
             "text": [
               {
-                "text": "Receipt No. : ",
+                "text": "{{receipt_no}} : ",
                 "bold": true
               },
               {
@@ -151,7 +151,7 @@
           {
             "text": [
               {
-                "text": "Financial Year : ",
+                "text": "{{financial_year}} : ",
                 "bold": true
               },
               {
@@ -164,7 +164,7 @@
           {
             "text": [
               {
-                "text": "Payment Date : ",
+                "text": "{{payment_date}} : ",
                 "bold": true
               },
               {
@@ -182,7 +182,7 @@
           {
             "text": [
               {
-                "text": "TRADE DETAILS ",
+                "text": "{{trade_details}}",
                 "bold": true
               }
             ],
@@ -202,7 +202,7 @@
           "body": [
             [
               {
-                "text": "Trade Name : ",
+                "text": "{{trade_name}} : ",
                 "border": [
                   true,
                   true,
@@ -222,7 +222,7 @@
                 "style": "receipttable"
               },
               {
-                "text": "Trade Category : ",
+                "text": "{{trade_category}} : ",
                 "border": [
                   false,
                   true,
@@ -232,7 +232,7 @@
                 "style": "receipttablevalue"
               },
               {
-                "text": "TRADE",
+                "text": "{{trade_category_value}}",
                 "border": [
                   false,
                   true,
@@ -244,7 +244,7 @@
             ],
             [
               {
-                "text": "Trade Type : ",
+                "text": "{{trade_type}} : ",
                 "border": [
                   true,
                   true,
@@ -264,7 +264,7 @@
                 "style": "receipttable"
               },
               {
-                "text": "Occupancy Type : ",
+                "text": "{{occupancy_type}} : ",
                 "border": [
                   false,
                   true,
@@ -294,7 +294,7 @@
           {
             "text": [
               {
-                "text": "TRADE LOCATION DETAILS ",
+                "text": "{{trade_address}}",
                 "bold": true
               }
             ],
@@ -314,7 +314,7 @@
           "body": [
             [
               {
-                "text": "House/Door No. : ",
+                "text": "{{door_no}} : ",
                 "border": [
                   true,
                   true,
@@ -334,7 +334,7 @@
                 "style": "receipttable"
               },
               {
-                "text": "Building/Colony Name : ",
+                "text": "{{building_name}} : ",
                 "border": [
                   false,
                   true,
@@ -356,7 +356,7 @@
             ],
             [
               {
-                "text": "Street Name : ",
+                "text": "{{street_name}} : ",
                 "border": [
                   true,
                   true,
@@ -376,7 +376,7 @@
                 "style": "receipttable"
               },
               {
-                "text": "Locality/Mohalla : ",
+                "text": "{{locality_mohalla}} : ",
                 "border": [
                   false,
                   true,
@@ -406,7 +406,7 @@
           {
             "text": [
               {
-                "text": "OWNERSHIP INFORMATION ",
+                "text": "{{owner_info}}",
                 "bold": true
               }
             ],
@@ -426,7 +426,7 @@
           "body": [
             [
               {
-                "text": "Owner Name : ",
+                "text": "{{owner_name}} : ",
                 "border": [
                   true,
                   true,
@@ -446,7 +446,7 @@
                 "style": "receipttable"
               },
               {
-                "text": "Gaurdian Name : ",
+                "text": "{{gaurdian_name}} : ",
                 "border": [
                   false,
                   true,
@@ -476,7 +476,7 @@
           {
             "text": [
               {
-                "text": "PAYABLE AMOUNT",
+                "text": "{{payable_amount}}",
                 "bold": true
               }
             ],
@@ -498,7 +498,7 @@
           "body": [
             [
               {
-                "text": "Trade License Fee",
+                "text": "{{tl_tax}}",
                 "border": [
                   true,
                   true,
@@ -509,7 +509,7 @@
                 "style": "receipttablevalue"
               },
               {
-                "text": "Penalty",
+                "text": "{{tl_penalty}}",
                 "border": [
                   true,
                   true,
@@ -520,7 +520,7 @@
                 "style": "receipttablevalue"
               },
               {
-                "text": "Rebate",
+                "text": "{{tl_rebate}}",
                 "border": [
                   true,
                   true,
@@ -531,7 +531,7 @@
                 "style": "receipttablevalue"
               },
               {
-                "text": "Adhoc Penalty",
+                "text": "{{tl_adhoc_penalty}}",
                 "border": [
                   true,
                   true,
@@ -542,7 +542,7 @@
                 "style": "receipttablevalue"
               },
               {
-                "text": "Adhoc Rebate",
+                "text": "{{tl_adhoc_rebate}}",
                 "border": [
                   true,
                   true,
@@ -553,7 +553,7 @@
                 "style": "receipttablevalue"
               },
               {
-                "text": "Total",
+                "text": "{{tl_total}}",
                 "border": [
                   true,
                   true,
@@ -642,7 +642,7 @@
           {
             "text": [
               {
-                "text": "PAYMENT INFORMATION",
+                "text": "{{payment_info}}",
                 "bold": true
               }
             ],
@@ -662,7 +662,7 @@
           "body":[
             [
               {
-                "text": "Total Amount Paid : ",
+                "text": "{{amount_paid}} : ",
                 "border": [
                   true,
                   true,
@@ -682,7 +682,7 @@
                 "style": "receipttable"
               },
               {
-                "text": "Pending Amount : ",
+                "text": "{{pending_amount}} : ",
                 "border": [
                   false,
                   true,
@@ -704,7 +704,7 @@
             ],
             [
               {
-                "text": "Payment Mode : ",
+                "text": "{{payment_mode}} : ",
                 "border": [
                   true,
                   true,
@@ -724,7 +724,7 @@
                 "style": "receipttable"
               },
               {
-                "text": "Transaction ID/ Cheque/ DD No : ",
+                "text": "{{transaction_id}} : ",
                 "border": [
                   true,
                   true,
@@ -746,7 +746,7 @@
             ],
             [
               {
-                "text": "MSC5/MSC2 Receipt No : ",
+                "text": "{{msc_receipt_no}} : ",
                 "border": [
                   true,
                   true,
@@ -766,7 +766,7 @@
                 "style": "receipttable"
               },
               {
-                "text": "MSC5/MSC2 Receipt Date: ",
+                "text": "{{msc_receipt_date}} : ",
                 "border": [
                   false,
                   true,
@@ -797,7 +797,7 @@
           {
             "text": [
               {
-                "text": "Commissioner/EO",
+                "text": "{{commissioner_eo}}",
                 "bold": true
               }
             ],
@@ -816,22 +816,22 @@
         "alignment": "bottom",
         "stack": [
           {
-            "text": "Note",
+            "text": "{{note}}",
             "bold": true,
             "style": "ptdisclaimervalue"
           },
           {
-            "text": "1. Payment received by cheque/demand draft shall be subject to realization.",
+            "text": "{{disclaimer1}}",
             "bold": false,
             "style": "ptdisclaimervalue"
           },
           {
-            "text": "2. This document is not a proof of Property Ownership.",
+            "text": "{{disclaimer2}}",
             "bold": false,
             "style": "ptdisclaimervalue"
           },
           {
-            "text": "3. This is a computer generated document, hence requires no signature.",
+            "text": "{{disclaimer3}}",
             "bold": false,
             "style": "ptdisclaimervalue"
           }
@@ -888,8 +888,8 @@
       "receipttablevalue": {
         "color": "#000000",
         "bold": true,
-        "fontSize": 10,
-        "fontWeight": 500,
+        "fontSize": 8,
+        "fontWeight": 400,
         "margin": [
           0,
           5,
@@ -900,8 +900,8 @@
       "receipttable": {
         "color": "#000000",
         "bold": false,
-        "fontSize": 10,
-        "fontWeight": 500,
+        "fontSize": 8,
+        "fontWeight": 400,
         "margin": [
           0,
           5,
