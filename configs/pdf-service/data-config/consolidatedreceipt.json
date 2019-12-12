@@ -81,6 +81,11 @@
                                 "variable": "paymentMode",
                                 "value": {
                                     "path": "$.paymentMode"
+                                },
+                                "localisation": {
+                                    "required": true,
+                                    "prefix": "PT_RECEIPT_VALUE_PAYMENT_MODE",
+                                    "module": "rainmaker-receipt"
                                 }
                             },
                             {
