@@ -49,6 +49,17 @@
                                 }
                             },
                             {
+                                "variable": "muncipalityName",
+                                "value": {
+                                    "path": "$.tenantId"
+                                },
+                                "localisation": {
+                                    "required": true,
+                                    "prefix": "RECEIPT_MUNICIPALITY",
+                                    "module": "rainmaker-receipt"
+                                }
+                             },
+                            {
                                 "variable": "paidAmount",
                                 "value": {
                                     "path": "$.paymentDetails[0].totalAmountPaid"
@@ -585,7 +596,7 @@
                             {
                                 "variable": "disclaimer4",
                                 "value": {
-                                    "path": "PT_RECEIPT_LABEL_DISCLAIMER"
+                                    "path": "PT_RECEIPT_LABEL_DISCLAIMER4"
                                 },
                                 "type": "label",
                                 "localisation": {
@@ -638,10 +649,6 @@
                                     {
                                         "variable": "email",
                                         "value": "$.MdmsRes.tenant.tenants[0].emailId"
-                                    },
-                                    {
-                                        "variable": "muncipalityName",
-                                        "value": "$.MdmsRes.tenant.tenants[0].city.municipalityName"
                                     },
                                     {
                                         "variable": "logoImage",
