@@ -55,7 +55,7 @@
                             {
                                 "stack": [
                                     {
-                                        "text": "{{receipt_no}}",
+                                        "text": "{{receipt_no}} :",
                                         "border": [
                                             true,
                                             true,
@@ -88,7 +88,7 @@
                     {
                         "text": [
                             {
-                                "text": "{{payment_date}} ",
+                                "text": "{{payment_date}} :",
                                 "bold": true
                             },
                             {
@@ -101,7 +101,7 @@
                     {
                         "text": [
                             {
-                                "text": "{{financial_year}}",
+                                "text": "{{financial_year}} :",
                                 "bold": true
                             },
                             {
@@ -125,7 +125,7 @@
                     "body": [
                         [
                             {
-                                "text": "{{existing_pt_id}}",
+                                "text": "{{existing_pt_id}} :",
                                 "border": [
                                     true,
                                     true,
@@ -145,7 +145,7 @@
                                 "style": "receipttable"
                             },
                             {
-                                "text": "{{property_id}}",
+                                "text": "{{property_id}} :",
                                 "border": [
                                     false,
                                     true,
@@ -195,7 +195,7 @@
                     "body": [
                         [
                             {
-                                "text": "{{door_no}}",
+                                "text": "{{door_no}} :",
                                 "border": [
                                     true,
                                     true,
@@ -215,7 +215,7 @@
                                 "style": "receipttable"
                             },
                             {
-                                "text": "{{building_name}}",
+                                "text": "{{building_name}} :",
                                 "border": [
                                     false,
                                     true,
@@ -237,7 +237,7 @@
                         ],
                         [
                             {
-                                "text": "{{street_name}}",
+                                "text": "{{street_name}} :",
                                 "border": [
                                     true,
                                     true,
@@ -257,7 +257,7 @@
                                 "style": "receipttable"
                             },
                             {
-                                "text": "{{locality_mohalla}}",
+                                "text": "{{locality_mohalla}} :",
                                 "border": [
                                     false,
                                     true,
@@ -307,7 +307,7 @@
                     "body": [
                         [
                             {
-                                "text": "{{owner_name}}",
+                                "text": "{{owner_name}} :",
                                 "border": [
                                     true,
                                     true,
@@ -327,7 +327,7 @@
                                 "style": "receipttable"
                             },
                             {
-                                "text": "{{gaurdian_name}}",
+                                "text": "{{gaurdian_name}} :",
                                 "border": [
                                     false,
                                     true,
@@ -375,7 +375,7 @@
                     "body": [
                         [
                             {
-                                "text": "{{pt_total}}",
+                                "text": "{{pt_total}} :",
                                 "border": [
                                     true,
                                     true,
@@ -425,7 +425,7 @@
                     "body": [
                         [
                             {
-                                "text": "{{amount_paid}}",
+                                "text": "{{amount_paid}} :",
                                 "border": [
                                     true,
                                     true,
@@ -445,7 +445,7 @@
                                 "style": "receipttable"
                             },
                             {
-                                "text": "{{pending_amount}}",
+                                "text": "{{pending_amount}} :",
                                 "border": [
                                     false,
                                     true,
@@ -467,7 +467,7 @@
                         ],
                         [
                             {
-                                "text": "{{payment_mode}}",
+                                "text": "{{payment_mode}} :",
                                 "border": [
                                     true,
                                     true,
@@ -487,7 +487,7 @@
                                 "style": "receipttable"
                             },
                             {
-                                "text": "{{bank_name}}",
+                                "text": "{{bank_name}} :",
                                 "border": [
                                     false,
                                     true,
@@ -509,7 +509,7 @@
                         ],
                         [
                             {
-                                "text": "{{transaction_id}}",
+                                "text": "{{transaction_id}} :",
                                 "border": [
                                     true,
                                     true,
@@ -529,7 +529,7 @@
                                 "style": "receipttable"
                             },
                             {
-                                "text": "{{transaction_date}}",
+                                "text": "{{transaction_date}} :",
                                 "border": [
                                     false,
                                     true,
@@ -551,7 +551,7 @@
                         ],
                         [
                             {
-                                "text": "{{msc_receipt_no}}",
+                                "text": "{{msc_receipt_no}} :",
                                 "border": [
                                     true,
                                     true,
@@ -571,7 +571,7 @@
                                 "style": "receipttable"
                             },
                             {
-                                "text": "{{msc_receipt_date}}",
+                                "text": "{{msc_receipt_date}} :",
                                 "border": [
                                     false,
                                     true,
