@@ -1,0 +1,784 @@
+{
+    "key": "consolidatedreceipt",
+    "config": {
+        "defaultStyle": {
+            "font": "Cambay"
+        },
+        "content": [
+            {
+                "style": "noctable",
+                "table": {
+                    "widths": [
+                        "10%",
+                        "60%",
+                        "*"
+                    ],
+                    "body": [
+                        [
+                            {
+                                "image": "{{logoImage}}",
+                                "alignment": "center",
+                                "border": [
+                                    true,
+                                    true,
+                                    true,
+                                    true
+                                ],
+                                "width": 50,
+                                "height": 61.25
+                            },
+                            {
+                                "stack": [
+                                    {
+                                        "text": "{{muncipalityName}}",
+                                        "style": "receiptlogoheader"
+                                    },
+                                    {
+                                        "text": "{{serviceType}} {{payment_receipt}}",
+                                        "style": "receiptlogosubheader"
+                                    }
+                                ],
+                                "alignment": "center",
+                                "border": [
+                                    true,
+                                    true,
+                                    true,
+                                    true
+                                ],
+                                "margin": [
+                                    0,
+                                    10,
+                                    0,
+                                    0
+                                ]
+                            },
+                            {
+                                "stack": [
+                                    {
+                                        "text": "{{receipt_no}} :",
+                                        "border": [
+                                            true,
+                                            true,
+                                            false,
+                                            true
+                                        ],
+                                        "style": "receipttablevalue"
+                                    },
+                                    {
+                                        "text": "{{receiptNo}}",
+                                        "border": [
+                                            false,
+                                            true,
+                                            true,
+                                            true
+                                        ],
+                                        "style": "receipttable"
+                                    }
+                                ],
+                                "alignment": "center"
+                            }
+                        ]
+                    ]
+                },
+                "layout": "{}"
+            },
+            {
+                "style": "receiptapprover",
+                "columns": [
+                    {
+                        "text": [
+                            {
+                                "text": "{{payment_date}} :",
+                                "bold": true
+                            },
+                            {
+                                "text": "{{paymentDate}}",
+                                "bold": false
+                            }
+                        ],
+                        "alignment": "left"
+                    },
+                    {
+                        "text": [
+                            {
+                                "text": "{{financial_year}} :",
+                                "bold": true
+                            },
+                            {
+                                "text": "{{financialYear}}",
+                                "bold": false
+                            }
+                        ],
+                        "alignment": "right"
+                    }
+                ]
+            },
+            {
+                "style": "nextnoctable",
+                "table": {
+                    "widths": [
+                        "25%",
+                        "25%",
+                        "25%",
+                        "25%"
+                    ],
+                    "body": [
+                        [
+                            {
+                                "text": "{{existing_pt_id}} :",
+                                "border": [
+                                    true,
+                                    true,
+                                    false,
+                                    true
+                                ],
+                                "style": "receipttablevalue"
+                            },
+                            {
+                                "text": "{{oldPropertyId}}",
+                                "border": [
+                                    false,
+                                    true,
+                                    true,
+                                    true
+                                ],
+                                "style": "receipttable"
+                            },
+                            {
+                                "text": "{{property_id}} :",
+                                "border": [
+                                    false,
+                                    true,
+                                    false,
+                                    true
+                                ],
+                                "style": "receipttablevalue"
+                            },
+                            {
+                                "text": "{{consumerID}}",
+                                "border": [
+                                    false,
+                                    true,
+                                    true,
+                                    true
+                                ],
+                                "style": "receipttable"
+                            }
+                        ]
+                    ]
+                },
+                "layout": {}
+            },
+            {
+                "style": "receiptapprover",
+                "columns": [
+                    {
+                        "text": [
+                            {
+                                "text": "{{property_address}}",
+                                "bold": true
+                            }
+                        ],
+                        "alignment": "left"
+                    }
+                ]
+            },
+            {
+                "style": "nextnoctable",
+                "table": {
+                    "widths": [
+                        "*",
+                        "*",
+                        "*",
+                        "*"
+                    ],
+                    "body": [
+                        [
+                            {
+                                "text": "{{door_no}} :",
+                                "border": [
+                                    true,
+                                    true,
+                                    false,
+                                    true
+                                ],
+                                "style": "receipttablevalue"
+                            },
+                            {
+                                "text": "{{houseNo}}",
+                                "border": [
+                                    false,
+                                    true,
+                                    true,
+                                    true
+                                ],
+                                "style": "receipttable"
+                            },
+                            {
+                                "text": "{{building_name}} :",
+                                "border": [
+                                    false,
+                                    true,
+                                    false,
+                                    true
+                                ],
+                                "style": "receipttablevalue"
+                            },
+                            {
+                                "text": "{{buildingName}}",
+                                "border": [
+                                    false,
+                                    true,
+                                    true,
+                                    true
+                                ],
+                                "style": "receipttable"
+                            }
+                        ],
+                        [
+                            {
+                                "text": "{{street_name}} :",
+                                "border": [
+                                    true,
+                                    true,
+                                    false,
+                                    true
+                                ],
+                                "style": "receipttablevalue"
+                            },
+                            {
+                                "text": "{{street}}",
+                                "border": [
+                                    false,
+                                    true,
+                                    true,
+                                    true
+                                ],
+                                "style": "receipttable"
+                            },
+                            {
+                                "text": "{{locality_mohalla}} :",
+                                "border": [
+                                    false,
+                                    true,
+                                    false,
+                                    true
+                                ],
+                                "style": "receipttablevalue"
+                            },
+                            {
+                                "text": "{{locality}}",
+                                "border": [
+                                    false,
+                                    true,
+                                    true,
+                                    true
+                                ],
+                                "style": "receipttable"
+                            }
+                        ]
+                    ]
+                },
+                "layout": {}
+            },
+            {
+                "style": "receiptapprover",
+                "columns": [
+                    {
+                        "text": [
+                            {
+                                "text": "{{owner_info}}",
+                                "bold": true
+                            }
+                        ],
+                        "alignment": "left"
+                    }
+                ]
+            },
+            {
+                "style": "nextnoctable",
+                "table": {
+                    "widths": [
+                        "*",
+                        "*",
+                        "*",
+                        "*"
+                    ],
+                    "body": [
+                        [
+                            {
+                                "text": "{{owner_name}} :",
+                                "border": [
+                                    true,
+                                    true,
+                                    false,
+                                    true
+                                ],
+                                "style": "receipttablevalue"
+                            },
+                            {
+                                "text": "{{ownerName}}",
+                                "border": [
+                                    false,
+                                    true,
+                                    true,
+                                    true
+                                ],
+                                "style": "receipttable"
+                            },
+                            {
+                                "text": "{{gaurdian_name}} :",
+                                "border": [
+                                    false,
+                                    true,
+                                    false,
+                                    true
+                                ],
+                                "style": "receipttablevalue"
+                            },
+                            {
+                                "text": "{{gaurdianName}}",
+                                "border": [
+                                    false,
+                                    true,
+                                    true,
+                                    true
+                                ],
+                                "style": "receipttable"
+                            }
+                        ]
+                    ]
+                },
+                "layout": {}
+            },
+            {
+                "style": "receiptapprover",
+                "columns": [
+                    {
+                        "text": [
+                            {
+                                "text": "{{payable_amount}}",
+                                "bold": true
+                            }
+                        ],
+                        "alignment": "left"
+                    }
+                ]
+            },
+            {
+                "style": "nextnoctable",
+                "table": {
+                    "widths": [
+                        "25%",
+                        "25%"
+                    ],
+                    "body": [
+                        [
+                            {
+                                "text": "{{pt_total}} :",
+                                "border": [
+                                    true,
+                                    true,
+                                    false,
+                                    true
+                                ],
+                                "style": "receipttablevalue"
+                            },
+                            {
+                                "text": "{{total}}",
+                                "border": [
+                                    false,
+                                    true,
+                                    true,
+                                    true
+                                ],
+                                "style": "receipttable"
+                            }
+                        ]
+                    ]
+                },
+                "layout": {}
+            },
+            {
+                "style": "receiptapprover",
+                "columns": [
+                    {
+                        "text": [
+                            {
+                                "text": "{{payment_info}}",
+                                "bold": true
+                            }
+                        ],
+                        "alignment": "left"
+                    }
+                ]
+            },
+            {
+                "style": "nextnoctable",
+                "table": {
+                    "widths": [
+                        "25%",
+                        "25%",
+                        "25%",
+                        "25%"
+                    ],
+                    "body": [
+                        [
+                            {
+                                "text": "{{amount_paid}} :",
+                                "border": [
+                                    true,
+                                    true,
+                                    false,
+                                    true
+                                ],
+                                "style": "receipttablevalue"
+                            },
+                            {
+                                "text": "{{paidAmount}}",
+                                "border": [
+                                    false,
+                                    true,
+                                    true,
+                                    true
+                                ],
+                                "style": "receipttable"
+                            },
+                            {
+                                "text": "{{pending_amount}} :",
+                                "border": [
+                                    false,
+                                    true,
+                                    false,
+                                    true
+                                ],
+                                "style": "receipttablevalue"
+                            },
+                            {
+                                "text": "{{pendingAmount}}",
+                                "border": [
+                                    false,
+                                    true,
+                                    true,
+                                    true
+                                ],
+                                "style": "receipttable"
+                            }
+                        ],
+                        [
+                            {
+                                "text": "{{payment_mode}} :",
+                                "border": [
+                                    true,
+                                    true,
+                                    false,
+                                    true
+                                ],
+                                "style": "receipttablevalue"
+                            },
+                            {
+                                "text": "{{paymentMode}}",
+                                "border": [
+                                    false,
+                                    true,
+                                    true,
+                                    true
+                                ],
+                                "style": "receipttable"
+                            },
+                            {
+                                "text": "{{bank_name}} :",
+                                "border": [
+                                    false,
+                                    true,
+                                    false,
+                                    true
+                                ],
+                                "style": "receipttablevalue"
+                            },
+                            {
+                                "text": "NA",
+                                "border": [
+                                    false,
+                                    true,
+                                    true,
+                                    true
+                                ],
+                                "style": "receipttable"
+                            }
+                        ],
+                        [
+                            {
+                                "text": "{{transaction_id}} :",
+                                "border": [
+                                    true,
+                                    true,
+                                    false,
+                                    true
+                                ],
+                                "style": "receipttablevalue"
+                            },
+                            {
+                                "text": "{{transactionID}}",
+                                "border": [
+                                    false,
+                                    true,
+                                    true,
+                                    true
+                                ],
+                                "style": "receipttable"
+                            },
+                            {
+                                "text": "{{transaction_date}} :",
+                                "border": [
+                                    false,
+                                    true,
+                                    false,
+                                    true
+                                ],
+                                "style": "receipttablevalue"
+                            },
+                            {
+                                "text": "{{paymentDate}}",
+                                "border": [
+                                    false,
+                                    true,
+                                    true,
+                                    true
+                                ],
+                                "style": "receipttable"
+                            }
+                        ],
+                        [
+                            {
+                                "text": "{{msc_receipt_no}} :",
+                                "border": [
+                                    true,
+                                    true,
+                                    false,
+                                    true
+                                ],
+                                "style": "receipttablevalue"
+                            },
+                            {
+                                "text": "{{G8ReceiptNo}}",
+                                "border": [
+                                    false,
+                                    true,
+                                    true,
+                                    true
+                                ],
+                                "style": "receipttable"
+                            },
+                            {
+                                "text": "{{msc_receipt_date}} :",
+                                "border": [
+                                    false,
+                                    true,
+                                    false,
+                                    true
+                                ],
+                                "style": "receipttablevalue"
+                            },
+                            {
+                                "text": "{{G8ReceiptDate}}",
+                                "border": [
+                                    false,
+                                    true,
+                                    true,
+                                    true
+                                ],
+                                "style": "receipttable"
+                            }
+                        ]
+                    ]
+                },
+                "layout": {}
+            },
+            {
+                "style": "receiptapprover",
+                "columns": [
+                    {
+                        "text": [
+                            {
+                                "text": "{{commissioner_eo}}",
+                                "bold": true
+                            }
+                        ],
+                        "alignment": "right"
+                    }
+                ]
+            },
+            {
+                "style": "ptdisclaimer",
+                "stack": [
+                    {
+                        "text": "{{note}}",
+                        "bold": true,
+                        "style": "ptdisclaimervalue"
+                    },
+                    {
+                        "text": "{{disclaimer1}}",
+                        "bold": false,
+                        "style": "ptdisclaimervalue"
+                    },
+                    {
+                        "text": "{{disclaimer2}}",
+                        "bold": false,
+                        "style": "ptdisclaimervalue"
+                    },
+                    {
+                        "text": "{{disclaimer3}}",
+                        "bold": false,
+                        "style": "ptdisclaimervalue"
+                    },
+                    {
+                        "text": "{{disclaimer4}}",
+                        "bold": false,
+                        "style": "ptdisclaimervalue"
+                    },
+                    {
+                        "text": "{{disclaimer5}}",
+                        "bold": false,
+                        "style": "ptdisclaimervalue"
+                    }
+                ]
+            }
+        ],
+        "styles": {
+            "nochead": {
+                "margin": [
+                    -30,
+                    -30,
+                    0,
+                    1
+                ]
+            },
+            "receiptlogoheader": {
+                "color": "#000000",
+                "fontSize": 14,
+                "bold": true,
+                "letterSpacing": 0.74,
+                "margin": [
+                    0,
+                    0,
+                    0,
+                    5
+                ]
+            },
+            "receiptlogosubheader": {
+                "color": "#000000",
+                "fontSize": 12,
+                "letterSpacing": 0.6
+            },
+            "noctable": {
+                "fontSize": 10,
+                "color": "#000000",
+                "fillColor": "#b8bfcc",
+                "margin": [
+                    -15,
+                    -20,
+                    -22,
+                    -8
+                ]
+            },
+            "nextnoctable": {
+                "fontSize": 10,
+                "color": "#000000",
+                "margin": [
+                    -15,
+                    10,
+                    -22,
+                    -8
+                ]
+            },
+            "receipttablevalue": {
+                "color": "#000000",
+                "bold": true,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "margin": [
+                    0,
+                    5,
+                    0,
+                    0
+                ]
+            },
+            "receipttable": {
+                "color": "#000000",
+                "bold": false,
+                "fontSize": 10,
+                "fontWeight": 400,
+                "margin": [
+                    0,
+                    5,
+                    0,
+                    0
+                ]
+            },
+            "receiptapprover": {
+                "fontSize": 10,
+                "bold": true,
+                "margin": [
+                    -20,
+                    20,
+                    -22,
+                    0
+                ],
+                "color": "#000000"
+            },
+            "designation": {
+                "fontSize": 10,
+                "bold": true,
+                "margin": [
+                    -20,
+                    30,
+                    -22,
+                    0
+                ],
+                "color": "#000000"
+            },
+            "applicationdtls": {
+                "fontSize": 10,
+                "bold": true,
+                "margin": [
+                    -20,
+                    5,
+                    -22,
+                    0
+                ],
+                "color": "#000000"
+            },
+            "nosignature": {
+                "fontSize": 10,
+                "margin": [
+                    -27,
+                    15,
+                    -10,
+                    0
+                ],
+                "color": "#484848"
+            },
+            "ptdisclaimer": {
+                "fontSize": 10,
+                "margin": [
+                    -27,
+                    30,
+                    -10,
+                    -10
+                ],
+                "color": "#484848"
+            },
+            "ptdisclaimervalue": {
+                "fontSize": 8,
+                "margin": [
+                    2,
+                    5,
+                    0,
+                    -5
+                ],
+                "color": "#484848"
+            }
+        }
+    }
+}
