@@ -172,7 +172,7 @@ ReportDefinitions:
                     SUM(CASE WHEN description LIKE 'PT_UNIT_USAGE_EXEMPTION%' THEN -dramount ELSE 0 END) as exemption, 
                     (SUM(CASE WHEN description LIKE 'PT_DECIMAL_CEILING_CREDIT%' THEN cramount ELSE 0 END)
                     - SUM(CASE WHEN description LIKE 'PT_DECIMAL_CEILING_DEBIT%' THEN dramount ELSE 0 END))  as adjusment
-                  FROM egcl_receiptdetails
+                  FROM egcl_receiptdetails_v1
                   WHERE tenantid LIKE $tenantid
                   GROUP BY receiptheader
       )
@@ -195,11 +195,11 @@ ReportDefinitions:
         To_char(To_timestamp(rh.manualreceiptdate / 1000), 'DD/MM/YYYY') AS g8issuedate,
         Initcap(COALESCE(pt_detail.usagecategoryminor, pt_detail.usagecategorymajor)) as usagetype,
         manualreceiptnumber as g8receiptno
-      FROM egcl_receiptheader AS rh
-      JOIN egcl_receiptinstrument AS ri ON rh.id = ri.receiptheader
-      JOIN egcl_instrumentheader AS ih ON ih.id = ri.instrumentheader
+      FROM egcl_receiptheader_v1 AS rh
+      JOIN egcl_receiptinstrument_v1 AS ri ON rh.id = ri.receiptheader
+      JOIN egcl_instrumentheader_v1 AS ih ON ih.id = ri.instrumentheader
       JOIN receipt_breakup ON rh.id = receipt_breakup.receiptheader
-      JOIN eg_pt_propertydetail_v2 pt_detail ON CONCAT(pt_detail.property, ':', pt_detail.assessmentnumber) = rh.consumercode
+      JOIN eg_pt_propertydetail_v2 pt_detail ON pt_detail.property = rh.consumercode
       JOIN eg_pt_address_v2 pt_addr ON pt_detail.property = pt_addr.property
       WHERE rh.tenantid LIKE $tenantid and rh.status != 'Cancelled'
   orderby: ORDER BY rh.receiptdate DESC
@@ -376,7 +376,7 @@ ReportDefinitions:
                     SUM(CASE WHEN description LIKE 'PT_UNIT_USAGE_EXEMPTION%' THEN -dramount ELSE 0 END) as exemption, 
                     (SUM(CASE WHEN description LIKE 'PT_DECIMAL_CEILING_CREDIT%' THEN cramount ELSE 0 END)
                     - SUM(CASE WHEN description LIKE 'PT_DECIMAL_CEILING_DEBIT%' THEN dramount ELSE 0 END))  as adjusment
-                  FROM egcl_receiptdetails
+                  FROM egcl_receiptdetails_v1
                   WHERE tenantid LIKE $tenantid
                   GROUP BY receiptheader
       )
@@ -400,11 +400,11 @@ ReportDefinitions:
         To_char(To_timestamp(rh.manualreceiptdate / 1000), 'DD/MM/YYYY') AS g8issuedate,
         Initcap(COALESCE(pt_detail.usagecategoryminor, pt_detail.usagecategorymajor)) as usagetype,
         manualreceiptnumber as g8receiptno
-      FROM egcl_receiptheader AS rh
-      JOIN egcl_receiptinstrument AS ri ON rh.id = ri.receiptheader
-      JOIN egcl_instrumentheader AS ih ON ih.id = ri.instrumentheader
+      FROM egcl_receiptheader_v1 AS rh
+      JOIN egcl_receiptinstrument_v1 AS ri ON rh.id = ri.receiptheader
+      JOIN egcl_instrumentheader_v1 AS ih ON ih.id = ri.instrumentheader
       JOIN receipt_breakup ON rh.id = receipt_breakup.receiptheader
-      JOIN eg_pt_propertydetail_v2 pt_detail ON CONCAT(pt_detail.property, ':', pt_detail.assessmentnumber) = rh.consumercode
+      JOIN eg_pt_propertydetail_v2 pt_detail ON pt_detail.property = rh.consumercode
       JOIN eg_pt_address_v2 pt_addr ON pt_detail.property = pt_addr.property
       WHERE rh.tenantid LIKE $tenantid and rh.status = 'Cancelled'
   orderby: ORDER BY rh.receiptdate DESC
@@ -827,11 +827,11 @@ ReportDefinitions:
       SUM(CASE WHEN collectiontype LIKE 'COUNTER' THEN amount ELSE 0 END) AS totaloffline, 
       (SUM(totalamount) - SUM(amount)) AS totalamountdue 
       FROM eg_pt_propertydetail_v2 AS pd 
-      LEFT OUTER JOIN (SELECT consumercode, totalamount, amount, collectiontype, receiptdate FROM egcl_receiptheader AS rh 
-      LEFT OUTER JOIN egcl_receiptinstrument AS ri ON rh.id = ri.receiptheader 
-      LEFT OUTER JOIN egcl_instrumentheader AS ih ON ri.instrumentheader = ih.id and ih.instrumentstatus	 != 'CANCELLED' 
+      LEFT OUTER JOIN (SELECT consumercode, totalamount, amount, collectiontype, receiptdate FROM egcl_receiptheader_v1 AS rh 
+      LEFT OUTER JOIN egcl_receiptinstrument_v1 AS ri ON rh.id = ri.receiptheader 
+      LEFT OUTER JOIN egcl_instrumentheader_v1 AS ih ON ri.instrumentheader = ih.id and ih.instrumentstatus	 != 'CANCELLED' 
       where rh.status != 'Cancelled'
-      ) AS tbl_amounts ON CONCAT(pd.property, ':', pd.assessmentnumber) = tbl_amounts.consumercode 
+      ) AS tbl_amounts ON pd.property = tbl_amounts.consumercode 
       WHERE tenantid LIKE CONCAT(SPLIT_PART($tenantid, '.', 1), '%') and tenantid = $tenantid
   groupby: GROUP BY tenantid
   orderby: ORDER BY tenantid, totalamountpaid DESC NULLS LAST

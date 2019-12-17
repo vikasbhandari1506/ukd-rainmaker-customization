@@ -1,0 +1,901 @@
+{
+  "key": "ptconsolidatedreceipt",
+  "config": {
+      "content": [
+        {
+          "style": "noctable",
+          "table": {
+            "widths": [
+              "65%",
+              "35"
+             
+            ],
+            "body": [
+              [
+                
+                {
+                  "stack": [
+                    {
+                      "text": "{{muncipalityName}}",
+                      "style": "receiptlogoheader"
+                    },
+                    {
+                      "text": "{{serviceType}} payment Receipt",
+                      "style": "receiptlogosubheader"
+                    }
+                  ],
+                  "alignment": "center",
+                  "border": [
+                    true,
+                    true,
+                    true,
+                    true
+                  ],
+                  "margin": [
+                    0,
+                    10,
+                    0,
+                    0
+                  ]
+                },
+                {
+                  "text": "Receipt No.",
+                  "border": [
+                    true,
+                    true,
+                    false,
+                    true
+                  ],
+                  "style": "receipttablevalue"
+                },
+                {
+                  "text": "{{receiptNo}}",
+                  "border": [
+                    false,
+                    true,
+                    true,
+                    true
+                  ],
+                  "style": "receipttable"
+                }
+              ]
+            ]
+          },
+          "layout": "{}"
+        },
+        {
+          "style": "receiptapprover",
+          "columns": [
+            {
+              "text": [
+                {
+                  "text": "Date : ",
+                  "bold": true
+                },
+                {
+                  "text": "{{paymentDate}}",
+                  "bold": false
+                }
+              ],
+              "alignment": "left"
+            },
+            {
+              "text": [
+                {
+                  "text": "Billing Year : ",
+                  "bold": true
+                },
+                {
+                  "text": "{{financialYear}}",
+                  "bold": false
+                }
+              ],
+              "alignment": "right"
+            }
+          ]
+        },
+        {
+          "style": "nextnoctable",
+          "table": {
+            "widths": [
+              "13%",
+              "20%",
+              "13%",
+              "21%",
+              "13%",
+              "20%"
+            ],
+            "body": [
+              [
+                {
+                  "text": "Exiting Property ID : ",
+                  "border": [
+                    true,
+                    true,
+                    false,
+                    true
+                  ],
+                  "style": "receipttablevalue"
+                },
+                {
+                  "text": "oldpropertyid",
+                  "border": [
+                    false,
+                    true,
+                    true,
+                    true
+                  ],
+                  "style": "receipttable"
+                },
+                {
+                  "text": "Property Unique ID : ",
+                  "border": [
+                    false,
+                    true,
+                    false,
+                    true
+                  ],
+                  "style": "receipttablevalue"
+                },
+                {
+                  "text": "consumerID",
+                  "border": [
+                    false,
+                    true,
+                    true,
+                    true
+                  ],
+                  "style": "receipttable"
+                },
+                {
+                  "text": "Assessment No : ",
+                  "border": [
+                    false,
+                    true,
+                    false,
+                    true
+                  ],
+                  "style": "receipttablevalue"
+                },
+                {
+                  "text": "assessmentNumber",
+                  "border": [
+                    false,
+                    true,
+                    true,
+                    true
+                  ],
+                  "style": "receipttable"
+                }
+              ]
+            ]
+          },
+          "layout": {}
+        },
+        {
+          "style": "receiptapprover",
+          "columns": [
+            {
+              "text": [
+                {
+                  "text": "PROPERTY ADDRESS ",
+                  "bold": true
+                }
+              ],
+              "alignment": "left"
+            }
+          ]
+        },
+        {
+          "style": "nextnoctable",
+          "table": {
+            "widths": [
+              "*",
+              "*",
+              "*",
+              "*"
+            ],
+            "body": [
+              [
+                {
+                  "text": "House/Door No. : ",
+                  "border": [
+                    true,
+                    true,
+                    false,
+                    true
+                  ],
+                  "style": "receipttablevalue"
+                },
+                {
+                  "text": "{{houseNo}}",
+                  "border": [
+                    false,
+                    true,
+                    true,
+                    true
+                  ],
+                  "style": "receipttable"
+                },
+                {
+                  "text": "Building/Colony Name : ",
+                  "border": [
+                    false,
+                    true,
+                    false,
+                    true
+                  ],
+                  "style": "receipttablevalue"
+                },
+                {
+                  "text": "{{buildingName}}",
+                  "border": [
+                    false,
+                    true,
+                    true,
+                    true
+                  ],
+                  "style": "receipttable"
+                }
+              ],
+              [
+                {
+                  "text": "Street Name : ",
+                  "border": [
+                    true,
+                    true,
+                    false,
+                    true
+                  ],
+                  "style": "receipttablevalue"
+                },
+                {
+                  "text": "{{street}}",
+                  "border": [
+                    false,
+                    true,
+                    true,
+                    true
+                  ],
+                  "style": "receipttable"
+                },
+                {
+                  "text": "Locality/Mohalla : ",
+                  "border": [
+                    false,
+                    true,
+                    false,
+                    true
+                  ],
+                  "style": "receipttablevalue"
+                },
+                {
+                  "text": "{{locality}}",
+                  "border": [
+                    false,
+                    true,
+                    true,
+                    true
+                  ],
+                  "style": "receipttable"
+                }
+              ]
+            ]
+          },
+          "layout": {}
+        },
+        {
+          "style": "receiptapprover",
+          "columns": [
+            {
+              "text": [
+                {
+                  "text": "OWNERSHIP INFORMATION ",
+                  "bold": true
+                }
+              ],
+              "alignment": "left"
+            }
+          ]
+        },
+        {
+          "style": "nextnoctable",
+          "table": {
+            "widths": [
+              "*",
+              "*",
+              "*",
+              "*"
+            ],
+            "body": [
+              [
+                {
+                  "text": "Owner Name : ",
+                  "border": [
+                    true,
+                    true,
+                    false,
+                    true
+                  ],
+                  "style": "receipttablevalue"
+                },
+                {
+                  "text": "{{ownerName}}",
+                  "border": [
+                    false,
+                    true,
+                    true,
+                    true
+                  ],
+                  "style": "receipttable"
+                },
+                {
+                  "text": "Gaurdian Name : ",
+                  "border": [
+                    false,
+                    true,
+                    false,
+                    true
+                  ],
+                  "style": "receipttablevalue"
+                },
+                {
+                  "text": "{{gaurdianName}}",
+                  "border": [
+                    false,
+                    true,
+                    true,
+                    true
+                  ],
+                  "style": "receipttable"
+                }
+              ]
+            ]
+          },
+          "layout": {}
+        },
+        {
+          "style": "receiptapprover",
+          "columns": [
+            {
+              "text": [
+                {
+                  "text": "PAYABLE AMOUNT",
+                  "bold": true
+                }
+              ],
+              "alignment": "left"
+            }
+          ]
+        },
+        {
+          "style": "nextnoctable",
+          "table": {
+            "widths": [
+              "*",
+              "*",
+              "*",
+              "*",
+              "*",
+              "*",
+              "*"
+            ],
+            "body": [
+              [
+                {
+                  "text": "Property Tax (Arrears) ",
+                  "border": [
+                    true,
+                    true,
+                    true,
+                    true
+                  ],
+                  "style": "receipttablevalue"
+                },
+                {
+                  "text": "Property Tax (Current)",
+                  "border": [
+                    true,
+                    true,
+                    true,
+                    true
+                  ],
+                  "style": "receipttablevalue"
+                },
+                {
+                  "text": "Penalty",
+                  "border": [
+                    true,
+                    true,
+                    true,
+                    true
+                  ],
+                  "style": "receipttablevalue"
+                },
+                {
+                  "text": "Rebate",
+                  "border": [
+                    true,
+                    true,
+                    true,
+                    true
+                  ],
+                  "style": "receipttablevalue"
+                },
+                {
+                  "text": "Interest",
+                  "border": [
+                    true,
+                    true,
+                    true,
+                    true
+                  ],
+                  "style": "receipttablevalue"
+                },
+                {
+                  "text": "Round Off",
+                  "border": [
+                    true,
+                    true,
+                    true,
+                    true
+                  ],
+                  "style": "receipttablevalue"
+                },
+                {
+                  "text": "Total",
+                  "border": [
+                    true,
+                    true,
+                    true,
+                    true
+                  ],
+                  "style": "receipttablevalue"
+                }
+              ],
+              [
+                {
+                  "text": "{{arrears}}",
+                  "border": [
+                    true,
+                    true,
+                    true,
+                    true
+                  ],
+                  "style": "receipttable"
+                },
+                {
+                  "text": "{{propertyTax}}",
+                  "border": [
+                    true,
+                    true,
+                    true,
+                    true
+                  ],
+                  "style": "receipttable"
+                },
+                {
+                  "text": "{{penalty}}",
+                  "border": [
+                    true,
+                    true,
+                    true,
+                    true
+                  ],
+                  "style": "receipttable"
+                },
+                {
+                  "text": "{{rebate}}",
+                  "border": [
+                    true,
+                    true,
+                    true,
+                    true
+                  ],
+                  "style": "receipttable"
+                },
+                {
+                  "text": "{{interest}}",
+                  "border": [
+                    true,
+                    true,
+                    true,
+                    true
+                  ],
+                  "style": "receipttable"
+                },
+                {
+                  "text": "{{roundOff}}",
+                  "border": [
+                    true,
+                    true,
+                    true,
+                    true
+                  ],
+                  "style": "receipttable"
+                },
+                {
+                  "text": "{{total}}",
+                  "border": [
+                    true,
+                    true,
+                    true,
+                    true
+                  ],
+                  "style": "receipttable"
+                }
+              ]
+            ]
+          },
+          "layout": {}
+        },
+        {
+          "style": "receiptapprover",
+          "columns": [
+            {
+              "text": [
+                {
+                  "text": "PAYMENT INFORMATION",
+                  "bold": true
+                }
+              ],
+              "alignment": "left"
+            }
+          ]
+        },
+        {
+          "style": "nextnoctable",
+          "table": {
+            "widths": [
+              "25%",
+              "25%",
+              "25%",
+              "25%"
+            ],
+            "body":[
+              [
+                {
+                  "text": "Total Amount Paid : ",
+                  "border": [
+                    true,
+                    true,
+                    false,
+                    true
+                  ],
+                  "style": "receipttablevalue"
+                },
+                {
+                  "text": "{{paidAmount}}",
+                  "border": [
+                    false,
+                    true,
+                    true,
+                    true
+                  ],
+                  "style": "receipttable"
+                },
+                {
+                  "text": "Pending Amount : ",
+                  "border": [
+                    false,
+                    true,
+                    false,
+                    true
+                  ],
+                  "style": "receipttablevalue"
+                },
+                {
+                  "text": "{{pendingAmount}}",
+                  "border": [
+                    false,
+                    true,
+                    true,
+                    true
+                  ],
+                  "style": "receipttable"
+                }
+              ],
+              [
+                {
+                  "text": "Payment Mode : ",
+                  "border": [
+                    true,
+                    true,
+                    false,
+                    true
+                  ],
+                  "style": "receipttablevalue"
+                },
+                {
+                  "text": "{{paymentMode}}",
+                  "border": [
+                    false,
+                    true,
+                    true,
+                    true
+                  ],
+                  "style": "receipttable"
+                },
+                {
+                  "text": "Bank Name : ",
+                  "border": [
+                    false,
+                    true,
+                    false,
+                    true
+                  ],
+                  "style": "receipttablevalue"
+                },
+                {
+                  "text": "NA",
+                  "border": [
+                    false,
+                    true,
+                    true,
+                    true
+                  ],
+                  "style": "receipttable"
+                }
+               ],
+               [
+                {
+                  "text": "Transaction ID/ Cheque/ DD No : ",
+                  "border": [
+                    true,
+                    true,
+                    false,
+                    true
+                  ],
+                  "style": "receipttablevalue"
+                },
+                {
+                  "text": "{{transactionID}}",
+                  "border": [
+                    false,
+                    true,
+                    true,
+                    true
+                  ],
+                  "style": "receipttable"
+                },
+                {
+                  "text": "Transaction Date : ",
+                  "border": [
+                    false,
+                    true,
+                    false,
+                    true
+                  ],
+                  "style": "receipttablevalue"
+                },
+                {
+                  "text": "{{paymentDate}}",
+                  "border": [
+                    false,
+                    true,
+                    true,
+                    true
+                  ],
+                  "style": "receipttable"
+                }
+              ],
+              [
+                {
+                  "text": "MCS5/MCS2 Receipt No : ",
+                  "border": [
+                    true,
+                    true,
+                    false,
+                    true
+                  ],
+                  "style": "receipttablevalue"
+                },
+                {
+                  "text": "{{G8ReceiptNo}}",
+                  "border": [
+                    false,
+                    true,
+                    true,
+                    true
+                  ],
+                  "style": "receipttable"
+                },
+                {
+                  "text": "MCS5/MCS2 Receipt Issue Date: ",
+                  "border": [
+                    false,
+                    true,
+                    false,
+                    true
+                  ],
+                  "style": "receipttablevalue"
+                },
+                {
+                  "text": "{{G8ReceiptDate}}",
+                  "border": [
+                    false,
+                    true,
+                    true,
+                    true
+                  ],
+                  "style": "receipttable"
+                }
+              ]
+            ]
+            
+          },
+          "layout": {}
+        },
+        {
+          "style": "receiptapprover",
+          "columns": [
+            {
+              "text": [
+                {
+                  "text": "Commissioner/EO",
+                  "bold": true
+                }
+              ],
+              "alignment": "right",
+              "margin": [
+                0,
+                0,
+                -10,
+                1
+              ]
+            }
+          ]
+        },
+        {
+          "style": "ptdisclaimer",
+          "stack": [
+            {
+              "text": "Note",
+              "bold": true,
+              "style": "ptdisclaimervalue"
+            },
+            {
+              "text": "1. Payment received by cheque/demand draft shall be subject to realization.",
+              "bold": false,
+              "style": "ptdisclaimervalue"
+            },
+            {
+              "text": "2. This document is not a proof of Property Ownership and regularization of unauthorized construction.",
+              "bold": false,
+              "style": "ptdisclaimervalue"
+            },
+            {
+              "text": "3. This is a computer generated document, hence requires no signature.",
+              "bold": false,
+              "style": "ptdisclaimervalue"
+            },
+            {
+              "text": "4. Assessment & Payment is subject to verifcation/Scrutiny by competitive authority.",
+              "bold": false,
+              "style": "ptdisclaimervalue"
+            },
+            {
+              "text": "5. Please deposit property tax dues for earlier years also. Ignore, if already paid.",
+              "bold": false,
+              "style": "ptdisclaimervalue"
+            }
+          ]
+        }
+      ],
+       "styles": {
+        "nochead": {
+          "margin": [
+            -30,
+            -30,
+            0,
+            1
+          ]
+        },
+        "receiptlogoheader": {
+          "color": "#000000",
+          "fontFamily": "Roboto",
+          "fontSize": 14,
+          "bold": true,
+          "letterSpacing": 0.74,
+          "margin": [
+            0,
+            0,
+            0,
+            5
+          ]
+        },
+        "receiptlogosubheader": {
+          "color": "#000000",
+          "fontFamily": "Roboto",
+          "fontSize": 10,
+          "letterSpacing": 0.6
+        },
+        "noctable": {
+          "fontSize": 10,
+          "color": "#000000",
+          "margin": [
+            -25,
+            -20,
+            -22,
+            -8
+          ]
+        },
+        "nextnoctable": {
+          "fontSize": 10,
+          "color": "#000000",
+          "margin": [
+            -25,
+            10,
+            -22,
+            -8
+          ]
+        },
+        "receipttablevalue": {
+          "color": "#000000",
+          "bold": true,
+          "fontSize": 10,
+          "fontWeight": 500,
+          "margin": [
+            0,
+            5,
+            0,
+            5
+          ]
+        },
+        "receipttable": {
+          "color": "#000000",
+          "bold": false,
+          "fontSize": 10,
+          "fontWeight": 500,
+          "margin": [
+            0,
+            5,
+            0,
+            5
+          ]
+        },
+        "receiptapprover": {
+          "fontSize": 12,
+          "fontFamily": "Roboto",
+          "bold": true,
+          "margin": [
+            -20,
+            20,
+            0,
+            0
+          ],
+          "color": "#000000"
+        },
+        "nosignature": {
+          "fontSize": 10,
+          "margin": [
+            -27,
+            15,
+            -10,
+            0
+          ],
+          "color": "#484848"
+        },
+        "ptdisclaimer": {
+          "fontSize": 12,
+          "margin": [
+            -27,
+            10,
+            -10,
+            0
+          ],
+          "color": "#484848"
+        },
+        "ptdisclaimervalue": {
+          "fontSize": 10,
+          "margin": [
+            2,
+            5,
+            0,
+            0
+          ],
+          "color": "#484848"
+        }
+      }
+    }
+}
