@@ -545,6 +545,18 @@
                               }
                           },
                           {
+                                "variable": "bank_name",
+                                "value": {
+                                    "path": "TL_RECEIPT_LABEL_BANK_NAME"
+                                },
+                                "type": "label",
+                                "localisation": {
+                                    "required": true,
+                                    "prefix": null,
+                                    "module": "rainmaker-receipt"
+                                }
+                          },
+                          {
                               "variable": "transaction_id",
                               "value": {
                                   "path": "TL_RECEIPT_LABEL_TRANSACTION_ID"
@@ -555,6 +567,18 @@
                                   "prefix": null,
                                   "module": "rainmaker-receipt"
                               }
+                          },
+                          {
+                                "variable": "transaction_date",
+                                "value": {
+                                    "path": "TL_RECEIPT_LABEL_TRANSACTION_DATE"
+                                },
+                                "type": "label",
+                                "localisation": {
+                                    "required": true,
+                                    "prefix": null,
+                                    "module": "rainmaker-receipt"
+                                }
                           },
                           {
                               "variable": "msc_receipt_no",

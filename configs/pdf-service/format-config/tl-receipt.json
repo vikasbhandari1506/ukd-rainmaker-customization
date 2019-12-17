@@ -703,47 +703,89 @@
               }
             ],
             [
-              {
-                "text": "{{payment_mode}} : ",
-                "border": [
-                  true,
-                  true,
-                  false,
-                  true
-                ],
-                "style": "receipttablevalue"
-              },
-              {
-                "text": "{{paymentMode}}",
-                "border": [
-                  false,
-                  true,
-                  true,
-                  true
-                ],
-                "style": "receipttable"
-              },
-              {
-                "text": "{{transaction_id}} : ",
-                "border": [
-                  true,
-                  true,
-                  false,
-                  true
-                ],
-                "style": "receipttablevalue"
-              },
-              {
-                "text": "{{transactionID}}",
-                "border": [
-                  false,
-                  true,
-                  true,
-                  true
-                ],
-                "style": "receipttable"
-              }
-            ],
+                            {
+                                "text": "{{payment_mode}} :",
+                                "border": [
+                                    true,
+                                    true,
+                                    false,
+                                    true
+                                ],
+                                "style": "receipttablevalue"
+                            },
+                            {
+                                "text": "{{paymentMode}}",
+                                "border": [
+                                    false,
+                                    true,
+                                    true,
+                                    true
+                                ],
+                                "style": "receipttable"
+                            },
+                            {
+                                "text": "{{bank_name}} :",
+                                "border": [
+                                    false,
+                                    true,
+                                    false,
+                                    true
+                                ],
+                                "style": "receipttablevalue"
+                            },
+                            {
+                                "text": "NA",
+                                "border": [
+                                    false,
+                                    true,
+                                    true,
+                                    true
+                                ],
+                                "style": "receipttable"
+                            }
+                        ],
+                        [
+                            {
+                                "text": "{{transaction_id}} :",
+                                "border": [
+                                    true,
+                                    true,
+                                    false,
+                                    true
+                                ],
+                                "style": "receipttablevalue"
+                            },
+                            {
+                                "text": "{{transactionID}}",
+                                "border": [
+                                    false,
+                                    true,
+                                    true,
+                                    true
+                                ],
+                                "style": "receipttable"
+                            },
+                            {
+                                "text": "{{transaction_date}} :",
+                                "border": [
+                                    false,
+                                    true,
+                                    false,
+                                    true
+                                ],
+                                "style": "receipttablevalue"
+                            },
+                            {
+                                "text": "{{paymentDate}}",
+                                "border": [
+                                    false,
+                                    true,
+                                    true,
+                                    true
+                                ],
+                                "style": "receipttable"
+                            }
+                        ],
             [
               {
                 "text": "{{msc_receipt_no}} : ",
