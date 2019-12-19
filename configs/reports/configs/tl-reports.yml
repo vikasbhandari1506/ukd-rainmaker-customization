@@ -100,7 +100,7 @@ ReportDefinitions:
       name,
       tlown.mobilenumber,
       pay.transactionnumber,
-      pay.paymentmode,
+      pay.paymentmode as instrumenttype,
       totalamount,
       pd.amountpaid,
       To_char(To_timestamp(pd.manualreceiptdate / 1000), 'DD/MM/YYYY') AS g8issuedate,
