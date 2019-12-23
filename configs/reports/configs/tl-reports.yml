@@ -660,17 +660,17 @@ ReportDefinitions:
     total: true
   - name: online
     label: report.tl.online.collection
-    type: string
+    type: number
     source: tl
     total: true
   - name: offline
     label: report.tl.offline.collection
-    type: string
+    type: number
     source: tl
     total: true
   - name: total
     label: report.tl.totalCollection
-    type: string
+    type: number
     source: tl
     total: true
   searchParams:
