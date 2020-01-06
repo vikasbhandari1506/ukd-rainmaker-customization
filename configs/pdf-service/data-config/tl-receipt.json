@@ -107,9 +107,9 @@
                               }
                           },
                           {
-                              "variable": "adhocRebate",
+                              "variable": "adhocrebate",
                               "value": {
-                                  "path": "$.paymentDetails[0].bill.billDetails[1].billAccountDetails[?(@.taxHeadCode=='TL_ADHOC_REBATE')].amount"
+                                  "path": "$.paymentDetails[0].bill.billDetails[0].billAccountDetails[?(@.taxHeadCode=='TL_ADHOC_REBATE')].amount"
                               }
                           },
                           {
@@ -671,6 +671,10 @@
                           {
                               "variable": "pendingAmount",
                               "formula": "{{dueAmount}}-{{paidAmount}}"
+                          },
+                          {
+                              "variable": "adhocRebate",
+                              "formula": "-{{adhocrebate}}"
                           }
                       ]
                   },
