@@ -1114,4 +1114,4 @@ ReportDefinitions:
      from message msg, egbs_demand_v1 demand, egbs_demanddetail_v1 dd,eg_pt_property_v2 ss, eg_user u,eg_pt_owner_v2 owner,eg_pt_propertydetail_v2 pd,eg_pt_address_v2 address
      where demand.id=dd.demandid and demand.consumercode=ss.propertyid and pd.assessmentnumber=owner.propertydetail and ss.propertyid=address.property and owner.userid=u.uuid and upper(replace(address.tenantid,'.','_'))||'_REVENUE_'||address.locality = msg.code
      and taxheadcode LIKE '%PT%' and msg.locale='en_IN'
-  group by: GROUP BY demand.consumercode, ss.oldpropertyid, u.mobilenumber, pd.propertytype, address.doorno, msg.message, pd.usage
+  groupby: GROUP BY demand.consumercode, ss.oldpropertyid, u.mobilenumber, pd.propertytype, address.doorno, msg.message, pd.usage
