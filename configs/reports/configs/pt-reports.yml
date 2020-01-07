@@ -1011,11 +1011,6 @@ ReportDefinitions:
     type: string
     source: pt
     total: false
-  - name: Wardname
-    label: reports.pt.Wardname
-    type: string
-    source: pt
-    total: false
   - name: propertytype
     label: reports.pt.PropertyType
     type: string
@@ -1026,68 +1021,38 @@ ReportDefinitions:
     type: string
     source: pt
     total: false
-  - name: Road Type
-    label: reports.roadType
-    type: string
-    source: pt
-    total: false
-  - name: AnnualValue
-    label: reports.pt.AnnualValue
-    type: string
-    source: pt
-    total: false
-  - name: Owners
+  - name: ownernamemobile
     label: reports.pt.Owners
     type: string
     total: false
     source: pt
-  - name: mobilenumber
-    label: reports.pt.mobileno
-    type: string
-    source: pt
-    total: false
   - name: currenttax
     label: reports.pt.CurrentTax
     type: string
     source: pt
     total: false
-  - name: penalty
-    label: reports.pt.Penalty
+  - name: arreartax
+    label: reports.pt.arreartax
     type: string
     source: pt
     total: false
-  - name: arrears
-    label: reports.pt.arrears
+  - name: penaltytax
+    label: reports.pt.penaltytax
     type: string
     source: pt
     total: false
-  - name: currenttotal
-    label: reports.pt.total
+  - name: currentcollected
+    label: reports.pt.currentcollected
     type: string
     source: pt
     total: false
-  - name: collectedcurrenttax
-    label: reports.pt.collcurrentTax
+  - name: arrearcollected
+    label: reports.pt.arrearcollected
     type: string
     source: pt
     total: false
-  - name: CollectedArrears
-    label: reports.pt.collArrears
-    type: string
-    source: pt
-    total: false
-  - name: collectedpenalty
-    label: reports.pt.collPenalty
-    type: string
-    source: pt
-    total: false
-  - name: collectedarrears
-    label: reports.pt.collectedarrears
-    type: string
-    source: pt
-    total: false
-  - name: collectedtotal
-    label: reports.pt.collectedtotal
+  - name: penaltycollected
+    label: reports.pt.penaltycollected
     type: string
     source: pt
     total: false
@@ -1101,17 +1066,52 @@ ReportDefinitions:
     isMandatory: false
     searchClause: AND address.locality = $MohallaName
   query: |
-     select demand.consumercode as propertyid,msg.message as mohalla, pd.usage as usage,
-     ss.oldpropertyid as oldpropertyid,u.mobilenumber as mobilenumber,pd.propertytype as propertytype, address.doorno as doorno,
-     sum(CASE taxheadcode when 'PT_TAX' then taxamount else 0 end) as currenttax,
-     sum(CASE taxheadcode when 'PT_TIME_INTEREST' then taxamount else 0 end) as penalty,
-     sum(CASE taxheadcode when 'PT_LATE_ASSESSMENT_PENALTY' then taxamount else 0 end) as arrears,
-     sum(taxamount) as currenttotal,
-     sum(CASE taxheadcode when 'PT_TAX' then collectionamount else 0 end) as collectedcurrenttax,
-     sum(CASE taxheadcode when 'PT_TIME_INTEREST' then collectionamount else 0 end) as collectedpenalty,
-     sum(CASE taxheadcode when 'PT_LATE_ASSESSMENT_PENALTY' then collectionamount else 0 end) as collectedarrears,
-     sum(collectionamount) as collection_amount_total
-     from message msg, egbs_demand_v1 demand, egbs_demanddetail_v1 dd,eg_pt_property_v2 ss, eg_user u,eg_pt_owner_v2 owner,eg_pt_propertydetail_v2 pd,eg_pt_address_v2 address
-     where demand.id=dd.demandid and demand.consumercode=ss.propertyid and pd.assessmentnumber=owner.propertydetail and ss.propertyid=address.property and owner.userid=u.uuid and upper(replace(address.tenantid,'.','_'))||'_REVENUE_'||address.locality = msg.code
-     and taxheadcode LIKE '%PT%' and msg.locale='en_IN'
-  groupby: GROUP BY demand.consumercode, ss.oldpropertyid, u.mobilenumber, pd.propertytype, address.doorno, msg.message, pd.usage
+    select prop.propertyid as propertyid, prop.oldpropertyid as
+    oldpropertyid, address.doorno as doorno, msg.message as mohalla,
+    pd.propertytype as propertytype, pd.usagecategoryminor as usage,
+    pt_ownername(pd.assessmentnumber, $tenantid, false) as
+    ownernamemobile, (select sum(dd.taxamount) from egbs_demand_v1 demand,
+    egbs_demanddetail_v1 dd where demand.tenantid=$tenantid and
+    demand.tenantid=dd.tenantid and demand.id=dd.demandid and
+    dd.taxheadcode='PT_TAX' and (extract(epoch from now()) between
+    demand.taxperiodfrom and demand.taxperiodto) and
+    demand.consumercode=prop.propertyid) as currenttax, (select
+    sum(dd.taxamount) from egbs_demand_v1 demand, egbs_demanddetail_v1 dd
+    where demand.tenantid=$tenantid and demand.tenantid=dd.tenantid and
+    demand.id=dd.demandid and dd.taxheadcode='PT_TAX' and (extract(epoch
+    from now()) not between demand.taxperiodfrom and demand.taxperiodto) and
+    demand.consumercode=prop.propertyid) as arreartax, (select
+    sum(dd.taxamount) from egbs_demand_v1 demand, egbs_demanddetail_v1 dd
+    where demand.tenantid=$tenantid and demand.tenantid=dd.tenantid and
+    demand.id=dd.demandid and dd.taxheadcode='PT_TIME_INTEREST' and
+    demand.consumercode=prop.propertyid) as penaltytax, (select
+    sum(dd.collectionamount) from egbs_demand_v1 demand,
+    egbs_demanddetail_v1 dd where demand.tenantid=$tenantid and
+    demand.tenantid=dd.tenantid and demand.id=dd.demandid and
+    dd.taxheadcode='PT_TAX' and (extract(epoch from now()) between
+    demand.taxperiodfrom and demand.taxperiodto) and
+    demand.consumercode=prop.propertyid) as currentcollected, (select
+    sum(dd.collectionamount) from egbs_demand_v1 demand,
+    egbs_demanddetail_v1 dd where demand.tenantid=$tenantid and
+    demand.tenantid=dd.tenantid and demand.id=dd.demandid and
+    dd.taxheadcode='PT_TAX' and (extract(epoch from now()) not between
+    demand.taxperiodfrom and demand.taxperiodto) and
+    demand.consumercode=prop.propertyid) as arrearcollected, (select
+    sum(dd.collectionamount) from egbs_demand_v1 demand,
+    egbs_demanddetail_v1 dd where demand.tenantid=$tenantid and
+    demand.tenantid=dd.tenantid and demand.id=dd.demandid and
+    dd.taxheadcode='PT_TIME_INTEREST' and
+    demand.consumercode=prop.propertyid) as penaltycollected
+    from eg_pt_property_v2 prop, eg_pt_propertydetail_v2 pd,
+    eg_pt_address_v2 address, eg_pt_owner_v2 po, message msg
+    where prop.propertyid=pd.property
+    and pd.assessmentnumber=po.propertydetail
+    and prop.propertyid=address.property
+    and
+    upper(replace(address.tenantid,'.','_'))||'_REVENUE_'||address.locality
+    = msg.code
+    and msg.locale='en_IN'
+    and prop.tenantid=pd.tenantid
+    and prop.tenantid=po.tenantid
+    and prop.tenantid=address.tenantid
+    and prop.tenantid=$tenantid
