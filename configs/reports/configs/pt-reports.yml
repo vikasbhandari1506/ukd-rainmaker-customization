@@ -1098,7 +1098,7 @@ ReportDefinitions:
     pattern:
     source: pt
     wrapper: true
-    isMandatory: true
+    isMandatory: false
     searchClause: AND address.locality = $MohallaName
   query: |
      select demand.consumercode as propertyid,msg.message as mohalla, pd.usage as usage,
