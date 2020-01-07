@@ -986,112 +986,112 @@ ReportDefinitions:
     inner join eg_pt_unit_v2_ot as pot on pot.propertydetail = pd.assessmentnumber
     where rh.tenantid = $tenantid
     
-    - reportName: PropertyTaxReconcillationReports
+- reportName: PropertyTaxReconcillationReports
   summary: Reports for Reconcillation of data in PT
   version: 1.0.0
   moduleName: rainmaker-pt
   sourceColumns:
-    name: propertyid
+  - name: propertyid
     label: reports.pt.PropertyId
     type: string
     source: pt
     total: false
-    name: oldpropertyid
+  - name: oldpropertyid
     label: reports.pt.oldPropertyId
     type: string
     source: pt
     total: false
-    name: doorno
+  - name: doorno
     label: reports.pt.DoorNo
     type: string
     source: pt
     total: false
-    name: mohalla
+  - name: mohalla
     label: reports.pt.Mohallaname
     type: string
     source: pt
     total: false
-    name: Wardname
+  - name: Wardname
     label: reports.pt.Wardname
     type: string
     source: pt
     total: false
-    name: propertytype
+  - name: propertytype
     label: reports.pt.PropertyType
     type: string
     source: pt
     total: false
-    name: usage
+  - name: usage
     label: reports.pt.usage
     type: string
     source: pt
     total: false
-    name: Road Type
+  - name: Road Type
     label: reports.roadType
     type: string
     source: pt
     total: false
-    name: AnnualValue
+  - name: AnnualValue
     label: reports.pt.AnnualValue
     type: string
     source: pt
     total: false
-    name: Owners
+  - name: Owners
     label: reports.pt.Owners
     type: string
     total: false
     source: pt
-    name: mobilenumber
+  - name: mobilenumber
     label: reports.pt.mobileno
     type: string
     source: pt
     total: false
-    name: currenttax
+  - name: currenttax
     label: reports.pt.CurrentTax
     type: string
     source: pt
     total: false
-    name: penalty
+  - name: penalty
     label: reports.pt.Penalty
     type: string
     source: pt
     total: false
-    name: arrears
+  - name: arrears
     label: reports.pt.arrears
     type: string
     source: pt
     total: false
-    name: currenttotal
+  - name: currenttotal
     label: reports.pt.total
     type: string
     source: pt
     total: false
-    name: collectedcurrenttax
+  - name: collectedcurrenttax
     label: reports.pt.collcurrentTax
     type: string
     source: pt
     total: false
-    name: CollectedArrears
+  - name: CollectedArrears
     label: reports.pt.collArrears
     type: string
     source: pt
     total: false
-    name: collectedpenalty
+  - name: collectedpenalty
     label: reports.pt.collPenalty
     type: string
     source: pt
     total: false
-    name: collectedarrears
+  - name: collectedarrears
     label: reports.pt.collectedarrears
     type: string
     source: pt
     total: false
-    name: collectedtotal
+  - name: collectedtotal
     label: reports.pt.collectedtotal
     type: string
     source: pt
     total: false
- searchParams:
+  searchParams:
   - name: Mohallaname
     label: MohallaName
     type: singlevaluelist
@@ -1100,18 +1100,18 @@ ReportDefinitions:
     wrapper: true
     isMandatory: true
     searchClause: AND address.locality = $MohallaName
-    query:
-      select demand.consumercode as propertyid,msg.message as mohalla, pd.usage as usage,
-ss.oldpropertyid as oldpropertyid,u.mobilenumber as mobilenumber,pd.propertytype as propertytype, address.doorno as doorno,
-  sum(CASE taxheadcode when 'PT_TAX' then taxamount else 0 end) as currenttax,
-  sum(CASE taxheadcode when 'PT_TIME_INTEREST' then taxamount else 0 end) as penalty,
-  sum(CASE taxheadcode when 'PT_LATE_ASSESSMENT_PENALTY' then taxamount else 0 end) as arrears,
-  sum(taxamount) as currenttotal,
-  sum(CASE taxheadcode when 'PT_TAX' then collectionamount else 0 end) as collectedcurrenttax,
-  sum(CASE taxheadcode when 'PT_TIME_INTEREST' then collectionamount else 0 end) as collectedpenalty,
-  sum(CASE taxheadcode when 'PT_LATE_ASSESSMENT_PENALTY' then collectionamount else 0 end) as collectedarrears,
-  sum(collectionamount) as collection_amount_total
-from message msg, egbs_demand_v1 demand, egbs_demanddetail_v1 dd,eg_pt_property_v2 ss, eg_user u,eg_pt_owner_v2 owner,eg_pt_propertydetail_v2 pd,eg_pt_address_v2 address
-where demand.id=dd.demandid and demand.consumercode=ss.propertyid and pd.assessmentnumber=owner.propertydetail and ss.propertyid=address.property and owner.userid=u.uuid and upper(replace(address.tenantid,'.','_'))||'_REVENUE_'||address.locality = msg.code
-and taxheadcode LIKE '%PT%' and msg.locale='en_IN'
-group by demand.consumercode,ss.oldpropertyid,u.mobilenumber,pd.propertytype,address.doorno,msg.message,pd.usage;
+  query: |
+     select demand.consumercode as propertyid,msg.message as mohalla, pd.usage as usage,
+     ss.oldpropertyid as oldpropertyid,u.mobilenumber as mobilenumber,pd.propertytype as propertytype, address.doorno as doorno,
+     sum(CASE taxheadcode when 'PT_TAX' then taxamount else 0 end) as currenttax,
+     sum(CASE taxheadcode when 'PT_TIME_INTEREST' then taxamount else 0 end) as penalty,
+     sum(CASE taxheadcode when 'PT_LATE_ASSESSMENT_PENALTY' then taxamount else 0 end) as arrears,
+     sum(taxamount) as currenttotal,
+     sum(CASE taxheadcode when 'PT_TAX' then collectionamount else 0 end) as collectedcurrenttax,
+     sum(CASE taxheadcode when 'PT_TIME_INTEREST' then collectionamount else 0 end) as collectedpenalty,
+     sum(CASE taxheadcode when 'PT_LATE_ASSESSMENT_PENALTY' then collectionamount else 0 end) as collectedarrears,
+     sum(collectionamount) as collection_amount_total
+     from message msg, egbs_demand_v1 demand, egbs_demanddetail_v1 dd,eg_pt_property_v2 ss, eg_user u,eg_pt_owner_v2 owner,eg_pt_propertydetail_v2 pd,eg_pt_address_v2 address
+     where demand.id=dd.demandid and demand.consumercode=ss.propertyid and pd.assessmentnumber=owner.propertydetail and ss.propertyid=address.property and owner.userid=u.uuid and upper(replace(address.tenantid,'.','_'))||'_REVENUE_'||address.locality = msg.code
+     and taxheadcode LIKE '%PT%' and msg.locale='en_IN'
+  group by: GROUP BY propertyid, oldpropertyid, mobilenumber, propertytype, doorno, mohalla, usage
