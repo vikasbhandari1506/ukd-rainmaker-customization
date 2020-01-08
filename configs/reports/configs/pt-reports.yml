@@ -1041,6 +1041,11 @@ ReportDefinitions:
     type: string
     source: pt
     total: false
+  - name: totaltax
+    label: reports.pt.totaltax
+    type: string
+    source: pt
+    total: false
   - name: currentcollected
     label: reports.pt.currentcollected
     type: string
@@ -1056,6 +1061,11 @@ ReportDefinitions:
     type: string
     source: pt
     total: false
+  - name: totalcollected
+    label: reports.pt.totalcollected
+    type: string
+    source: pt
+    total: false
   searchParams:
   - name: Mohallaname
     label: MohallaName
@@ -1065,43 +1075,53 @@ ReportDefinitions:
     wrapper: true
     isMandatory: false
     searchClause: AND address.locality = $MohallaName
-  query: |
+  query: | 
     select prop.propertyid as propertyid, prop.oldpropertyid as
     oldpropertyid, address.doorno as doorno, msg.message as mohalla,
     pd.propertytype as propertytype, pd.usagecategoryminor as usage,
     pt_ownername(pd.assessmentnumber, $tenantid, false) as
-    ownernamemobile, (select sum(dd.taxamount) from egbs_demand_v1 demand,
-    egbs_demanddetail_v1 dd where demand.tenantid=$tenantid and
+    ownernamemobile, coalesce((select sum(dd.taxamount) from egbs_demand_v1
+    demand, egbs_demanddetail_v1 dd where demand.tenantid=$tenantid and
     demand.tenantid=dd.tenantid and demand.id=dd.demandid and
-    dd.taxheadcode='PT_TAX' and (extract(epoch from now()) between
+    dd.taxheadcode='PT_TAX' and (extract(epoch from now())*1000 between
     demand.taxperiodfrom and demand.taxperiodto) and
-    demand.consumercode=prop.propertyid) as currenttax, (select
+    demand.consumercode=prop.propertyid), 0) as currenttax, coalesce((select
     sum(dd.taxamount) from egbs_demand_v1 demand, egbs_demanddetail_v1 dd
     where demand.tenantid=$tenantid and demand.tenantid=dd.tenantid and
     demand.id=dd.demandid and dd.taxheadcode='PT_TAX' and (extract(epoch
-    from now()) not between demand.taxperiodfrom and demand.taxperiodto) and
-    demand.consumercode=prop.propertyid) as arreartax, (select
+    from now())*1000 not between demand.taxperiodfrom and
+    demand.taxperiodto) and demand.consumercode=prop.propertyid), 0) as
+    arreartax, coalesce((select sum(dd.taxamount) from egbs_demand_v1
+    demand, egbs_demanddetail_v1 dd where demand.tenantid=$tenantid and
+    demand.tenantid=dd.tenantid and demand.id=dd.demandid and
+    dd.taxheadcode='PT_TIME_INTEREST' and
+    demand.consumercode=prop.propertyid), 0) as penaltytax, coalesce((select
     sum(dd.taxamount) from egbs_demand_v1 demand, egbs_demanddetail_v1 dd
     where demand.tenantid=$tenantid and demand.tenantid=dd.tenantid and
-    demand.id=dd.demandid and dd.taxheadcode='PT_TIME_INTEREST' and
-    demand.consumercode=prop.propertyid) as penaltytax, (select
-    sum(dd.collectionamount) from egbs_demand_v1 demand,
+    demand.id=dd.demandid and dd.taxheadcode in ('PT_TAX',
+    'PT_TIME_INTEREST') and demand.consumercode=prop.propertyid), 0) as
+    totaltax, coalesce((select sum(dd.collectionamount) from egbs_demand_v1
+    demand, egbs_demanddetail_v1 dd where demand.tenantid=$tenantid and
+    demand.tenantid=dd.tenantid and demand.id=dd.demandid and
+    dd.taxheadcode='PT_TAX' and (extract(epoch from now())*1000 between
+    demand.taxperiodfrom and demand.taxperiodto) and
+    demand.consumercode=prop.propertyid), 0) as currentcollected,
+    coalesce((select sum(dd.collectionamount) from egbs_demand_v1 demand,
     egbs_demanddetail_v1 dd where demand.tenantid=$tenantid and
     demand.tenantid=dd.tenantid and demand.id=dd.demandid and
-    dd.taxheadcode='PT_TAX' and (extract(epoch from now()) between
+    dd.taxheadcode='PT_TAX' and (extract(epoch from now())*1000 not between
     demand.taxperiodfrom and demand.taxperiodto) and
-    demand.consumercode=prop.propertyid) as currentcollected, (select
-    sum(dd.collectionamount) from egbs_demand_v1 demand,
-    egbs_demanddetail_v1 dd where demand.tenantid=$tenantid and
-    demand.tenantid=dd.tenantid and demand.id=dd.demandid and
-    dd.taxheadcode='PT_TAX' and (extract(epoch from now()) not between
-    demand.taxperiodfrom and demand.taxperiodto) and
-    demand.consumercode=prop.propertyid) as arrearcollected, (select
-    sum(dd.collectionamount) from egbs_demand_v1 demand,
+    demand.consumercode=prop.propertyid), 0) as arrearcollected,
+    coalesce((select sum(dd.collectionamount) from egbs_demand_v1 demand,
     egbs_demanddetail_v1 dd where demand.tenantid=$tenantid and
     demand.tenantid=dd.tenantid and demand.id=dd.demandid and
     dd.taxheadcode='PT_TIME_INTEREST' and
-    demand.consumercode=prop.propertyid) as penaltycollected
+    demand.consumercode=prop.propertyid), 0) as penaltycollected,
+    coalesce((select sum(dd.collectionamount) from egbs_demand_v1 demand,
+    egbs_demanddetail_v1 dd where demand.tenantid=$tenantid and
+    demand.tenantid=dd.tenantid and demand.id=dd.demandid and dd.taxheadcode
+    in ('PT_TAX', 'PT_TIME_INTEREST') and
+    demand.consumercode=prop.propertyid), 0) as totalcollected
     from eg_pt_property_v2 prop, eg_pt_propertydetail_v2 pd,
     eg_pt_address_v2 address, eg_pt_owner_v2 po, message msg
     where prop.propertyid=pd.property
