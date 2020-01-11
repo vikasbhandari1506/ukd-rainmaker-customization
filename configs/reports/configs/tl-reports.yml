@@ -100,7 +100,7 @@ ReportDefinitions:
       name,
       tlown.mobilenumber,
       pay.transactionnumber,
-      pay.paymentmode,
+      pay.paymentmode as instrumenttype,
       totalamount,
       pd.amountpaid,
       To_char(To_timestamp(pd.manualreceiptdate / 1000), 'DD/MM/YYYY') AS g8issuedate,
@@ -357,7 +357,7 @@ ReportDefinitions:
       name,
       tlown.mobilenumber,
       pay.transactionnumber,
-      pay.paymentmode,
+      pay.paymentmode as instrumenttype,
       totalamount,
       pd.amountpaid,
       To_char(To_timestamp(pd.manualreceiptdate / 1000), 'DD/MM/YYYY') AS g8issuedate,
@@ -373,7 +373,7 @@ ReportDefinitions:
       INNER JOIN eg_user tluser ON tluser.uuid = tlowner.id
       group by tradelicensedetailid
     ) tlown ON tlown.tradelicensedetailid = tld.id
-    INNER JOIN egcl_bill bill ON bill.consumercode = tl.applicationnumber  and bill.status = 'Cancelled'
+    INNER JOIN egcl_bill bill ON bill.consumercode = tl.applicationnumber  and bill.status = 'CANCELLED'
     LEFT OUTER JOIN egcl_paymentdetail as pd ON pd.billid = bill.id
     LEFT OUTER JOIN egcl_payment as pay ON pay.id = pd.paymentid 
     WHERE tl.Status in ('APPROVED', 'PAID', 'CANCELLED') AND tl.tenantId LIKE $tenantid
@@ -660,17 +660,17 @@ ReportDefinitions:
     total: true
   - name: online
     label: report.tl.online.collection
-    type: number
+    type: string
     source: tl
     total: true
   - name: offline
     label: report.tl.offline.collection
-    type: number
+    type: string
     source: tl
     total: true
   - name: total
     label: report.tl.totalCollection
-    type: number
+    type: string
     source: tl
     total: true
   searchParams:
