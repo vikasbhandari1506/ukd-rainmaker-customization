@@ -1070,7 +1070,7 @@ ReportDefinitions:
   - name: Mohallaname
     label: MohallaName
     type: singlevaluelist
-    pattern:
+    pattern: http://egov-location:8080/egov-location/location/v11/boundarys/_search?hierarchyTypeCode=REVENUE&boundaryType=Locality&tenantId=$tenantId|$.TenantBoundary.boundary[*].code
     source: pt
     wrapper: true
     isMandatory: false
