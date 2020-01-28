@@ -1077,65 +1077,61 @@ ReportDefinitions:
     searchClause: AND address.locality = $MohallaName
   query: | 
     select prop.propertyid as propertyid, prop.oldpropertyid as
-    oldpropertyid, address.doorno as doorno, msg.message as mohalla,
-    pd.propertytype as propertytype, pd.usagecategoryminor as usage,
-    pt_ownername(pd.assessmentnumber, $tenantid, false) as
-    ownernamemobile, coalesce((select sum(dd.taxamount) from egbs_demand_v1
-    demand, egbs_demanddetail_v1 dd where demand.tenantid=$tenantid and
-    demand.tenantid=dd.tenantid and demand.id=dd.demandid and dd.taxheadcode
-    in ('PT_TAX', 'SWATCHATHA_TAX') and (extract(epoch from now())*1000
-    between demand.taxperiodfrom and demand.taxperiodto) and
-    demand.consumercode=prop.propertyid), 0) currenttax, coalesce((select
-    sum(dd.taxamount) from egbs_demand_v1 demand, egbs_demanddetail_v1 dd
-    where demand.tenantid=$tenantid and demand.tenantid=dd.tenantid and
-    demand.id=dd.demandid and dd.taxheadcode in ('PT_TAX', 'SWATCHATHA_TAX')
-    and (extract(epoch from now())*1000 not between demand.taxperiodfrom and
-    demand.taxperiodto) and demand.consumercode=prop.propertyid), 0)
-    arreartax, coalesce((select sum(dd.taxamount) from egbs_demand_v1
-    demand, egbs_demanddetail_v1 dd where demand.tenantid=$tenantid and
-    demand.tenantid=dd.tenantid and demand.id=dd.demandid and dd.taxheadcode
-    in ('PT_TIME_INTEREST', 'PT_TIME_PENALTY') and
-    demand.consumercode=prop.propertyid), 0) penaltytax, coalesce((select
-    sum(dd.taxamount) from egbs_demand_v1 demand, egbs_demanddetail_v1 dd
-    where demand.tenantid=$tenantid and demand.tenantid=dd.tenantid and
-    demand.id=dd.demandid and dd.taxheadcode in ('PT_TAX',
-    'PT_TIME_INTEREST', 'PT_TIME_PENALTY', 'SWATCHATHA_TAX') and
-    demand.consumercode=prop.propertyid), 0) totaltax, coalesce((select
-    sum(dd.collectionamount) from egbs_demand_v1 demand,
-    egbs_demanddetail_v1 dd where demand.tenantid=$tenantid and
-    demand.tenantid=dd.tenantid and demand.id=dd.demandid and dd.taxheadcode
-    in ('PT_TAX', 'SWATCHATHA_TAX') and (extract(epoch from now())*1000
-    between demand.taxperiodfrom and demand.taxperiodto) and
-    demand.consumercode=prop.propertyid), 0) currentcollected,
-    coalesce((select sum(dd.collectionamount) from egbs_demand_v1 demand,
-    egbs_demanddetail_v1 dd where demand.tenantid=$tenantid and
-    demand.tenantid=dd.tenantid and demand.id=dd.demandid and dd.taxheadcode
-    in ('PT_TAX', 'SWATCHATHA_TAX') and (extract(epoch from now())*1000 not
-    between demand.taxperiodfrom and demand.taxperiodto) and
-    demand.consumercode=prop.propertyid), 0) arrearcollected,
-    coalesce((select sum(dd.collectionamount) from egbs_demand_v1 demand,
-    egbs_demanddetail_v1 dd where demand.tenantid=$tenantid and
-    demand.tenantid=dd.tenantid and demand.id=dd.demandid and dd.taxheadcode
-    in ('PT_TIME_INTEREST', 'PT_TIME_PENALTY') and
-    demand.consumercode=prop.propertyid), 0) penaltycollected,
-    coalesce((select sum(dd.collectionamount) from egbs_demand_v1 demand,
-    egbs_demanddetail_v1 dd where demand.tenantid=$tenantid and
-    demand.tenantid=dd.tenantid and demand.id=dd.demandid and dd.taxheadcode
-    in ('PT_TAX', 'PT_TIME_INTEREST', 'PT_TIME_PENALTY', 'SWATCHATHA_TAX')
-    and demand.consumercode=prop.propertyid), 0) totalcollected
-    from eg_pt_property_v2 prop, eg_pt_propertydetail_v2 pd,
-    eg_pt_address_v2 address, eg_pt_owner_v2 po, message msg
-    where substr(pd.financialyear,0,5)::integer=(select
-    max(substr(financialyear,0,5)::integer) from eg_pt_propertydetail_v2
-    where property=prop.propertyid)
-    and prop.propertyid=pd.property
-    and pd.assessmentnumber=po.propertydetail
-    and prop.propertyid=address.property
-    and
-    upper(replace(address.tenantid,'.','_'))||'_REVENUE_'||address.locality
-    = msg.code
-    and msg.locale='en_IN'
-    and prop.tenantid=pd.tenantid
-    and prop.tenantid=po.tenantid
-    and prop.tenantid=address.tenantid
-    and prop.tenantid=$tenantid
+     oldpropertyid, address.doorno as doorno, msg.message as mohalla,
+     pd.propertytype as propertytype, pd.usagecategoryminor as usage,
+     pt_ownername(pd.assessmentnumber, $tenantid, false) as
+     ownernamemobile, coalesce((select sum(dd.taxamount) from egbs_demand_v1
+     demand, egbs_demanddetail_v1 dd where demand.tenantid=$tenantid and
+     demand.tenantid=dd.tenantid and demand.id=dd.demandid and dd.taxheadcode
+     in ('PT_TAX', 'SWATCHATHA_TAX') and (extract(epoch from now())*1000
+     between demand.taxperiodfrom and demand.taxperiodto) and
+     demand.consumercode=prop.propertyid), 0) currenttax, coalesce((select
+     sum(dd.taxamount) from egbs_demand_v1 demand, egbs_demanddetail_v1 dd
+     where demand.tenantid=$tenantid and demand.tenantid=dd.tenantid and
+     demand.id=dd.demandid and dd.taxheadcode in ('PT_TAX', 'SWATCHATHA_TAX')
+     and (extract(epoch from now())*1000 not between demand.taxperiodfrom and
+     demand.taxperiodto) and demand.consumercode=prop.propertyid), 0)
+     arreartax, coalesce((select sum(dd.taxamount) from egbs_demand_v1
+     demand, egbs_demanddetail_v1 dd where demand.tenantid=$tenantid and
+     demand.tenantid=dd.tenantid and demand.id=dd.demandid and dd.taxheadcode
+     in ('PT_TIME_INTEREST', 'PT_TIME_PENALTY') and
+     demand.consumercode=prop.propertyid), 0) penaltytax, coalesce((select
+     sum(dd.taxamount) from egbs_demand_v1 demand, egbs_demanddetail_v1 dd
+     where demand.tenantid=$tenantid and demand.tenantid=dd.tenantid and
+     demand.id=dd.demandid and dd.taxheadcode in ('PT_TAX',
+     'PT_TIME_INTEREST', 'PT_TIME_PENALTY', 'SWATCHATHA_TAX') and
+     demand.consumercode=prop.propertyid), 0) totaltax, coalesce((select
+     sum(dd.collectionamount) from egbs_demand_v1 demand,
+     egbs_demanddetail_v1 dd where demand.tenantid=$tenantid and
+     demand.tenantid=dd.tenantid and demand.id=dd.demandid and dd.taxheadcode
+     in ('PT_TAX', 'SWATCHATHA_TAX') and (extract(epoch from now())*1000
+     between demand.taxperiodfrom and demand.taxperiodto) and
+     demand.consumercode=prop.propertyid), 0) currentcollected,
+     coalesce((select sum(dd.collectionamount) from egbs_demand_v1 demand,
+     egbs_demanddetail_v1 dd where demand.tenantid=$tenantid and
+     demand.tenantid=dd.tenantid and demand.id=dd.demandid and dd.taxheadcode
+     in ('PT_TAX', 'SWATCHATHA_TAX') and (extract(epoch from now())*1000 not
+     between demand.taxperiodfrom and demand.taxperiodto) and
+     demand.consumercode=prop.propertyid), 0) arrearcollected,
+     coalesce((select sum(dd.collectionamount) from egbs_demand_v1 demand,
+     egbs_demanddetail_v1 dd where demand.tenantid=$tenantid and
+     demand.tenantid=dd.tenantid and demand.id=dd.demandid and dd.taxheadcode
+     in ('PT_TIME_INTEREST', 'PT_TIME_PENALTY') and
+     demand.consumercode=prop.propertyid), 0) penaltycollected,
+     coalesce((select sum(dd.collectionamount) from egbs_demand_v1 demand,
+     egbs_demanddetail_v1 dd where demand.tenantid=$tenantid and
+     demand.tenantid=dd.tenantid and demand.id=dd.demandid and dd.taxheadcode
+     in ('PT_TAX', 'PT_TIME_INTEREST', 'PT_TIME_PENALTY', 'SWATCHATHA_TAX')
+     and demand.consumercode=prop.propertyid), 0) totalcollected 
+     from eg_pt_property_v2 prop, eg_pt_propertydetail_v2 pd,
+     eg_pt_address_v2 address, message msg
+     where substr(pd.financialyear,0,5)::integer=(select
+     max(substr(financialyear,0,5)::integer) from eg_pt_propertydetail_v2
+     where property=prop.propertyid)
+     and prop.propertyid=pd.property
+     and prop.propertyid=address.property
+     and upper(replace(address.tenantid,'.','_'))||'_REVENUE_'||address.locality = msg.code
+     and msg.locale='en_IN'
+     and prop.tenantid=pd.tenantid
+     and prop.tenantid=address.tenantid
+     and prop.tenantid=$tenantid
