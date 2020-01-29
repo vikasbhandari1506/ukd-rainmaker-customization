@@ -8,7 +8,7 @@
 # -
 # -
 config:
-  - name: "ukd-rainmaker-customization/ukd-custom-service"
+  - name: "builds/ukd-rainmaker-customization/ukd-custom-service"
     build:
       - work-dir: "services/ukd-custom-service"
         image-name: "ukd-custom-service"
