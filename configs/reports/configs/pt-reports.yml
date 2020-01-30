@@ -6,60 +6,60 @@ ReportDefinitions:
   moduleName: rainmaker-pt
   sourceColumns:
 - name: tenantid
-  label:reports.pt.tenantid 
-  type: string
-  source: pt
-  total: false
-- name: propertyid
-  label:reports.pt.propertyid 
-  type: string
-  source: pt
-  total: false
-- name: receiptnumber
-  label:reports.pt.receiptnumber 
-  type: string
-  source: pt
-  total: false
-- name: receiptdate
-  label:reports.pt.receiptdate
-  type: string
-  source: pt
-  total: false
-- name: paymentmode
-  label:reports.pt.paymentmode
-  type: string
-  source: pt
-  total: false
-- name: transactionnumber
-  label:reports.pt.transactionnumber 
-  type: string
-  source: pt
-  total: false
-- name: interest
-  label:reports.pt.interest
-  type: string
-  source: pt
-  total: false
-- name: transactionnumber
-  label:reports.pt.penalty
-  type: string
-  source: pt
-  total: false  
-- name: swatchathatax
-  label:reports.pt.swatchathatax 
-  type: string
-  source: pt
-  total: false
-- name: propertytax
-  label:reports.pt.propertytax 
-  type: string
-  source: pt
-  total: false
-- name: totalcollection
-  label:reports.pt.totalcollection 
-  type: string
-  source: pt
-  total: false
+    label: reports.pt.tenantid 
+    type: string
+    source: pt
+    total: false
+  - name: propertyid
+    label: reports.pt.propertyid 
+    type: string
+    source: pt
+    total: false
+  - name: receiptnumber
+    label: reports.pt.receiptnumber 
+    type: string
+    source: pt
+    total: false
+  - name: receiptdate
+    label: reports.pt.receiptdate
+    type: string
+    source: pt
+    total: false
+  - name: paymentmode
+    label: reports.pt.paymentmode
+    type: string
+    source: pt
+    total: false
+  - name: transactionnumber
+    label: reports.pt.transactionnumber 
+    type: string
+    source: pt
+    total: false
+  - name: interest
+    label: reports.pt.interest
+    type: string
+    source: pt
+    total: false
+  - name: transactionnumber
+    label: reports.pt.penalty
+    type: string
+    source: pt
+    total: false  
+  - name: swatchathatax
+    label: reports.pt.swatchathatax 
+    type: string
+    source: pt
+    total: false
+  - name: propertytax
+    label: reports.pt.propertytax 
+    type: string
+    source: pt
+    total: false
+  - name: totalcollection
+    label: reports.pt.totalcollection 
+    type: string
+    source: pt
+    total: false
 searchParams:
   - name: fromDate
     label: reports.pt.fromDate
@@ -81,29 +81,29 @@ searchParams:
     isMandatory: false
     searchClause: AND paymentmode = $paymentMode
 query: |
-  select pay.tenantid as tenantid,
-  bill.consumercode as propertyid,
-  pd.receiptnumber  as receiptnumber,
-  To_char(To_timestamp(pd.receiptdate/1000 ), 'DD/MM/YYYY')  AS receiptdate,
-  pay.paymentmode as paymentmode,
-  pay.transactionnumber as transactionnumber,
-  SUM(CASE WHEN taxheadcode LIKE 'PT_TIME_INTEREST%' THEN bad.amount ELSE 0 END) as interest,
-  SUM(CASE WHEN taxheadcode LIKE 'PT_TIME_PENALTY%' THEN bad.amount ELSE 0 END) as penalty,
-  SUM(CASE WHEN taxheadcode LIKE 'SWATCHATHA_TAX%' THEN bad.amount ELSE 0 END) as swatchathatax,
-  SUM(CASE WHEN taxheadcode LIKE 'PT_TAX%' THEN bad.amount ELSE 0 END) as propertytax,
-  (SUM(CASE WHEN taxheadcode LIKE 'PT_TIME_INTEREST' THEN bad.amount ELSE 0 END)  + SUM(CASE WHEN taxheadcode LIKE 'PT_TIME_PENALTY%' THEN bad.amount ELSE 0 END) +SUM(CASE WHEN taxheadcode LIKE 'SWATCHATHA_TAX' THEN bad.amount ELSE 0 END) +SUM(CASE WHEN taxheadcode LIKE 'PT_TAX' THEN bad.amount ELSE 0 END) ) as totalcollection
-  from egcl_payment pay,
-  egcl_paymentdetail pd,
-  egcl_bill bill,
-  egcl_billdetial bd,
-  egcl_billaccountdetail bad
-  where pd.paymentid= pay.id and
-  pd.billid=bill.id and
-  bd.billid=bill.id and
-  bad.billdetailid=bd.id and
-  pay.tenantid LIKE $tenantid and 
-  pd.businessservice='PT'and 
-  pay.paymentstatus != 'CANCELLED'
+    select pay.tenantid as tenantid,
+    bill.consumercode as propertyid,
+    pd.receiptnumber  as receiptnumber,
+    To_char(To_timestamp(pd.receiptdate/1000 ), 'DD/MM/YYYY')  AS receiptdate,
+    pay.paymentmode as paymentmode,
+    pay.transactionnumber as transactionnumber,
+    SUM(CASE WHEN taxheadcode LIKE 'PT_TIME_INTEREST%' THEN bad.amount ELSE 0 END) as interest,
+    SUM(CASE WHEN taxheadcode LIKE 'PT_TIME_PENALTY%' THEN bad.amount ELSE 0 END) as penalty,
+    SUM(CASE WHEN taxheadcode LIKE 'SWATCHATHA_TAX%' THEN bad.amount ELSE 0 END) as swatchathatax,
+    SUM(CASE WHEN taxheadcode LIKE 'PT_TAX%' THEN bad.amount ELSE 0 END) as propertytax,
+    (SUM(CASE WHEN taxheadcode LIKE 'PT_TIME_INTEREST' THEN bad.amount ELSE 0 END)  + SUM(CASE WHEN taxheadcode LIKE 'PT_TIME_PENALTY%' THEN bad.amount ELSE 0 END) +SUM(CASE WHEN taxheadcode LIKE 'SWATCHATHA_TAX' THEN bad.amount ELSE 0 END) +SUM(CASE WHEN taxheadcode LIKE 'PT_TAX' THEN bad.amount ELSE 0 END) ) as totalcollection
+    from egcl_payment pay,
+    egcl_paymentdetail pd,
+    egcl_bill bill,
+    egcl_billdetial bd,
+    egcl_billaccountdetail bad
+    where pd.paymentid= pay.id and
+    pd.billid=bill.id and
+    bd.billid=bill.id and
+    bad.billdetailid=bd.id and
+    pay.tenantid LIKE $tenantid and 
+    pd.businessservice='PT'and 
+    pay.paymentstatus != 'CANCELLED'
 groupby: GROUP BY pay.tenantid,pd.receiptnumber,bill.consumercode,pd.receiptdate,pay.transactionnumber,pay.paymentmode;
 
 - reportName: CancelledReceiptRegister
