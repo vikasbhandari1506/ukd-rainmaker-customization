@@ -111,7 +111,7 @@ ReportDefinitions:
   version: 1.0.0
   moduleName: rainmaker-pt
   sourceColumns:
- - name: tenantid
+  - name: tenantid
     label: reports.pt.tenantid 
     type: string
     source: pt
