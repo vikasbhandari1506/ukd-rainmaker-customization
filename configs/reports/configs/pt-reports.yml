@@ -40,7 +40,7 @@ ReportDefinitions:
     type: string
     source: pt
     total: false
-  - name: transactionnumber
+  - name: penalty
     label: reports.pt.penalty
     type: string
     source: pt
