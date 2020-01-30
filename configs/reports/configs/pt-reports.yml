@@ -5,7 +5,7 @@ ReportDefinitions:
   version: 1.0.0
   moduleName: rainmaker-pt
   sourceColumns:
-- name: tenantid
+  - name: tenantid
     label: reports.pt.tenantid 
     type: string
     source: pt
@@ -60,7 +60,7 @@ ReportDefinitions:
     type: string
     source: pt
     total: false
-searchParams:
+  searchParams:
   - name: fromDate
     label: reports.pt.fromDate
     type: epoch
@@ -80,7 +80,7 @@ searchParams:
     source: pt
     isMandatory: false
     searchClause: AND paymentmode = $paymentMode
-query: |
+  query: |
     select pay.tenantid as tenantid,
     bill.consumercode as propertyid,
     pd.receiptnumber  as receiptnumber,
@@ -104,7 +104,7 @@ query: |
     pay.tenantid LIKE $tenantid and 
     pd.businessservice='PT'and 
     pay.paymentstatus != 'CANCELLED'
-groupby: GROUP BY pay.tenantid,pd.receiptnumber,bill.consumercode,pd.receiptdate,pay.transactionnumber,pay.paymentmode;
+  groupby: GROUP BY pay.tenantid,pd.receiptnumber,bill.consumercode,pd.receiptdate,pay.transactionnumber,pay.paymentmode;
 
 - reportName: CancelledReceiptRegister
   summary: Receipt Register for cancelled Receipts
