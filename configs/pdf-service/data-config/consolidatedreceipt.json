@@ -113,6 +113,12 @@
                                 }
                             },
                             {
+                                "variable": "swatchatha",
+                                "value": {
+                                    "path": "$.paymentDetails[0].bill.additionalDetails.swatchatha"
+                                }
+                            },
+                            {
                                 "variable": "penalty",
                                 "value": {
                                     "path": "$.paymentDetails[0].bill.additionalDetails.penalty"
@@ -362,6 +368,18 @@
                                 "variable": "pt_tax_current",
                                 "value": {
                                     "path": "PT_RECEIPT_LABEL_PT_TAX_CURRENT"
+                                },
+                                "type": "label",
+                                "localisation": {
+                                    "required": true,
+                                    "prefix": null,
+                                    "module": "rainmaker-receipt"
+                                }
+                            },
+                            {
+                                "variable": "pt_swatchatha",
+                                "value": {
+                                    "path": "PT_RECEIPT_LABEL_PT_SWATCHATHA"
                                 },
                                 "type": "label",
                                 "localisation": {

@@ -375,6 +375,7 @@
                         "*",
                         "*",
                         "*",
+                        "*",
                         "*"
                     ],
                     "body": [
@@ -402,6 +403,17 @@
                                 "style": "receipttablevalue"
                             },
                             {
+                                "text": "{{pt_swatchatha}}",
+                                "alignment": "center",
+                                "border": [
+                                    true,
+                                    true,
+                                    true,
+                                    true
+                                ],
+                                "style": "receipttablevalue"
+                            },
+                            {
                                 "text": "{{pt_penalty}}",
                                 "alignment": "center",
                                 "border": [
@@ -413,7 +425,7 @@
                                 "style": "receipttablevalue"
                             },
                             {
-                                "text": "{{pt_rebate}}",
+                                "text": "{{pt_interest}}",
                                 "alignment": "center",
                                 "border": [
                                     true,
@@ -424,7 +436,7 @@
                                 "style": "receipttablevalue"
                             },
                             {
-                                "text": "{{pt_interest}}",
+                                "text": "{{pt_rebate}}",
                                 "alignment": "center",
                                 "border": [
                                     true,
@@ -481,6 +493,17 @@
                                 "style": "receipttable"
                             },
                             {
+                                "text": "₹ {{swatchatha}}",
+                                "alignment": "center",
+                                "border": [
+                                    true,
+                                    true,
+                                    true,
+                                    true
+                                ],
+                                "style": "receipttable"
+                            },
+                            {
                                 "text": "₹ {{penalty}}",
                                 "alignment": "center",
                                 "border": [
@@ -492,7 +515,7 @@
                                 "style": "receipttable"
                             },
                             {
-                                "text": "₹ {{rebate}}",
+                                "text": "₹ {{interest}}",
                                 "alignment": "center",
                                 "border": [
                                     true,
@@ -503,7 +526,7 @@
                                 "style": "receipttable"
                             },
                             {
-                                "text": "₹ {{interest}}",
+                                "text": "₹ {{rebate}}",
                                 "alignment": "center",
                                 "border": [
                                     true,
