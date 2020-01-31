@@ -877,7 +877,7 @@ ReportDefinitions:
     source: pt
     wrapper: true
     isMandatory: false
-    searchClause: AND address.locality = $MohallaName
+    searchClause: AND address.locality = $Mohallaname
   query: | 
     select prop.propertyid as propertyid, prop.oldpropertyid as
      oldpropertyid, address.doorno as doorno, msg.message as mohalla,
