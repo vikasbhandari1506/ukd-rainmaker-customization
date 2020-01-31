@@ -46,7 +46,7 @@ ReportDefinitions:
     source: pt
     total: false  
   - name: swatchathatax
-    label: reports.pt.swatchathatax 
+    label: reports.pt.swatchatatax
     type: string
     source: pt
     total: false
