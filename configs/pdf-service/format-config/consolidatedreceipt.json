@@ -369,25 +369,152 @@
                 "style": "nextnoctable",
                 "table": {
                     "widths": [
-                        "25%",
-                        "25%"
+                        "*",
+                        "*",
+                        "*",
+                        "*",
+                        "*",
+                        "*",
+                        "*"
                     ],
                     "body": [
                         [
                             {
-                                "text": "{{pt_total}} :",
+                                "text": "{{pt_tax_arrear}}",
                                 "border": [
                                     true,
                                     true,
-                                    false,
+                                    true,
                                     true
                                 ],
                                 "style": "receipttablevalue"
                             },
                             {
+                                "text": "{{pt_tax_current}}",
+                                "border": [
+                                    true,
+                                    true,
+                                    true,
+                                    true
+                                ],
+                                "style": "receipttablevalue"
+                            },
+                            {
+                                "text": "{{pt_penalty}}",
+                                "border": [
+                                    true,
+                                    true,
+                                    true,
+                                    true
+                                ],
+                                "style": "receipttablevalue"
+                            },
+                            {
+                                "text": "{{pt_rebate}}",
+                                "border": [
+                                    true,
+                                    true,
+                                    true,
+                                    true
+                                ],
+                                "style": "receipttablevalue"
+                            },
+                            {
+                                "text": "{{pt_interest}}",
+                                "border": [
+                                    true,
+                                    true,
+                                    true,
+                                    true
+                                ],
+                                "style": "receipttablevalue"
+                            },
+                            {
+                                "text": "{{pt_round_off}}",
+                                "border": [
+                                    true,
+                                    true,
+                                    true,
+                                    true
+                                ],
+                                "style": "receipttablevalue"
+                            },
+                            {
+                                "text": "{{pt_total}}",
+                                "border": [
+                                    true,
+                                    true,
+                                    true,
+                                    true
+                                ],
+                                "style": "receipttablevalue"
+                            }
+                        ],
+                        [
+                            {
+                                "text": "{{arrears}}",
+                                "border": [
+                                    true,
+                                    true,
+                                    true,
+                                    true
+                                ],
+                                "style": "receipttable"
+                            },
+                            {
+                                "text": "{{propertyTax}}",
+                                "border": [
+                                    true,
+                                    true,
+                                    true,
+                                    true
+                                ],
+                                "style": "receipttable"
+                            },
+                            {
+                                "text": "{{penalty}}",
+                                "border": [
+                                    true,
+                                    true,
+                                    true,
+                                    true
+                                ],
+                                "style": "receipttable"
+                            },
+                            {
+                                "text": "{{rebate}}",
+                                "border": [
+                                    true,
+                                    true,
+                                    true,
+                                    true
+                                ],
+                                "style": "receipttable"
+                            },
+                            {
+                                "text": "{{interest}}",
+                                "border": [
+                                    true,
+                                    true,
+                                    true,
+                                    true
+                                ],
+                                "style": "receipttable"
+                            },
+                            {
+                                "text": "{{roundOff}}",
+                                "border": [
+                                    true,
+                                    true,
+                                    true,
+                                    true
+                                ],
+                                "style": "receipttable"
+                            },
+                            {
                                 "text": "{{total}}",
                                 "border": [
-                                    false,
+                                    true,
                                     true,
                                     true,
                                     true
