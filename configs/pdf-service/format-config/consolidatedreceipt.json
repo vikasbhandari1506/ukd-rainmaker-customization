@@ -381,6 +381,7 @@
                         [
                             {
                                 "text": "{{pt_tax_arrear}}",
+                                "alignment": "center",
                                 "border": [
                                     true,
                                     true,
@@ -391,6 +392,7 @@
                             },
                             {
                                 "text": "{{pt_tax_current}}",
+                                "alignment": "center",
                                 "border": [
                                     true,
                                     true,
@@ -401,6 +403,7 @@
                             },
                             {
                                 "text": "{{pt_penalty}}",
+                                "alignment": "center",
                                 "border": [
                                     true,
                                     true,
@@ -411,6 +414,7 @@
                             },
                             {
                                 "text": "{{pt_rebate}}",
+                                "alignment": "center",
                                 "border": [
                                     true,
                                     true,
@@ -421,6 +425,7 @@
                             },
                             {
                                 "text": "{{pt_interest}}",
+                                "alignment": "center",
                                 "border": [
                                     true,
                                     true,
@@ -431,6 +436,7 @@
                             },
                             {
                                 "text": "{{pt_round_off}}",
+                                "alignment": "center",
                                 "border": [
                                     true,
                                     true,
@@ -441,6 +447,7 @@
                             },
                             {
                                 "text": "{{pt_total}}",
+                                "alignment": "center",
                                 "border": [
                                     true,
                                     true,
@@ -452,7 +459,8 @@
                         ],
                         [
                             {
-                                "text": "{{arrears}}",
+                                "text": "₹ {{arrears}}",
+                                "alignment": "center",
                                 "border": [
                                     true,
                                     true,
@@ -462,7 +470,8 @@
                                 "style": "receipttable"
                             },
                             {
-                                "text": "{{propertyTax}}",
+                                "text": "₹ {{propertyTax}}",
+                                "alignment": "center",
                                 "border": [
                                     true,
                                     true,
@@ -472,7 +481,8 @@
                                 "style": "receipttable"
                             },
                             {
-                                "text": "{{penalty}}",
+                                "text": "₹ {{penalty}}",
+                                "alignment": "center",
                                 "border": [
                                     true,
                                     true,
@@ -482,7 +492,8 @@
                                 "style": "receipttable"
                             },
                             {
-                                "text": "{{rebate}}",
+                                "text": "₹ {{rebate}}",
+                                "alignment": "center",
                                 "border": [
                                     true,
                                     true,
@@ -492,7 +503,8 @@
                                 "style": "receipttable"
                             },
                             {
-                                "text": "{{interest}}",
+                                "text": "₹ {{interest}}",
+                                "alignment": "center",
                                 "border": [
                                     true,
                                     true,
@@ -502,7 +514,8 @@
                                 "style": "receipttable"
                             },
                             {
-                                "text": "{{roundOff}}",
+                                "text": "₹ {{roundOff}}",
+                                "alignment": "center",
                                 "border": [
                                     true,
                                     true,
@@ -512,7 +525,8 @@
                                 "style": "receipttable"
                             },
                             {
-                                "text": "{{total}}",
+                                "text": "₹ {{total}}",
+                                "alignment": "center",
                                 "border": [
                                     true,
                                     true,
