@@ -2,7 +2,7 @@
   "_comment": "Master dashboard which holds all the possible visualisation. Note new dashboards/visualisations can be added",
   "dashboards": [
     {
-      "name": "DSS_HOME_DASHBOARD",
+      "name": "State Urban Real-Time Executive (SURE) Dashboard",
       "id": "home",
       "isActive": "",
       "style": "",
@@ -12,7 +12,7 @@
           "vizArray": [
             {
               "id": 111,
-              "name": "DSS_OVERVIEW",
+              "name": "Overview",
               "vizType": "metric-collection",
               "noUnit": true,
               "charts": [
@@ -146,7 +146,7 @@
           "vizArray": [
             {
               "id": 131,
-              "name": "DSS_OVERVIEW",
+              "name": "Overview",
               "dimensions": {
                 "height": 450,
                 "width": 5
@@ -276,7 +276,7 @@
       ]
     },
     {
-      "name": "DSS_PROPERTY_TAX_DASHBOARD",
+      "name": "Property Tax (SURE) Dashboard",
       "id": "propertyTax",
       "isActive": "",
       "style": "linear",
@@ -287,17 +287,17 @@
           "vizArray": [
             {
               "id": 211,
-              "name": "DSS_OVERVIEW",
+              "name": "Overview",
               "dimensions": {
                 "height": 350,
                 "width": 5
               },
               "vizType": "metric-collection",
               "noUnit": true,
-              "label": "DSS_OVERVIEW",
+              "label": "Overview",
               "charts": [
                 {
-                  "id": "todaysCollection",
+                  "id": "todaysCollectionPT",
                   "name": "DSS_TOTAL_COLLECTION_TODAY",
                   "code": "",
                   "chartType": "metric",
@@ -478,6 +478,7 @@
                   "filter": "",
                   "headers": [],
                   "tabName": "Boundary"
+
                 },
                 {
                   "id": "taxHeadsBreakupUsage",
@@ -487,6 +488,7 @@
                   "filter": "",
                   "headers": [],
                   "tabName": "Usage"
+
                 }
               ]
             }
@@ -498,13 +500,13 @@
           "vizArray": [
             {
               "id": 241,
-              "name": "DSS_OVERVIEW",
+              "name": "Overview",
               "dimensions": {
                 "height": 350,
                 "width": 5
               },
               "vizType": "metric-collection",
-              "label": "DSS_OVERVIEW",
+              "label": "Overview",
               "charts": [
                 {
                   "id": "propertiesAssessed",
@@ -515,7 +517,7 @@
                   "headers": []
                 },
                 {
-                  "id": "totalAssessment",
+                  "id": "propertiesAssessed",
                   "name": "DSS_PT_TOTAL_ASSESSMENTS",
                   "code": "",
                   "chartType": "metric",
@@ -620,7 +622,7 @@
       ]
     },
     {
-      "name": "DSS_TRADE_LICENSE_DASHBOARD",
+      "name": "Trade License (SURE) Dashboard",
       "id": "tradeLicense",
       "isActive": "",
       "style": "linear",
@@ -630,17 +632,17 @@
           "name": "DSS_REVENUE",
           "vizArray": [
             {
-              "name": "DSS_OVERVIEW",
+              "name": "Overview",
               "dimensions": {
                 "height": 350,
                 "width": 5
               },
               "vizType": "metric-collection",
-              "label": "DSS_OVERVIEW",
+              "label": "Overview",
               "noUnit": true,
               "charts": [
                 {
-                  "id": "todaysCollection",
+                  "id": "todaysCollectionTL",
                   "name": "DSS_TOTAL_COLLECTION_TODAY",
                   "code": "",
                   "chartType": "metric",
@@ -702,7 +704,7 @@
           "vizArray": [
             {
               "id": 321,
-              "name": "DSS_TL_TOP_3_PERFORMING_ULBS",
+              "name": "DSS_PT_TOP_3_PERFORMING_ULBS",
               "dimensions": {
                 "height": 250,
                 "width": 4
@@ -713,7 +715,7 @@
               "charts": [
                 {
                   "id": "topPerformingUlbs",
-                  "name": "DSS_TL_TOP_3_PERFORMING_ULBS",
+                  "name": "DSS_PT_TOP_3_PERFORMING_ULBS",
                   "code": "",
                   "chartType": "bar",
                   "filter": "",
@@ -723,7 +725,7 @@
             },
             {
               "id": 322,
-              "name": "DSS_TL_BOTTOM_3_PERFORMING_ULBS",
+              "name": "DSS_PT_BOTTOM_3_PERFORMING_ULBS",
               "dimensions": {
                 "height": 250,
                 "width": 4
@@ -734,7 +736,7 @@
               "charts": [
                 {
                   "id": "bottomPerformingUlbs",
-                  "name": "DSS_TL_BOTTOM_3_PERFORMING_ULBS",
+                  "name": "DSS_PT_BOTTOM_3_PERFORMING_ULBS",
                   "code": "",
                   "chartType": "bar",
                   "filter": "",
@@ -788,6 +790,7 @@
                   "filter": "",
                   "headers": [],
                   "tabName": "Boundary"
+
                 }
               ]
             }
@@ -816,6 +819,7 @@
                   "filter": "",
                   "headers": [],
                   "tabName": "Boundary"
+
                 }
               ]
             }
@@ -827,13 +831,13 @@
           "vizArray": [
             {
               "id": 341,
-              "name": "DSS_OVERVIEW",
+              "name": "Overview",
               "dimensions": {
                 "height": 350,
                 "width": 5
               },
               "vizType": "metric-collection",
-              "label": "DSS_OVERVIEW",
+              "label": "Overview",
               "charts": [
                 {
                   "id": "totalApplication",
@@ -947,57 +951,29 @@
               ]
             }
           ]
-        },
-        {
-          "row": 8,
-          "name": "DSS_SERVICE",
-          "vizArray": [
-            {
-              "id": 351,
-              "name": "DSS_TL_STATUS_BOUNDARY",
-              "dimensions": {
-                "height": 250,
-                "width": 4
-              },
-              "vizType": "chart",
-              "label": "",
-              "noUnit": false,
-              "charts": [
-                {
-                  "id": "tlStatusByDDR",
-                  "name": "",
-                  "code": "",
-                  "chartType": "table",
-                  "filter": "",
-                  "headers": [],
-                  "tabName": "Boundary"
-
-                }
-              ]
-            }
-          ]
         }
       ]
     },
     {
-      "name": "DSS_PGR_DASHBOARD",
+      "name": "PGR (SURE) Dashboard",
       "id": "pgr",
       "isActive": "",
       "style": "linear",
       "visualizations": [
+
         {
           "row": 1,
           "name": "DSS_SERVICE",
           "vizArray": [
             {
               "id": 412,
-              "name": "DSS_OVERVIEW",
+              "name": "Overview",
               "dimensions": {
                 "height": 350,
                 "width": 5
               },
               "vizType": "metric-collection",
-              "label": "DSS_OVERVIEW",
+              "label": "Overview",
               "noUnit": true,
               "charts": [
                 {
@@ -1182,13 +1158,14 @@
               "noUnit": false,
               "charts": [
                 {
-                  "id": "pgrStatusByDDR",
+                  "id": "pgrStatusByTenant",
                   "name": "DSS_PGR_STATUS_BY_TENANT",
                   "code": "",
                   "chartType": "table",
                   "filter": "",
                   "headers": [],
                   "tabName": "Boundary"
+
                 },
                 {
                   "id": "pgrStatusByDepartment",
@@ -1198,161 +1175,7 @@
                   "filter": "",
                   "headers": [],
                   "tabName": "Department"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "name": "DSS_OVERVIEW_DASHBOARD",
-      "id": "overview",
-      "isActive": "",
-      "style": "",
-      "title": "title",
-      "visualizations": [
-        {
-          "name": "DSS_OVERVIEW",
-          "row": 1,
-          "vizArray": [
-            {
-              "id": 111,
-              "name": "DSS_OVERVIEW",
-              "vizType": "collection",
-              "noUnit": true,
-              "ref": {
-                "url": "home",
-                "logoUrl": "",
-                "type": "internal"
-              },
-              "charts": [
-                {
-                  "id": "totalCollection",
-                  "name": "DSS_TOTAL_COLLECTION",
-                  "code": "",
-                  "chartType": "metric",
-                  "filter": "",
-                  "headers": []
-                },
-                {
-                  "id": "targetAchieved",
-                  "name": "DSS_TARGET_ACHIEVED",
-                  "code": "",
-                  "chartType": "metric",
-                  "filter": "",
-                  "headers": []
-                },
-                {
-                  "id": "totalApplication",
-                  "name": "DSS_TOTAL_APPLICATION",
-                  "code": "",
-                  "chartType": "metric",
-                  "filter": "",
-                  "headers": []
-                },
-                {
-                  "id": "slaAchieved",
-                  "name": "DSS_SLA_ACHIEVED",
-                  "code": "",
-                  "chartType": "metric",
-                  "filter": "",
-                  "headers": []
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "row": 2,
-          "name": "DSS_OVERVIEW",
-          "vizArray": [
-            {
-              "id": 121,
-              "name": "DSS_PROPERTY_TAX",
-              "vizType": "module",
-              "type": "",
-              "noUnit": false,
-              "ref": {
-                "url": "propertytax",
-                "logoUrl": "",
-                "type": "internal"
-              },
-              "label": "",
-              "charts": [
-                {
-                  "id": "totalCollection",
-                  "name": "DSS_TOTAL_COLLECTION",
-                  "code": "",
-                  "chartType": "metric",
-                  "filter": "",
-                  "headers": []
-                },
-                {
-                  "id": "propertiesAssessed",
-                  "name": "DSS_PT_TOTAL_PROPERTIES_ASSESSED",
-                  "code": "",
-                  "chartType": "metric",
-                  "filter": "",
-                  "headers": []
-                }
-              ]
-            },
-            {
-              "id": 131,
-              "name": "DSS_TRADE_LICENCE",
-              "vizType": "module",
-              "ref": {
-                "url": "tradelicense",
-                "logoUrl": "",
-                "type": "internal"
-              },
-              "label": "",
-              "charts": [
-                {
-                  "id": "totalCollection",
-                  "name": "DSS_TOTAL_COLLECTION",
-                  "code": "",
-                  "chartType": "metric",
-                  "filter": "",
-                  "headers": []
-                },
-                {
-                  "id": "totalApplication",
-                  "name": "DSS_TOTAL_APPLICATION",
-                  "code": "",
-                  "chartType": "metric",
-                  "filter": "",
-                  "headers": []
-                }
-              ]
-            },
-            {
-              "id": 141,
-              "name": "DSS_COMPLAINS",
-              "vizType": "module",
-              "ref": {
-                "url": "pgr",
-                "logoUrl": "",
-                "type": "internal"
-              },
-              "label": "",
-              "charts": [
-                {
-                  "id": "totalComplaints",
-                  "name": "DSS_PGR_TOTAL_COMPLAINTS",
-                  "code": "",
-                  "chartType": "metric",
-                  "filter": "",
-                  "headers": []
-                },
-                {
-                  "id": "slaAchieved",
-                  "name": "DSS_SLA_ACHIEVED",
-                  "code": "",
-                  "chartType": "metric",
-                  "filter": "",
-                  "headers": []
+
                 }
               ]
             }
@@ -1360,6 +1183,5 @@
         }
       ]
     }
-
   ]
 }
