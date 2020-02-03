@@ -928,9 +928,8 @@ ReportDefinitions:
      and demand.consumercode=prop.propertyid), 0) totalcollected 
      from eg_pt_property_v2 prop, eg_pt_propertydetail_v2 pd,
      eg_pt_address_v2 address, message msg
-     where substr(pd.financialyear,0,5)::integer=(select
-     max(substr(financialyear,0,5)::integer) from eg_pt_propertydetail_v2
-     where property=prop.propertyid)
+     where assessmentnumber=(select assessmentnumber from eg_pt_propertydetail_v2
+     where property=prop.propertyid order by substr(financialyear,0,5)::integer desc limit 1)
      and prop.propertyid=pd.property
      and prop.propertyid=address.property
      and upper(replace(address.tenantid,'.','_'))||'_REVENUE_'||address.locality = msg.code
