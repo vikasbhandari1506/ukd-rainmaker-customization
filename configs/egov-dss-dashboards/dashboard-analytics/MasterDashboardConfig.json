@@ -825,6 +825,77 @@
             }
           ]
         },
+{
+          "row": 5,
+          "name": "DSS_REVENUE",
+          "vizArray": [
+            {
+              "name": "Overview",
+              "dimensions": {
+                "height": 350,
+                "width": 5
+              },
+              "vizType": "metric-collection",
+              "label": "Overview",
+              "noUnit": true,
+              "charts": [
+                {
+                  "id": "todaysCollectionTL",
+                  "name": "DSS_TOTAL_COLLECTION_TODAY",
+                  "code": "",
+                  "chartType": "metric",
+                  "filter": "",
+                  "headers": []
+                },
+                {
+                  "id": "totalCollection",
+                  "name": "DSS_TOTAL_COLLECTION",
+                  "code": "",
+                  "chartType": "metric",
+                  "filter": "",
+                  "headers": []
+                },
+                {
+                  "id": "targetCollection",
+                  "name": "DSS_TARGET_COLLECTION",
+                  "code": "",
+                  "chartType": "metric",
+                  "filter": "",
+                  "headers": []
+                },
+                {
+                  "id": "targetAchieved",
+                  "name": "DSS_TARGET_ACHIEVED",
+                  "code": "",
+                  "chartType": "metric",
+                  "filter": "",
+                  "headers": []
+                }
+              ]
+            },
+            {
+              "id": 312,
+              "name": "Total Cumulative Collection",
+              "dimensions": {
+                "height": 350,
+                "width": 7
+              },
+              "vizType": "chart",
+              "label": "",
+              "noUnit": true,
+              "charts": [
+                {
+                  "id": "cumulativeCollection",
+                  "name": "Monthly",
+                  "code": "",
+                  "chartType": "line",
+                  "filter": "",
+                  "headers": []
+                }
+              ]
+            }
+          ]
+        },
         {
           "row": 6,
           "name": "DSS_SERVICE",
