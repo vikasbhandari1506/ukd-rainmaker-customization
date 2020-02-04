@@ -4,7 +4,7 @@ ServiceMaps:
  mappings:
   - topic: save-tl-tradelicense
     indexes:
-    - name: tl-index
+    - name: tlindex-v1
       type: tradelicenses
       id: $.id, $.tenantId
       isBulk: true
@@ -12,7 +12,7 @@ ServiceMaps:
       
   - topic: update-tl-tradelicense
     indexes:
-    - name: tl-index
+    - name: tlindex-v1
       type: tradelicenses
       id: $.id, $.tenantId
       isBulk: true
