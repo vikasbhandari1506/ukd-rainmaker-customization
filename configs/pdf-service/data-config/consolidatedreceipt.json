@@ -103,37 +103,43 @@
                             {
                                 "variable": "propertyTax",
                                 "value": {
-                                    "path": "$.paymentDetails[0].bill.billDetails[0].billAccountDetails[?(@.taxHeadCode=='PT_TAX')].amount"
+                                    "path": "$.paymentDetails[0].bill.additionalDetails.tax"
                                 }
                             },
                             {
                                 "variable": "arrears",
                                 "value": {
-                                    "path": "$.paymentDetails[0].bill.billDetails[1].billAccountDetails[?(@.taxHeadCode=='PT_TAX')].amount"
+                                    "path": "$.paymentDetails[0].bill.additionalDetails.arrear"
+                                }
+                            },
+                            {
+                                "variable": "swatchatha",
+                                "value": {
+                                    "path": "$.paymentDetails[0].bill.additionalDetails.swatchatha"
                                 }
                             },
                             {
                                 "variable": "penalty",
                                 "value": {
-                                    "path": "$.paymentDetails[0].bill.billDetails[0].billAccountDetails[?(@.taxHeadCode=='PT_TIME_PENALTY')].amount"
+                                    "path": "$.paymentDetails[0].bill.additionalDetails.penalty"
                                 }
                             },
                             {
                                 "variable": "rebate",
                                 "value": {
-                                    "path": "$.paymentDetails[0].bill.billDetails[0].billAccountDetails[?(@.taxHeadCode=='PT_TIME_REBATE')].amount"
+                                    "path": "$.paymentDetails[0].bill.additionalDetails.rebate"
                                 }
                             },
                             {
                                 "variable": "interest",
                                 "value": {
-                                    "path": "$.paymentDetails[0].bill.billDetails[0].billAccountDetails[?(@.taxHeadCode=='PT_TIME_INTEREST')].amount"
+                                    "path": "$.paymentDetails[0].bill.additionalDetails.interest"
                                 }
                             },
                             {
                                 "variable": "roundOff",
                                 "value": {
-                                    "path": "$.paymentDetails[0].bill.billDetails[0].billAccountDetails[?(@.taxHeadCode=='PT_ROUNDOFF')].amount"
+                                    "path": "$.paymentDetails[0].bill.additionalDetails.roundOff"
                                 }
                             },
                             {
@@ -362,6 +368,18 @@
                                 "variable": "pt_tax_current",
                                 "value": {
                                     "path": "PT_RECEIPT_LABEL_PT_TAX_CURRENT"
+                                },
+                                "type": "label",
+                                "localisation": {
+                                    "required": true,
+                                    "prefix": null,
+                                    "module": "rainmaker-receipt"
+                                }
+                            },
+                            {
+                                "variable": "pt_swatchatha",
+                                "value": {
+                                    "path": "PT_RECEIPT_LABEL_PT_SWATCHATHA"
                                 },
                                 "type": "label",
                                 "localisation": {
