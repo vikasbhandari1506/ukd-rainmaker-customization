@@ -14,12 +14,6 @@
       "topic": "egov.collection.payment-create",
       "dataContext": "dss-payment",
       "dataContextVersion": "v1"
-    },
-    {
-      "topic": "egov.collection.payment-create-data-load",
-      "dataContext": "dss-payment",
-      "dataContextVersion": "v1"
     }
-
   ]
 }
