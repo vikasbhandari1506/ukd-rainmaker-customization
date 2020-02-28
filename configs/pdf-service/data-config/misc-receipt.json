@@ -406,6 +406,42 @@
                  }
                 },
                 {
+                  "variable": "receipt_info",
+                  "value": {
+                    "path": "PDF_STATIC_LABEL_RECEIPT_INFO"
+                  },
+                  "type": "label",
+                  "localisation":{
+                    "required":true,
+                    "prefix": null,
+                    "module":"rainmaker-common"
+                 }
+                },
+                {
+                  "variable": "payer_info",
+                  "value": {
+                    "path": "PDF_STATIC_LABEL_PAYER_INFO"
+                  },
+                  "type": "label",
+                  "localisation":{
+                    "required":true,
+                    "prefix": null,
+                    "module":"rainmaker-common"
+                 }
+                },
+                {
+                  "variable": "payment_info",
+                  "value": {
+                    "path": "PDF_STATIC_LABEL_PAYMENT_INFO"
+                  },
+                  "type": "label",
+                  "localisation":{
+                    "required":true,
+                    "prefix": null,
+                    "module":"rainmaker-common"
+                 }
+                },
+                {
                   "variable": "Municipal_Corporation",
                   "value": {
                     "path": "PDF_STATIC_LABEL_MDMS_MUNICIPAL_CORPORATION"
