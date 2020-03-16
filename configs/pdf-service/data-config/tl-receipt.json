@@ -69,13 +69,15 @@
                               "variable": "fromPeriod",
                               "value": {
                                   "path": "$.paymentDetails[0].bill.billDetails[0].fromPeriod"
-                              }
+                              },
+                              "type":"date"
                           },
                           {
                               "variable": "toPeriod",
                               "value": {
                                   "path": "$.paymentDetails[0].bill.billDetails[0].toPeriod"
-                              }
+                              },
+                              "type":"date"
                           },
                           {
                               "variable": "paymentMode",
@@ -98,7 +100,8 @@
                               "variable": "G8ReceiptDate",
                               "value": {
                                   "path": "$.paymentDetails[0].manualReceiptDate"
-                              }
+                              },
+                              "type":"date"
                           },
                           {
                               "variable": "licenseTax",
@@ -140,7 +143,8 @@
                               "variable": "paymentDate",
                               "value": {
                                   "path": "$.transactionDate"
-                              }
+                              },
+                              "type":"date"
                           },
                           {
                               "variable": "consumerID",
