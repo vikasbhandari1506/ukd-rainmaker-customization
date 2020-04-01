@@ -1,7 +1,4 @@
-const axios = require("axios");
-const { base_url } = require("./config");
-
-const exceldataToReqData = (exceldata, authToken) => {
+module.exports = (exceldata, authToken) => {
   //exceldata.tenantId
   let roles = [];
   exceldata.roles.split("|").map(role => {
@@ -66,26 +63,7 @@ const exceldataToReqData = (exceldata, authToken) => {
     ]
   };
 
-  console.log(JSON.stringify(emp));
+  //console.log(JSON.stringify(emp));
 
   return emp;
-};
-
-module.exports = async (exceldata, authToken) => {
-  try {
-    let res = {};
-    res = await axios({
-      url: `${base_url}/egov-hrms/employees/_create?tenantId=${exceldata.tenantId}`,
-      withCredentials: "include",
-      headers: {
-        Accept: "application/json, text/plain, */*",
-        "Content-Type": "application/json;charset=UTF-8"
-      },
-      data: JSON.stringify(exceldataToReqData(exceldata, authToken)),
-      method: "POST"
-    });
-  } catch (e) {
-    console.error(e.response.data);
-  }
-  //console.log(data.data);
 };
