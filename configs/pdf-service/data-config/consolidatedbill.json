@@ -506,13 +506,13 @@
               {
                 "variable": "disclaimer",
                 "value": {
-                  "path": "TL_RECEIPT_LABEL_DISCLAIMER"
+                  "path": "TL_BILL_LABEL_DISCLAIMER"
                 },
                 "type": "label",
                 "localisation": {
                   "required": true,
                   "prefix": null,
-                  "module": "rainmaker-receipt"
+                  "module": "rainmaker-common"
                 }
               },
               {
@@ -632,12 +632,6 @@
                 "variable": "adhocPenalty",
                 "value": {
                   "path": "$.billDetails[0].billAccountDetails[?(@.taxHeadCode=='TL_ADHOC_PENALTY')].amount"
-                }
-              },
-              {
-                "variable": "consumerID",
-                "value": {
-                  "path": "$.consumerCode"
                 }
               },
               {

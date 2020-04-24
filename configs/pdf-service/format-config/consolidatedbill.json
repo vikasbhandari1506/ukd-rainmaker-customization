@@ -32,6 +32,10 @@
                     "style": "receipt-logo-header"
                   },
                   {
+                    "text": "{{form_rule8}}",
+                    "style": "receipt-logo-sub-header"
+                  },
+                  {
                     "text": "{{challan}}",
                     "style": "receipt-logo-sub-header"
                   }
@@ -76,6 +80,12 @@
                 "bold": false
               }
             ],
+             "margin": [
+                  0,
+                  10,
+                  0,
+                  0
+                ]
             "alignment": "right"
           }
         ]
@@ -177,7 +187,7 @@
             ],
             [
               {
-                "text": "{{consumer_id}} : {{consumerId}}",
+                "text": "{{consumer_id}} : {{propertyID}}",
                 "border": [
                   true,
                   true,
@@ -625,7 +635,7 @@
         "margin": [
           -20,
           20,
-          -22,
+          -8,
           -5
         ],
         "color": "#000000"
