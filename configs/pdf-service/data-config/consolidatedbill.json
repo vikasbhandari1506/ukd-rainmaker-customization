@@ -50,6 +50,18 @@
                 }
               },
               {
+                "variable": "form_rule8",
+                "value": {
+                  "path": "PDF_STATIC_LABEL_FORM_RULE8"
+                },
+                "type": "label",
+                "localisation": {
+                  "required": true,
+                  "prefix": null,
+                  "module": "rainmaker-common"
+                }
+              },
+              {
                 "variable": "municipalityName",
                 "value": {
                   "path": "$.tenantId"
