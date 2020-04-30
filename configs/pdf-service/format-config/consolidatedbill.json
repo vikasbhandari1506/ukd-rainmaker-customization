@@ -94,7 +94,7 @@
           "body": [
             [
               {
-                "text": "{{payer_name}}",
+                "text": "{{payer_name}} :",
                 "border": [
                   true,
                   true,
@@ -280,7 +280,7 @@
                   true,
                   true
                 ],
-                "style": "receipt-table",
+                "style": "receipt-table-value",
                 "alignment": "left"
               },
               {
@@ -291,7 +291,7 @@
                   true,
                   true
                 ],
-                "style": "receipt-table",
+                "style": "receipt-table-value",
                 "alignment": "right"
               }
             ],
@@ -304,7 +304,7 @@
                   true,
                   true
                 ],
-                "style": "receipt-table",
+                "style": "receipt-table-value",
                 "alignment": "left"
               },
               {
@@ -315,7 +315,7 @@
                   true,
                   true
                 ],
-                "style": "receipt-table",
+                "style": "receipt-table-value",
                 "alignment": "right"
               }
             ],
@@ -328,7 +328,7 @@
                   true,
                   true
                 ],
-                "style": "receipt-table",
+                "style": "receipt-table-value",
                 "alignment": "left"
               },
               {
@@ -339,7 +339,7 @@
                   true,
                   true
                 ],
-                "style": "receipt-table",
+                "style": "receipt-table-value",
                 "alignment": "right"
               }
             ],
@@ -352,7 +352,7 @@
                   true,
                   true
                 ],
-                "style": "receipt-table",
+                "style": "receipt-table-value",
                 "alignment": "left"
               },
               {
@@ -363,7 +363,55 @@
                   true,
                   true
                 ],
-                "style": "receipt-table",
+                "style": "receipt-table-value",
+                "alignment": "right"
+              }
+            ],
+            [
+              {
+                "text": " ",
+                "border": [
+                  true,
+                  true,
+                  true,
+                  true
+                ],
+                "style": "receipt-table-value",
+                "alignment": "left"
+              },
+              {
+                "text": " ",
+                "border": [
+                  true,
+                  true,
+                  true,
+                  true
+                ],
+                "style": "receipt-table-value",
+                "alignment": "right"
+              }
+            ],
+            [
+              {
+                "text": " ",
+                "border": [
+                  true,
+                  true,
+                  true,
+                  true
+                ],
+                "style": "receipt-table-value",
+                "alignment": "left"
+              },
+              {
+                "text": " ",
+                "border": [
+                  true,
+                  true,
+                  true,
+                  true
+                ],
+                "style": "receipt-table-value",
                 "alignment": "right"
               }
             ],
@@ -387,55 +435,7 @@
                   true,
                   true
                 ],
-                "style": "receipt-table",
-                "alignment": "right"
-              }
-            ],
-            [
-              {
-                "text": " ",
-                "border": [
-                  true,
-                  true,
-                  true,
-                  true
-                ],
-                "style": "receipt-table",
-                "alignment": "left"
-              },
-              {
-                "text": " ",
-                "border": [
-                  true,
-                  true,
-                  true,
-                  true
-                ],
-                "style": "receipt-table",
-                "alignment": "right"
-              }
-            ],
-            [
-              {
-                "text": " ",
-                "border": [
-                  true,
-                  true,
-                  true,
-                  true
-                ],
-                "style": "receipt-table",
-                "alignment": "left"
-              },
-              {
-                "text": " ",
-                "border": [
-                  true,
-                  true,
-                  true,
-                  true
-                ],
-                "style": "receipt-table",
+                "style": "receipt-table-value",
                 "alignment": "right"
               }
             ],
@@ -448,7 +448,7 @@
                   true,
                   true
                 ],
-                "style": "receipt-table",
+                "style": "receipt-table-value",
                 "alignment": "left"
               },
               {
@@ -459,7 +459,7 @@
                   true,
                   true
                 ],
-                "style": "receipt-table",
+                "style": "receipt-table-value",
                 "alignment": "right"
               }
             ]
@@ -487,9 +487,9 @@
       "noc-head": {
         "margin": [
           -25,
-          -30,
-          0,
-          1
+          10,
+          -8,
+          -8
         ]
       },
       "receipt-logo-header": {
