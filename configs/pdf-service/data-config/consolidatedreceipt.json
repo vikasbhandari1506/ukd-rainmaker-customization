@@ -125,7 +125,7 @@
                                 }
                             },
                             {
-                                "variable": "rebate",
+                                "variable": "Rebate",
                                 "value": {
                                     "path": "$.paymentDetails[0].bill.additionalDetails.rebate"
                                 }
@@ -647,6 +647,10 @@
                             {
                                 "variable": "pendingAmount",
                                 "formula": "{{dueAmount}}-{{paidAmount}}"
+                            },
+                            {
+                                "variable": "rebate",
+                                "formula": "-{{Rebate}}"
                             }
                         ]
                     },
