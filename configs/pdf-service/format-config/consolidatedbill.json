@@ -249,7 +249,7 @@
             ],
             [
               {
-                "text": "{{tl_tax}}",
+                "text": "{{tl_tax}} ({{tradeType}})",
                 "border": [
                   true,
                   true,
