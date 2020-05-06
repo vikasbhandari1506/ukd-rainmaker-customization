@@ -8,4 +8,4 @@ if [ x"${JAVA_ENABLE_DEBUG}" != x ] && [ "${JAVA_ENABLE_DEBUG}" != "false" ]; th
     java_debug_args="-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=${JAVA_DEBUG_PORT:-5005}"
 fi
 
-java ${java_debug_args} ${JAVA_OPTS} ${JAVA_ARGS} -jar /opt/egov/rainmaker-custom-service-0.0.1-SNAPSHOT.jar
+java ${java_debug_args} ${JAVA_OPTS} ${JAVA_ARGS} -jar /opt/egov/ukdcustomservice-0.0.1-SNAPSHOT.jar

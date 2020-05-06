@@ -6,7 +6,7 @@ MAINTAINER Siva<siva.nalluri@egovernments.org>
 # INSTRUCTIONS ON HOW TO BUILD JAR:
 # Move to the location where pom.xml is exist in project and build project using below command
 # "mvn clean package"
-COPY /target/rainmaker-custom-service-0.0.1-SNAPSHOT.jar /opt/egov/rainmaker-custom-service-0.0.1-SNAPSHOT.jar
+COPY /target/ukdcustomservice-0.0.1-SNAPSHOT.jar /opt/egov/ukdcustomservice-0.0.1-SNAPSHOT.jar
 
 COPY start.sh /usr/bin/start.sh
 
