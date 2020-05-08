@@ -10,7 +10,7 @@
 config:
   - name: "builds/services/ukd-custom-service"
     build:
-      - work-dir: "ukd-custom-service"
+      - work-dir: "services/ukd-custom-service"
         image-name: "ukd-custom-service"
-        dockerfile: "build/maven/Dockerfile"
+        dockerfile: "services/build/maven/Dockerfile"
 
