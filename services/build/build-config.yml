@@ -13,5 +13,4 @@ config:
       - work-dir: "ukd-custom-service"
         image-name: "ukd-custom-service"
         dockerfile: "build/maven/Dockerfile"
-      - work-dir: "ukd-custom-service/src/main/resources/db"
-        image-name: "ukd-custom-service-db"
+
