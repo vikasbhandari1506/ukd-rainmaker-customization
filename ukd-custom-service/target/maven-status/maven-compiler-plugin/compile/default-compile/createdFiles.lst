@@ -1,0 +1,4 @@
+org/egov/ukdcustomservice/producer/Producer.class
+org/egov/ukdcustomservice/web/models/SMS.class
+org/egov/ukdcustomservice/web/controller/PropertyNotifyController.class
+org/egov/ukdcustomservice/UkdcustomserviceApplication.class
