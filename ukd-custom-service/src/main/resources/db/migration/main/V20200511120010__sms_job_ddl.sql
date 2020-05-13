@@ -9,7 +9,7 @@ CREATE TABLE eg_cstm_bulk_sms_job (
     tenantid character varying(256) not null
 );
 
-CREATE SEQUENCE eg_cstm_bulk_sms_job
+CREATE SEQUENCE eg_cstm_bulk_sms_job_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
