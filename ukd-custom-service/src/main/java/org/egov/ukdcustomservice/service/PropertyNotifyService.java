@@ -2,6 +2,7 @@ package org.egov.ukdcustomservice.service;
 
 import java.util.List;
 
+import org.egov.common.contract.request.RequestInfo;
 import org.egov.ukdcustomservice.repository.PropertyNotifyRepository;
 import org.egov.ukdcustomservice.web.models.Notifications;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,10 +22,10 @@ public class PropertyNotifyService {
     @Autowired
     private NotificationService notificationService;
 
-    public String PTNotify(String tenantid) {
+    public String PTNotify(String tenantid, RequestInfo requestInfo) {
         List<Notifications> notifications = propertyNotifyRepository.getNotifications(tenantid);
         log.info("Total messages: " + notifications.size());
-        notificationService.NotificationPush(notifications);
+        notificationService.NotificationPush(notifications, "PT", requestInfo);
         return "Total messages: " + notifications.size();
     }
 
