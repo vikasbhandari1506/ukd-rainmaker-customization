@@ -13,8 +13,6 @@ import com.jayway.jsonpath.JsonPath;
 import org.egov.ukdcustomservice.web.models.Pod;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.InputStreamResource;
@@ -26,8 +24,6 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 @Slf4j
 public class LogService {
-
-    private static final Logger log = LoggerFactory.getLogger(LogService.class);
 
     @Value("${kubernetes.service.host:localhost}")
     private String kubeHost;

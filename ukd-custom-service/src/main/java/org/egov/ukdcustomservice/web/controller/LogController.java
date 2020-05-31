@@ -44,8 +44,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -54,6 +54,7 @@ import java.util.List;
 
 import javax.validation.constraints.NotNull;
 
+import org.egov.common.contract.request.RequestInfo;
 import org.egov.ukdcustomservice.service.LogService;
 import org.egov.ukdcustomservice.web.models.Pod;
 
@@ -64,9 +65,10 @@ public class LogController {
     @Autowired
     private LogService logService;
 
+    @SuppressWarnings("rawtypes")
     @PostMapping("/logs")
-    public ResponseEntity logs(@RequestParam @NotNull String name, @RequestParam String follow,
-            @RequestParam String tail) {
+    public ResponseEntity logs(@RequestBody RequestInfo requestInfo, @RequestParam @NotNull String name,
+            @RequestParam String follow, @RequestParam String tail) {
         InputStreamResource inputStreamResource = logService.getLogs(name, follow, tail);
 
         if (inputStreamResource != null)
@@ -76,8 +78,8 @@ public class LogController {
 
     }
 
-    @GetMapping("/pods")
-    public List<Pod> pods() {
+    @PostMapping("/pods")
+    public List<Pod> pods(@RequestBody RequestInfo requestInfo) {
         return logService.getPogs();
     }
 
