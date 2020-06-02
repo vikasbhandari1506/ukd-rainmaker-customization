@@ -492,6 +492,10 @@
                         "type":"image"      
                       },
                       {
+                        "variable": "municipalityName",                        
+                        "value":"$.MdmsRes.tenant.tenants[0].city.municipalityName"
+                      },
+                      {
                         "variable": "logo-header",
                         "value":"$.MdmsRes.tenant.tenants[0].code",
                         "localisation":{
