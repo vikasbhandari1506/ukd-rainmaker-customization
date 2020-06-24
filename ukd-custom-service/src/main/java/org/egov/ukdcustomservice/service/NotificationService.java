@@ -46,8 +46,8 @@ public class NotificationService {
 
         notifications.forEach(val -> {
             sms.setMobileNumber(val.getMobileNumber());
-            String content = message.replace("<ownername>", val.getOwnerName());
-            content = content.replace("<taxamount>", val.getPendingAmount());
+            // message.replace("<ownername>", val.getOwnerName());
+            String content = message.replace("<taxamount>", val.getPendingAmount());
             content = content.replace("<domain>", domainName);
             content = content.replace("<propertyid>", val.getConsumerNumber());
             content = content.replace("<tenantid>", val.getTenantId());
@@ -64,15 +64,16 @@ public class NotificationService {
 
     }
 
-    private String getTenant(String tenantid, RequestInfo requestInfo ) {       
-       return localizationService.getResult("TENANT_TENANTS_".concat(tenantid.replace(".","_").toUpperCase()), "rainmaker-common", requestInfo);
+    private String getTenant(String tenantid, RequestInfo requestInfo) {
+        return localizationService.getResult("TENANT_TENANTS_".concat(tenantid.replace(".", "_").toUpperCase()),
+                "rainmaker-common", requestInfo);
     }
 
     private String getMessage(String key, RequestInfo requestInfo) {
 
-        String message = ""; 
+        String message = "";
 
-        if(key.equals("PT")){
+        if (key.equals("PT")) {
             message = localizationService.getResult(ptKey, ptModule, requestInfo);
         }
 
@@ -83,7 +84,7 @@ public class NotificationService {
 
         int year = Calendar.getInstance().get(Calendar.YEAR);
         int month = Calendar.getInstance().get(Calendar.MONTH) + 1;
-        
+
         if (month < 3) {
             return (year - 1) + "-" + year;
         } else {
