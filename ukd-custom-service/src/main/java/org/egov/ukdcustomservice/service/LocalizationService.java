@@ -49,7 +49,7 @@ public class LocalizationService {
             log.info("Request: " + mapper.writeValueAsString(requestInfo));
             response = restTemplate.postForObject(uri.toString(), requestInfo, Map.class);
             String jsonString = new JSONObject(response).toString();
-            log.info(jsonString);
+            // log.info(jsonString);
             message = (ArrayList<String>) JsonPath.parse(jsonString)
                     .read("$.messages[?(@.code=='" + key + "')].message");
 
