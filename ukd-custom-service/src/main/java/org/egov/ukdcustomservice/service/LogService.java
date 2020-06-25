@@ -16,6 +16,10 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -58,7 +62,12 @@ public class LogService {
     public List<Pod> getPogs() {
         try {
             List<Pod> pods = new ArrayList<Pod>();
-            String json = restTemplate.getForEntity(getPodsURL(), String.class).getBody();
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_JSON);
+            headers.set("Authorization", "Bearer "+ getToken());
+            HttpEntity<String> entity = new HttpEntity<String>("",headers);
+            
+            String json = restTemplate.exchange(getPodsURL(),HttpMethod.GET, entity, String.class).getBody();
             JSONObject jsonObject = new JSONObject(json);
             JSONArray items = jsonObject.getJSONArray("items");
 
