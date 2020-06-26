@@ -25,6 +25,9 @@ public class NotificationService {
     @Autowired
     private LocalizationService localizationService;
 
+    @Autowired
+    private URLShorterService urlShorterService;
+
     @Value("${egov.notify.pt.message.key}")
     private String ptKey;
 
@@ -37,6 +40,9 @@ public class NotificationService {
     @Value("${egov.notify.shouldPush}")
     private boolean shouldPush;
 
+    @Value("${egov.notify.pt.url.format}")
+    private String urlFormat;
+
     public void NotificationPush(List<Notifications> notifications, String key, RequestInfo requestInfo) {
 
         SMS sms = new SMS();
@@ -46,9 +52,13 @@ public class NotificationService {
 
         notifications.forEach(val -> {
             sms.setMobileNumber(val.getMobileNumber());
+            String longURL = String.format(urlFormat, domainName, val.getConsumerNumber(), val.getTenantId());
+            String url = urlShorterService.getUrl(longURL);
+            log.info("Shorth url: "+ url);
             // message.replace("<ownername>", val.getOwnerName());
             String content = message.replace("<taxamount>", val.getPendingAmount());
             content = content.replace("<domain>", domainName);
+            content = content.replace("<url>", url);
             content = content.replace("<propertyid>", val.getConsumerNumber());
             content = content.replace("<tenantid>", val.getTenantId());
             content = content.replace("<FY>", getFY());
