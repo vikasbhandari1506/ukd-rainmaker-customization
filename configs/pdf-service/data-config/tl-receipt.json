@@ -106,31 +106,31 @@
                           {
                               "variable": "licenseTax",
                               "value": {
-                                  "path": "$.paymentDetails[0].bill.billDetails[0].billAccountDetails[?(@.taxHeadCode=='TL_TAX')].amount"
+                                  "path": "$.paymentDetails[0].bill.additionalDetails.tax"
                               }
                           },
                           {
                               "variable": "adhocrebate",
                               "value": {
-                                  "path": "$.paymentDetails[0].bill.billDetails[0].billAccountDetails[?(@.taxHeadCode=='TL_ADHOC_REBATE')].amount"
+                                  "path": "$.paymentDetails[0].bill.additionalDetails.adhocRebate"
                               }
                           },
                           {
                               "variable": "penalty",
                               "value": {
-                                  "path": "$.paymentDetails[0].bill.billDetails[0].billAccountDetails[?(@.taxHeadCode=='TL_TIME_PENALTY')].amount"
+                                  "path": "$.paymentDetails[0].bill.additionalDetails.penalty"
                               }
                           },
                           {
                               "variable": "rebate",
                               "value": {
-                                  "path": "$.paymentDetails[0].bill.billDetails[0].billAccountDetails[?(@.taxHeadCode=='TL_TIME_REBATE')].amount"
+                                  "path": "$.paymentDetails[0].bill.additionalDetails.rebate"
                               }
                           },
                           {
                               "variable": "adhocPenalty",
                               "value": {
-                                  "path": "$.paymentDetails[0].bill.billDetails[0].billAccountDetails[?(@.taxHeadCode=='TL_ADHOC_PENALTY')].amount"
+                                  "path": "$.paymentDetails[0].bill.additionalDetails.adhocPenalty"
                               }
                           },
                           {
