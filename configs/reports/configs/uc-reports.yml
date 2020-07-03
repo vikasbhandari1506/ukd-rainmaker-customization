@@ -163,16 +163,6 @@ ReportDefinitions:
         type: string
         source: uc
         total: false
-      - name: g8issuedate
-        label: reports.uc.g8issuedate
-        type: string
-        source: uc
-        total: false
-      - name: g8receiptno
-        label: reports.uc.g8receiptno
-        type: string
-        source: uc
-        total: false
       - name: status
         label: reports.uc.receiptstatus
         type: string
@@ -203,33 +193,13 @@ ReportDefinitions:
         type: string
         source: uc
         total: true
-      - name: ddorchequenumber
-        label: reports.uc.ddorchequenumber
-        type: string
-        source: uc
-        total: false
-      - name: ddchequedate
-        label: reports.uc.ddorchequedate
-        type: string
-        source: uc
-        total: false
       - name: bankname
         label: reports.uc.bankname
         type: string
         source: uc
         total: false
-      - name: branchname
-        label: reports.uc.branchname
-        type: string
-        source: uc
-        total: false
       - name: collectiontype
         label: reports.uc.collectiontype
-        type: string
-        source: uc
-        total: false
-      - name: collectorname
-        label: reports.uc.collectorname
         type: string
         source: uc
         total: false
@@ -264,14 +234,6 @@ ReportDefinitions:
         wrapper: true
         isMandatory: false
         searchClause: AND rh.businessservice = $businessservice
-      - name: collectorname
-        label: reports.uc.collectorname
-        type: singlevaluelist
-        pattern: http://egov-hrms:8080/egov-hrms/employees/_search?tenantId=$tenantid&roles=UC_EMP|$.Employees[*].user.id|$.Employees[*].user.name
-        source: uc
-        wrapper: true
-        isMandatory: false
-        searchClause: AND eg_user.id = $collectorname::INTEGER
     query: |
         -- Use CTE to force query plan, compute & use CTE later
         WITH receipt_breakup AS (
@@ -291,9 +253,7 @@ ReportDefinitions:
           To_char((To_timestamp(rh.receiptdate / 1000) at time Zone 'Asia/Kolkata'), 'DD/MM/YYYY') as receiptdate,
           (select message from message where locale ='en_IN'and code =(CONCAT('BILLINGSERVICE_BUSINESSSERVICE_',UPPER(replace(replace(rh.businessservice,'-','_'),'.','_'))))) as Businesservice,
           receipt_breakup.*,
-          (case when py.paymentmode like 'CASH' then '' else  transactionnumber end) as ddorchequenumber,
           bi.totalamount as TotalAmount,
-          eg_user.name as collectorname,
           py.paymentmode as paymentMode,
           bi.status as status
         FROM egcl_payment as py
@@ -302,7 +262,6 @@ ReportDefinitions:
         JOIN egcl_billdetial as bd ON bd.billid=bi.id
         JOIN receipt_breakup ON bd.id = receipt_breakup.receiptheader
         JOIN egcl_billaccountdetail as ba ON bd.id=ba.billdetailid
-        JOIN eg_user ON py.createdby::INTEGER=eg_user.id
         WHERE  bi.status != 'CANCELLED'  AND bi.consumercode like 'UC%'
         AND rh.tenantid=$tenantid AND rh.tenantid != 'uk.testing'
     orderby: ORDER BY receiptdate DESC
