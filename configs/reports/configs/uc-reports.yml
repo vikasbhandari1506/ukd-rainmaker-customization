@@ -137,7 +137,7 @@ ReportDefinitions:
         JOIN egcl_instrumentheader_v1 AS ih ON ih.id = ri.instrumentheader
         JOIN receipt_breakup ON rh.id = receipt_breakup.receiptheader
         JOIN eg_user ON rh.createdby::INTEGER=eg_user.id
-        WHERE  rh.status != 'Cancelled'  AND rh.tenantid!='pb.testing' AND receiptnumber like 'MP%'
+        WHERE  rh.status != 'Cancelled'  AND rh.tenantid!='uk.testing' AND receiptnumber like 'MP%'
     orderby: ORDER BY rh.receiptdate DESC
 
   - reportName: MiscReceiptULB
@@ -304,7 +304,7 @@ ReportDefinitions:
         JOIN egcl_billaccountdetail as ba ON bd.id=ba.billdetailid
         JOIN eg_user ON py.createdby::INTEGER=eg_user.id
         WHERE  bi.status != 'CANCELLED'  AND bi.consumercode like 'UC%'
-        AND rh.tenantid=$tenantid
+        AND rh.tenantid=$tenantid AND rh.tenantid != 'uk.testing'
     orderby: ORDER BY receiptdate DESC
 
   - reportName: MiscReceiptStateWide
@@ -378,7 +378,7 @@ ReportDefinitions:
           SUM(CASE WHEN taxheadcode LIKE '%_SGST' THEN adjustedamount ELSE 0 END) as sgst, 
           sum(totalamount) as totalamount
         from egcl_receiptheader_v1 rh, egcl_receiptdetails_v1 as rd
-        WHERE rh.id=rd.receiptheader and rh.status != 'Cancelled'  AND rh.tenantid!='pb.testing' AND receiptnumber like 'MP%' 
+        WHERE rh.id=rd.receiptheader and rh.status != 'Cancelled'  AND rh.tenantid!='uk.testing' AND receiptnumber like 'MP%' 
     groupby: group by rh.tenantid,rh.businessdetails
     orderby: order by rh.tenantid
 
@@ -454,7 +454,7 @@ ReportDefinitions:
           SUM(CASE WHEN taxheadcode LIKE '%_FIELD_FEE' THEN adjustedamount ELSE 0 END) as fieldcollection,
           sum(amount) as totalamount
         from egcl_receiptheader_v1 rh, egcl_receiptdetails_v1 as rd
-        WHERE rh.id=rd.receiptheader and rh.status != 'Cancelled' AND rh.tenantid!='pb.testing' AND receiptnumber like 'MP%' 
+        WHERE rh.id=rd.receiptheader and rh.status != 'Cancelled' AND rh.tenantid!='uk.testing' AND receiptnumber like 'MP%' 
     groupby: group by rh.tenantid
 
 
@@ -533,7 +533,7 @@ ReportDefinitions:
         from egcl_receiptheader_v1 as rh
         inner join egcl_receiptinstrument_v1 as ri on ri.receiptheader = rh.id
         inner join egcl_instrumentheader_v1 as ih on ih.id = ri.instrumentheader
-        where rh.receiptnumber like 'MP%' and rh.status !='Cancelled' and rh.tenantid !='pb.testing'
+        where rh.receiptnumber like 'MP%' and rh.status !='Cancelled' and rh.tenantid !='uk.testing'
     groupby: GROUP BY rh.tenantid
     orderby: ORDER BY rh.tenantId asc
 
@@ -603,7 +603,7 @@ ReportDefinitions:
         FROM egcl_billaccountdetail as ba, egcl_paymentdetail AS rh
         JOIN egcl_bill as bi ON bi.id=rh.billid
         JOIN egcl_billdetial as bd ON bd.billid=bi.id
-        WHERE bd.id=ba.billdetailid and bd.billid=bi.id and bi.id=rh.billid and bi.status != 'CANCELLED' AND rh.tenantid=$tenantid AND  bi.consumercode like 'UC%'
+        WHERE bd.id=ba.billdetailid and bd.billid=bi.id and bi.id=rh.billid and bi.status != 'CANCELLED' AND rh.tenantid=$tenantid AND rh.tenantid != 'uk.testing' AND  bi.consumercode like 'UC%'
     groupby:   GROUP BY rh.businessservice
     orderby:   ORDER BY rh.businessservice
 
@@ -738,7 +738,7 @@ ReportDefinitions:
         JOIN egcl_billaccountdetail as ba ON bd.id=ba.billdetailid
         JOIN eg_user ON py.createdby::INTEGER=eg_user.id
         WHERE  bi.status = 'CANCELLED'  AND bi.consumercode like 'UC%'
-        AND rh.tenantid=$tenantid
+        AND rh.tenantid=$tenantid AND rh.tenantid != 'uk.testing'
     orderby: ORDER BY receiptdate DESC
 
   - reportName: MiscReceiptULBShort
@@ -817,6 +817,6 @@ ReportDefinitions:
         from egcl_payment py  JOIN egcl_paymentdetail AS rh ON py.id=rh.paymentid
         JOIN egcl_bill as bi ON bi.id=rh.billid 
         JOIN eg_user ON py.createdby::INTEGER=eg_user.id
-        where bi.status != 'CANCELLED' AND bi.consumercode LIKE '%UC%'
-        AND rh.tenantid=$tenantid
+        where bi.status != 'CANCELLED' AND bi.consumercode LIKE '%UC%
+        AND rh.tenantid=$tenantid AND rh.tenantid != 'uk.testing'
     orderby: ORDER BY rh.receiptdate DESC;
