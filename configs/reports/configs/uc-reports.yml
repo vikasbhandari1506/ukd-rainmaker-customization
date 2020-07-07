@@ -385,8 +385,8 @@ ReportDefinitions:
         JOIN egcl_billaccountdetail as ba ON bd.id=ba.billdetailid
         WHERE bi.status != 'CANCELLED'  AND bi.consumercode like 'UC%'
         and rh.tenantid != 'uk.testing'
-        groupby: group by rh.tenantid,rh.businessservice
-        orderby: order by rh.tenantid
+    groupby: group by rh.tenantid,rh.businessservice
+    orderby: order by rh.tenantid
 
   - reportName: MiscReceiptState
     summary: State Miscellaneous Receipt Register 
