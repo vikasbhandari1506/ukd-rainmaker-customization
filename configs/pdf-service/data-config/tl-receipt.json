@@ -723,7 +723,7 @@
                                   },
                                   {
                                       "variable": "applicationType",
-                                      "value": "$.Licenses[0].tradeLicenseDetail.additionalDetail.applicationType",
+                                      "value": "$.Licenses[0].applicationType",
                                       "localisation": {
                                           "required": true,
                                           "prefix": "TRADELICENSE_APPLICATIONTYPE",
