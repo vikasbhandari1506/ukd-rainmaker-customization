@@ -823,6 +823,6 @@ ReportDefinitions:
         from egcl_payment py  JOIN egcl_paymentdetail AS rh ON py.id=rh.paymentid
         JOIN egcl_bill as bi ON bi.id=rh.billid 
         JOIN eg_user ON py.createdby::INTEGER=eg_user.id
-        where bi.status != 'CANCELLED' AND bi.consumercode LIKE '%UC%'
+        where bi.status != 'CANCELLED' AND bi.consumercode LIKE '%UC%
         AND rh.tenantid=$tenantid AND rh.tenantid != 'uk.testing'
     orderby: ORDER BY rh.receiptdate DESC;

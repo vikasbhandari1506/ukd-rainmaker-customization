@@ -66,13 +66,13 @@ ReportDefinitions:
     type: epoch
     source: pt
     isMandatory: false
-    searchClause: AND rh.receiptdate >= $fromDate
+    searchClause: AND pd.receiptdate >= $fromDate
   - name: toDate
     label: reports.pt.toDate
     type: epoch
     source: pt
     isMandatory: false
-    searchClause: AND rh.receiptdate <= $toDate
+    searchClause: AND pd.receiptdate <= $toDate
   - name: paymentMode
     label: Payment Mode
     type: singlevaluelist
@@ -172,13 +172,13 @@ ReportDefinitions:
     type: epoch
     source: pt
     isMandatory: false
-    searchClause: AND rh.receiptdate >= $fromDate
+    searchClause: AND pd.receiptdate >= $fromDate
   - name: toDate
     label: reports.pt.toDate
     type: epoch
     source: pt
     isMandatory: false
-    searchClause: AND rh.receiptdate <= $toDate
+    searchClause: AND pd.receiptdate <= $toDate
   - name: paymentMode
     label: Payment Mode
     type: singlevaluelist

@@ -69,13 +69,15 @@
                               "variable": "fromPeriod",
                               "value": {
                                   "path": "$.paymentDetails[0].bill.billDetails[0].fromPeriod"
-                              }
+                              },
+                              "type":"date"
                           },
                           {
                               "variable": "toPeriod",
                               "value": {
                                   "path": "$.paymentDetails[0].bill.billDetails[0].toPeriod"
-                              }
+                              },
+                              "type":"date"
                           },
                           {
                               "variable": "paymentMode",
@@ -98,36 +100,37 @@
                               "variable": "G8ReceiptDate",
                               "value": {
                                   "path": "$.paymentDetails[0].manualReceiptDate"
-                              }
+                              },
+                              "type":"date"
                           },
                           {
                               "variable": "licenseTax",
                               "value": {
-                                  "path": "$.paymentDetails[0].bill.billDetails[0].billAccountDetails[?(@.taxHeadCode=='TL_TAX')].amount"
+                                  "path": "$.paymentDetails[0].bill.additionalDetails.tax"
                               }
                           },
                           {
                               "variable": "adhocrebate",
                               "value": {
-                                  "path": "$.paymentDetails[0].bill.billDetails[0].billAccountDetails[?(@.taxHeadCode=='TL_ADHOC_REBATE')].amount"
+                                  "path": "$.paymentDetails[0].bill.additionalDetails.adhocRebate"
                               }
                           },
                           {
                               "variable": "penalty",
                               "value": {
-                                  "path": "$.paymentDetails[0].bill.billDetails[0].billAccountDetails[?(@.taxHeadCode=='TL_TIME_PENALTY')].amount"
+                                  "path": "$.paymentDetails[0].bill.additionalDetails.penalty"
                               }
                           },
                           {
                               "variable": "rebate",
                               "value": {
-                                  "path": "$.paymentDetails[0].bill.billDetails[0].billAccountDetails[?(@.taxHeadCode=='TL_TIME_REBATE')].amount"
+                                  "path": "$.paymentDetails[0].bill.additionalDetails.rebate"
                               }
                           },
                           {
                               "variable": "adhocPenalty",
                               "value": {
-                                  "path": "$.paymentDetails[0].bill.billDetails[0].billAccountDetails[?(@.taxHeadCode=='TL_ADHOC_PENALTY')].amount"
+                                  "path": "$.paymentDetails[0].bill.additionalDetails.adhocPenalty"
                               }
                           },
                           {
@@ -140,7 +143,8 @@
                               "variable": "paymentDate",
                               "value": {
                                   "path": "$.transactionDate"
-                              }
+                              },
+                              "type":"date"
                           },
                           {
                               "variable": "consumerID",
@@ -682,7 +686,7 @@
                       "externalAPI": [
                           {
                               "path": "http://egov-mdms-service:8080/egov-mdms-service/v1/_get",
-                              "queryParam": "moduleName=tenant&masterName=tenants&tenantId=uk&filter=%5B?(@.code=='$.tenantId')%5D",
+                              "queryParam": "moduleName=tenant&masterName=tenants&tenantId=uk&filter=%5B?(@.code=='{$.tenantId}')%5D",
                               "apiRequest": null,
                               "responseMapping": [
                                   {
@@ -719,7 +723,7 @@
                                   },
                                   {
                                       "variable": "applicationType",
-                                      "value": "$.Licenses[0].tradeLicenseDetail.additionalDetail.applicationType",
+                                      "value": "$.Licenses[0].applicationType",
                                       "localisation": {
                                           "required": true,
                                           "prefix": "TRADELICENSE_APPLICATIONTYPE",
