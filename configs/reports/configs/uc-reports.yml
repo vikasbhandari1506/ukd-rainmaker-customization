@@ -317,6 +317,11 @@ ReportDefinitions:
         type: string
         source: uc
         total: false
+      - name: receipts
+        label: reports.uc.receipts
+        type: string
+        source: uc
+        total: false
       - name: servicecategory
         label: reports.uc.businessdetails
         type: string
