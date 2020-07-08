@@ -937,3 +937,101 @@ ReportDefinitions:
      and prop.tenantid=pd.tenantid
      and prop.tenantid=address.tenantid
      and prop.tenantid=$tenantid and prop.tenantid != 'uk.testing'
+     
+- reportName: PTCollectionCount
+  reporptabel: report.state.level.pt.collection
+  summary: Shows the total properties and collection
+  version: 1.0.0
+  moduleName: rainmaker-pt
+  sourceColumns:
+  - name: tenantId
+    label: reports.pt.tenantid
+    type: string
+    source: pt
+    total: false
+  - name: totaldemand
+    label: reports.pt.totaldemand
+    type: string
+    source: pt
+    total: true
+  - name: totalrevenuecollected
+    label: reports.pt.totalrevenuecollected
+    type: string
+    source: pt
+    total: true
+  searchParams:
+  - name: fromDate
+    label: reports.pt.fromDate
+    type: epoch
+    source: pt
+    isMandatory: false
+    searchClause: AND pt.lastmodifiedtime >= $fromDate
+  - name: toDate
+    label: reports.pt.toDate
+    type: epoch
+    source: pt
+    isMandatory: false
+    searchClause: AND pt.lastmodifiedtime <= $toDate
+  - name: ulb
+    label: reports.pt.tenantid
+    type: singlevaluelist
+    pattern: http://egov-mdms-service:8080/egov-mdms-service/v1/_get?tenantId=$tenantid&moduleName=tenant&masterName=tenants|$.MdmsRes.tenant.tenants.*.code|$.MdmsRes.tenant.tenants.*.name
+    source: pt
+    wrapper: true
+    isMandatory: false
+    searchClause: AND pt.tenantId = $ulb
+  query: |
+     SELECT 
+      SUM(dd.taxamount) as totaldemand,
+      SUM(dd.collectionamount) as totalrevenuecollected, 
+      initcap(split_part(pt.tenantId, '.', 2)) as tenantId 
+      FROM eg_pt_property_v2 pt, egbs_demanddetail_v1 dd, egbs_demand_v1 d
+     where 
+     dd.demandid=d.id 
+     and d.consumercode = pt.propertyid
+     AND pt.tenantId != 'uk.testing'
+  groupby: GROUP BY pt.tenantId
+  orderby: ORDER BY pt.tenantId asc
+
+- reportName: PTApplicationReport
+  summary: Number of applications
+  version: 1.0.0
+  moduleName: rainmaker-pt
+  sourceColumns:
+  - name: tenantId
+    label: reports.pt.tenantid
+    type: string
+    source: pt
+    total: false
+  - name: totalproperties
+    label: reports.pt.totalproperties
+    type: string
+    source: pt
+    total: true
+  - name: totalmigratedproperties
+    label: reports.pt.totalmigratedproperties
+    type: string
+    source: pt
+    total: true    
+  searchParams:
+  - name: fromDate
+    label: reports.pt.fromDate
+    type: epoch
+    source: pt
+    isMandatory: false
+    searchClause: AND pt.lastmodifiedtime >= $fromDate
+  - name: toDate
+    label: reports.pt.toDate
+    type: epoch
+    source: pt
+    isMandatory: false
+    searchClause: AND pt.lastmodifiedtime <= $toDate
+  query: |
+     SELECT 
+        initcap(split_part(tenantId, '.', 2)) as tenantId, 
+        count(*) as totalproperties,
+        count(*) as totalmigratedproperties
+      FROM eg_pt_property_v2 as pt
+      where pt.tenantid != 'uk.testing'
+  groupby: GROUP BY tenantid
+  orderby: ORDER BY tenantid
