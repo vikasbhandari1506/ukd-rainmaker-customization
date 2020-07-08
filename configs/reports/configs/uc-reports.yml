@@ -317,6 +317,11 @@ ReportDefinitions:
         type: string
         source: uc
         total: false
+      - name: receipts
+        label: reports.uc.receipts
+        type: string
+        source: uc
+        total: false
       - name: servicecategory
         label: reports.uc.businessdetails
         type: string
@@ -370,17 +375,24 @@ ReportDefinitions:
         searchClause: AND rh.tenantid = $ulb
     query: |
         -- Use CTE to force query plan, compute & use CTE later
-        SELECT
-          rh.tenantid as ulb,rh.businessdetails as servicecategory, count(*) as receipts,
+        SELECT 
+          initcap(split_part(rh.tenantid, '.', 2)) as ulb,
+          (select message from message where locale ='en_IN'and code =(CONCAT('BILLINGSERVICE_BUSINESSSERVICE_',UPPER(replace(replace(rh.businessservice,'-','_'),'.','_'))))) as servicecategory,count(*) as receipts,
           SUM(CASE WHEN taxheadcode LIKE '%_FIELD_FEE' THEN adjustedamount ELSE 0 END) as fieldcollection,
           SUM(CASE WHEN taxheadcode LIKE '%_TAX' THEN adjustedamount ELSE 0 END) as tax, 
           SUM(CASE WHEN taxheadcode LIKE '%_CGST' THEN adjustedamount ELSE 0 END) as cgst, 
           SUM(CASE WHEN taxheadcode LIKE '%_SGST' THEN adjustedamount ELSE 0 END) as sgst, 
           sum(totalamount) as totalamount
-        from egcl_receiptheader_v1 rh, egcl_receiptdetails_v1 as rd
-        WHERE rh.id=rd.receiptheader and rh.status != 'Cancelled'  AND rh.tenantid!='uk.testing' AND receiptnumber like 'MP%' 
-    groupby: group by rh.tenantid,rh.businessdetails
+        from egcl_payment as py
+        JOIN egcl_paymentdetail AS rh ON py.id=rh.paymentid
+        JOIN egcl_bill as bi ON bi.id=rh.billid
+        JOIN egcl_billdetial as bd ON bd.billid=bi.id
+        JOIN egcl_billaccountdetail as ba ON bd.id=ba.billdetailid
+        WHERE bi.status != 'CANCELLED'  AND bi.consumercode like 'UC%'
+        and rh.tenantid != 'uk.testing'
+    groupby: group by rh.tenantid,rh.businessservice
     orderby: order by rh.tenantid
+
 
   - reportName: MiscReceiptState
     summary: State Miscellaneous Receipt Register 
