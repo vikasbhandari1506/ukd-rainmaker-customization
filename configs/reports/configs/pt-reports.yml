@@ -953,7 +953,7 @@ ReportDefinitions:
     label: reports.pt.paymentmode
     type: string
     source: pt
-    total: true
+    total: false
   - name: sum
     label: reports.pt.total
     type: string
