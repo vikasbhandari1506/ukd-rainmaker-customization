@@ -949,16 +949,21 @@ ReportDefinitions:
     type: string
     source: pt
     total: false
-  - name: totaldemand
-    label: reports.pt.totaldemand
+  - name: paymentmode
+    label: reports.pt.paymentmode
     type: string
     source: pt
     total: true
-  - name: totalrevenuecollected
-    label: reports.pt.totalrevenuecollected
+  - name: sum
+    label: reports.pt.total
     type: string
     source: pt
     total: true
+  - name: count
+    label: reports.pt.count
+    type: string
+    source: pt
+    total: true    
   searchParams:
   - name: fromDate
     label: reports.pt.fromDate
@@ -981,17 +986,11 @@ ReportDefinitions:
     isMandatory: false
     searchClause: AND pt.tenantId = $ulb
   query: |
-     SELECT 
-      SUM(dd.taxamount) as totaldemand,
-      SUM(dd.collectionamount) as totalrevenuecollected, 
-      initcap(split_part(pt.tenantId, '.', 2)) as tenantId 
-      FROM eg_pt_property_v2 pt, egbs_demanddetail_v1 dd, egbs_demand_v1 d
-     where 
-     dd.demandid=d.id 
-     and d.consumercode = pt.propertyid
-     AND pt.tenantId != 'uk.testing'
-  groupby: GROUP BY pt.tenantId
-  orderby: ORDER BY pt.tenantId asc
+    select initcap(split_part(p.tenantId, '.', 2)) as tenantId, p.paymentmode ,sum(p.totalamountpaid), count(p.id)
+    FROM egcl_payment p, egcl_paymentdetail pd 
+    WHERE p.id=pd.paymentid  and pd.businessservice ='PT'
+  groupby: GROUP BY p.tenantid, p.paymentmode
+  orderby: ORDER BY p.tenantId asc
 
 - reportName: PTApplicationReport
   summary: Number of applications
