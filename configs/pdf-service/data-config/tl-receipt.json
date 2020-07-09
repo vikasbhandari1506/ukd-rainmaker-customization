@@ -122,7 +122,7 @@
                               }
                           },
                           {
-                              "variable": "rebate",
+                              "variable": "Rebate",
                               "value": {
                                   "path": "$.paymentDetails[0].bill.additionalDetails.rebate"
                               }
@@ -679,6 +679,10 @@
                           {
                               "variable": "adhocRebate",
                               "formula": "-{{adhocrebate}}"
+                          },
+                          {
+                              "variable": "rebate",
+                              "formula": "-{{Rebate}}"
                           }
                       ]
                   },
