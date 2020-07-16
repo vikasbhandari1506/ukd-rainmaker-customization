@@ -1031,5 +1031,5 @@ ReportDefinitions:
     SUM(case when ptd.createdtime > ptd.lastmodifiedtime then 1 else 0 end) updatedprops
     FROM eg_pt_property_v2 as pt
     JOIN (SELECT DISTINCT ON (property) *  FROM eg_pt_propertydetail_v2 order by property, lastmodifiedtime desc) as ptd on ptd.property=pt.propertyid where ptd.source = 'LEGACY_RECORD' and pt.tenantid != 'uk.testing'
-  groupby: GROUP BY tenantid
-  orderby: ORDER BY tenantid
+  groupby: GROUP BY pt.tenantid
+  orderby: ORDER BY pt.tenantid
