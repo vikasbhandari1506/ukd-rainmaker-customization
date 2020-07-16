@@ -1002,35 +1002,43 @@ ReportDefinitions:
     type: string
     source: pt
     total: false
-  - name: totalproperties
-    label: reports.pt.totalproperties
-    type: string
-    source: pt
-    total: true
   - name: totalmigratedproperties
     label: reports.pt.totalmigratedproperties
     type: string
     source: pt
-    total: true    
+    total: true
+  - name: migration
+    label: reports.pt.migration
+    type: string
+    source: pt
+    total: true
+  - name: dataentry
+    label: reports.pt.dataentry
+    type: string
+    source: pt
+    total: true
+  - name: updatedprops
+    label: reports.pt.updatedprops
+    type: string
+    source: pt
+    total: true
   searchParams:
-  - name: fromDate
-    label: reports.pt.fromDate
-    type: epoch
+  - name: ulb
+    label: ULB
+    type: singlevaluelist
+    pattern: http://egov-mdms-service:8080/egov-mdms-service/v1/_get?tenantId=$tenantid&moduleName=tenant&masterName=tenants|$.MdmsRes.tenant.tenants.*.code|$.MdmsRes.tenant.tenants.*.name
     source: pt
+    wrapper: true
     isMandatory: false
-    searchClause: AND pt.lastmodifiedtime >= $fromDate
-  - name: toDate
-    label: reports.pt.toDate
-    type: epoch
-    source: pt
-    isMandatory: false
-    searchClause: AND pt.lastmodifiedtime <= $toDate
+    searchClause: AND pt.tenantid = $ulb
   query: |
-     SELECT 
-        initcap(split_part(tenantId, '.', 2)) as tenantId, 
-        count(*) as totalproperties,
-        count(*) as totalmigratedproperties
-      FROM eg_pt_property_v2 as pt
-      where pt.tenantid != 'uk.testing'
-  groupby: GROUP BY tenantid
-  orderby: ORDER BY tenantid
+    SELECT
+    initcap(split_part(pt.tenantid, '.', 2)) as tenantId,
+    count(*) as totalmigratedproperties,
+    SUM(case when ptd.additionaldetails ->>'is_migrated' = 'true' then 1 else 0 end) as migration,
+    (count(*)-SUM(case when ptd.additionaldetails ->>'is_migrated' = 'true' then 1 else 0 end)) as dataentry,
+    SUM(case when ptd.additionaldetails ->>'is_migrated' = 'true' and ptd.createdtime > ptd.lastmodifiedtime then 1 else 0 end) updatedprops
+    FROM eg_pt_property_v2 as pt
+    JOIN (SELECT DISTINCT ON (property) *  FROM eg_pt_propertydetail_v2 order by property, lastmodifiedtime desc) as ptd on ptd.property=pt.propertyid where ptd.source = 'LEGACY_RECORD' and pt.tenantid != 'uk.testing'
+  groupby: GROUP BY pt.tenantid
+  orderby: ORDER BY pt.tenantid
