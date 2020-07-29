@@ -1002,6 +1002,21 @@ ReportDefinitions:
     type: string
     source: pt
     total: false
+  - name: taxperiod
+    label: reports.pt.taxperiod
+    type: string
+    source: pt
+    total: false
+  - name: totaldemand
+    label: reports.pt.totaldemand
+    type: string
+    source: pt
+    total: true
+  - name: totalrevenuecollected
+    label: reports.pt.totalrevenuecollected
+    type: string
+    source: pt
+    total: true    
   - name: totalmigratedproperties
     label: reports.pt.totalmigratedproperties
     type: string
@@ -1034,11 +1049,21 @@ ReportDefinitions:
   query: |
     SELECT
     initcap(split_part(pt.tenantid, '.', 2)) as tenantId,
-    count(*) as totalmigratedproperties,
+    to_char(to_timestamp(TRUNC(CAST(d.taxperiodfrom AS bigint) / 1000)), 'DD/MM/YYYY') AS taxperiod,
+    SUM(dd.taxamount) as totaldemand,
+    SUM(dd.collectionamount) as totalrevenuecollected,
+    count(ptd.property) as totalmigratedproperties,
     SUM(case when ptd.additionaldetails ->>'is_migrated' = 'true' then 1 else 0 end) as migration,
-    (count(*)-SUM(case when ptd.additionaldetails ->>'is_migrated' = 'true' then 1 else 0 end)) as dataentry,
+    (count(DISTINCT ptd.property)-SUM(case when ptd.additionaldetails ->>'is_migrated' = 'true' then 1 else 0 end)) as dataentry,
     SUM(case when ptd.additionaldetails ->>'is_migrated' = 'true' and ptd.createdtime > ptd.lastmodifiedtime then 1 else 0 end) updatedprops
     FROM eg_pt_property_v2 as pt
-    JOIN (SELECT DISTINCT ON (property) *  FROM eg_pt_propertydetail_v2 order by property, lastmodifiedtime desc) as ptd on ptd.property=pt.propertyid where ptd.source = 'LEGACY_RECORD' and pt.tenantid != 'uk.testing'
-  groupby: GROUP BY pt.tenantid
-  orderby: ORDER BY pt.tenantid
+    JOIN (SELECT DISTINCT ON (property) *  FROM eg_pt_propertydetail_v2 order by property, lastmodifiedtime desc) as ptd 
+    on ptd.property=pt.propertyid 
+    JOIN (SELECT DISTINCT ON (consumercode) *  FROM egbs_demand_v1 dd order by consumercode, lastmodifiedtime desc ) as d
+    on d.consumercode = ptd.property 
+    JOIN egbs_demanddetail_v1 dd on dd.demandid = d.id 
+    where 
+    ptd.source = 'LEGACY_RECORD' 
+    and pt.tenantid != 'uk.testing' 
+  groupby: GROUP BY pt.tenantid, taxperiod
+  orderby: ORDER BY pt.tenantid, taxperiod
