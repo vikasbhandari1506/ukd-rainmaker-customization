@@ -635,7 +635,7 @@
                 }
               },
               {
-                "variable": "timerebate",
+                "variable": "timeRebate",
                 "value": {
                   "path": "$.additionalDetails.rebate"
                 }
@@ -671,6 +671,10 @@
               {
                 "variable": "adhocRebate",
                 "formula": "-{{adhocrebate}}"
+              },
+              {
+                "variable": "timerebate",
+                "formula": "-{{timeRebate}}"
               }
             ]
           },
