@@ -1002,28 +1002,8 @@ ReportDefinitions:
     type: string
     source: pt
     total: false
-  - name: taxperiod
-    label: reports.pt.taxperiod
-    type: string
-    source: pt
-    total: false
-  - name: totaldemand
-    label: reports.pt.totaldemand
-    type: string
-    source: pt
-    total: true
-  - name: totalrevenuecollected
-    label: reports.pt.totalrevenuecollected
-    type: string
-    source: pt
-    total: true    
   - name: totalmigratedproperties
     label: reports.pt.totalmigratedproperties
-    type: string
-    source: pt
-    total: true
-  - name: migration
-    label: reports.pt.migration
     type: string
     source: pt
     total: true
@@ -1037,6 +1017,16 @@ ReportDefinitions:
     type: string
     source: pt
     total: true
+  - name: totaldemand
+    label: reports.pt.totaldemand
+    type: string
+    source: pt
+    total: true
+  - name: totalrevenuecollected
+    label: reports.pt.totalrevenuecollected
+    type: string
+    source: pt
+    total: true   
   searchParams:
   - name: ulb
     label: ULB
@@ -1049,10 +1039,9 @@ ReportDefinitions:
   query: |
     SELECT
     initcap(split_part(pt.tenantid, '.', 2)) as tenantId,
-    to_char(to_timestamp(TRUNC(CAST(d.taxperiodfrom AS bigint) / 1000)), 'DD/MM/YYYY') AS taxperiod,
     SUM(dd.taxamount) as totaldemand,
     SUM(dd.collectionamount) as totalrevenuecollected,
-    count(ptd.property) as totalmigratedproperties,
+    count(distinct ptd.property) as totalmigratedproperties,
     SUM(case when ptd.additionaldetails ->>'is_migrated' = 'true' then 1 else 0 end) as migration,
     (count(DISTINCT ptd.property)-SUM(case when ptd.additionaldetails ->>'is_migrated' = 'true' then 1 else 0 end)) as dataentry,
     SUM(case when ptd.additionaldetails ->>'is_migrated' = 'true' and ptd.createdtime > ptd.lastmodifiedtime then 1 else 0 end) updatedprops
@@ -1065,5 +1054,6 @@ ReportDefinitions:
     where 
     ptd.source = 'LEGACY_RECORD' 
     and pt.tenantid != 'uk.testing' 
-  groupby: GROUP BY pt.tenantid, taxperiod
-  orderby: ORDER BY pt.tenantid, taxperiod
+  groupby: GROUP BY pt.tenantid
+  orderby: ORDER BY pt.tenantid
+
