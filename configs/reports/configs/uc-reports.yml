@@ -436,7 +436,7 @@ ReportDefinitions:
         searchClause: AND rh.tenantid = $ulb
     query: |
         SELECT
-        p.tenantid as ulb,
+        initcap(split_part(p.tenantid, '.', 2)) as tenantid,
         count(*) as noofreceipts,
         sum(totalamountpaid) as totalamount
         from egcl_payment p, egcl_paymentdetail as pd
