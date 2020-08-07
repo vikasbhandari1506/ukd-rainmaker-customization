@@ -408,26 +408,6 @@ ReportDefinitions:
         type: string
         source: uc
         total: true
-      - name: tax
-        label: reports.uc.tax
-        type: string
-        source: uc
-        total: true
-      - name: cgst
-        label: reports.uc.cgst
-        type: string
-        source: uc
-        total: true
-      - name: sgst
-        label: reports.uc.sgst
-        type: string
-        source: uc
-        total: true
-      - name: fieldcollection
-        label: reports.uc.fieldCollection
-        type: string
-        source: uc
-        total: true
       - name: totalamount
         label: reports.uc.totalamount
         type: string
@@ -455,21 +435,17 @@ ReportDefinitions:
         isMandatory: false
         searchClause: AND rh.tenantid = $ulb
     query: |
-        -- Use CTE to force query plan, compute & use CTE later
         SELECT
-          rh.tenantid as ulb,
-          count(*) as noofreceipts,
-          SUM(CASE WHEN taxheadcode LIKE '%_TAX' THEN adjustedamount ELSE 0 END) as tax, 
-          SUM(CASE WHEN taxheadcode LIKE '%_CGST' THEN adjustedamount ELSE 0 END) as cgst, 
-          SUM(CASE WHEN taxheadcode LIKE '%_SGST' THEN adjustedamount ELSE 0 END) as sgst, 
-          SUM(CASE WHEN taxheadcode LIKE '%_FIELD_FEE' THEN adjustedamount ELSE 0 END) as fieldcollection,
-          sum(amount) as totalamount
-        from egcl_receiptheader_v1 rh, egcl_receiptdetails_v1 as rd
-        WHERE rh.id=rd.receiptheader and rh.status != 'Cancelled' AND rh.tenantid!='uk.testing' AND receiptnumber like 'MP%' 
-    groupby: group by rh.tenantid
-
-
-
+        p.tenantid as ulb,
+        count(*) as noofreceipts,
+        sum(totalamountpaid) as totalamount
+        from egcl_payment p, egcl_paymentdetail as pd
+        WHERE p.id=pd.paymentid
+        and p.paymentstatus != 'Cancelled'
+        AND p.tenantid!='uk.testing'
+        and pd.businessservice not in ('PT','TL','WC','FIRENOC','PT.MUTATION')
+    groupby: group by p.tenantid
+    
   - reportName: MiscCollectionState
     summary: State Miscellaneous Collection Register 
     version: 1.0.0
