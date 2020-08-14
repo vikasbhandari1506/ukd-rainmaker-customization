@@ -66,13 +66,13 @@ ReportDefinitions:
     type: epoch
     source: pt
     isMandatory: false
-    searchClause: AND rh.receiptdate >= $fromDate
+    searchClause: AND pd.receiptdate >= $fromDate
   - name: toDate
     label: reports.pt.toDate
     type: epoch
     source: pt
     isMandatory: false
-    searchClause: AND rh.receiptdate <= $toDate
+    searchClause: AND pd.receiptdate <= $toDate
   - name: paymentMode
     label: Payment Mode
     type: singlevaluelist
@@ -172,13 +172,13 @@ ReportDefinitions:
     type: epoch
     source: pt
     isMandatory: false
-    searchClause: AND rh.receiptdate >= $fromDate
+    searchClause: AND pd.receiptdate >= $fromDate
   - name: toDate
     label: reports.pt.toDate
     type: epoch
     source: pt
     isMandatory: false
-    searchClause: AND rh.receiptdate <= $toDate
+    searchClause: AND pd.receiptdate <= $toDate
   - name: paymentMode
     label: Payment Mode
     type: singlevaluelist
@@ -870,6 +870,18 @@ ReportDefinitions:
     source: pt
     total: false
   searchParams:
+  - name: fromDate
+    label: reports.pt.fromDate
+    type: epoch
+    source: pt
+    isMandatory: true
+    searchClause: AND prop.lastmodifiedtime >= $fromDate
+  - name: toDate
+    label: reports.pt.toDate
+    type: epoch
+    source: pt
+    isMandatory: true
+    searchClause: AND prop.lastmodifiedtime <= $toDate
   - name: Mohallaname
     label: MohallaName
     type: singlevaluelist
@@ -937,7 +949,7 @@ ReportDefinitions:
      and prop.tenantid=pd.tenantid
      and prop.tenantid=address.tenantid
      and prop.tenantid=$tenantid and prop.tenantid != 'uk.testing'
-     
+    
 - reportName: PTCollectionCount
   reporptabel: report.state.level.pt.collection
   summary: Shows the total properties and collection
@@ -1022,6 +1034,16 @@ ReportDefinitions:
     type: string
     source: pt
     total: true
+  - name: totaldemand
+    label: reports.pt.totaldemand
+    type: string
+    source: pt
+    total: true
+  - name: totalrevenuecollected
+    label: reports.pt.totalrevenuecollected
+    type: string
+    source: pt
+    total: true   
   searchParams:
   - name: ulb
     label: ULB

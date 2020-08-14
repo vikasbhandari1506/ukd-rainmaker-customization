@@ -619,31 +619,31 @@
               {
                 "variable": "licenseTax",
                 "value": {
-                  "path": "$.billDetails[0].billAccountDetails[?(@.taxHeadCode=='TL_TAX')].amount"
+                  "path": "$.additionalDetails.tax"
                 }
               },
               {
                 "variable": "adhocrebate",
                 "value": {
-                  "path": "$.billDetails[0].billAccountDetails[?(@.taxHeadCode=='TL_ADHOC_REBATE')].amount"
+                  "path": "$.additionalDetails.adhocRebate"
                 }
               },
               {
                 "variable": "timepenalty",
                 "value": {
-                  "path": "$.billDetails[0].billAccountDetails[?(@.taxHeadCode=='TL_TIME_PENALTY')].amount"
+                  "path": "$.additionalDetails.penalty"
                 }
               },
               {
-                "variable": "timerebate",
+                "variable": "timeRebate",
                 "value": {
-                  "path": "$.billDetails[0].billAccountDetails[?(@.taxHeadCode=='TL_TIME_REBATE')].amount"
+                  "path": "$.additionalDetails.rebate"
                 }
               },
               {
                 "variable": "adhocPenalty",
                 "value": {
-                  "path": "$.billDetails[0].billAccountDetails[?(@.taxHeadCode=='TL_ADHOC_PENALTY')].amount"
+                  "path": "$.additionalDetails.adhocPenalty"
                 }
               },
               {
@@ -671,6 +671,10 @@
               {
                 "variable": "adhocRebate",
                 "formula": "-{{adhocrebate}}"
+              },
+              {
+                "variable": "timerebate",
+                "formula": "-{{timeRebate}}"
               }
             ]
           },
@@ -678,7 +682,7 @@
             "externalAPI": [
               {
                 "path": "http://egov-mdms-service:8080/egov-mdms-service/v1/_get",
-                "queryParam": "moduleName=tenant&masterName=tenants&tenantId=uk&filter=%5B?(@.code=='$.tenantId')%5D",
+                "queryParam": "moduleName=tenant&masterName=tenants&tenantId=uk&filter=%5B?(@.code=='{$.tenantId}')%5D",
                 "apiRequest": null,
                 "responseMapping": [
                   {

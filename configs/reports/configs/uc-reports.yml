@@ -393,7 +393,6 @@ ReportDefinitions:
     groupby: group by rh.tenantid,rh.businessservice
     orderby: order by rh.tenantid
 
-
   - reportName: MiscReceiptState
     summary: State Miscellaneous Receipt Register 
     version: 1.0.0
@@ -446,8 +445,7 @@ ReportDefinitions:
         AND p.tenantid!='uk.testing'
         and pd.businessservice not in ('PT','TL','WC','FIRENOC','PT.MUTATION')
     groupby: group by p.tenantid
-
-
+    
   - reportName: MiscCollectionState
     summary: State Miscellaneous Collection Register 
     version: 1.0.0
