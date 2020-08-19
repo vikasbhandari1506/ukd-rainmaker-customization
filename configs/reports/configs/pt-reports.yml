@@ -844,6 +844,11 @@ ReportDefinitions:
     type: string
     source: pt
     total: false
+  - name: rebate
+    label: reports.pt.rebate
+    type: string
+    source: pt
+    total: false
   - name: totaltax
     label: reports.pt.totaltax
     type: string
@@ -869,191 +874,36 @@ ReportDefinitions:
     type: string
     source: pt
     total: false
-  searchParams:
+  - name: currentarv
+    label: reports.pt.currentarv
+    type: string
+    source: pt
+    total: false
+  - name: oldarv
+    label: reports.pt.oldarv
+    type: string
+    source: pt
+    total: false
+ searchParams:
+  - name: fromDate
+    label: reports.pt.fromDate
+    type: epoch
+    source: pt
+    isMandatory: true
+    searchClause: AND dcb.createddate >= $fromDate
+  - name: toDate
+    label: reports.pt.toDate
+    type: epoch
+    source: pt
+    isMandatory: true
+    searchClause: AND dcb.createddate <= $toDate
   - name: Mohallaname
     label: MohallaName
     type: singlevaluelist
     pattern: http://egov-location:8080/egov-location/location/v11/boundarys/_search?hierarchyTypeCode=REVENUE&boundaryType=Locality&tenantId=$tenantid|$.TenantBoundary[*].boundary[*].code|$.TenantBoundary[*].boundary[*].name
     source: pt
     wrapper: true
-    isMandatory: true
-    searchClause: AND address.locality = $Mohallaname
+    isMandatory: false
+    searchClause: AND mohalla = $Mohallaname
   query: | 
-     SELECT
-     prop.propertyid AS propertyid,
-     prop.oldpropertyid AS oldpropertyid,
-     address.doorno AS doorno,
-     msg.message AS mohalla,
-     pd.propertytype AS propertytype,
-     pd.usagecategoryminor AS usage,
-     pt_ownername(pd.assessmentnumber, $tenantid, FALSE) AS ownernamemobile,
-     COALESCE((
-     SELECT
-     SUM(dd.taxamount) 
-     FROM
-     egbs_demand_v1 demand, egbs_demanddetail_v1 dd 
-     WHERE
-     demand.tenantid = $tenantid 
-     AND demand.tenantid = dd.tenantid 
-     AND demand.id = dd.demandid 
-     AND dd.taxheadcode IN 
-     (
-     'PT_TAX',
-     'SWATCHATHA_TAX'
-     )
-     AND 
-     (
-     EXTRACT(epoch 
-     FROM
-     now())*1000 BETWEEN demand.taxperiodfrom AND demand.taxperiodto
-     )
-     AND demand.consumercode = prop.propertyid), 0) currenttax,
-     COALESCE((
-     SELECT
-     SUM(dd.taxamount) 
-     FROM
-     egbs_demand_v1 demand, egbs_demanddetail_v1 dd 
-     WHERE
-     demand.tenantid = $tenantid 
-     AND demand.tenantid = dd.tenantid 
-     AND demand.id = dd.demandid 
-     AND dd.taxheadcode IN 
-     (
-     'PT_TAX',
-     'SWATCHATHA_TAX'
-     )
-     AND 
-     (
-     EXTRACT(epoch 
-     FROM
-     now())*1000 NOT BETWEEN demand.taxperiodfrom AND demand.taxperiodto
-     )
-     AND demand.consumercode = prop.propertyid), 0) arreartax,
-     COALESCE((
-     SELECT
-     SUM(dd.taxamount) 
-     FROM
-     egbs_demand_v1 demand, egbs_demanddetail_v1 dd 
-     WHERE
-     demand.tenantid = $tenantid 
-     AND demand.tenantid = dd.tenantid 
-     AND demand.id = dd.demandid 
-     AND dd.taxheadcode IN 
-     (
-     'PT_TIME_INTEREST',
-     'PT_TIME_PENALTY'
-     )
-     AND demand.consumercode = prop.propertyid), 0) penaltytax,
-     COALESCE((
-     SELECT
-     SUM(dd.taxamount) 
-     FROM
-     egbs_demand_v1 demand, egbs_demanddetail_v1 dd 
-     WHERE
-     demand.tenantid = $tenantid 
-     AND demand.tenantid = dd.tenantid 
-     AND demand.id = dd.demandid 
-     AND dd.taxheadcode like '%REBATE%'
-
-     AND demand.consumercode = prop.propertyid), 0) rebate,
-     COALESCE((
-     SELECT
-     SUM(dd.taxamount) 
-     FROM
-     egbs_demand_v1 demand, egbs_demanddetail_v1 dd 
-     WHERE
-     demand.tenantid = $tenantid 
-     AND demand.tenantid = dd.tenantid 
-     AND demand.id = dd.demandid 
-     AND demand.consumercode = prop.propertyid), 0) totaltax,
-     COALESCE((
-     SELECT
-     SUM(dd.collectionamount) 
-     FROM
-     egbs_demand_v1 demand, egbs_demanddetail_v1 dd 
-     WHERE
-     demand.tenantid = $tenantid 
-     AND demand.tenantid = dd.tenantid 
-     AND demand.id = dd.demandid 
-     AND dd.taxheadcode IN 
-     (
-     'PT_TAX',
-     'SWATCHATHA_TAX'
-     )
-     AND 
-     (
-     EXTRACT(epoch 
-     FROM
-     now())*1000 BETWEEN demand.taxperiodfrom AND demand.taxperiodto
-     )
-     AND demand.consumercode = prop.propertyid), 0) currentcollected,
-     COALESCE((
-     SELECT
-     SUM(dd.collectionamount) 
-     FROM
-     egbs_demand_v1 demand, egbs_demanddetail_v1 dd 
-     WHERE
-     demand.tenantid = $tenantid 
-     AND demand.tenantid = dd.tenantid 
-     AND demand.id = dd.demandid 
-     AND dd.taxheadcode IN 
-     (
-     'PT_TAX',
-     'SWATCHATHA_TAX'
-     )
-     AND 
-     (
-     EXTRACT(epoch 
-     FROM
-     now())*1000 NOT BETWEEN demand.taxperiodfrom AND demand.taxperiodto
-     )
-     AND demand.consumercode = prop.propertyid), 0) arrearcollected,
-     COALESCE((
-     SELECT
-     SUM(dd.collectionamount) 
-     FROM
-     egbs_demand_v1 demand, egbs_demanddetail_v1 dd 
-     WHERE
-     demand.tenantid = $tenantid 
-     AND demand.tenantid = dd.tenantid 
-     AND demand.id = dd.demandid 
-     AND dd.taxheadcode IN 
-     (
-     'PT_TIME_INTEREST',
-     'PT_TIME_PENALTY'
-     )
-     AND demand.consumercode = prop.propertyid), 0) penaltycollected,
-     COALESCE((
-     SELECT
-     SUM(dd.collectionamount) 
-     FROM
-     egbs_demand_v1 demand, egbs_demanddetail_v1 dd 
-     WHERE
-     demand.tenantid = $tenantid 
-     AND demand.tenantid = dd.tenantid 
-     AND demand.id = dd.demandid 
-     AND demand.consumercode = prop.propertyid), 0) totalcollected 
-     FROM
-     eg_pt_property_v2 prop,
-     eg_pt_propertydetail_v2 pd,
-     eg_pt_address_v2 address,
-     message msg 
-     WHERE
-     assessmentnumber = 
-     (
-     SELECT
-     assessmentnumber 
-     FROM
-     eg_pt_propertydetail_v2 
-     WHERE
-     property = prop.propertyid 
-     ORDER BY
-     substr(financialyear, 0, 5)::INTEGER DESC LIMIT 1
-     )
-     AND prop.propertyid = pd.property 
-     AND prop.propertyid = address.property 
-     AND UPPER(replace(address.tenantid, '.', '_')) || '_REVENUE_' || address.locality = msg.code 
-     AND msg.locale = 'en_IN' 
-     AND prop.tenantid = pd.tenantid 
-     AND prop.tenantid = address.tenantid 
-     AND prop.tenantid = $tenantid                             
+    select * from dcb where tenantid = $tenantid                             
