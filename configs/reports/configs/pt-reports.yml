@@ -889,13 +889,13 @@ ReportDefinitions:
     label: reports.pt.fromDate
     type: epoch
     source: pt
-    isMandatory: true
+    isMandatory: false
     searchClause: AND dcb.createddate >= $fromDate
   - name: toDate
     label: reports.pt.toDate
     type: epoch
     source: pt
-    isMandatory: true
+    isMandatory: false
     searchClause: AND dcb.createddate <= $toDate
   - name: Mohallaname
     label: MohallaName
