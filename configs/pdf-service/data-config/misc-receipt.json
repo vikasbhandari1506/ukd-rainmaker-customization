@@ -458,6 +458,18 @@
                     "prefix": null,
                     "module":"rainmaker-common"
                  }
+                },
+                {
+                  "variable": "comment_label",
+                  "value": {
+                    "path": "PDF_STATIC_LABEL_COMMENT_LABEL"
+                  },
+                  "type": "label",
+                  "localisation":{
+                    "required":true,
+                    "prefix": null,
+                    "module":"rainmaker-common"
+                 }
                 }
               ]
             },
