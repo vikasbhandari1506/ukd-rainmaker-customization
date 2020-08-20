@@ -69,6 +69,12 @@
                   "type": "date"
                 },
                 {
+                  "variable": "comments", 
+                  "value": {
+                    "path": "$.paymentDetails[0].bill.billDetails[0].additionalDetails.comment"
+                  }
+                },
+                {
                   "variable": "paymentMode", 
                   "value": {
                     "path": "$.paymentMode"
