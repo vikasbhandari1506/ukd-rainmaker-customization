@@ -829,61 +829,61 @@ ReportDefinitions:
     type: string
     total: false
     source: pt
-  - name: currenttax
-    label: reports.pt.CurrentTax
-    type: string
-    source: pt
-    total: false
-  - name: arreartax
-    label: reports.pt.arreartax
-    type: string
-    source: pt
-    total: false
-  - name: penaltytax
-    label: reports.pt.penaltytax
-    type: string
-    source: pt
-    total: false
-  - name: rebate
-    label: reports.pt.rebate
-    type: string
-    source: pt
-    total: false
-  - name: totaltax
-    label: reports.pt.totaltax
-    type: string
-    source: pt
-    total: false
-  - name: currentcollected
-    label: reports.pt.currentcollected
-    type: string
-    source: pt
-    total: false
-  - name: arrearcollected
-    label: reports.pt.arrearcollected
-    type: string
-    source: pt
-    total: false
-  - name: penaltycollected
-    label: reports.pt.penaltycollected
-    type: string
-    source: pt
-    total: false
-  - name: totalcollected
-    label: reports.pt.totalcollected
-    type: string
-    source: pt
-    total: false
-  - name: currentarv
-    label: reports.pt.currentarv
-    type: string
-    source: pt
-    total: false
   - name: oldarv
     label: reports.pt.oldarv
     type: string
     source: pt
-    total: false
+    total: true    
+  - name: currentarv
+    label: reports.pt.currentarv
+    type: string
+    source: pt
+    total: true    
+  - name: currenttax
+    label: reports.pt.CurrentTax
+    type: string
+    source: pt
+    total: true
+  - name: arreartax
+    label: reports.pt.arreartax
+    type: string
+    source: pt
+    total: true
+  - name: penaltytax
+    label: reports.pt.penaltytax
+    type: string
+    source: pt
+    total: true
+  - name: rebate
+    label: reports.pt.rebate
+    type: string
+    source: pt
+    total: true
+  - name: totaltax
+    label: reports.pt.totaltax
+    type: string
+    source: pt
+    total: true
+  - name: currentcollected
+    label: reports.pt.currentcollected
+    type: string
+    source: pt
+    total: true
+  - name: arrearcollected
+    label: reports.pt.arrearcollected
+    type: string
+    source: pt
+    total: true
+  - name: penaltycollected
+    label: reports.pt.penaltycollected
+    type: string
+    source: pt
+    total: true
+  - name: totalcollected
+    label: reports.pt.totalcollected
+    type: string
+    source: pt
+    total: true
   searchParams:
   - name: fromDate
     label: reports.pt.fromDate
@@ -900,13 +900,13 @@ ReportDefinitions:
   - name: Mohallaname
     label: MohallaName
     type: singlevaluelist
-    pattern: http://egov-location:8080/egov-location/location/v11/boundarys/_search?hierarchyTypeCode=REVENUE&boundaryType=Locality&tenantId=$tenantid|$.TenantBoundary[*].boundary[*].code|$.TenantBoundary[*].boundary[*].name
+    pattern: http://egov-location:8080/egov-location/location/v11/boundarys/_search?hierarchyTypeCode=REVENUE&boundaryType=Locality&tenantId=$tenantid|$.TenantBoundary[*].boundary[*].name|$.TenantBoundary[*].boundary[*].name
     source: pt
     wrapper: true
     isMandatory: false
     searchClause: AND mohalla = $Mohallaname
   query: | 
-    select * from dcb where tenantid = $tenantid                             
+    select * from dcb where tenantid = $tenantid                                
     
 - reportName: PTCollectionCount
   reporptabel: report.state.level.pt.collection
