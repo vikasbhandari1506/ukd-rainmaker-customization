@@ -907,3 +907,123 @@ ReportDefinitions:
     searchClause: AND mohalla = $Mohallaname
   query: | 
     select * from dcb where tenantid = $tenantid                             
+    
+- reportName: PTCollectionCount
+  reporptabel: report.state.level.pt.collection
+  summary: Shows the total properties and collection
+  version: 1.0.0
+  moduleName: rainmaker-pt
+  sourceColumns:
+  - name: tenantId
+    label: reports.pt.tenantid
+    type: string
+    source: pt
+    total: false
+  - name: paymentmode
+    label: reports.pt.paymentmode
+    type: string
+    source: pt
+    total: false
+  - name: sum
+    label: reports.pt.total
+    type: string
+    source: pt
+    total: true
+  - name: count
+    label: reports.pt.count
+    type: string
+    source: pt
+    total: true    
+  searchParams:
+  - name: fromDate
+    label: reports.pt.fromDate
+    type: epoch
+    source: pt
+    isMandatory: false
+    searchClause: AND pt.lastmodifiedtime >= $fromDate
+  - name: toDate
+    label: reports.pt.toDate
+    type: epoch
+    source: pt
+    isMandatory: false
+    searchClause: AND pt.lastmodifiedtime <= $toDate
+  - name: ulb
+    label: reports.pt.tenantid
+    type: singlevaluelist
+    pattern: http://egov-mdms-service:8080/egov-mdms-service/v1/_get?tenantId=$tenantid&moduleName=tenant&masterName=tenants|$.MdmsRes.tenant.tenants.*.code|$.MdmsRes.tenant.tenants.*.name
+    source: pt
+    wrapper: true
+    isMandatory: false
+    searchClause: AND pt.tenantId = $ulb
+  query: |
+    select initcap(split_part(p.tenantId, '.', 2)) as tenantId, p.paymentmode ,sum(p.totalamountpaid), count(p.id)
+    FROM egcl_payment p, egcl_paymentdetail pd 
+    WHERE p.id=pd.paymentid  and pd.businessservice ='PT'
+  groupby: GROUP BY p.tenantid, p.paymentmode
+  orderby: ORDER BY p.tenantId asc
+
+- reportName: PTApplicationReport
+  summary: Number of applications
+  version: 1.0.0
+  moduleName: rainmaker-pt
+  sourceColumns:
+  - name: tenantId
+    label: reports.pt.tenantid
+    type: string
+    source: pt
+    total: false
+  - name: totalmigratedproperties
+    label: reports.pt.totalmigratedproperties
+    type: string
+    source: pt
+    total: true
+  - name: dataentry
+    label: reports.pt.dataentry
+    type: string
+    source: pt
+    total: true
+  - name: updatedprops
+    label: reports.pt.updatedprops
+    type: string
+    source: pt
+    total: true
+  - name: totaldemand
+    label: reports.pt.totaldemand
+    type: string
+    source: pt
+    total: true
+  - name: totalrevenuecollected
+    label: reports.pt.totalrevenuecollected
+    type: string
+    source: pt
+    total: true   
+  searchParams:
+  - name: ulb
+    label: ULB
+    type: singlevaluelist
+    pattern: http://egov-mdms-service:8080/egov-mdms-service/v1/_get?tenantId=$tenantid&moduleName=tenant&masterName=tenants|$.MdmsRes.tenant.tenants.*.code|$.MdmsRes.tenant.tenants.*.name
+    source: pt
+    wrapper: true
+    isMandatory: false
+    searchClause: AND pt.tenantid = $ulb
+  query: |
+    SELECT
+    initcap(split_part(pt.tenantid, '.', 2)) as tenantId,
+    SUM(dd.taxamount) as totaldemand,
+    SUM(dd.collectionamount) as totalrevenuecollected,
+    count(distinct ptd.property) as totalmigratedproperties,
+    SUM(case when ptd.additionaldetails ->>'is_migrated' = 'true' then 1 else 0 end) as migration,
+    (count(DISTINCT ptd.property)-SUM(case when ptd.additionaldetails ->>'is_migrated' = 'true' then 1 else 0 end)) as dataentry,
+    SUM(case when ptd.additionaldetails ->>'is_migrated' = 'true' and ptd.createdtime > ptd.lastmodifiedtime then 1 else 0 end) updatedprops
+    FROM eg_pt_property_v2 as pt
+    JOIN (SELECT DISTINCT ON (property) *  FROM eg_pt_propertydetail_v2 order by property, lastmodifiedtime desc) as ptd 
+    on ptd.property=pt.propertyid 
+    JOIN (SELECT DISTINCT ON (consumercode) *  FROM egbs_demand_v1 dd order by consumercode, lastmodifiedtime desc ) as d
+    on d.consumercode = ptd.property 
+    JOIN egbs_demanddetail_v1 dd on dd.demandid = d.id 
+    where 
+    ptd.source = 'LEGACY_RECORD' 
+    and pt.tenantid != 'uk.testing' 
+  groupby: GROUP BY pt.tenantid
+  orderby: ORDER BY pt.tenantid
+
