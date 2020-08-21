@@ -69,6 +69,12 @@
                   "type": "date"
                 },
                 {
+                  "variable": "comments", 
+                  "value": {
+                    "path": "$.paymentDetails[0].bill.billDetails[0].additionalDetails.comment"
+                  }
+                },
+                {
                   "variable": "paymentMode", 
                   "value": {
                     "path": "$.paymentMode"
@@ -445,6 +451,18 @@
                   "variable": "Municipal_Corporation",
                   "value": {
                     "path": "PDF_STATIC_LABEL_MDMS_MUNICIPAL_CORPORATION"
+                  },
+                  "type": "label",
+                  "localisation":{
+                    "required":true,
+                    "prefix": null,
+                    "module":"rainmaker-common"
+                 }
+                },
+                {
+                  "variable": "comment_label",
+                  "value": {
+                    "path": "PDF_STATIC_LABEL_COMMENT_LABEL"
                   },
                   "type": "label",
                   "localisation":{
