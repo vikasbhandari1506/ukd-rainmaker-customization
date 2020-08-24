@@ -413,6 +413,24 @@
           {
             "text": [
               {
+                "text": "{{comment_label}}: ",
+                "bold": true
+              },
+              {
+                "text": "{{comments}}",
+                "bold": false
+              }
+            ],
+            "alignment": "left"
+          }
+        ]
+      },
+      {
+        "style": "receipt-approver",
+        "columns": [
+          {
+            "text": [
+              {
                 "text": "{{generated_by}}: ",
                 "bold": true
               },
