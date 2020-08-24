@@ -1173,6 +1173,6 @@ ReportDefinitions:
     sum(arrearcollected) arreartaxcollection, 
     Sum(penaltycollected) totalpenaltycollection, 
     sum(totalcollected) totaltaxcollection 
-    from dcb
+    from dcb where tenantid != 'uk.testing' 
   groupby: GROUP BY tenantid                
   orderby: ORDER BY tenantid  
