@@ -1027,3 +1027,152 @@ ReportDefinitions:
   groupby: GROUP BY pt.tenantid
   orderby: ORDER BY pt.tenantid
 
+
+- reportName: StateWiseAdoptionReport
+  summary: Reports for State Wise Adoption Report
+  version: 1.0.0
+  moduleName: rainmaker-pt
+  sourceColumns:
+  - name: tenantid
+    label: reports.pt.tenantid
+    type: string
+    source: pt
+    total: false       
+  - name: propertiestobeupdated
+    label: reports.pt.propertiestobeupdated
+    type: string
+    source: pt
+    total: true
+  - name: propertiesverified
+    label: reports.pt.propertiesverified
+    type: string
+    source: pt
+    total: true
+  - name: verificationpercentage
+    label: reports.pt.verificationpercentage
+    type: string
+    source: pt
+    total: true
+  searchParams:
+  - name: ulb
+    label: ULB
+    type: singlevaluelist
+    pattern: http://egov-mdms-service:8080/egov-mdms-service/v1/_get?tenantId=$tenantid&moduleName=tenant&masterName=tenants|$.MdmsRes.tenant.tenants.*.code|$.MdmsRes.tenant.tenants.*.name
+    source: pt
+    wrapper: true
+    isMandatory: false
+    searchClause: AND c.tenantid = $ulb
+  query: | 
+    select initcap(split_part(a.tenantid, '.', 2)) as tenantid, 
+    (b.Total_properties_to_be_update) propertiestobeupdated,
+    (c.Total_properties_updated) propertiesverified,
+    round((c.Total_properties_updated*100/Total_properties_to_be_update),2) verificationpercentage 
+    from(select pd.tenantid,
+    count(distinct pd.property) as Total_properties  from eg_pt_propertydetail_v2 pd where pd.tenantid != 'uk.testing' group by pd.tenantid) as a,
+    (select pd1.tenantid,
+    count( distinct pd1.property) Total_properties_to_be_update from eg_pt_propertydetail_v2 pd1 where pd1.tenantid != 'uk.testing' 
+    and pd1.additionaldetails ->>'isMigrated' = 'true' group by pd1.tenantid) as b,
+    (select d.tenantid,count(distinct d.consumercode) Total_properties_updated from egbs_demand_v1 d,egbs_demanddetail_v1 dd,eg_pt_property_v2 
+    pt,eg_pt_propertydetail_v2 pd where pd.property=pt.propertyid and pd.ctid in(select max(ctid) from eg_pt_propertydetail_v2  group 
+    by financialyear,property having property=pd.property) and d.id=dd.demandid and dd.taxamount<>0 and pd.property=d.consumercode 
+    and taxheadcode like 'PT_TAX%' and pd.property in (select  distinct pd.property from egbs_demand_v1 d,egbs_demanddetail_v1 
+    dd,eg_pt_property_v2 pt,eg_pt_propertydetail_v2 pd where pd.property=pt.propertyid and pd.additionaldetails ->>'isMigrated' = 
+    'true' and pd.ctid in(select max(ctid) from eg_pt_propertydetail_v2  group by financialyear,property having property=pd.property) 
+    and d.id=dd.demandid and dd.taxamount<>0 and pd.property=d.consumercode and taxheadcode like 'PT_TAX%' and 
+    pd.financialyear=to_char(to_timestamp(d.taxperiodfrom/1000),'YYYY')||'-'||to_char(to_timestamp(d.taxperiodto/1000),'YY') and 
+    pd.financialyear='2020-21') group by d.tenantid) as c
+    where a.tenantid=b.tenantid 
+    and b.tenantid=c.tenantid               
+  orderby: ORDER BY a.tenantid  
+
+
+- reportName: StateWiseDCBReport
+  summary: Reports for State Wise DCB Report
+  version: 1.0.0
+  moduleName: rainmaker-pt
+  sourceColumns:
+  - name: tenantid
+    label: reports.pt.tenantid
+    type: string
+    source: pt
+    total: false       
+  - name: currenttax
+    label: reports.pt.CurrentTax
+    type: string
+    source: pt
+    total: true
+  - name: arreartax
+    label: reports.pt.arreartax
+    type: string
+    source: pt
+    total: true
+  - name: penaltytax
+    label: reports.pt.penaltytax
+    type: string
+    source: pt
+    total: true
+  - name: rebate
+    label: reports.pt.rebate
+    type: string
+    source: pt
+    total: true
+  - name: totaltax
+    label: reports.pt.totaltax
+    type: string
+    source: pt
+    total: true
+  - name: currenttaxcollection
+    label: reports.pt.currenttaxcollection
+    type: string
+    source: pt
+    total: true
+  - name: arreartaxcollection
+    label: reports.pt.arreartaxcollection
+    type: string
+    source: pt
+    total: true
+  - name: totalpenaltycollection
+    label: reports.pt.totalpenaltycollection
+    type: string
+    source: pt
+    total: true
+  - name: totaltaxcollection
+    label: reports.pt.totaltaxcollection
+    type: string
+    source: pt
+    total: true
+  searchParams:
+  - name: fromDate
+    label: reports.pt.fromDate
+    type: epoch
+    source: pt
+    isMandatory: false
+    searchClause: AND dcb.createddate >= $fromDate
+  - name: toDate
+    label: reports.pt.toDate
+    type: epoch
+    source: pt
+    isMandatory: false
+    searchClause: AND dcb.createddate <= $toDate    
+  - name: ulb
+    label: ULB
+    type: singlevaluelist
+    pattern: http://egov-mdms-service:8080/egov-mdms-service/v1/_get?tenantId=$tenantid&moduleName=tenant&masterName=tenants|$.MdmsRes.tenant.tenants.*.code|$.MdmsRes.tenant.tenants.*.name
+    source: pt
+    wrapper: true
+    isMandatory: false
+    searchClause: AND tenantid = $ulb
+  query: | 
+    select initcap(split_part(tenantid, '.', 2)) tenantid, 
+    sum(currenttax)  currenttax, 
+    sum(arreartax) as arreartax, 
+    sum(penaltytax) as penalty, 
+    sum(rebate) as rebate, 
+    sum(totaltax)  totaltax, 
+    sum(currentcollected) currenttaxcollection, 
+    sum(arrearcollected) arreartaxcollection, 
+    Sum(penaltycollected) totalpenaltycollection, 
+    sum(totalcollected) totaltaxcollection 
+    from dcb
+  groupby: GROUP BY tenantid                
+  orderby: ORDER BY tenantid  
