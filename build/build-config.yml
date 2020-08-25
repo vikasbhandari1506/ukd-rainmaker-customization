@@ -19,4 +19,4 @@ config:
     build:
       - work-dir: "assets"
         image-name: "ukd-assets"
-        dockerfile: "build/maven/Dockerfile"
+        dockerfile: "assets/docker/Dockerfile"
