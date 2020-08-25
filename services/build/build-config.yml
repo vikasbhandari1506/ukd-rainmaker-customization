@@ -8,8 +8,8 @@
 # -
 # -
 config:
-  - name: "services/rainmaker-custom-service"
+  - name: "builds/services/ukd-custom-service"
     build:
-      - work-dir: "rainmaker-custom-service"
-        image-name: "rainmaker-custom-service"
-        dockerfile: "build/maven/Dockerfile"
+      - work-dir: "services/ukd-custom-service"
+        image-name: "ukd-custom-service"
+        dockerfile: "services/build/maven/Dockerfile"
