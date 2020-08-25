@@ -15,3 +15,8 @@ config:
         dockerfile: "build/maven/Dockerfile"
       - work-dir: "ukd-custom-service/src/main/resources/db"
         image-name: "ukd-custom-service-db"
+  - name: "builds/ukd-rainmaker-customization/ukd-assets"
+    build:
+      - work-dir: "assets"
+        image-name: "ukd-assets"
+        dockerfile: "assets/docker/Dockerfile"
