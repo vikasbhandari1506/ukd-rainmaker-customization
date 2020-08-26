@@ -61,7 +61,8 @@ public class DcbRefreshService {
 				"     AND dd.taxheadcode IN "+
 				"     ("+
 				"     'PT_TAX',"+
-				"     'SWATCHATHA_TAX'"+
+				"     'SWATCHATHA_TAX',"+
+				"     'PT_ROUNDOFF'"+
 				"     )"+
 				"     AND "+
 				"     ("+
@@ -101,7 +102,8 @@ public class DcbRefreshService {
 				"     AND dd.taxheadcode IN "+
 				"     ("+
 				"     'PT_TAX',"+
-				"     'SWATCHATHA_TAX'"+
+				"     'SWATCHATHA_TAX',"+
+				"     'PT_ROUNDOFF'"+
 				"     )"+
 				"     AND "+
 				"     ("+
@@ -121,7 +123,8 @@ public class DcbRefreshService {
 				"     AND dd.taxheadcode IN "+
 				"     ("+
 				"     'PT_TIME_INTEREST',"+
-				"     'PT_TIME_PENALTY'"+
+				"     'PT_TIME_PENALTY',"+
+				"     'PT_LATE_ASSESSMENT_PENALTY'"+
 				"     )"+
 				"     AND demand.consumercode = prop.propertyid), 0) penaltytax,"+
 				"     COALESCE(("+
@@ -155,7 +158,8 @@ public class DcbRefreshService {
 				"     AND dd.taxheadcode IN "+
 				"     ("+
 				"     'PT_TAX',"+
-				"     'SWATCHATHA_TAX'"+
+				"     'SWATCHATHA_TAX',"+
+				"     'PT_ROUNDOFF'"+
 				"     )"+
 				"     AND "+
 				"     ("+
@@ -175,7 +179,8 @@ public class DcbRefreshService {
 				"     AND dd.taxheadcode IN "+
 				"     ("+
 				"     'PT_TAX',"+
-				"     'SWATCHATHA_TAX'"+
+				"     'SWATCHATHA_TAX',"+
+				"     'PT_ROUNDOFF'"+
 				"     )"+
 				"     AND "+
 				"     ("+
@@ -195,7 +200,8 @@ public class DcbRefreshService {
 				"     AND dd.taxheadcode IN "+
 				"     ("+
 				"     'PT_TIME_INTEREST',"+
-				"     'PT_TIME_PENALTY'"+
+				"     'PT_TIME_PENALTY',"+
+				"     'PT_LATE_ASSESSMENT_PENALTY'"+
 				"     )"+
 				"     AND demand.consumercode = prop.propertyid), 0) penaltycollected,"+
 				"     COALESCE(("+
