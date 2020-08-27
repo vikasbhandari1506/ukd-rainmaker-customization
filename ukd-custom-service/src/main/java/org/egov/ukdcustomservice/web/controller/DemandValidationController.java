@@ -1,10 +1,8 @@
 package org.egov.ukdcustomservice.web.controller;
 
-import javax.validation.Valid;
 
-import org.egov.ukdcustomservice.service.DemandValidationService;
 import org.egov.ukdcustomservice.web.models.DemandRequest;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,13 +16,14 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class DemandValidationController {
 
-    @Autowired
-    private DemandValidationService demandValidationService;
+    // @Autowired
+    // private DemandValidationService demandValidationService;
     
     @PostMapping("/_validate")
     public ResponseEntity<?> create(@RequestBody DemandRequest demandRequest) {  
-    log.info("DemandRequest: " + demandRequest);
-		return demandValidationService.validate(demandRequest.getDemands());
+     log.info("DemandRequest: " + demandRequest);
+    // return demandValidationService.validate(demandRequest.getDemands());
+    return new ResponseEntity<>(true, HttpStatus.OK);
 	}
 
 }
