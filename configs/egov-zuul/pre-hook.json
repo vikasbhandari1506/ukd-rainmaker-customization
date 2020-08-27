@@ -1,0 +1,4 @@
+{
+    "/billing-service/demand/_create": "http://ukd-custom-service:8080/ukd-custom-service/demand/_validate",
+    "/billing-service/demand/_update": "http://ukd-custom-service:8080/ukd-custom-service/demand/_validate"
+}
