@@ -10,5 +10,5 @@ import lombok.Data;
 public class PreHookRequest {
     @NotNull
 	@JsonProperty("request")
-	private DemandRequest demandRequest;
+	private String request;
 }
