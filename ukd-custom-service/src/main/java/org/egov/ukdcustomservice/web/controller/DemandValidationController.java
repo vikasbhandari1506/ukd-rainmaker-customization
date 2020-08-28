@@ -5,7 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.egov.tracer.model.CustomException;
 import org.egov.ukdcustomservice.service.DemandValidationService;
-import org.egov.ukdcustomservice.web.models.DemandRequest;
+import org.egov.ukdcustomservice.web.models.PreHookRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,18 +25,18 @@ public class DemandValidationController {
 
     @PostMapping("/_validate")
     public ResponseEntity<?> create(@RequestBody String jsonString) {
-
+        log.info("Request: " + jsonString);
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        DemandRequest demandRequest = null;
+        PreHookRequest request = null;
         try {
-            demandRequest = objectMapper.readValue(jsonString, DemandRequest.class);
+            request = objectMapper.readValue(jsonString, PreHookRequest.class);
         } catch (Exception e) {
             log.error("Error while converting the input to demand request", e);
             new CustomException("JSON_CONVERSION_EXCEPTION", "Error while converting the input to demand request");
         }
-        log.info("DemandRequest: " + demandRequest);
-        return demandValidationService.validate(demandRequest.getDemands());
+        log.info("DemandRequest: " + request);
+        return demandValidationService.validate(request.getDemandRequest().getDemands());
     }
 
 }
