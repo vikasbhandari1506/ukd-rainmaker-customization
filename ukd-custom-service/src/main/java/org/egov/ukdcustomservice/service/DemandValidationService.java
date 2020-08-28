@@ -45,7 +45,7 @@ public class DemandValidationService {
         for (Demand demand : demands) {
             Set<String> taxHeads = new HashSet<>();
             for (DemandDetail demandDetail : demand.getDemandDetails()) {
-                if(!taxHeads.add(demandDetail.getTaxHeadMasterCode())){
+                if (!taxHeads.add(demandDetail.getTaxHeadMasterCode())) {
                     errors.put("DuplicateDemandDetails", demand.getId());
                 }
             }
@@ -54,7 +54,7 @@ public class DemandValidationService {
         if (errors.size() > 0) {
             return new ResponseEntity<>(new CustomException(errors), HttpStatus.BAD_REQUEST);
         } else {
-            return new ResponseEntity<>(true, HttpStatus.OK);
+            return new ResponseEntity<>("{}", HttpStatus.OK);
         }
 
     }
