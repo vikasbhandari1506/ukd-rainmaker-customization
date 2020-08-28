@@ -40,7 +40,7 @@ public class DemandValidationService {
 
         for (int i = currentFinancialYear; i >= minYear; i--) {
             if (!demandYears.contains(i)) {
-                errors.put("MissingDemandForYear", i + "-" + (i + 1));
+                errors.put(i + "-" + (i + 1), "MissingDemandForYear");
             }
         }
 
@@ -48,13 +48,15 @@ public class DemandValidationService {
             Set<String> taxHeads = new HashSet<>();
             for (DemandDetail demandDetail : demand.getDemandDetails()) {
                 if (!taxHeads.add(demandDetail.getTaxHeadMasterCode())) {
-                    errors.put("DuplicateDemandDetails", demand.getId());
+                    errors.put(demand.getId(), "DuplicateDemandDetails");
                 }
             }
         }
 
         if (errors.size() > 0) {
-            return new ResponseEntity<>(new CustomException(errors), HttpStatus.BAD_REQUEST);
+            CustomException e = new CustomException(errors);
+            e.setMessage(errors.toString());
+            return new ResponseEntity<>(e , HttpStatus.BAD_REQUEST);
         } else {
             return new ResponseEntity<>(demandRequest, HttpStatus.OK);
         }
