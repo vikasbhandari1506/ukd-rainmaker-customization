@@ -20,7 +20,7 @@ public class DemandValidationController {
     // private DemandValidationService demandValidationService;
     
     @PostMapping("/_validate")
-    public ResponseEntity<?> create(@RequestBody DemandRequest demandRequest) {  
+    public ResponseEntity<?> create(@RequestBody String demandRequest) {  
      log.info("DemandRequest: " + demandRequest);
     // return demandValidationService.validate(demandRequest.getDemands());
     return new ResponseEntity<>(true, HttpStatus.OK);
