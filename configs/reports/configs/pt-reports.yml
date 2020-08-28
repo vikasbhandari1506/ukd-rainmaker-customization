@@ -907,3 +907,94 @@ ReportDefinitions:
     searchClause: AND mohalla = $Mohallaname
   query: | 
     select * from dcb where tenantid = $tenantid                             
+
+- reportName: StateWiseDCBReport
+  summary: Reports for State Wise DCB Report
+  version: 1.0.0
+  moduleName: rainmaker-pt
+  sourceColumns:
+  - name: tenantid
+    label: reports.pt.tenantid
+    type: string
+    source: pt
+    total: false       
+  - name: currenttax
+    label: reports.pt.CurrentTax
+    type: string
+    source: pt
+    total: true
+  - name: arreartax
+    label: reports.pt.arreartax
+    type: string
+    source: pt
+    total: true
+  - name: penaltytax
+    label: reports.pt.penaltytax
+    type: string
+    source: pt
+    total: true
+  - name: rebate
+    label: reports.pt.rebate
+    type: string
+    source: pt
+    total: true
+  - name: totaltax
+    label: reports.pt.totaltax
+    type: string
+    source: pt
+    total: true
+  - name: currenttaxcollection
+    label: reports.pt.currenttaxcollection
+    type: string
+    source: pt
+    total: true
+  - name: arreartaxcollection
+    label: reports.pt.arreartaxcollection
+    type: string
+    source: pt
+    total: true
+  - name: totalpenaltycollection
+    label: reports.pt.totalpenaltycollection
+    type: string
+    source: pt
+    total: true
+  - name: totaltaxcollection
+    label: reports.pt.totaltaxcollection
+    type: string
+    source: pt
+    total: true
+  searchParams:
+  - name: fromDate
+    label: reports.pt.fromDate
+    type: epoch
+    source: pt
+    isMandatory: false
+    searchClause: AND dcb.createddate >= $fromDate
+  - name: toDate
+    label: reports.pt.toDate
+    type: epoch
+    source: pt
+    isMandatory: false
+    searchClause: AND dcb.createddate <= $toDate    
+  - name: ulb
+    label: ULB
+    type: singlevaluelist
+    pattern: http://egov-mdms-service:8080/egov-mdms-service/v1/_get?tenantId=$tenantid&moduleName=tenant&masterName=tenants|$.MdmsRes.tenant.tenants.*.code|$.MdmsRes.tenant.tenants.*.name
+    source: pt
+    wrapper: true
+    isMandatory: false
+    searchClause: AND tenantid = $ulb
+  query: | 
+    select initcap(split_part(tenantid, '.', 2)) tenantid, 
+    sum(currenttax)  currenttax, 
+    sum(arreartax) as arreartax, 
+    sum(penaltytax) as penalty, 
+    sum(rebate) as rebate, 
+    sum(totaltax)  totaltax, 
+    sum(currentcollected) currenttaxcollection, 
+    sum(arrearcollected) arreartaxcollection, 
+    Sum(penaltycollected) totalpenaltycollection, 
+    sum(totalcollected) totaltaxcollection 
+    from dcb where tenantid != 'uk.testing' 
+  groupby: GROUP BY tenantid                
+  orderby: ORDER BY tenantid  
