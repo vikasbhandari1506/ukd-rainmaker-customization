@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 import org.egov.tracer.model.CustomException;
 import org.egov.ukdcustomservice.web.models.Demand;
 import org.egov.ukdcustomservice.web.models.DemandDetail;
+import org.egov.ukdcustomservice.web.models.DemandRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -24,8 +25,9 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class DemandValidationService {
 
-    public ResponseEntity<?> validate(List<Demand> demands) {
+    public ResponseEntity<?> validate(DemandRequest demandRequest) {
 
+        List<Demand> demands =demandRequest.getDemands();
         log.info("the demand request object : " + demands);
         Map<String, String> errors = new HashMap<>();
 
@@ -54,7 +56,7 @@ public class DemandValidationService {
         if (errors.size() > 0) {
             return new ResponseEntity<>(new CustomException(errors), HttpStatus.BAD_REQUEST);
         } else {
-            return new ResponseEntity<>("{}", HttpStatus.OK);
+            return new ResponseEntity<>(demandRequest, HttpStatus.OK);
         }
 
     }

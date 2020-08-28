@@ -40,7 +40,7 @@ public class DemandValidationController {
             new CustomException("JSON_CONVERSION_EXCEPTION", "Error while converting the input to demand request");
         }
         log.info("DemandRequest: " + request);
-        return demandValidationService.validate(demandRequest.getDemands());
+        return demandValidationService.validate(demandRequest);
     }
 
 }
