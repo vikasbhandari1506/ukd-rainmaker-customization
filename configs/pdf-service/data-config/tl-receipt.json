@@ -89,7 +89,19 @@
                                   "prefix": "PT_RECEIPT_VALUE_PAYMENT_MODE",
                                   "module": "rainmaker-receipt"
                               }
-                          },                          
+                          },
+                          {
+                              "variable": "bankName",
+                              "value": {
+                                  "path": "$.bankName"
+                              }
+                          },
+                          {
+                              "variable": "branchName",
+                              "value": {
+                                  "path": "$.branchName"
+                              }
+                          },
                           {
                               "variable": "G8ReceiptNo",
                               "value": {
@@ -784,25 +796,6 @@
                                           "module": "rainmaker-tl"
                                       }
                                   }
-                              ]
-                          },
-                          {
-                              "path": "https://ifsc.razorpay.com/$.ifscCode",
-                              "queryParam": null,
-                              "apiRequest": null,
-                              "responseMapping": [
-                                 {
-                                    "variable": "bankName",
-                                    "value": {
-                                          "path": "$.BANK"
-                                    }
-                                 },
-                                 {
-                                    "variable": "branchName",
-                                    "value": {
-                                          "path": "$.BRANCH"
-                                    }
-                                 } 
                               ]
                           }
                       ]
