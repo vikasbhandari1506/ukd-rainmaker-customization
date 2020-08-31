@@ -788,6 +788,7 @@
                           },
                           {
                               "path": "https://ifsc.razorpay.com/$.ifscCode",
+                              "queryParam": null,
                               "apiRequest": null,
                               "responseMapping": [
                                  {
