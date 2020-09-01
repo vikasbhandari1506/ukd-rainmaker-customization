@@ -1166,7 +1166,7 @@ ReportDefinitions:
     select initcap(split_part(tenantid, '.', 2)) tenantid, 
     sum(currenttax)  currenttax, 
     sum(arreartax) as arreartax, 
-    sum(penaltytax) as penalty, 
+    sum(penaltytax) as penaltytax, 
     sum(rebate) as rebate, 
     sum(totaltax)  totaltax, 
     sum(currentcollected) currenttaxcollection, 
