@@ -212,6 +212,7 @@ public class DcbRefreshService {
 				"     WHERE"+
 				"      demand.tenantid = dd.tenantid "+
 				"     AND demand.id = dd.demandid "+
+				"     AND dd.taxheadcode not like '%REBATE%'"+
 				"     AND demand.consumercode = prop.propertyid), 0) totalcollected "+
 				"     FROM"+
 				"     eg_pt_property_v2 prop,"+
