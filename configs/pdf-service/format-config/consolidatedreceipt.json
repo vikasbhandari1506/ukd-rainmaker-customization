@@ -306,46 +306,7 @@
                     ],
                     "body": [
                         [
-                            {
-                                "text": "{{owner_name}} :",
-                                "border": [
-                                    true,
-                                    true,
-                                    false,
-                                    true
-                                ],
-                                "style": "receipttablevalue"
-                            },
-                            {
-                                "text": "{{ownerName}}",
-                                "border": [
-                                    false,
-                                    true,
-                                    true,
-                                    true
-                                ],
-                                "style": "receipttable"
-                            },
-                            {
-                                "text": "{{gaurdian_name}} :",
-                                "border": [
-                                    false,
-                                    true,
-                                    false,
-                                    true
-                                ],
-                                "style": "receipttablevalue"
-                            },
-                            {
-                                "text": "{{gaurdianName}}",
-                                "border": [
-                                    false,
-                                    true,
-                                    true,
-                                    true
-                                ],
-                                "style": "receipttable"
-                            },
+                            
                             {
                                 "style": "next-noc-table",
                                 "table": {
@@ -869,6 +830,16 @@
                     -8
                 ]
             },
+             "next-noc-table": {
+                "fontSize": 8,
+                "color": "#000000",
+                  "margin": [
+                    -25,
+                    10,
+                    -22,
+                    -8
+                  ]
+                 },
             "receipttablevalue": {
                 "color": "#000000",
                 "bold": true,
