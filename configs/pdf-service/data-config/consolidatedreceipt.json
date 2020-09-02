@@ -728,7 +728,24 @@
                                     {
                                         "variable": "financialYear",
                                         "value": "$.Properties[0].propertyDetails[0].financialYear"
-                                    }
+                                    },
+                                    {
+                                        "variable": "var_owners",                        
+                                        "value":"$.Properties[0].propertyDetails[0].owners.*",
+                                         "type":"array",
+                                         "format":{                            
+                                            "type":"string",
+                                            "scema":[
+                                               {
+                                                  "variable":"name2",
+                                                  "value":"name"
+                                               },
+                                               {
+                                                  "variable":"fatherOrHusbandName2",
+                                                  "value":"fatherOrHusbandName"
+                                               }]
+                                        } 
+                                     }
                                 ]
                             }
                         ]
