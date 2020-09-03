@@ -304,51 +304,8 @@
                         "*",
                         "*"
                     ],
-                    "body": [
-                        [
-                            {
-                                "text": "{{owner_name}} :",
-                                "border": [
-                                    true,
-                                    true,
-                                    false,
-                                    true
-                                ],
-                                "style": "receipttablevalue"
-                            },
-                            {
-                                "text": "{{ownerName}}",
-                                "border": [
-                                    false,
-                                    true,
-                                    true,
-                                    true
-                                ],
-                                "style": "receipttable"
-                            },
-                            {
-                                "text": "{{gaurdian_name}} :",
-                                "border": [
-                                    false,
-                                    true,
-                                    false,
-                                    true
-                                ],
-                                "style": "receipttablevalue"
-                            },
-                            {
-                                "text": "{{gaurdianName}}",
-                                "border": [
-                                    false,
-                                    true,
-                                    true,
-                                    true
-                                ],
-                                "style": "receipttable"
-                            }
-                        ]
-                    ]
-                },
+                    "body": ["{{#var_owners}}[{\"text\":\"{{owner_name}}\",\"border\":[true,true,false,true],\"style\":\"receipt-table-key\"},{\"text\":\"{{name2}}\",\"border\":[false,true,true,true]},{\"text\":\"{{gaurdian_name}}\",\"border\":[true,true,false,true],\"style\":\"receipt-table-key\"},{\"text\":\"{{fatherOrHusbandName2}}\",\"border\":[false,true,true,true]}]{{/var_owners}}"]
+                                   },
                 "layout": {}
             },
             {
@@ -856,6 +813,16 @@
                     -8
                 ]
             },
+             "next-noc-table": {
+                "fontSize": 8,
+                "color": "#000000",
+                  "margin": [
+                    -25,
+                    10,
+                    -22,
+                    -8
+                  ]
+                 },
             "receipttablevalue": {
                 "color": "#000000",
                 "bold": true,
