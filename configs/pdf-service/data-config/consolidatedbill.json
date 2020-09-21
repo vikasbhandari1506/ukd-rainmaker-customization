@@ -577,7 +577,7 @@
                 "type": "date"
               },
               {
-                "variable": "toPeriod",
+                "variable": "toperiod",
                 "value": {
                   "path": "$.billDetails[0].toPeriod"
                 },
@@ -675,6 +675,10 @@
               {
                 "variable": "timerebate",
                 "formula": "-{{timeRebate}}"
+              },
+              {
+                "variable": "toPeriod",
+                "formula": "{{toperiod}}-20000000"
               }
             ]
           },
