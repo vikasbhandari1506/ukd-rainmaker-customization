@@ -3,18 +3,17 @@
     "operation": "shift",
     "spec": {
       "tradelicense": {
-        "tenantId": "tenantId",
-        "tenantid": "tradelicense.tenantid",
+        "tenantId": "tradelicense.tenantId",
         "calculation": "tradelicense.calculation",
-        "licensenumber": "tradelicense.licensenumber",
-        "commencementdate": "tradelicense.commencementdate",
-        "licensetype": "tradelicense.licensetype",
-        "financialyear": "tradelicense.financialyear",
-        "tradename": "tradelicense.tradename",
-        "applicationnumber": "tradelicense.applicationnumber",
-        "accountid": "tradelicense.accountid",
-        "applicationdate": "tradelicense.applicationdate",
-        "oldpropertyid": "tradelicense.oldpropertyid",
+        "licenseNumber": "tradelicense.licenseNumber",
+        "commencementDate": "tradelicense.commencementDate",
+        "licenseType": "tradelicense.licenseType",
+        "financialYear": "tradelicense.financialYear",
+        "tradeName": "tradelicense.tradeName",
+        "applicationNumber": "tradelicense.applicationNumber",
+        "accountId": "tradelicense.accountId",
+        "applicationDate": "tradelicense.applicationDate",
+        "oldPropertyId": "tradelicense.oldPropertyId",
         "action": "tradelicense.action"
       },
       "ward": "ward"
