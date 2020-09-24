@@ -12,10 +12,12 @@ ServiceMaps:
       timeStampField: $.auditDetails.createdTime
       jsonPath: $.Licenses
       customJsonMapping:
-        indexMapping: {"Data":{"tradelicense":{},"ward":{},"tenantData":{}, "history":{}}}
+        indexMapping: {"Data":{"tradelicense":{},"ward":{},"tenantData":{}, "history":{}, "@timestamp":"timestamp"}}
         fieldMapping:
         - inJsonPath: $
           outJsonPath: $.Data.tradelicense
+        - inJsonPath: $.@timestamp
+          outJsonPath: $.Data.@timestamp  
         externalUriMapping:
         - path: http://egov-location.egov:8080/egov-location/location/v11/boundarys/_search
           queryParam: hierarchyTypeCode=REVENUE,boundaryType=locality,codes=$.tradeLicenseDetail.address.locality.code,tenantId=$.tenantId
@@ -52,10 +54,12 @@ ServiceMaps:
       timeStampField: $.auditDetails.createdTime
       jsonPath: $.Licenses
       customJsonMapping:
-        indexMapping: {"Data":{"tradelicense":{},"ward":{},"tenantData":{}, "history":{}}}
+        indexMapping: {"Data":{"tradelicense":{},"ward":{},"tenantData":{}, "history":{}, "@timestamp":"timestamp"}}
         fieldMapping:
         - inJsonPath: $
           outJsonPath: $.Data.tradelicense
+        - inJsonPath: $.@timestamp
+          outJsonPath: $.Data.@timestamp  
         externalUriMapping:
         - path: http://egov-location.egov:8080/egov-location/location/v11/boundarys/_search
           queryParam: hierarchyTypeCode=REVENUE,boundaryType=locality,codes=$.tradeLicenseDetail.address.locality.code,tenantId=$.tenantId
@@ -92,10 +96,12 @@ ServiceMaps:
       timeStampField: $.auditDetails.createdTime
       jsonPath: $.Licenses
       customJsonMapping:
-        indexMapping: {"Data":{"tradelicense":{},"ward":{},"tenantData":{}, "history":{}}}
+        indexMapping: {"Data":{"tradelicense":{},"ward":{},"tenantData":{}, "history":{}, "@timestamp":"timestamp"}}
         fieldMapping:
         - inJsonPath: $
           outJsonPath: $.Data.tradelicense
+        - inJsonPath: $.@timestamp
+          outJsonPath: $.Data.@timestamp  
         externalUriMapping:
         - path: http://egov-location.egov:8080/egov-location/location/v11/boundarys/_search
           queryParam: hierarchyTypeCode=REVENUE,boundaryType=locality,codes=$.tradeLicenseDetail.address.locality.code,tenantId=$.tenantId
