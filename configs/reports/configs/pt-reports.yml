@@ -829,11 +829,6 @@ ReportDefinitions:
     type: string
     total: false
     source: pt
-  - name: oldarv
-    label: reports.pt.oldarv
-    type: string
-    source: pt
-    total: true    
   - name: currentarv
     label: reports.pt.currentarv
     type: string
