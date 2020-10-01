@@ -879,11 +879,6 @@ ReportDefinitions:
     type: string
     source: pt
     total: false
-  - name: oldarv
-    label: reports.pt.oldarv
-    type: string
-    source: pt
-    total: false
   searchParams:
   - name: fromDate
     label: reports.pt.fromDate
