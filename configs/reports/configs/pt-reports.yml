@@ -935,13 +935,13 @@ ReportDefinitions:
     type: epoch
     source: pt
     isMandatory: false
-    searchClause: AND pt.lastmodifiedtime >= $fromDate
+    searchClause: AND p.lastmodifiedtime >= $fromDate
   - name: toDate
     label: reports.pt.toDate
     type: epoch
     source: pt
     isMandatory: false
-    searchClause: AND pt.lastmodifiedtime <= $toDate
+    searchClause: AND p.lastmodifiedtime <= $toDate
   - name: ulb
     label: reports.pt.tenantid
     type: singlevaluelist
@@ -949,7 +949,7 @@ ReportDefinitions:
     source: pt
     wrapper: true
     isMandatory: false
-    searchClause: AND pt.tenantId = $ulb
+    searchClause: AND p.tenantId = $ulb
   query: |
     select initcap(split_part(p.tenantId, '.', 2)) as tenantId, p.paymentmode ,sum(p.totalamountpaid), count(p.id)
     FROM egcl_payment p, egcl_paymentdetail pd 
