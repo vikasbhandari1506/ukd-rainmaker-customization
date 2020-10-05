@@ -321,7 +321,7 @@ ReportDefinitions:
         label: reports.uc.receipts
         type: string
         source: uc
-        total: false
+        total: true
       - name: servicecategory
         label: reports.uc.businessdetails
         type: string
