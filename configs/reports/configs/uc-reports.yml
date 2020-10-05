@@ -419,13 +419,13 @@ ReportDefinitions:
         type: epoch
         source: uc
         isMandatory: false
-        searchClause: AND rh.receiptdate >= $fromDate
+        searchClause: AND pd.receiptdate >= $fromDate
       - name: toDate
         label: reports.uc.toDate
         type: epoch
         source: uc
         isMandatory: false
-        searchClause: AND rh.receiptdate <= $toDate
+        searchClause: AND pd.receiptdate <= $toDate
       - name: ulb
         label: reports.uc.ulb
         type: singlevaluelist
@@ -433,7 +433,7 @@ ReportDefinitions:
         source: uc
         wrapper: true
         isMandatory: false
-        searchClause: AND rh.tenantid = $ulb
+        searchClause: AND pd.tenantid = $ulb
     query: |
         SELECT
         initcap(split_part(p.tenantid, '.', 2)) as ulb,
