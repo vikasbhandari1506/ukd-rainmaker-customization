@@ -321,7 +321,7 @@ ReportDefinitions:
         label: reports.uc.receipts
         type: string
         source: uc
-        total: false
+        total: true
       - name: servicecategory
         label: reports.uc.businessdetails
         type: string
@@ -377,12 +377,12 @@ ReportDefinitions:
         -- Use CTE to force query plan, compute & use CTE later
         SELECT 
           initcap(split_part(rh.tenantid, '.', 2)) as ulb,
-          (select message from message where locale ='en_IN'and code =(CONCAT('BILLINGSERVICE_BUSINESSSERVICE_',UPPER(replace(replace(rh.businessservice,'-','_'),'.','_'))))) as servicecategory,count(*) as receipts,
+          (select message from message where locale ='en_IN'and code =(CONCAT('BILLINGSERVICE_BUSINESSSERVICE_',UPPER(replace(replace(rh.businessservice,'-','_'),'.','_'))))) as servicecategory,count(distinct py.*) as receipts,
           SUM(CASE WHEN taxheadcode LIKE '%_FIELD_FEE' THEN adjustedamount ELSE 0 END) as fieldcollection,
           SUM(CASE WHEN taxheadcode LIKE '%_TAX' THEN adjustedamount ELSE 0 END) as tax, 
           SUM(CASE WHEN taxheadcode LIKE '%_CGST' THEN adjustedamount ELSE 0 END) as cgst, 
           SUM(CASE WHEN taxheadcode LIKE '%_SGST' THEN adjustedamount ELSE 0 END) as sgst, 
-          sum(totalamount) as totalamount
+          (SUM(CASE WHEN taxheadcode LIKE '%_TAX' THEN adjustedamount ELSE 0 END)  + SUM(CASE WHEN taxheadcode LIKE '%_CGST' THEN adjustedamount ELSE 0 END) +SUM(CASE WHEN taxheadcode LIKE '%_SGST' THEN adjustedamount ELSE 0 END) +SUM(CASE WHEN taxheadcode LIKE '%_FIELD_FEE' THEN adjustedamount ELSE 0 END) )as totalamount
         from egcl_payment as py
         JOIN egcl_paymentdetail AS rh ON py.id=rh.paymentid
         JOIN egcl_bill as bi ON bi.id=rh.billid
@@ -419,13 +419,13 @@ ReportDefinitions:
         type: epoch
         source: uc
         isMandatory: false
-        searchClause: AND rh.receiptdate >= $fromDate
+        searchClause: AND pd.receiptdate >= $fromDate
       - name: toDate
         label: reports.uc.toDate
         type: epoch
         source: uc
         isMandatory: false
-        searchClause: AND rh.receiptdate <= $toDate
+        searchClause: AND pd.receiptdate <= $toDate
       - name: ulb
         label: reports.uc.ulb
         type: singlevaluelist
@@ -433,7 +433,7 @@ ReportDefinitions:
         source: uc
         wrapper: true
         isMandatory: false
-        searchClause: AND rh.tenantid = $ulb
+        searchClause: AND pd.tenantid = $ulb
     query: |
         SELECT
         initcap(split_part(p.tenantid, '.', 2)) as ulb,
