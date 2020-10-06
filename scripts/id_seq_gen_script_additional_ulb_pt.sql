@@ -12,6 +12,9 @@ DROP SEQUENCE IF EXISTS seq_eg_pt_ptid_uk_mussorie;
 DROP SEQUENCE IF EXISTS seq_eg_pt_ptid_uk_ramnagar;
 DROP SEQUENCE IF EXISTS seq_eg_pt_ptid_uk_rudraprayag;
 DROP SEQUENCE IF EXISTS seq_eg_pt_ptid_uk_vikasnagar;
+DROP SEQUENCE IF EXISTS seq_eg_pt_ptid_uk_herbertpur;
+DROP SEQUENCE IF EXISTS seq_eg_pt_ptid_uk_berinag;
+DROP SEQUENCE IF EXISTS seq_eg_pt_ptid_uk_pirankaliyar;
 
 CREATE SEQUENCE seq_eg_pt_ptid_uk_swargashramjonk;
 CREATE SEQUENCE seq_eg_pt_ptid_uk_narendranagar;
@@ -27,3 +30,6 @@ CREATE SEQUENCE seq_eg_pt_ptid_uk_mussorie;
 CREATE SEQUENCE seq_eg_pt_ptid_uk_ramnagar;
 CREATE SEQUENCE seq_eg_pt_ptid_uk_rudraprayag;
 CREATE SEQUENCE seq_eg_pt_ptid_uk_vikasnagar;
+CREATE SEQUENCE seq_eg_pt_ptid_uk_herbertpur;
+CREATE SEQUENCE seq_eg_pt_ptid_uk_berinag;
+CREATE SEQUENCE seq_eg_pt_ptid_uk_pirankaliyar;
