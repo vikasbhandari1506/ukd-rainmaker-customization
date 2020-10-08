@@ -1183,7 +1183,7 @@ ReportDefinitions:
   orderby: ORDER BY a.tenantid  
 
 
-- reportName: StateWiseAdoptionReportv2
+- reportName: StateWiseAdoptionReportV2
   summary: Reports for State Wise Adoption Report
   version: 1.0.0
   moduleName: rainmaker-pt
