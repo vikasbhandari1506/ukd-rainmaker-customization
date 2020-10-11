@@ -469,7 +469,7 @@
     "drillChart": "licenseIssuedBoundaryRevenue",
     "documentType": "_doc",
     "action": "",
-    "plotLabel": "District",
+    "plotLabel": "DDRs",
     "aggregationPaths": [
       "Total Collection",
       "Transactions",
@@ -612,7 +612,7 @@
     "drillChart": "licenceTaxHeadsBreakupBoundary",
     "documentType": "_doc",
     "action": "",
-    "plotLabel": "District",
+    "plotLabel": "DDRs",
     "aggregationPaths": [
       "TL Tax",
       "Adhoc Penalty",
@@ -805,7 +805,7 @@
     ],
     "documentType": "_doc",
     "action": "",
-    "plotLabel": "District",
+    "plotLabel": "DDRs",
     "aggregationPathsA": [
       "Approved",
       "Initiated",
