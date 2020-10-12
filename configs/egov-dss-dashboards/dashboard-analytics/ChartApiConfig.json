@@ -459,7 +459,7 @@
     "filterKeys": [
       {
         "key": "tenantId",
-        "column": "DDRs"
+        "column": "Districts"
       }
     ],
     "isPostResponseHandler": true,
@@ -469,7 +469,7 @@
     "drillChart": "licenseIssuedBoundaryRevenue",
     "documentType": "_doc",
     "action": "",
-    "plotLabel": "DDRs",
+    "plotLabel": "Districts",
     "aggregationPaths": [
       "Total Collection",
       "Transactions",
@@ -603,7 +603,7 @@
     "filterKeys": [
       {
         "key": "tenantId",
-        "column": "DDRs"
+        "column": "Districts"
       }
     ],
     "isPostResponseHandlerA": true,
@@ -612,7 +612,7 @@
     "drillChart": "licenceTaxHeadsBreakupBoundary",
     "documentType": "_doc",
     "action": "",
-    "plotLabel": "DDRs",
+    "plotLabel": "Districts",
     "aggregationPaths": [
       "TL Tax",
       "Adhoc Penalty",
@@ -794,7 +794,7 @@
     "filterKeys": [
       {
         "key": "tenantId",
-        "column": "DDRs"
+        "column": "Districts"
       }
     ],
     "chartType": "xtable",
@@ -805,7 +805,7 @@
     ],
     "documentType": "_doc",
     "action": "",
-    "plotLabel": "DDRs",
+    "plotLabel": "Districts",
     "aggregationPathsA": [
       "Approved",
       "Initiated",
