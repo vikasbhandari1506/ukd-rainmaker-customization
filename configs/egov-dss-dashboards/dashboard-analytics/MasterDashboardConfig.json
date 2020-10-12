@@ -331,7 +331,7 @@
             },
             {
               "id": 312,
-              "name": "Total Cumulative Collection",
+              "name": "DSS_TOTAL_CUMULATIVE_COLLECTION",
               "dimensions": {
                 "height": 350,
                 "width": 7
@@ -795,7 +795,7 @@
             },
             {
               "id": 312,
-              "name": "Total Cumulative Collection",
+              "name": "DSS_TOTAL_CUMULATIVE_COLLECTION",
               "dimensions": {
                 "height": 350,
                 "width": 7
