@@ -22,6 +22,10 @@ DROP SEQUENCE IF EXISTS seq_eg_pt_ptid_uk_dineshpur;
 DROP SEQUENCE IF EXISTS seq_eg_pt_ptid_uk_dharchula;
 DROP SEQUENCE IF EXISTS seq_eg_pt_ptid_uk_bazpur;
 DROP SEQUENCE IF EXISTS seq_eg_pt_ptid_uk_augustmuni;
+DROP SEQUENCE IF EXISTS seq_eg_pt_ptid_uk_uttarkashi;
+DROP SEQUENCE IF EXISTS seq_eg_pt_ptid_uk_pauri;
+DROP SEQUENCE IF EXISTS seq_eg_pt_ptid_uk_pithoragarh;
+
 
 CREATE SEQUENCE seq_eg_pt_ptid_uk_swargashramjonk;
 CREATE SEQUENCE seq_eg_pt_ptid_uk_narendranagar;
@@ -47,3 +51,6 @@ CREATE SEQUENCE seq_eg_pt_ptid_uk_dineshpur;
 CREATE SEQUENCE seq_eg_pt_ptid_uk_dharchula;
 CREATE SEQUENCE seq_eg_pt_ptid_uk_bazpur;
 CREATE SEQUENCE seq_eg_pt_ptid_uk_augustmuni;
+CREATE SEQUENCE seq_eg_pt_ptid_uk_uttarkashi;
+CREATE SEQUENCE seq_eg_pt_ptid_uk_pauri;
+CREATE SEQUENCE seq_eg_pt_ptid_uk_pithoragarh;
