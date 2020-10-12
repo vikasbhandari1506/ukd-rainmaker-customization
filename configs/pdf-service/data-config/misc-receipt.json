@@ -457,6 +457,7 @@
                     "required":true,
                     "prefix": null,
                     "module":"rainmaker-common"
+                  }
                 },
                 {
                   "variable": "comment_label",
