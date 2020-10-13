@@ -1029,16 +1029,6 @@ ReportDefinitions:
     type: string
     source: pt
     total: true
-  - name: totaldemand
-    label: reports.pt.totaldemand
-    type: string
-    source: pt
-    total: true
-  - name: totalrevenuecollected
-    label: reports.pt.totalrevenuecollected
-    type: string
-    source: pt
-    total: true   
   searchParams:
   - name: ulb
     label: ULB
