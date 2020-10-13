@@ -957,7 +957,7 @@ ReportDefinitions:
   groupby: GROUP BY p.tenantid, p.paymentmode
   orderby: ORDER BY p.tenantId asc
 
-- reportName: PTApplicationReport
+- reportName: PTAdoptionReport
   summary: Number of applications
   version: 1.0.0
   moduleName: rainmaker-pt
@@ -967,8 +967,8 @@ ReportDefinitions:
     type: string
     source: pt
     total: false
-  - name: totalmigratedproperties
-    label: reports.pt.totalmigratedproperties
+  - name: totalpropertycount
+    label: reports.pt.totalpropertycount
     type: string
     source: pt
     total: true
@@ -977,8 +977,18 @@ ReportDefinitions:
     type: string
     source: pt
     total: true
-  - name: updatedprops
-    label: reports.pt.updatedprops
+  - name: propertiestobeupdated
+    label: reports.pt.propertiestobeupdated
+    type: string
+    source: pt
+    total: true
+  - name: propertiesverified
+    label: reports.pt.propertiesverified
+    type: string
+    source: pt
+    total: true
+  - name: verificationpercentage
+    label: reports.pt.verificationpercentage
     type: string
     source: pt
     total: true
@@ -1002,25 +1012,30 @@ ReportDefinitions:
     isMandatory: false
     searchClause: AND pt.tenantid = $ulb
   query: |
-    SELECT
-    initcap(split_part(pt.tenantid, '.', 2)) as tenantId,
-    SUM(dd.taxamount) as totaldemand,
-    SUM(dd.collectionamount) as totalrevenuecollected,
-    count(distinct ptd.property) as totalmigratedproperties,
-    SUM(case when ptd.additionaldetails ->>'is_migrated' = 'true' then 1 else 0 end) as migration,
-    (count(DISTINCT ptd.property)-SUM(case when ptd.additionaldetails ->>'is_migrated' = 'true' then 1 else 0 end)) as dataentry,
-    SUM(case when ptd.additionaldetails ->>'is_migrated' = 'true' and ptd.createdtime > ptd.lastmodifiedtime then 1 else 0 end) updatedprops
-    FROM eg_pt_property_v2 as pt
-    JOIN (SELECT DISTINCT ON (property) *  FROM eg_pt_propertydetail_v2 order by property, lastmodifiedtime desc) as ptd 
-    on ptd.property=pt.propertyid 
-    JOIN (SELECT DISTINCT ON (consumercode) *  FROM egbs_demand_v1 dd order by consumercode, lastmodifiedtime desc ) as d
-    on d.consumercode = ptd.property 
-    JOIN egbs_demanddetail_v1 dd on dd.demandid = d.id 
-    where 
-    ptd.source = 'LEGACY_RECORD' 
-    and pt.tenantid != 'uk.testing' 
-  groupby: GROUP BY pt.tenantid
-  orderby: ORDER BY pt.tenantid
+      SELECT 
+      a.tenant as tenantId, 
+      a.total_properties totalpropertycount,
+      (d.total_properties_dataentry) dataentry,
+      (case when b.total_properties_to_be_update > 0 then b.total_properties_to_be_update else 0 end) propertiestobeupdated,
+      (case when c.total_properties_updated > 0 then c.total_properties_updated else 0 end) propertiesverified, 
+      (case when Round(( c.total_properties_updated * 100 / total_properties_to_be_update ), 2) > 0 then Round(( 
+      c.total_properties_updated * 100 / total_properties_to_be_update ), 2) else 0 end) verificationpercentage, 
+      e.totaldemand totaldemand, 
+      e.totalrevenuecollected totalrevenuecollected 
+      FROM (SELECT Initcap(Split_part(pd.tenantid, '.', 2)) tenant,Count(DISTINCT pd.property) AS Total_properties 
+      FROM eg_pt_propertydetail_v2 pd WHERE pd.tenantid != 'uk.testing' GROUP BY pd.tenantid) AS a LEFT OUTER JOIN (SELECT Initcap(Split_part(pd1.tenantid, '.', 2)) tenant, Count(DISTINCT pd1.property) Total_properties_to_be_update 
+      FROM eg_pt_propertydetail_v2 pd1 WHERE pd1.tenantid != 'uk.testing' AND pd1.additionaldetails ->> 'isMigrated' = 'true' 
+      GROUP BY pd1.tenantid) AS b ON a.tenant = b.tenant 
+      LEFT OUTER JOIN (SELECT Initcap(Split_part(tenantid, '.', 2)) tenant, Count(DISTINCT propertyid) Total_properties_updated FROM 
+      eg_pt_property_v2 WHERE additionaldetails ->> 'updatedByULB' = 'true' GROUP BY tenantid) AS c ON b.tenant = c.tenant 
+      LEFT OUTER JOIN (SELECT Initcap(Split_part(pd1.tenantid, '.' , 2)) tenant, Count(DISTINCT pd1.property) 
+      Total_properties_DataEntry FROM eg_pt_propertydetail_v2 pd1 WHERE pd1.tenantid != 'uk.testing' AND ( pd1.additionaldetails ->> 
+      'isMigrated' != 'true' OR pd1.additionaldetails ->> 'isMigrated' IS NULL ) GROUP BY pd1.tenantid) AS d ON d.tenant = a.tenant 
+      LEFT OUTER JOIN (SELECT Initcap(Split_part(pd1.tenantid, '.', 2)) tenant, Sum(dd.taxamount) AS totaldemand , Sum(dd.collectionamount)
+      AS totalrevenuecollected FROM eg_pt_propertydetail_v2 pd1 JOIN (SELECT DISTINCT ON (consumercode) * FROM egbs_demand_v1 dd ORDER 
+      BY consumercode, lastmodifiedtime DESC) AS d ON d.consumercode = pd1.property JOIN egbs_demanddetail_v1 dd ON dd.demandid = d.id 
+      WHERE pd1.tenantid != 'uk.testing' GROUP BY pd1.tenantid) AS e ON e.tenant = a.tenant 
+  orderby: ORDER BY a.tenant
 
 - reportName: StateWiseAdoptionReport
   summary: Reports for State Wise Adoption Report
