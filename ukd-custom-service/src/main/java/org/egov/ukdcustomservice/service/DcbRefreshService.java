@@ -17,7 +17,17 @@ public class DcbRefreshService {
 	private JdbcTemplate jdbcTemplate; 
 	
 	public static final String tenantsQuery="select distinct tenantid from eg_pt_property_v2";
-	public static final String deleteQuery="delete from  dcb  where tenantid=':tenantId';";
+	public static final String deleteQuery="delete from  dcb  propertyid in "+
+	" ("
+	+ "select propertyid from eg_pt_property_v2,egbs_demand_v1 demand, egbs_demanddetail_v1 dd " +
+	" where demand.id=dd.demandid and demand.consumercode=prop.propertyid and prop=':tenantId' and "+
+    " ( "
+    + "to_timestamp(dd.lastmodifiedtime/1000)>(select max(updatedtime) from dcb  ) "+
+    " OR " + 
+    " to_timestamp(prop.lastmodifiedtime/1000)>(select max(updatedtime) from dcb  ) "
+    + ") "
+    + ")" +
+    " and tenantid=':tenantId';";
 	
 	
 	public boolean refresh(String tenant)
@@ -34,6 +44,7 @@ public class DcbRefreshService {
 				"     prop.createdtime AS createddate,"+
 				"     pd.usagecategoryminor AS usage,"+
 				"     prop.tenantid as tenantid,"+
+				"	  now() AS updatedtime ," +
 				"   (select  u.name ||',' || u.mobilenumber from eg_pt_owner_v2 po, eg_user u   where "+
 				"	 po.userid=u.uuid and "+
 				"	 po.propertydetail = "+

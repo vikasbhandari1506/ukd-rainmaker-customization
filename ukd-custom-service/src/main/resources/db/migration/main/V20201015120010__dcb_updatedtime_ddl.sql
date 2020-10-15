@@ -1,0 +1,1 @@
+alter table dcb add column updatedtime date;
