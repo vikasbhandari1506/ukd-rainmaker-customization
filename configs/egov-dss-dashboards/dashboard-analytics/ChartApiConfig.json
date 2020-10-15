@@ -764,7 +764,7 @@
         "dateRefField": "Data.tradelicense.@timestamp",
         "indexName": "tlindex-v1",
         "aggrQueryBc": "{\"aggs\":{\"AGGR\":{\"filter\":{\"bool\":{\"must_not\":[{\"term\":{\"Data.tradelicense.tenantId.keyword\":\"uk.testing\"}}]}},\"aggs\":{\"Status\":{\"terms\":{\"field\":\"Data.tradelicense.status.keyword\"},\"aggs\":{\"License Issued\":{\"value_count\":{\"field\":\"Data.tradelicense.status.keyword\"}}}}}}}}",
-        "aggrQuery": "{\"aggs\":{\"AGGR\":{\"filter\":{\"bool\":{\"must_not\":[{\"term\":{\"Data.tradelicense.tenantId.keyword\":\"uk.testing\"}}]}},\"aggs\":{\"Status\":{\"terms\":{\"field\":\"Data.tradelicense.status.keyword\",\"size\":1000,\"min_doc_count\":0},\"aggs\":{\"License Issued\":{\"cardinality\":{\"field\":\"Data.tradelicense.licenseNumber.keyword\"}}}}}}}}"
+        "aggrQuery": "{\"aggs\":{\"AGGR\":{\"filter\":{\"bool\":{\"must_not\":[{\"term\":{\"Data.tradelicense.tenantId.keyword\":\"uk.testing\"}}]}},\"aggs\":{\"Status\":{\"terms\":{\"field\":\"Data.tradelicense.status.keyword\",\"size\":1000,\"min_doc_count\":0},\"aggs\":{\"License Issued\":{\"value_count\":{\"field\":\"Data.tradelicense.status.keyword\"}}}}}}}}"
       }
     ],
     "chartType": "pie",
