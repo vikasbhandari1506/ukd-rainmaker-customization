@@ -17,10 +17,10 @@ public class DcbRefreshService {
 	private JdbcTemplate jdbcTemplate; 
 	
 	public static final String tenantsQuery="select distinct tenantid from eg_pt_property_v2";
-	public static final String deleteQuery="delete from  dcb  propertyid in "+
+	public static final String deleteQuery="delete from  dcb where propertyid in "+
 	" ("
-	+ "select propertyid from eg_pt_property_v2,egbs_demand_v1 demand, egbs_demanddetail_v1 dd " +
-	" where demand.id=dd.demandid and demand.consumercode=prop.propertyid and prop=':tenantId' and "+
+	+ "select propertyid from eg_pt_property_v2 prop,egbs_demand_v1 demand, egbs_demanddetail_v1 dd " +
+	" where demand.id=dd.demandid and demand.consumercode=prop.propertyid and prop.tenantid=':tenantId' and "+
     " ( "
     + "to_timestamp(dd.lastmodifiedtime/1000)>(select max(updatedtime) from dcb  ) "+
     " OR " + 
@@ -44,7 +44,6 @@ public class DcbRefreshService {
 				"     prop.createdtime AS createddate,"+
 				"     pd.usagecategoryminor AS usage,"+
 				"     prop.tenantid as tenantid,"+
-				"	  now() AS updatedtime ," +
 				"   (select  u.name ||',' || u.mobilenumber from eg_pt_owner_v2 po, eg_user u   where "+
 				"	 po.userid=u.uuid and "+
 				"	 po.propertydetail = "+
@@ -224,8 +223,9 @@ public class DcbRefreshService {
 				"      demand.tenantid = dd.tenantid "+
 				"     AND demand.id = dd.demandid "+
 				"     AND dd.taxheadcode not like '%REBATE%'"+
-				"     AND demand.consumercode = prop.propertyid), 0) totalcollected "+
-				"     FROM"+
+				"     AND demand.consumercode = prop.propertyid), 0) totalcollected , "+
+				"	    now() AS updatedtime " +
+				"     FROM "+
 				"     eg_pt_property_v2 prop,"+
 				"     eg_pt_propertydetail_v2 pd,"+
 				"     eg_pt_address_v2 address,"+
@@ -249,16 +249,27 @@ public class DcbRefreshService {
 				"     AND prop.tenantid = pd.tenantid "+
 				"     and msg.tenantid=prop.tenantid"+
 				"     AND prop.tenantid = address.tenantid "+
-				"     and prop.tenantid=':tenantId';";
+				"     and prop.tenantid=':tenantId' "
+				+ "  and prop.propertyid in  " +
+				" ( "  +
+				" select propertyid from eg_pt_property_v2 prop,egbs_demand_v1 demand, egbs_demanddetail_v1 dd " +
+				" where demand.id=dd.demandid and demand.consumercode=prop.propertyid and prop.tenantid=':tenantId' and "+
+			    " ( "
+			    + "to_timestamp(dd.lastmodifiedtime/1000)>(select max(updatedtime) from dcb  ) "+
+			    " OR " + 
+			    " to_timestamp(prop.lastmodifiedtime/1000)>(select max(updatedtime) from dcb  ) "
+			    + ") "
+			    + ") "
+				+ ";";
 		
 		String deletedQuery=	deleteQuery.replaceAll(":tenantId", tenant);
-		insertQuery=	insertQuery.replaceAll(":tenantId", tenant);
-
+	  String	insertedQuery=	insertQuery.replaceAll(":tenantId", tenant);
+		log.info("deleted existing for "+tenant +" deletedQuery : "+deletedQuery);
 
 		jdbcTemplate.execute(deletedQuery);
-		log.info("deleted existing for "+tenant);
+		log.info("insert query for "+tenant +" insert : "+insertedQuery);
 		
-		jdbcTemplate.execute(insertQuery );
+		jdbcTemplate.execute(insertedQuery );
 		log.info("refresh completed for "+tenant);
 
 
