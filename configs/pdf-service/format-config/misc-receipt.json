@@ -373,7 +373,7 @@
                 "style": "receipt-table-value"
               },
               {
-                "text": "{{G8ReceiptNo}}",
+                "text": "{{mscReceiptNo}}",
                 "border": [
                   false,
                   false,
@@ -393,7 +393,7 @@
                 "style": "receipt-table-value"
               },
               {
-                "text": "{{G8ReceiptDate}}",
+                "text": "{{mscReceiptDate}}",
                 "border": [
                   false,
                   true,
