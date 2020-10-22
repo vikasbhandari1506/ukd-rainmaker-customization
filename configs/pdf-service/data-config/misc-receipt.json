@@ -86,13 +86,13 @@
                  }
                 },
                 {
-                  "variable": "G8ReceiptNo",
+                  "variable": "mscReceiptNo",
                   "value": {
                     "path": "$.paymentDetails[0].manualReceiptNumber"
                   }
                 },
                 {
-                  "variable": "G8ReceiptDate",
+                  "variable": "mscReceiptDate",
                   "value": {
                     "path": "$.paymentDetails[0].manualReceiptDate"
                   },
