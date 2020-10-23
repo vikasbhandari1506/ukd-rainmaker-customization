@@ -289,6 +289,8 @@ ReportDefinitions:
           initcap(split_part(rh.tenantid, '.', 2)) as ulb,
           bi.consumercode as receiptnumber,
           To_char((To_timestamp(rh.receiptdate / 1000) at time Zone 'Asia/Kolkata'), 'DD/MM/YYYY') as receiptdate,
+          To_char((To_timestamp(rh.manualreceiptdate / 1000) at time Zone 'Asia/Kolkata'), 'DD/MM/YYYY') as g8issuedate,
+          rh.manualreceiptnumber as g8receiptno,
           (select message from message where locale ='en_IN'and code =(CONCAT('BILLINGSERVICE_BUSINESSSERVICE_',UPPER(replace(replace(rh.businessservice,'-','_'),'.','_'))))) as Businesservice,
           receipt_breakup.*,
           (case when py.paymentmode like 'CASH' then '' else  transactionnumber end) as ddorchequenumber,
