@@ -43,8 +43,13 @@ DROP SEQUENCE IF EXISTS seq_eg_pt_ptid_uk_bhowali;
 DROP SEQUENCE IF EXISTS seq_eg_pt_ptid_uk_kichha;
 DROP SEQUENCE IF EXISTS seq_eg_pt_ptid_uk_kirtinagar;
 DROP SEQUENCE IF EXISTS seq_eg_pt_ptid_uk_tharali;
+DROP SEQUENCE IF EXISTS seq_eg_pt_ptid_uk_laksar;
+DROP SEQUENCE IF EXISTS seq_eg_pt_ptid_uk_landhaura;
+DROP SEQUENCE IF EXISTS seq_eg_pt_ptid_uk_pokhari;
 
-
+CREATE SEQUENCE seq_eg_pt_ptid_uk_laksar;
+CREATE SEQUENCE seq_eg_pt_ptid_uk_landhaura;
+CREATE SEQUENCE seq_eg_pt_ptid_uk_pokhari;
 CREATE SEQUENCE seq_eg_pt_ptid_uk_bhowali;
 CREATE SEQUENCE seq_eg_pt_ptid_uk_kichha;
 CREATE SEQUENCE seq_eg_pt_ptid_uk_kirtinagar;
