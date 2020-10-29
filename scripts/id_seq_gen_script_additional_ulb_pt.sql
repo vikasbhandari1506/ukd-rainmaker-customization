@@ -36,6 +36,7 @@ DROP SEQUENCE IF EXISTS seq_eg_pt_ptid_uk_dwarahat;
 DROP SEQUENCE IF EXISTS seq_eg_pt_ptid_uk_pokhari;
 DROP SEQUENCE IF EXISTS seq_eg_pt_ptid_uk_laksar;
 DROP SEQUENCE IF EXISTS seq_eg_pt_ptid_uk_landhaura;
+DROP SEQUENCE IF EXISTS seq_eg_pt_ptid_uk_bageshwar;
 
 CREATE SEQUENCE seq_eg_pt_ptid_uk_swargashramjonk;
 CREATE SEQUENCE seq_eg_pt_ptid_uk_narendranagar;
@@ -75,3 +76,4 @@ CREATE SEQUENCE seq_eg_pt_ptid_uk_dwarahat;
 CREATE SEQUENCE seq_eg_pt_ptid_uk_pokhari;
 CREATE SEQUENCE seq_eg_pt_ptid_uk_laksar;
 CREATE SEQUENCE seq_eg_pt_ptid_uk_landhaura;
+CREATE SEQUENCE seq_eg_pt_ptid_uk_bageshwar;
