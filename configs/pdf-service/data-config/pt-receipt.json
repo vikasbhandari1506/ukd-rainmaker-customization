@@ -199,17 +199,13 @@
                    ]
                },
                { 
-                 "path": "http://pt-services-v2:8080/pt-services-v2/property/_search",
-                 "queryParam": "tenantId=$.paymentDetails[0].tenantid&ids=$.paymentDetails[0].bill.consumerCode",
+                 "path": "http://property-services:8080/property-services/property/_search",
+                 "queryParam": "tenantId=$.paymentDetails[0].tenantid&propertyIds=$.paymentDetails[0].bill.consumerCode",
                  "apiRequest": null,
                  "responseMapping":[
                    {             
                      "variable":"oldPropertyId",
                      "value":"$.Properties.oldPropertyId"
-                   },
-                   {
-                     "variable":"assessmentNumber",
-                     "value":"$.Properties.propertyDetails[0].assessmentNumber"
                    },
                    {
                      "variable":"houseNo",
@@ -230,16 +226,27 @@
                    },
                    {
                      "variable": "ownerName",                        
-                     "value":"$.Properties.propertyDetails[0].owners[0].name"
+                     "value":"$.Properties.owners[0].name"
                             
                    },
                    {
                      "variable": "gaurdianName",                        
-                     "value":"$.Properties.propertyDetails[0].owners[0].fatherOrHusbandName"                             
+                     "value":"$.Properties.owners[0].fatherOrHusbandName"                             
+                   }
+                 ]
+               },
+               { 
+                 "path": "http://property-services:8080/property-services/assessment/_search",
+                 "queryParam": "tenantId=$.paymentDetails[0].tenantid&propertyIds=$.paymentDetails[0].bill.consumerCode",
+                 "apiRequest": null,
+                 "responseMapping":[
+                   {
+                     "variable":"assessmentNumber",
+                     "value":"$.Assessments.assessmentNumber"
                    },
                    {
                      "variable": "financialYear",                        
-                     "value":"$.Properties.propertyDetails[0].financialYear"                             
+                     "value":"$.Assessments.financialYear"                             
                    }
                  ]
                }
