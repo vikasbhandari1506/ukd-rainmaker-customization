@@ -200,7 +200,7 @@
                },
                { 
                  "path": "http://property-services:8080/property-services/property/_search",
-                 "queryParam": "tenantId=$.paymentDetails[0].tenantid&propertyIds=$.paymentDetails[0].bill.consumerCode",
+                 "queryParam": "tenantId=$.Payments.*.paymentDetails[0].tenantId&propertyIds=$.Payments.*.paymentDetails[0].bill.consumerCode",
                  "apiRequest": null,
                  "responseMapping":[
                    {             
@@ -237,7 +237,7 @@
                },
                { 
                  "path": "http://property-services:8080/property-services/assessment/_search",
-                 "queryParam": "tenantId=$.paymentDetails[0].tenantid&propertyIds=$.paymentDetails[0].bill.consumerCode",
+                 "queryParam": "tenantId=$.Payments.*.paymentDetails[0].tenantId&propertyIds=$.Payments.*.paymentDetails[0].bill.consumerCode",
                  "apiRequest": null,
                  "responseMapping":[
                    {
