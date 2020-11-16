@@ -695,33 +695,33 @@
                  "responseMapping":[
                    {             
                      "variable":"oldPropertyId",
-                     "value":"$.Properties.oldPropertyId"
+                     "value":"$.Properties.*.oldPropertyId"
                    },
                    {
                      "variable":"houseNo",
-                     "value":"$.Properties.address.doorNo"
+                     "value":"$.Properties.*.address.doorNo"
                    },
                    {
                      "variable":"buildingName",
-                     "value":"$.Properties.address.buildingName"
+                     "value":"$.Properties.*.address.buildingName"
                    },
                    {
                      "variable": "street",                        
-                     "value":"$.Properties.address.street"
+                     "value":"$.Properties.*.address.street"
                             
                    },
                    {
                      "variable": "locality",                        
-                     "value":"$.Properties.address.locality.name"                             
+                     "value":"$.Properties.*.address.locality.name"                             
                    },
                    {
                      "variable": "ownerName",                        
-                     "value":"$.Properties.owners[0].name"
+                     "value":"$.Properties.*.owners[0].name"
                             
                    },
                    {
                      "variable": "gaurdianName",                        
-                     "value":"$.Properties.owners[0].fatherOrHusbandName"                             
+                     "value":"$.Properties.*.owners[0].fatherOrHusbandName"                             
                    }
                  ]
                },
@@ -732,11 +732,11 @@
                  "responseMapping":[
                    {
                      "variable":"assessmentNumber",
-                     "value":"$.Assessments.assessmentNumber"
+                     "value":"$.Assessments.*.assessmentNumber"
                    },
                    {
                      "variable": "financialYear",                        
-                     "value":"$.Assessments.financialYear"                             
+                     "value":"$.Assessments.*.financialYear"                             
                    }
                  ]
                }
