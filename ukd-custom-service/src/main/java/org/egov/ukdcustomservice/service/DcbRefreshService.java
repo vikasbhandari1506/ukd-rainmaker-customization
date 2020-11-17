@@ -16,10 +16,10 @@ public class DcbRefreshService {
 	@Autowired
 	private JdbcTemplate jdbcTemplate; 
 	
-	public static final String tenantsQuery="select distinct tenantid from eg_pt_property_v2";
+	public static final String tenantsQuery="select distinct tenantid from eg_pt_property";
 	public static final String deleteQuery="delete from  dcb where propertyid in "+
 	" ("
-	+ "select propertyid from eg_pt_property_v2 prop,egbs_demand_v1 demand, egbs_demanddetail_v1 dd " +
+	+ "select propertyid from eg_pt_property prop,egbs_demand_v1 demand, egbs_demanddetail_v1 dd " +
 	" where demand.id=dd.demandid and demand.consumercode=prop.propertyid and prop.tenantid=':tenantId' and "+
     " ( "
     + "to_timestamp(dd.lastmodifiedtime/1000)>(select max(updatedtime) from dcb where tenantid=':tenantId' ) "+
@@ -40,20 +40,20 @@ public class DcbRefreshService {
 				"     prop.oldpropertyid AS oldpropertyid,"+
 				"     address.doorno AS doorno,"+
 				"     msg.message AS mohalla,"+
-				"     pd.propertytype AS propertytype,"+
+				"     prop.propertytype AS propertytype,"+
 				"     prop.createdtime AS createddate,"+
-				"     pd.usagecategoryminor AS usage,"+
+				"     prop.usagecategory AS usage,"+
 				"     prop.tenantid as tenantid,"+
-				"   (select  u.name ||',' || u.mobilenumber from eg_pt_owner_v2 po, eg_user u   where "+
+				"   (select  u.name ||',' || u.mobilenumber from eg_pt_owner po, eg_user u   where "+
 				"	 po.userid=u.uuid and "+
-				"	 po.propertydetail = "+
+				"	 po.propertyid = "+
 				"     ("+
 				"     SELECT"+
-				"     assessmentnumber "+
+				"     prop.id "+
 				"     FROM"+
-				"     eg_pt_propertydetail_v2 "+
+				"     eg_pt_asmt_assessment "+
 				"     WHERE"+
-				"     property = prop.propertyid "+
+				"     propertyid = prop.propertyid "+
 				"		 and "+
 				"		 tenantid=prop.tenantid"+
 				"     ORDER BY"+
@@ -86,18 +86,20 @@ public class DcbRefreshService {
 				"     SELECT"+
 				"     SUM(unit.arv) "+
 				"     FROM"+
-				"      eg_pt_unit_v2 unit,eg_pt_propertydetail_v2  ptd"+
-				"	where ptd.assessmentnumber= unit.propertydetail"+
-				"	and ptd.property=prop.propertyid"+
+				"      eg_pt_unit unit,eg_pt_asmt_assessment  ptd, eg_pt_asmt_unitusage auu"+
+				"	where ptd.propertyid=prop.propertyid"+
+				"   and auu.assessmentid=ptd.id"+
+				"   and auu.unitid=unit.id"+
 				"	and substr(ptd.financialyear, 0, 5)::INTEGER >=	to_char(current_timestamp, 'YYYY')::INTEGER ),0)"+
 				"      currentarv,"+
 				"COALESCE(("+
 				"     SELECT"+
 				"     SUM(unit.arv) "+
 				"     FROM"+
-				"      eg_pt_unit_v2 unit,eg_pt_propertydetail_v2  ptd"+
-				"	where ptd.assessmentnumber= unit.propertydetail"+
-				"	and ptd.property=prop.propertyid"+
+				"      eg_pt_unit_v2 unit,eg_pt_asmt_assessment  ptd, eg_pt_asmt_unitusage auu"+
+				"	where ptd.propertyid=prop.propertyid"+
+				"   and auu.assessmentid=ptd.id"+
+				"   and auu.unitid=unit.id"+
 				"	and substr(ptd.financialyear, 0, 5)::INTEGER <	to_char(current_timestamp, 'YYYY')::INTEGER ),0)"+
 				"      oldarv,"+
 				"      "+
@@ -226,9 +228,9 @@ public class DcbRefreshService {
 				"     AND demand.consumercode = prop.propertyid), 0) totalcollected , "+
 				"	    now() AS updatedtime " +
 				"     FROM "+
-				"     eg_pt_property_v2 prop,"+
-				"     eg_pt_propertydetail_v2 pd,"+
-				"     eg_pt_address_v2 address,"+
+				"     eg_pt_property prop,"+
+				"     eg_pt_asmt_assessment pd,"+
+				"     eg_pt_address address,"+
 				"     message msg "+
 				"     WHERE"+
 				"     assessmentnumber = "+
@@ -236,14 +238,14 @@ public class DcbRefreshService {
 				"     SELECT"+
 				"     assessmentnumber "+
 				"     FROM"+
-				"     eg_pt_propertydetail_v2 "+
+				"     eg_pt_asmt_assessment "+
 				"     WHERE"+
-				"     property = prop.propertyid "+
+				"     propertyid = prop.propertyid "+
 				"     ORDER BY"+
 				"     substr(financialyear, 0, 5)::INTEGER DESC LIMIT 1"+
 				"     )"+
-				"     AND prop.propertyid = pd.property "+
-				"     AND prop.propertyid = address.property "+
+				"     AND prop.propertyid = pd.propertyid "+
+				"     AND prop.id = address.propertyid "+
 				"     AND UPPER(replace(address.tenantid, '.', '_')) || '_REVENUE_' || address.locality = msg.code "+
 				"     AND msg.locale = 'en_IN' "+
 				"     AND prop.tenantid = pd.tenantid "+
@@ -252,7 +254,7 @@ public class DcbRefreshService {
 				"     and prop.tenantid=':tenantId' "
 				+ "  and prop.propertyid in  " +
 				" ( "  +
-				" select propertyid from eg_pt_property_v2 prop,egbs_demand_v1 demand, egbs_demanddetail_v1 dd " +
+				" select propertyid from eg_pt_property prop,egbs_demand_v1 demand, egbs_demanddetail_v1 dd " +
 				" where demand.id=dd.demandid and demand.consumercode=prop.propertyid and prop.tenantid=':tenantId' and "+
 			    " ( "
 			    + "to_timestamp(dd.lastmodifiedtime/1000)>(select max(updatedtime) from dcb where tenantid=':tenantId' ) "+
