@@ -39,27 +39,27 @@ ReportDefinitions:
     label: reports.pt.interest
     type: string
     source: pt
-    total: false
+    total: true
   - name: penalty
     label: reports.pt.penalty
     type: string
     source: pt
-    total: false  
+    total: true  
   - name: swatchathatax
     label: reports.pt.swatchatatax
     type: string
     source: pt
-    total: false
+    total: true
   - name: propertytax
     label: reports.pt.propertytax 
     type: string
     source: pt
-    total: false
+    total: true
   - name: totalcollection
     label: reports.pt.totalcollection 
     type: string
     source: pt
-    total: false
+    total: true
   searchParams:
   - name: fromDate
     label: reports.pt.fromDate
