@@ -326,7 +326,7 @@
                 (SELECT( SELECT count(*) 
                 FROM eg_tl_tradelicense  WHERE (createdtime/1000) <= 
                 ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 4) 
-                AND applicationtype = 'NEW' AND tenantid != 'uk.testing')) as renewalLicense,
+                AND applicationtype = 'RENEWAL' AND tenantid != 'uk.testing')) as renewalLicense,
                 (SELECT( SELECT count(*) 
                 FROM eg_tl_tradelicense  WHERE (createdtime/1000) <= 
                 ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 4) 
