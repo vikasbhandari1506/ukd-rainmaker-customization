@@ -312,7 +312,7 @@
                 (SELECT TRUNC((SELECT SUM(pymt.totalamountpaid) FROM eg_tl_tradelicense tl INNER JOIN egcl_bill bill ON 
                 tl.applicationnumber = bill.consumercode INNER JOIN egcl_paymentdetail pd ON 
                 bill.id = pd.billid INNER JOIN egcl_payment pymt ON pd.paymentid = pymt.id 
-                WHERE (pd.receiptdate/1000) <= (extract(epoch FROM NOW())) AND tl.tenantid != 'uk.testing' 
+                WHERE (pd.receiptdate/1000) <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800)  AND tl.tenantid != 'uk.testing' 
                 AND pymt.paymentstatus != 'Cancelled' AND bill.status != 'CANCELLED') / 100000, 3)) as revenueCollected,
                 count(*) as receiptscreated,
                 'Week1' as day FROM eg_tl_tradelicense WHERE (createdtime/1000) <= 
@@ -337,7 +337,7 @@
                 tl.applicationnumber = bill.consumercode INNER JOIN egcl_paymentdetail pd ON 
                 bill.id = pd.billid INNER JOIN egcl_payment pymt ON pd.paymentid = pymt.id 
                 WHERE (pd.receiptdate/1000)  <= 
-                ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800) 
+                ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 2) 
                 AND tl.tenantid != 'uk.testing' 
                 AND pymt.paymentstatus != 'Cancelled' AND bill.status != 'CANCELLED') / 100000, 3))  as revenueCollected,
                 count(*) as receiptscreated,
@@ -364,7 +364,7 @@
                 tl.applicationnumber = bill.consumercode INNER JOIN egcl_paymentdetail pd ON 
                 bill.id = pd.billid INNER JOIN egcl_payment pymt ON pd.paymentid = pymt.id 
                 WHERE (pd.receiptdate/1000)  <= 
-                ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 2) 
+                ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 3) 
                 AND tl.tenantid != 'uk.testing' 
                 AND pymt.paymentstatus != 'Cancelled' AND bill.status != 'CANCELLED') / 100000, 3))  as revenueCollected,
                 count(*) as receiptscreated,
@@ -385,13 +385,13 @@
                 AND applicationtype = 'RENEWAL' AND tenantid != 'uk.testing')) as renewalLicense,
                 (SELECT( SELECT count(*) 
                 FROM eg_tl_tradelicense  WHERE (createdtime/1000) <= 
-                ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800*3) 
+                ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 3) 
                 AND applicationtype = 'RENEWAL' AND status ='APPROVED' AND tenantid != 'uk.testing')) as renewalLicenseIssued,
                 (SELECT TRUNC((SELECT SUM(pymt.totalamountpaid) FROM eg_tl_tradelicense tl INNER JOIN egcl_bill bill ON 
                 tl.applicationnumber = bill.consumercode INNER JOIN egcl_paymentdetail pd ON 
                 bill.id = pd.billid INNER JOIN egcl_payment pymt ON pd.paymentid = pymt.id 
                 WHERE (pd.receiptdate/1000)  <= 
-                ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 3) 
+                ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 4) 
                 AND tl.tenantid != 'uk.testing' 
                 AND pymt.paymentstatus != 'Cancelled' AND bill.status != 'CANCELLED') / 100000, 3))  as revenueCollected,
                 count(*) as receiptscreated,
@@ -417,7 +417,7 @@
                 tl.applicationnumber = bill.consumercode INNER JOIN egcl_paymentdetail pd ON 
                 bill.id = pd.billid INNER JOIN egcl_payment pymt ON pd.paymentid = pymt.id 
                 WHERE (pd.receiptdate/1000)  <= 
-                ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 4) 
+                ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 5) 
                 AND tl.tenantid != 'uk.testing' 
                 AND pymt.paymentstatus != 'Cancelled' AND bill.status != 'CANCELLED') / 100000, 3))  as revenueCollected,
                 count(*) as receiptscreated,
@@ -439,16 +439,18 @@
    - name: miscCollections
      query: 
       baseQuery:    select array_to_json(array_agg(row_to_json(mcReports))) 
-                    FROM (SELECT (SELECT TRUNC(sum(totalamountpaid)/ 100000, 3) as revenuecollected 
+                    FROM (SELECT (
+                    SELECT TRUNC(sum(totalamountpaid)/ 100000, 3) as revenuecollected 
                     FROM egcl_payment p, egcl_paymentdetail pd 
                     WHERE (p.createdtime/1000) <= (extract (epoch FROM NOW()))  
                     AND p.id=pd.paymentid AND p.paymentstatus != 'Cancelled' AND p.tenantid!='uk.testing' AND pd.businessservice not in ('PT','TL','WC','FIRENOC','PT.MUTATION')), 
                     count(*) as receiptscreated,
                     count(distinct p.tenantid) as ulbcovered, 
-                    'Week0' as day FROM egcl_payment p, egcl_paymentdetail pd WHERE (p.createdtime/1000) <= (extract (epoch FROM NOW()))  
+                    'Week0' as day FROM egcl_payment p, egcl_paymentdetail pd WHERE (p.createdtime/1000) <= (extract (epoch FROM NOW()))    
                     AND p.id=pd.paymentid AND p.paymentstatus != 'Cancelled' AND p.tenantid!='uk.testing' AND pd.businessservice not in ('PT','TL','WC','FIRENOC','PT.MUTATION') 
                     UNION SELECT 
-                    (SELECT TRUNC(sum(totalamountpaid)/ 100000, 3) as revenuecollected FROM egcl_payment p, egcl_paymentdetail pd  WHERE (p.createdtime/1000) <= (extract (epoch FROM NOW()))    
+                    (SELECT TRUNC(sum(totalamountpaid)/ 100000, 3) as revenuecollected FROM egcl_payment p, egcl_paymentdetail pd  WHERE (p.createdtime/1000) <= 
+                    ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800)   
                     AND p.id=pd.paymentid AND p.paymentstatus != 'Cancelled' AND p.tenantid!='uk.testing' AND pd.businessservice not in ('PT','TL','WC','FIRENOC','PT.MUTATION') ), 
                     count(*) as receiptscreated, 
                     count(distinct p.tenantid) as ulbcovered,
@@ -457,7 +459,7 @@
                     AND p.id=pd.paymentid AND p.paymentstatus != 'Cancelled' AND p.tenantid!='uk.testing' AND pd.businessservice not in ('PT','TL','WC','FIRENOC','PT.MUTATION') 
                     UNION SELECT 
                     (SELECT TRUNC(sum(totalamountpaid)/ 100000, 3) as revenuecollected FROM egcl_payment p, egcl_paymentdetail pd  WHERE (p.createdtime/1000) 
-                    <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800)  
+                    <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 2)  
                     AND p.id=pd.paymentid AND p.paymentstatus != 'Cancelled' AND p.tenantid!='uk.testing' AND pd.businessservice not in ('PT','TL','WC','FIRENOC','PT.MUTATION') ), 
                     count(*) as receiptscreated, 
                     count(distinct p.tenantid) as ulbcovered,
@@ -466,7 +468,7 @@
                     AND p.id=pd.paymentid AND p.paymentstatus != 'Cancelled' AND p.tenantid!='uk.testing' AND pd.businessservice not in ('PT','TL','WC','FIRENOC','PT.MUTATION') 
                     UNION SELECT 
                     (SELECT TRUNC(sum(totalamountpaid)/ 100000, 3) as revenuecollected FROM egcl_payment p, egcl_paymentdetail pd  WHERE (p.createdtime/1000) 
-                    <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 2)
+                    <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 3)
                     AND p.id=pd.paymentid AND p.paymentstatus != 'Cancelled' AND p.tenantid!='uk.testing' AND pd.businessservice not in ('PT','TL','WC','FIRENOC','PT.MUTATION') ), 
                     count(*) as receiptscreated, 
                     count(distinct p.tenantid) as ulbcovered,
@@ -475,7 +477,7 @@
                     AND p.id=pd.paymentid AND p.paymentstatus != 'Cancelled' AND p.tenantid!='uk.testing' AND pd.businessservice not in ('PT','TL','WC','FIRENOC','PT.MUTATION') 
                     UNION SELECT 
                     (SELECT TRUNC(sum(totalamountpaid)/ 100000, 3) as revenuecollected FROM egcl_payment p, egcl_paymentdetail pd  WHERE (p.createdtime/1000) 
-                    <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 3) 
+                    <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 4) 
                     AND p.id=pd.paymentid AND p.paymentstatus != 'Cancelled' AND p.tenantid!='uk.testing' AND pd.businessservice not in ('PT','TL','WC','FIRENOC','PT.MUTATION') ), 
                     count(*) as receiptscreated, 
                     count(distinct p.tenantid) as ulbcovered,
@@ -484,7 +486,7 @@
                     AND p.id=pd.paymentid AND p.paymentstatus != 'Cancelled' AND p.tenantid!='uk.testing' AND pd.businessservice not in ('PT','TL','WC','FIRENOC','PT.MUTATION')   
                     UNION SELECT 
                     (SELECT TRUNC(sum(totalamountpaid)/ 100000, 3) as revenuecollected FROM egcl_payment p, egcl_paymentdetail pd  WHERE (p.createdtime/1000) 
-                    <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 4) 
+                    <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 5) 
                     AND p.id=pd.paymentid AND p.paymentstatus != 'Cancelled' AND p.tenantid!='uk.testing' AND pd.businessservice not in ('PT','TL','WC','FIRENOC','PT.MUTATION') ), 
                     count(*) as receiptscreated, 
                     count(distinct p.tenantid) as ulbcovered,
