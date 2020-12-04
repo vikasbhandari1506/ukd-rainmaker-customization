@@ -511,7 +511,12 @@
       - name: intervalinsecs
         isMandatory: true
         jsonPath: $.searchCriteria.intervalinsecs
-
+  
+     output:
+      jsonFormat: {"ResponseInfo": {}}
+      outJsonPath: $.data
+      responseInfoPath: $.ResponseInfo  
+      
    - name: miscCollections
      query: 
       baseQuery:    select array_to_json(array_agg(row_to_json(mcReports))) 
