@@ -15,7 +15,7 @@
         (SELECT to_char(TRUNC(((
         SELECT SUM(p.totalamountpaid) FROM egcl_payment p, egcl_paymentdetail pd 
         WHERE p.id=pd.paymentid  and pd.businessservice ='PT'
-        and (p.createdtime/1000)  <= (extract(epoch FROM NOW())) AND p.tenantid != 'uk.testing') 
+        and (p.lastmodifiedtime/1000)  <= (extract(epoch FROM NOW())) AND p.tenantid != 'uk.testing') 
         + (SELECT SUM(pymt.totalamountpaid) FROM eg_tl_tradelicense tl 
         INNER JOIN eg_tl_tradelicensedetail tld ON tld.tradelicenseid = tl.id 
         INNER JOIN 
@@ -32,7 +32,7 @@
         pd.businessservice not in ('PT','TL','WC','FIRENOC','PT.MUTATION'))) / 10000000, 2),'FM99,FM99,99,999D00'))  as revenueCollected,
         (select to_char((a.acount+b.bcount), 'FM99,FM99,99,999') from
         (SELECT count(*) acount FROM eg_tl_tradelicense
-        WHERE tenantid != 'uk.testing' AND (createdtime / 1000) <=
+        WHERE tenantid != 'uk.testing' AND (lastmodifiedtime/1000) <=
         (extract (epoch FROM NOW()))) as a,
         (SELECT count(*) bcount FROM egcl_payment p, egcl_paymentdetail pd
         WHERE (p.createdtime / 1000) <= 
@@ -52,7 +52,7 @@
         AND tenantid != 'uk.testing')) AS tenants) as ulbCovered,(SELECT to_char(TRUNC(((
         SELECT SUM(p.totalamountpaid) FROM egcl_payment p, egcl_paymentdetail pd 
         WHERE p.id=pd.paymentid  and pd.businessservice ='PT'
-        and (p.createdtime/1000)  <= 
+        and (p.lastmodifiedtime/1000)  <= 
         ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800)) 
         + (SELECT SUM(pymt.totalamountpaid) FROM eg_tl_tradelicense tl 
         INNER JOIN eg_tl_tradelicensedetail tld ON tld.tradelicenseid = tl.id 
@@ -71,7 +71,7 @@
         pd.businessservice not in ('PT','TL','WC','FIRENOC','PT.MUTATION'))) / 10000000, 2),'FM99,FM99,99,999D00'))  as revenueCollected,
         (select to_char((a.acount+b.bcount), 'FM99,FM99,99,999') from
         (SELECT count(*) acount FROM eg_tl_tradelicense
-        WHERE tenantid != 'uk.testing' AND (createdtime / 1000) <=
+        WHERE tenantid != 'uk.testing' AND (lastmodifiedtime/1000) <=
         ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800)) as a,
         (SELECT count(*) bcount FROM egcl_payment p, egcl_paymentdetail pd
         WHERE (p.createdtime / 1000) <= 
@@ -90,7 +90,7 @@
         as ulbCovered,(SELECT to_char(TRUNC(((
         SELECT SUM(p.totalamountpaid) FROM egcl_payment p, egcl_paymentdetail pd 
         WHERE p.id=pd.paymentid  and pd.businessservice ='PT'
-        and (p.createdtime/1000)  <= 
+        and (p.lastmodifiedtime/1000)  <= 
         ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 2)) 
         + (SELECT SUM(pymt.totalamountpaid) FROM eg_tl_tradelicense tl 
         INNER JOIN eg_tl_tradelicensedetail tld ON tld.tradelicenseid = tl.id 
@@ -109,7 +109,7 @@
         pd.businessservice not in ('PT','TL','WC','FIRENOC','PT.MUTATION'))) / 10000000, 2),'FM99,FM99,99,999D00'))  as revenueCollected,
         (select to_char((a.acount+b.bcount), 'FM99,FM99,99,999') from
         (SELECT count(*) acount FROM eg_tl_tradelicense
-        WHERE tenantid != 'uk.testing' AND (createdtime / 1000) <=
+        WHERE tenantid != 'uk.testing' AND (lastmodifiedtime/1000) <=
         ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 2)) as a,
         (SELECT count(*) bcount FROM egcl_payment p, egcl_paymentdetail pd
         WHERE (p.createdtime / 1000) <= 
@@ -126,7 +126,7 @@
         (SELECT to_char(TRUNC(((
         SELECT SUM(p.totalamountpaid) FROM egcl_payment p, egcl_paymentdetail pd 
         WHERE p.id=pd.paymentid  and pd.businessservice ='PT'
-        and (p.createdtime/1000)  <= 
+        and (p.lastmodifiedtime/1000)  <= 
         ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 3)) 
         + (SELECT SUM(pymt.totalamountpaid) FROM eg_tl_tradelicense tl 
         INNER JOIN eg_tl_tradelicensedetail tld ON tld.tradelicenseid = tl.id 
@@ -145,7 +145,7 @@
         pd.businessservice not in ('PT','TL','WC','FIRENOC','PT.MUTATION'))) / 10000000, 2),'FM99,FM99,99,999D00'))  as revenueCollected,
         (select to_char((a.acount+b.bcount), 'FM99,FM99,99,999') from
         (SELECT count(*) acount FROM eg_tl_tradelicense
-        WHERE tenantid != 'uk.testing' AND (createdtime / 1000) <=
+        WHERE tenantid != 'uk.testing' AND (lastmodifiedtime/1000) <=
         ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 3)) as a,
         (SELECT count(*) bcount FROM egcl_payment p, egcl_paymentdetail pd
         WHERE (p.createdtime / 1000) <= 
@@ -162,7 +162,7 @@
         (SELECT to_char(TRUNC(((
         SELECT SUM(p.totalamountpaid) FROM egcl_payment p, egcl_paymentdetail pd 
         WHERE p.id=pd.paymentid  and pd.businessservice ='PT'
-        and (p.createdtime/1000)  <= 
+        and (p.lastmodifiedtime/1000)  <= 
         ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 4)) 
         + (SELECT SUM(pymt.totalamountpaid) FROM eg_tl_tradelicense tl 
         INNER JOIN eg_tl_tradelicensedetail tld ON tld.tradelicenseid = tl.id 
@@ -181,7 +181,7 @@
         pd.businessservice not in ('PT','TL','WC','FIRENOC','PT.MUTATION'))) / 10000000, 2),'FM99,FM99,99,999D00'))  as revenueCollected,
         (select to_char((a.acount+b.bcount), 'FM99,FM99,99,999') from
         (SELECT count(*) acount FROM eg_tl_tradelicense
-        WHERE tenantid != 'uk.testing' AND (createdtime / 1000) <=
+        WHERE tenantid != 'uk.testing' AND (lastmodifiedtime/1000) <=
         ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 4)) as a,
         (SELECT count(*) bcount FROM egcl_payment p, egcl_paymentdetail pd
         WHERE (p.createdtime / 1000) <= 
@@ -197,7 +197,7 @@
         (SELECT to_char(TRUNC(((
         SELECT SUM(p.totalamountpaid) FROM egcl_payment p, egcl_paymentdetail pd 
         WHERE p.id=pd.paymentid  and pd.businessservice ='PT'
-        and (p.createdtime/1000)  <= 
+        and (p.lastmodifiedtime/1000)  <= 
         ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 5)) 
         + (SELECT SUM(pymt.totalamountpaid) FROM eg_tl_tradelicense tl 
         INNER JOIN eg_tl_tradelicensedetail tld ON tld.tradelicenseid = tl.id 
@@ -216,7 +216,7 @@
         pd.businessservice not in ('PT','TL','WC','FIRENOC','PT.MUTATION'))) / 10000000, 2),'FM99,FM99,99,999D00'))  as revenueCollected,
         (select to_char((a.acount+b.bcount), 'FM99,FM99,99,999') from
         (SELECT count(*) acount FROM eg_tl_tradelicense
-        WHERE tenantid != 'uk.testing' AND (createdtime / 1000) <=
+        WHERE tenantid != 'uk.testing' AND (lastmodifiedtime/1000) <=
         ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 5)) as a,
         (SELECT count(*) bcount FROM egcl_payment p, egcl_paymentdetail pd
         WHERE (p.createdtime / 1000) <= 
@@ -284,11 +284,11 @@
                 (select to_char(TRUNC(SUM(p.totalamountpaid) / 100000, 2), 'FM99,FM99,99,999D00')  
                 FROM egcl_payment p, egcl_paymentdetail pd 
                 WHERE p.id=pd.paymentid  and pd.businessservice ='PT'
-                and (p.createdtime/1000)  <=  (extract (epoch FROM NOW()))) as revenuecollected, 
+                and (p.lastmodifiedtime/1000)  <=  (extract (epoch FROM NOW()))) as revenuecollected, 
                 (select count(*)
                 FROM egcl_payment p, egcl_paymentdetail pd 
                 WHERE p.id=pd.paymentid  and pd.businessservice ='PT'
-                and (p.createdtime/1000)  <=  (extract (epoch FROM NOW()))) as receiptscreated, 
+                and (p.lastmodifiedtime/1000)  <=  (extract (epoch FROM NOW()))) as receiptscreated, 
                 (SELECT to_char(count(*), 'FM99,FM99,99,999') 
                  FROM eg_pt_property_v2 WHERE (createdtime/1000) <= (extract (epoch FROM NOW())) 
                  AND tenantid != 'uk.testing') as noofpropertiescreated,
@@ -303,11 +303,11 @@
                 (select to_char(TRUNC(SUM(p.totalamountpaid) / 100000, 2), 'FM99,FM99,99,999D00')  
                 FROM egcl_payment p, egcl_paymentdetail pd 
                 WHERE p.id=pd.paymentid  and pd.businessservice ='PT'
-                and (p.createdtime/1000)  <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800)) as revenuecollected, 
+                and (p.lastmodifiedtime/1000)  <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800)) as revenuecollected, 
                 (select count(p.*)  
                 FROM egcl_payment p, egcl_paymentdetail pd 
                 WHERE p.id=pd.paymentid  and pd.businessservice ='PT'
-                and (p.createdtime/1000)  <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 1) )  as receiptscreated, 
+                and (p.lastmodifiedtime/1000)  <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 1) )  as receiptscreated, 
                 (SELECT to_char(count(*), 'FM99,FM99,99,999') 
                  FROM eg_pt_property_v2 WHERE (createdtime/1000) <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800) 
                  AND tenantid != 'uk.testing') as noofpropertiescreated,
@@ -322,11 +322,11 @@
                 (select to_char(TRUNC(SUM(p.totalamountpaid) / 100000, 2), 'FM99,FM99,99,999D00')  
                 FROM egcl_payment p, egcl_paymentdetail pd 
                 WHERE p.id=pd.paymentid  and pd.businessservice ='PT'
-                and (p.createdtime/1000)  <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 *2 ) ) as revenuecollected, 
+                and (p.lastmodifiedtime/1000)  <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 *2 ) ) as revenuecollected, 
                 (select count(p.*)  
                 FROM egcl_payment p, egcl_paymentdetail pd 
                 WHERE p.id=pd.paymentid  and pd.businessservice ='PT'
-                and (p.createdtime/1000)  <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 *2 ) )  as receiptscreated, 
+                and (p.lastmodifiedtime/1000)  <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 *2 ) )  as receiptscreated, 
                 (SELECT to_char(count(*), 'FM99,FM99,99,999') 
                  FROM eg_pt_property_v2 WHERE (createdtime/1000) <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 2) 
                  AND tenantid != 'uk.testing') as noofpropertiescreated,
@@ -341,11 +341,11 @@
                 (select to_char(TRUNC(SUM(p.totalamountpaid) / 100000, 2), 'FM99,FM99,99,999D00')  
                 FROM egcl_payment p, egcl_paymentdetail pd 
                 WHERE p.id=pd.paymentid  and pd.businessservice ='PT'
-                and (p.createdtime/1000)  <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 3) ) as revenuecollected, 
+                and (p.lastmodifiedtime/1000)  <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 3) ) as revenuecollected, 
                 (select count(p.*)
                 FROM egcl_payment p, egcl_paymentdetail pd 
                 WHERE p.id=pd.paymentid  and pd.businessservice ='PT'
-                and (p.createdtime/1000)  <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 3) )  as receiptscreated, 
+                and (p.lastmodifiedtime/1000)  <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 3) )  as receiptscreated, 
                 (SELECT to_char(count(*), 'FM99,FM99,99,999') 
                  FROM eg_pt_property_v2 WHERE (createdtime/1000) <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 3) 
                  AND tenantid != 'uk.testing') as noofpropertiescreated,
@@ -360,11 +360,11 @@
                 (select to_char(TRUNC(SUM(p.totalamountpaid) / 100000, 2), 'FM99,FM99,99,999D00')  
                 FROM egcl_payment p, egcl_paymentdetail pd 
                 WHERE p.id=pd.paymentid  and pd.businessservice ='PT'
-                and (p.createdtime/1000)  <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 4) ) as revenuecollected, 
+                and (p.lastmodifiedtime/1000)  <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 4) ) as revenuecollected, 
                 (select count(p.*)
                 FROM egcl_payment p, egcl_paymentdetail pd 
                 WHERE p.id=pd.paymentid  and pd.businessservice ='PT'
-                and (p.createdtime/1000)  <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 4) )   as receiptscreated, 
+                and (p.lastmodifiedtime/1000)  <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 4) )   as receiptscreated, 
                 (SELECT to_char(count(*), 'FM99,FM99,99,999') 
                  FROM eg_pt_property_v2 WHERE (createdtime/1000) <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 4) 
                  AND tenantid != 'uk.testing') as noofpropertiescreated,                
@@ -379,11 +379,11 @@
                 (select to_char(TRUNC(SUM(p.totalamountpaid) / 100000, 2), 'FM99,FM99,99,999D00')  
                 FROM egcl_payment p, egcl_paymentdetail pd 
                 WHERE p.id=pd.paymentid  and pd.businessservice ='PT'
-                and (p.createdtime/1000)  <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 *5) ) as revenuecollected, 
+                and (p.lastmodifiedtime/1000)  <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 *5) ) as revenuecollected, 
                 (select count(p.*)
                 FROM egcl_payment p, egcl_paymentdetail pd 
                 WHERE p.id=pd.paymentid  and pd.businessservice ='PT'
-                and (p.createdtime/1000)  <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 *5) ) as receiptscreated, 
+                and (p.lastmodifiedtime/1000)  <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 *5) ) as receiptscreated, 
                 (SELECT to_char(count(*), 'FM99,FM99,99,999') 
                  FROM eg_pt_property_v2 WHERE (createdtime/1000) <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 5) 
                  AND tenantid != 'uk.testing') as noofpropertiescreated,                
@@ -413,17 +413,17 @@
                 select array_to_json(array_agg(row_to_json(tlReports))) 
                 FROM (SELECT (SELECT count(DISTINCT tenantid) as ulbCovered 
                 FROM eg_tl_tradelicense 
-                WHERE (createdtime/1000) <= (extract (epoch FROM NOW())) AND tenantid != 'uk.testing' ), 
+                WHERE (lastmodifiedtime/1000) <= (extract (epoch FROM NOW())) AND tenantid != 'uk.testing' ), 
                 to_char(count(*), 'FM99,FM99,99,999')  as newLicenseIssued, 
                 (SELECT (SELECT to_char(count(*), 'FM99,FM99,99,999')   
                 FROM eg_tl_tradelicense 
-                WHERE (createdtime/1000) <= (extract (epoch FROM NOW())) AND applicationtype = 'NEW' AND tenantid != 'uk.testing')) as newLicense, 
+                WHERE (lastmodifiedtime/1000) <= (extract (epoch FROM NOW())) AND applicationtype = 'NEW' AND tenantid != 'uk.testing')) as newLicense, 
                 (SELECT (SELECT to_char(count(*), 'FM99,FM99,99,999')   
                 FROM eg_tl_tradelicense 
-                WHERE (createdtime/1000) <= (extract (epoch FROM NOW())) AND applicationtype = 'RENEWAL' AND tenantid != 'uk.testing')) as renewalLicense,
+                WHERE (lastmodifiedtime/1000) <= (extract (epoch FROM NOW())) AND applicationtype = 'RENEWAL' AND tenantid != 'uk.testing')) as renewalLicense,
                 (SELECT (SELECT to_char(count(*), 'FM99,FM99,99,999')   
                 FROM eg_tl_tradelicense 
-                WHERE (createdtime/1000) <= (extract (epoch FROM NOW())) AND applicationtype = 'RENEWAL' and status='APPROVED' AND tenantid != 'uk.testing')) as renewalLicenseIssued, 
+                WHERE (lastmodifiedtime/1000) <= (extract (epoch FROM NOW())) AND applicationtype = 'RENEWAL' and status='APPROVED' AND tenantid != 'uk.testing')) as renewalLicenseIssued, 
                 (SELECT to_char(TRUNC((SELECT SUM(pymt.totalamountpaid) FROM eg_tl_tradelicense tl 
                 INNER JOIN eg_tl_tradelicensedetail tld ON tld.tradelicenseid = tl.id 
                 INNER JOIN 
@@ -447,19 +447,19 @@
                 AND tl.tenantid != 'uk.testing' AND tl.status = 'APPROVED' 
                 AND pymt.paymentstatus != 'Cancelled' AND bill.status != 'CANCELLED')  as receiptscreated,
                 'Week0' as day FROM eg_tl_tradelicense 
-                WHERE (createdtime/1000) <= (extract (epoch FROM NOW())) AND tenantid != 'uk.testing' 
+                WHERE (lastmodifiedtime/1000) <= (extract (epoch FROM NOW())) AND tenantid != 'uk.testing' 
                 AND status = 'APPROVED' AND applicationtype = 'NEW'  UNION SELECT (SELECT count(DISTINCT tenantid) as ulbCovered 
-                FROM eg_tl_tradelicense WHERE (createdtime/1000) <= (extract (epoch FROM NOW())) AND tenantid != 'uk.testing' 
+                FROM eg_tl_tradelicense WHERE (lastmodifiedtime/1000) <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800)  AND tenantid != 'uk.testing' 
                 AND tenantid != 'uk.testing'), to_char(count(*), 'FM99,FM99,99,999')  as newLicenseIssued, 
                 (SELECT( SELECT to_char(count(*), 'FM99,FM99,99,999')   
-                FROM eg_tl_tradelicense  WHERE (createdtime/1000) <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800) AND tenantid != 'uk.testing' 
+                FROM eg_tl_tradelicense  WHERE (lastmodifiedtime/1000) <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800) AND tenantid != 'uk.testing' 
                 AND applicationtype = 'NEW' AND tenantid != 'uk.testing')) as newLicense,
                 (SELECT( SELECT to_char(count(*), 'FM99,FM99,99,999')   
-                FROM eg_tl_tradelicense  WHERE (createdtime/1000) <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800) AND tenantid != 'uk.testing' 
+                FROM eg_tl_tradelicense  WHERE (lastmodifiedtime/1000) <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800) AND tenantid != 'uk.testing' 
                 AND applicationtype = 'RENEWAL' AND tenantid != 'uk.testing')) as renewalLicense,
                 (SELECT (SELECT to_char(count(*), 'FM99,FM99,99,999')   
                 FROM eg_tl_tradelicense 
-                WHERE (createdtime/1000) <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800)   AND applicationtype = 'RENEWAL' and status='APPROVED' AND tenantid != 'uk.testing')) as renewalLicenseIssued, 
+                WHERE (lastmodifiedtime/1000) <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800)   AND applicationtype = 'RENEWAL' and status='APPROVED' AND tenantid != 'uk.testing')) as renewalLicenseIssued, 
                 (SELECT to_char(TRUNC((SELECT SUM(pymt.totalamountpaid) FROM eg_tl_tradelicense tl 
                 INNER JOIN eg_tl_tradelicensedetail tld ON tld.tradelicenseid = tl.id 
                 INNER JOIN 
@@ -480,23 +480,23 @@
                 bill.id = pd.billid INNER JOIN egcl_payment pymt ON pd.paymentid = pymt.id 
                 WHERE (pd.receiptdate/1000)  <=  ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800)
                 AND tl.tenantid != 'uk.testing' AND tl.status = 'APPROVED' 
-                AND pymt.paymentstatus != 'Cancelled' AND bill.status != 'CANCELLED')  as receiptscreated,
-                'Week1' as day FROM eg_tl_tradelicense WHERE (createdtime/1000) <= 
+                AND pymt.paymentstatus != 'Cancelled' AND bill.status != 'CANCELLED')  as receiptscreated,               
+                'Week1' as day FROM eg_tl_tradelicense WHERE (lastmodifiedtime/1000) <= 
                 ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800) AND tenantid != 'uk.testing' 
                 AND status = 'APPROVED' AND applicationtype = 'NEW'  UNION SELECT (SELECT count(DISTINCT tenantid) as ulbCovered FROM eg_tl_tradelicense  
-                WHERE (createdtime/1000) <= 
-                ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800) AND tenantid != 'uk.testing'), 
+                WHERE (lastmodifiedtime/1000) <= 
+                ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 2) AND tenantid != 'uk.testing'), 
                 to_char(count(*), 'FM99,FM99,99,999')  as newLicenseIssued, 
                 (SELECT( SELECT to_char(count(*), 'FM99,FM99,99,999')   
-                FROM eg_tl_tradelicense  WHERE (createdtime/1000) <= 
+                FROM eg_tl_tradelicense  WHERE (lastmodifiedtime/1000) <= 
                 ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 2) 
                 AND applicationtype = 'NEW' AND tenantid != 'uk.testing')) as newLicense,
                 (SELECT( SELECT to_char(count(*), 'FM99,FM99,99,999')   
-                FROM eg_tl_tradelicense  WHERE (createdtime/1000) <= 
+                FROM eg_tl_tradelicense  WHERE (lastmodifiedtime/1000) <= 
                 ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 2) 
                 AND applicationtype = 'RENEWAL' AND tenantid != 'uk.testing')) as renewalLicense,
                 (SELECT( SELECT to_char(count(*), 'FM99,FM99,99,999')   
-                FROM eg_tl_tradelicense  WHERE (createdtime/1000) <= 
+                FROM eg_tl_tradelicense  WHERE (lastmodifiedtime/1000) <= 
                 ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 2) 
                 AND applicationtype = 'RENEWAL' AND status ='APPROVED' AND tenantid != 'uk.testing')) as renewalLicenseIssued,
                 (SELECT to_char(TRUNC((SELECT SUM(pymt.totalamountpaid) FROM eg_tl_tradelicense tl 
@@ -522,23 +522,23 @@
                 WHERE (pd.receiptdate/1000)  <=  ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 2)
                 AND tl.tenantid != 'uk.testing' AND tl.status = 'APPROVED' 
                 AND pymt.paymentstatus != 'Cancelled' AND bill.status != 'CANCELLED')  as receiptscreated,
-                                'Week2' as day FROM eg_tl_tradelicense WHERE (createdtime/1000) <= 
+                'Week2' as day FROM eg_tl_tradelicense WHERE (lastmodifiedtime/1000) <= 
                 ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 2) 
                 AND tenantid != 'uk.testing'  AND status = 'APPROVED' AND applicationtype = 'NEW'  
                 UNION SELECT (SELECT count(DISTINCT tenantid) as ulbCovered 
-                FROM eg_tl_tradelicense  WHERE (createdtime/1000) <= 
-                ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 2)
+                FROM eg_tl_tradelicense  WHERE (lastmodifiedtime/1000) <= 
+                ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 3)
                 AND tenantid != 'uk.testing'), to_char(count(*), 'FM99,FM99,99,999')  as newLicenseIssued,
                 (SELECT( SELECT to_char(count(*), 'FM99,FM99,99,999')   
-                FROM eg_tl_tradelicense  WHERE (createdtime/1000) <= 
+                FROM eg_tl_tradelicense  WHERE (lastmodifiedtime/1000) <= 
                 ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 3) 
                 AND applicationtype = 'NEW' AND tenantid != 'uk.testing')) as newLicense,
                 (SELECT( SELECT to_char(count(*), 'FM99,FM99,99,999')   
-                FROM eg_tl_tradelicense  WHERE (createdtime/1000) <= 
+                FROM eg_tl_tradelicense  WHERE (lastmodifiedtime/1000) <= 
                 ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 3) 
                 AND applicationtype = 'RENEWAL' AND tenantid != 'uk.testing')) as renewalLicense,
                 (SELECT( SELECT to_char(count(*), 'FM99,FM99,99,999')   
-                FROM eg_tl_tradelicense  WHERE (createdtime/1000) <= 
+                FROM eg_tl_tradelicense  WHERE (lastmodifiedtime/1000) <= 
                 ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 3) 
                 AND applicationtype = 'RENEWAL' AND status ='APPROVED' AND tenantid != 'uk.testing')) as renewalLicenseIssued,
                 (SELECT to_char(TRUNC((SELECT SUM(pymt.totalamountpaid) FROM eg_tl_tradelicense tl
@@ -563,24 +563,24 @@
                 bill.id = pd.billid INNER JOIN egcl_payment pymt ON pd.paymentid = pymt.id 
                 WHERE (pd.receiptdate/1000)  <=  ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 3)
                 AND tl.tenantid != 'uk.testing' AND tl.status = 'APPROVED' 
-                AND pymt.paymentstatus != 'Cancelled' AND bill.status != 'CANCELLED')  as receiptscreated,
+                AND pymt.paymentstatus != 'Cancelled' AND bill.status != 'CANCELLED')  as receiptscreated,               
                 'Week3' as day FROM eg_tl_tradelicense 
-                WHERE (createdtime/1000) <= 
+                WHERE (lastmodifiedtime/1000) <= 
                 ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 3) AND tenantid != 'uk.testing' 
                 AND status = 'APPROVED' AND applicationtype = 'NEW'  UNION SELECT (SELECT count(DISTINCT tenantid) as ulbCovered 
-                FROM eg_tl_tradelicense  WHERE (createdtime/1000) <= 
-                ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 3) 
+                FROM eg_tl_tradelicense  WHERE (lastmodifiedtime/1000) <= 
+                ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 4) 
                 AND tenantid != 'uk.testing'), to_char(count(*), 'FM99,FM99,99,999')  as newLicenseIssued, 
                 (SELECT( SELECT to_char(count(*), 'FM99,FM99,99,999')   
-                FROM eg_tl_tradelicense  WHERE (createdtime/1000) <= 
+                FROM eg_tl_tradelicense  WHERE (lastmodifiedtime/1000) <= 
                 ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 4) 
                 AND applicationtype = 'NEW' AND tenantid != 'uk.testing')) as newLicense,
                 (SELECT( SELECT to_char(count(*), 'FM99,FM99,99,999')   
-                FROM eg_tl_tradelicense  WHERE (createdtime/1000) <= 
+                FROM eg_tl_tradelicense  WHERE (lastmodifiedtime/1000) <= 
                 ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 4) 
                 AND applicationtype = 'RENEWAL' AND tenantid != 'uk.testing')) as renewalLicense,
                 (SELECT( SELECT to_char(count(*), 'FM99,FM99,99,999')   
-                FROM eg_tl_tradelicense  WHERE (createdtime/1000) <= 
+                FROM eg_tl_tradelicense  WHERE (lastmodifiedtime/1000) <= 
                 ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 4) 
                 AND applicationtype = 'RENEWAL' AND status ='APPROVED' AND tenantid != 'uk.testing')) as renewalLicenseIssued,
                 (SELECT to_char(TRUNC((SELECT SUM(pymt.totalamountpaid) FROM eg_tl_tradelicense tl 
@@ -605,22 +605,23 @@
                 bill.id = pd.billid INNER JOIN egcl_payment pymt ON pd.paymentid = pymt.id 
                 WHERE (pd.receiptdate/1000)  <=  ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 4)
                 AND tl.tenantid != 'uk.testing' AND tl.status = 'APPROVED' 
-                AND pymt.paymentstatus != 'Cancelled' AND bill.status != 'CANCELLED')  as receiptscreated,                'Week4' as day FROM eg_tl_tradelicense WHERE (createdtime/1000) <= 
+                AND pymt.paymentstatus != 'Cancelled' AND bill.status != 'CANCELLED')  as receiptscreated,
+                'Week4' as day FROM eg_tl_tradelicense WHERE (lastmodifiedtime/1000) <= 
                 ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 4) 
                 AND tenantid != 'uk.testing'  AND status = 'APPROVED' AND applicationtype = 'NEW'  
-                UNION SELECT (SELECT count(DISTINCT tenantid) as ulbCovered FROM eg_tl_tradelicense  WHERE (createdtime/1000) <= 
-                ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 4) 
+                UNION SELECT (SELECT count(DISTINCT tenantid) as ulbCovered FROM eg_tl_tradelicense  WHERE (lastmodifiedtime/1000) <= 
+                ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 5) 
                 AND tenantid != 'uk.testing'), to_char(count(*), 'FM99,FM99,99,999')  as newLicenseIssued, 
                 (SELECT( SELECT to_char(count(*), 'FM99,FM99,99,999')   
-                FROM eg_tl_tradelicense  WHERE (createdtime/1000) <= 
+                FROM eg_tl_tradelicense  WHERE (lastmodifiedtime/1000) <= 
                 ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 5) 
                 AND applicationtype = 'NEW' AND tenantid != 'uk.testing')) as newLicense,
                 (SELECT( SELECT to_char(count(*), 'FM99,FM99,99,999')   
-                FROM eg_tl_tradelicense  WHERE (createdtime/1000) <= 
+                FROM eg_tl_tradelicense  WHERE (lastmodifiedtime/1000) <= 
                 ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 5) 
                 AND applicationtype = 'RENEWAL' AND tenantid != 'uk.testing')) as renewalLicense,
                 (SELECT( SELECT to_char(count(*), 'FM99,FM99,99,999')   
-                FROM eg_tl_tradelicense  WHERE (createdtime/1000) <= 
+                FROM eg_tl_tradelicense  WHERE (lastmodifiedtime/1000) <= 
                 ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 5) 
                 AND applicationtype = 'RENEWAL' AND status ='APPROVED' AND tenantid != 'uk.testing')) as renewalLicenseIssued,
                 (SELECT to_char(TRUNC((SELECT SUM(pymt.totalamountpaid) FROM eg_tl_tradelicense tl 
@@ -645,7 +646,8 @@
                 bill.id = pd.billid INNER JOIN egcl_payment pymt ON pd.paymentid = pymt.id 
                 WHERE (pd.receiptdate/1000)  <=  ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 5)
                 AND tl.tenantid != 'uk.testing' AND tl.status = 'APPROVED' 
-                AND pymt.paymentstatus != 'Cancelled' AND bill.status != 'CANCELLED')  as receiptscreated,                'Week5' as day FROM eg_tl_tradelicense WHERE (createdtime/1000) <= 
+                AND pymt.paymentstatus != 'Cancelled' AND bill.status != 'CANCELLED')  as receiptscreated,             
+                'Week5' as day FROM eg_tl_tradelicense WHERE (lastmodifiedtime/1000) <= 
                 ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 5)
                 AND tenantid != 'uk.testing'  AND status = 'APPROVED' AND applicationtype = 'NEW' ) tlReports
      searchParams:
