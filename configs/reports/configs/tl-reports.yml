@@ -593,7 +593,6 @@ ReportDefinitions:
   groupby: GROUP BY tenantid
   orderby: ORDER BY tenantid
 
-
 - reportName: StateLevelStatus
   reportLabel: report.state.level.status
   summary: Nummber of applications by there status state level
@@ -631,11 +630,19 @@ ReportDefinitions:
     wrapper: true
     isMandatory: false
     searchClause: AND tl.tenantId = $ulb
-  query: SELECT COUNT(applicationnumber) as total,message.message as status from eg_tl_tradelicense tl LEFT OUTER JOIN message ON split_part(message.code,'_',2) = status AND message.locale = 'en_IN' WHERE 1=1 and tl.tenantId != 'uk.testing'
-  groupby: GROUP BY message.message
-  orderby: ORDER BY case message.message when 'Pending Application' then 1 when 'Pending Payment' then 2 when 'Pending Approval' then 3 when 'Approved' then 4 when 'Rejected' then 5 when 'Cancelled' then 6 else 7 end
-
-
+  query: 
+        SELECT COUNT(applicationnumber) as total, 
+        (CASE tl.status  WHEN 'APPLIED' THEN 'Applied' 
+        WHEN 'APPROVED' THEN 'Approved' 
+        WHEN 'CITIZENACTIONREQUIRED' THEN 'Pending for Citizen Action'
+        WHEN 'INITIATED' THEN 'Initiated'
+        WHEN 'PENDINGAPPROVAL' THEN 'Pending for Approval'
+        WHEN 'PENDINGPAYMENT' THEN 'Pending payment '
+        ELSE 'REJECTED' END) as status
+        from eg_tl_tradelicense tl 
+        WHERE tl.tenantId != 'uk.testing'
+  groupby: GROUP BY status
+  orderby: ORDER BY status
 
 - reportName: StateLevelTradeWiseCollection
   reportLabel: report.state.level.trade.wise.collection
