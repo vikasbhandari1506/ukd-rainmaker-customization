@@ -19,6 +19,10 @@
         {
           "name": "Overview",
           "id": "overview"
+        },
+        {
+          "name": "Misc Collect",
+          "id": "mCollect"
         }
       ]
     },
@@ -34,6 +38,9 @@
         },
         {
           "id": "ulb-overview"
+        },
+        {
+          "id": "ulb-mCollect"
         },
         {
           "id": "ulb-home"
