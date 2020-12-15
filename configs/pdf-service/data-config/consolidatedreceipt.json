@@ -690,7 +690,7 @@
                             },
                { 
                  "path": "http://property-services:8080/property-services/property/_search",
-                 "queryParam": "tenantId=$.Payments[0].tenantId,propertyIds=$.Payments[0].paymentDetails[0].bill.consumerCode",
+                 "queryParam": "tenantId=$.paymentDetails[0].tenantId,propertyIds=$.paymentDetails[0].bill.consumerCode",
                  "apiRequest": null,
                  "responseMapping":[
                    {             
