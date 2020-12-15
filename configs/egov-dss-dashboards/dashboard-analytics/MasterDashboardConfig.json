@@ -294,364 +294,6 @@
               "isCollapsible": false,
               "charts": [
                 {
-                  "id": "todaysCollectionv2",
-                  "name": "DSS_TOTAL_COLLECTION_TODAY",
-                  "code": "",
-                  "chartType": "metric",
-                  "filter": {
-                    "title": "TODAY"
-                  },
-                  "headers": []
-                },
-                {
-                  "id": "totalCollectionv2",
-                  "name": "DSS_TOTAL_COLLECTION",
-                  "code": "",
-                  "chartType": "metric",
-                  "filter": "",
-                  "headers": []
-                },
-                {
-                  "id": "targetCollection",
-                  "name": "DSS_TARGET_COLLECTION",
-                  "code": "",
-                  "chartType": "metric",
-                  "filter": "",
-                  "headers": []
-                },
-                {
-                  "id": "mcTargetAchievedv2",
-                  "name": "DSS_TARGET_ACHIEVED",
-                  "code": "",
-                  "chartType": "metric",
-                  "filter": "",
-                  "headers": []
-                }
-              ]
-            },
-            {
-              "id": 312,
-              "name": "Total Cumulative Collection",
-              "dimensions": {
-                "height": 350,
-                "width": 7
-              },
-              "vizType": "chart",
-              "label": "",
-              "noUnit": true,
-              "isCollapsible": false,
-              "charts": [
-                {
-                  "id": "mcCumulativeCollectionv2",
-                  "name": "Monthly",
-                  "code": "",
-                  "chartType": "line",
-                  "filter": "",
-                  "headers": []
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "row": 2,
-          "name": "DSS_REVENUE",
-          "vizArray": [
-            {
-              "id": 123,
-              "name": "DSS_MC_COLLECTION:_CATEGORY_WISE",
-              "dimensions": {
-                "height": 250,
-                "width": 4
-              },
-              "vizType": "chart",
-              "noUnit": false,
-              "isCollapsible": false,
-              "charts": [
-                {
-                  "id": "mcTotalCollectionCategoryWise",
-                  "name": "DSS_MC_COLLECTION:_CATEGORY_WISE",
-                  "code": "",
-                  "chartType": "horizontalBar",
-                  "filter": "",
-                  "headers": []
-                }
-              ]
-            },
-            {
-              "id": 123,
-              "name": "DSS_MC_COLLECTION:_CATEGORY_WISE_PERCENT",
-              "dimensions": {
-                "height": 250,
-                "width": 4
-              },
-              "vizType": "chart",
-              "noUnit": false,
-              "isCollapsible": false,
-              "charts": [
-                {
-                  "id": "mcTotalCollectionCategoryWise",
-                  "name": "DSS_MC_COLLECTION:_CATEGORY_WISE",
-                  "code": "",
-                  "chartType": "donut",
-                  "filter": "",
-                  "headers": []
-                }
-              ]
-            },
-            {
-              "id": 323,
-              "name": "DSS_MC_COLLECTION_BY_PAYMENT_TYPE",
-              "dimensions": {
-                "height": 250,
-                "width": 4
-              },
-              "vizType": "chart",
-              "label": "",
-              "noUnit": false,
-              "isCollapsible": false,
-              "charts": [
-                {
-                  "id": "mcCollectionByPaymentType",
-                  "name": "DSS_MC_COLLECTION_BY_PAYMENT_TYPE",
-                  "code": "",
-                  "chartType": "donut",
-                  "filter": "",
-                  "headers": []
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "name": "DSS_M_COLLECT_DASHBOARD",
-      "id": "mCollect",
-      "isActive": "",
-      "style": "linear",
-      "visualizations": [
-        {
-          "row": 1,
-          "name": "DSS_REVENUE",
-          "vizArray": [
-            {
-              "id": 311,
-              "name": "DSS_OVERVIEW",
-              "dimensions": {
-                "height": 350,
-                "width": 5
-              },
-              "vizType": "metric-collection",
-              "label": "DSS_OVERVIEW",
-              "noUnit": true,
-              "isCollapsible": false,
-              "charts": [
-                {
-                  "id": "todaysCollectionv2",
-                  "name": "DSS_TOTAL_COLLECTION_TODAY",
-                  "code": "",
-                  "chartType": "metric",
-                  "filter": {
-                    "title": "TODAY"
-                  },
-                  "headers": []
-                },
-                {
-                  "id": "totalCollectionv2",
-                  "name": "DSS_TOTAL_COLLECTION",
-                  "code": "",
-                  "chartType": "metric",
-                  "filter": "",
-                  "headers": []
-                },
-                {
-                  "id": "targetCollection",
-                  "name": "DSS_TARGET_COLLECTION",
-                  "code": "",
-                  "chartType": "metric",
-                  "filter": "",
-                  "headers": []
-                },
-                {
-                  "id": "mcTargetAchievedv2",
-                  "name": "DSS_TARGET_ACHIEVED",
-                  "code": "",
-                  "chartType": "metric",
-                  "filter": "",
-                  "headers": []
-                }
-              ]
-            },
-            {
-              "id": 312,
-              "name": "Total Cumulative Collection",
-              "dimensions": {
-                "height": 350,
-                "width": 7
-              },
-              "vizType": "chart",
-              "label": "",
-              "noUnit": true,
-              "isCollapsible": false,
-              "charts": [
-                {
-                  "id": "mcCumulativeCollectionv2",
-                  "name": "Monthly",
-                  "code": "",
-                  "chartType": "line",
-                  "filter": "",
-                  "headers": []
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "row": 2,
-          "name": "DSS_REVENUE",
-          "vizArray": [
-            {
-              "id": 123,
-              "name": "DSS_MC_COLLECTION:_CATEGORY_WISE",
-              "dimensions": {
-                "height": 250,
-                "width": 4
-              },
-              "vizType": "chart",
-              "noUnit": false,
-              "isCollapsible": false,
-              "charts": [
-                {
-                  "id": "mcTotalCollectionCategoryWise",
-                  "name": "DSS_MC_COLLECTION:_CATEGORY_WISE",
-                  "code": "",
-                  "chartType": "horizontalBar",
-                  "filter": "",
-                  "headers": []
-                }
-              ]
-            },
-            {
-              "id": 123,
-              "name": "DSS_MC_COLLECTION:_CATEGORY_WISE_PERCENT",
-              "dimensions": {
-                "height": 250,
-                "width": 4
-              },
-              "vizType": "chart",
-              "noUnit": false,
-              "isCollapsible": false,
-              "charts": [
-                {
-                  "id": "mcTotalCollectionCategoryWise",
-                  "name": "DSS_MC_COLLECTION:_CATEGORY_WISE",
-                  "code": "",
-                  "chartType": "donut",
-                  "filter": "",
-                  "headers": []
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "row": 3,
-          "name": "DSS_REVENUE",
-          "vizArray": [
-            {
-              "id": 323,
-              "name": "DSS_MC_COLLECTION_BY_PAYMENT_TYPE",
-              "dimensions": {
-                "height": 250,
-                "width": 4
-              },
-              "vizType": "chart",
-              "label": "",
-              "noUnit": false,
-              "isCollapsible": false,
-              "charts": [
-                {
-                  "id": "mcCollectionByPaymentType",
-                  "name": "DSS_MC_COLLECTION_BY_PAYMENT_TYPE",
-                  "code": "",
-                  "chartType": "donut",
-                  "filter": "",
-                  "headers": []
-                }
-              ]
-            },
-            {
-              "id": 321,
-              "name": "DSS_TL_TOP_3_PERFORMING_ULBS",
-              "dimensions": {
-                "height": 250,
-                "width": 4
-              },
-              "vizType": "performing-metric",
-              "label": "",
-              "noUnit": false,
-              "isCollapsible": false,
-              "charts": [
-                {
-                  "id": "topPerformingUlbsv2",
-                  "name": "DSS_TL_TOP_3_PERFORMING_ULBS",
-                  "code": "",
-                  "chartType": "bar",
-                  "filter": "",
-                  "headers": []
-                }
-              ]
-            },
-            {
-              "id": 322,
-              "name": "DSS_TL_BOTTOM_3_PERFORMING_ULBS",
-              "dimensions": {
-                "height": 250,
-                "width": 4
-              },
-              "vizType": "performing-metric",
-              "label": "",
-              "noUnit": false,
-              "isCollapsible": false,
-              "charts": [
-                {
-                  "id": "bottomPerformingUlbsv2",
-                  "name": "DSS_TL_BOTTOM_3_PERFORMING_ULBS",
-                  "code": "",
-                  "chartType": "bar",
-                  "filter": "",
-                  "headers": []
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "name": "DSS_TRADE_LICENSE_DASHBOARD",
-      "id": "tradeLicense",
-      "isActive": "",
-      "style": "linear",
-      "visualizations": [
-        {
-          "row": 1,
-          "name": "DSS_REVENUE",
-          "vizArray": [
-            {
-              "id": 311,
-              "name": "DSS_OVERVIEW",
-              "dimensions": {
-                "height": 350,
-                "width": 5
-              },
-              "vizType": "metric-collection",
-              "label": "DSS_OVERVIEW",
-              "noUnit": true,
-              "isCollapsible": false,
-              "charts": [
-                {
                   "id": "todaysCollection",
                   "name": "DSS_TOTAL_COLLECTION_TODAY",
                   "code": "",
@@ -678,7 +320,7 @@
                   "headers": []
                 },
                 {
-                  "id": "targetAchieved",
+                  "id": "mcTargetAchieved",
                   "name": "DSS_TARGET_ACHIEVED",
                   "code": "",
                   "chartType": "metric",
@@ -689,7 +331,7 @@
             },
             {
               "id": 312,
-              "name": "DSS_TOTAL_CUMULATIVE_COLLECTION",
+              "name": "Total Cumulative Collection",
               "dimensions": {
                 "height": 350,
                 "width": 7
@@ -700,7 +342,7 @@
               "isCollapsible": false,
               "charts": [
                 {
-                  "id": "cumulativeCollection",
+                  "id": "mcCumulativeCollection",
                   "name": "Monthly",
                   "code": "",
                   "chartType": "line",
@@ -716,44 +358,42 @@
           "name": "DSS_REVENUE",
           "vizArray": [
             {
-              "id": 321,
-              "name": "DSS_TL_TOP_3_PERFORMING_ULBS",
+              "id": 123,
+              "name": "DSS_MC_COLLECTION:_CATEGORY_WISE",
               "dimensions": {
                 "height": 250,
                 "width": 4
               },
-              "vizType": "performing-metric",
-              "label": "",
+              "vizType": "chart",
               "noUnit": false,
               "isCollapsible": false,
               "charts": [
                 {
-                  "id": "topPerformingUlbs",
-                  "name": "DSS_TL_TOP_3_PERFORMING_ULBS",
+                  "id": "mcTotalCollectionCategoryWise",
+                  "name": "DSS_MC_COLLECTION:_CATEGORY_WISE",
                   "code": "",
-                  "chartType": "bar",
+                  "chartType": "horizontalBar",
                   "filter": "",
                   "headers": []
                 }
               ]
             },
             {
-              "id": 322,
-              "name": "DSS_TL_BOTTOM_3_PERFORMING_ULBS",
+              "id": 123,
+              "name": "DSS_MC_COLLECTION:_CATEGORY_WISE_PERCENT",
               "dimensions": {
                 "height": 250,
                 "width": 4
               },
-              "vizType": "performing-metric",
-              "label": "",
+              "vizType": "chart",
               "noUnit": false,
               "isCollapsible": false,
               "charts": [
                 {
-                  "id": "bottomPerformingUlbs",
-                  "name": "DSS_TL_BOTTOM_3_PERFORMING_ULBS",
+                  "id": "mcTotalCollectionCategoryWise",
+                  "name": "DSS_MC_COLLECTION:_CATEGORY_WISE",
                   "code": "",
-                  "chartType": "bar",
+                  "chartType": "donut",
                   "filter": "",
                   "headers": []
                 }
@@ -761,7 +401,7 @@
             },
             {
               "id": 323,
-              "name": "DSS_TL_LICENSE_BY_TYPE",
+              "name": "DSS_MC_COLLECTION_BY_PAYMENT_TYPE",
               "dimensions": {
                 "height": 250,
                 "width": 4
@@ -772,231 +412,12 @@
               "isCollapsible": false,
               "charts": [
                 {
-                  "id": "licenseByLicenseType",
-                  "name": "DSS_TL_LICENSE_BY_TYPE",
+                  "id": "mcCollectionByPaymentType",
+                  "name": "DSS_MC_COLLECTION_BY_PAYMENT_TYPE",
                   "code": "",
                   "chartType": "donut",
                   "filter": "",
                   "headers": []
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "row": 4,
-          "name": "DSS_REVENUE",
-          "vizArray": [
-            {
-              "id": 231,
-              "name": "DSS_TL_KEY_FY_INDICATORS",
-              "dimensions": {
-                "height": 350,
-                "width": 12
-              },
-              "vizType": "chart",
-              "label": "",
-              "noUnit": false,
-              "isCollapsible": false,
-              "charts": [
-                {
-                  "id": "licenseIssuedDDRRevenue",
-                  "name": "DSS_TL_DEMAND_COLLECTION_BOUNDARY",
-                  "code": "",
-                  "chartType": "table",
-                  "filter": "",
-                  "headers": [],
-                  "tabName": "Boundary"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "row": 5,
-          "name": "DSS_REVENUE",
-          "vizArray": [
-            {
-              "id": 231,
-              "name": "DSS_TL_TAX_HEAD_BREAKUP",
-              "dimensions": {
-                "height": 350,
-                "width": 12
-              },
-              "vizType": "chart",
-              "label": "",
-              "noUnit": false,
-              "isCollapsible": true,
-              "charts": [
-                {
-                  "id": "licenceTaxHeadsBreakupDDR",
-                  "name": "DSS_TL_TAX_HEAD_BREAKUP_BOUNDARY",
-                  "code": "",
-                  "chartType": "table",
-                  "filter": "",
-                  "headers": [],
-                  "tabName": "Boundary"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "row": 6,
-          "name": "DSS_SERVICE",
-          "vizArray": [
-            {
-              "id": 341,
-              "name": "DSS_OVERVIEW",
-              "dimensions": {
-                "height": 350,
-                "width": 5
-              },
-              "vizType": "metric-collection",
-              "isCollapsible": false,
-              "label": "DSS_OVERVIEW",
-              "charts": [
-                {
-                  "id": "totalApplication",
-                  "name": "DSS_TOTAL_APPLICATION",
-                  "code": "",
-                  "chartType": "metric",
-                  "filter": "",
-                  "headers": []
-                },
-                {
-                  "id": "licenseIssued",
-                  "name": "DSS_TL_LICENSE_ISSUED",
-                  "code": "",
-                  "chartType": "metric",
-                  "filter": "",
-                  "headers": []
-                },
-                {
-                  "id": "activeUlbs",
-                  "name": "DSS_PT_TOTAL_ACTIVE_ULBS",
-                  "code": "",
-                  "chartType": "metric",
-                  "filter": "",
-                  "headers": []
-                }
-              ]
-            },
-            {
-              "id": 342,
-              "name": "DSS_TL_CUMULATIVE_LICENSE_ISSUED",
-              "dimensions": {
-                "height": 350,
-                "width": 7
-              },
-              "vizType": "chart",
-              "isCollapsible": false,
-              "charts": [
-                {
-                  "id": "cumulativeLicenseIssued",
-                  "name": "Monthly",
-                  "code": "",
-                  "chartType": "line",
-                  "filter": "",
-                  "headers": []
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "row": 7,
-          "name": "DSS_SERVICE",
-          "vizArray": [
-            {
-              "id": 351,
-              "name": "DSS_PT_TOP_3_PERFORMING_ULBS",
-              "dimensions": {
-                "height": 250,
-                "width": 4
-              },
-              "vizType": "performing-metric",
-              "label": "",
-              "noUnit": false,
-              "isCollapsible": false,
-              "charts": [
-                {
-                  "id": "topPerformingUlbsCompletionRate",
-                  "name": "DSS_PT_TOP_3_PERFORMING_ULBS",
-                  "code": "",
-                  "chartType": "bar",
-                  "filter": "",
-                  "headers": []
-                }
-              ]
-            },
-            {
-              "id": 352,
-              "name": "DSS_PT_BOTTOM_3_PERFORMING_ULBS",
-              "dimensions": {
-                "height": 250,
-                "width": 4
-              },
-              "vizType": "performing-metric",
-              "noUnit": false,
-              "isCollapsible": false,
-              "charts": [
-                {
-                  "id": "bottomPerformingUlbsCompletionRate",
-                  "name": "DSS_PT_BOTTOM_3_PERFORMING_ULBS",
-                  "code": "",
-                  "chartType": "bar",
-                  "filter": "",
-                  "headers": []
-                }
-              ]
-            },
-            {
-              "id": 353,
-              "name": "DSS_TL_LICENSE_BY_STATUS",
-              "dimensions": {
-                "height": 250,
-                "width": 4
-              },
-              "vizType": "chart",
-              "isCollapsible": false,
-              "charts": [
-                {
-                  "id": "licenseApplicationByStatus",
-                  "name": "DSS_TL_LICENSE_BY_STATUS",
-                  "code": "",
-                  "chartType": "donut",
-                  "filter": "",
-                  "headers": []
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "row": 8,
-          "name": "DSS_SERVICE",
-          "vizArray": [
-            {
-              "id": 351,
-              "name": "DSS_TL_STATUS_BOUNDARY",
-              "dimensions": {
-                "height": 250,
-                "width": 4
-              },
-              "vizType": "chart",
-              "label": "",
-              "noUnit": false,
-              "isCollapsible": true,
-              "charts": [
-                {
-                  "id": "tlStatusByDDR",
-                  "name": "",
-                  "code": "",
-                  "chartType": "table",
-                  "filter": "",
-                  "headers": [],
-                  "tabName": "Boundary"
                 }
               ]
             }
@@ -1004,6 +425,7 @@
         }
       ]
     },
+    
     {
       "name": "DSS_HOME_DASHBOARD",
       "id": "home",
@@ -1816,6 +1238,28 @@
                 {
                   "id": "totalApplication",
                   "name": "DSS_TOTAL_APPLICATION",
+                  "code": "",
+                  "chartType": "metric",
+                  "filter": "",
+                  "headers": []
+                }
+              ]
+            },
+            {
+              "id": 121,
+              "name": "DSS_M_COLLECT",
+              "vizType": "module",
+              "moduleLevel": "TL",
+              "ref": {
+                "url": "mCollect",
+                "logoUrl": "",
+                "type": "internal"
+              },
+              "label": "",
+              "charts": [
+                {
+                  "id": "mcTotalCollection",
+                  "name": "DSS_TOTAL_COLLECTION",
                   "code": "",
                   "chartType": "metric",
                   "filter": "",
