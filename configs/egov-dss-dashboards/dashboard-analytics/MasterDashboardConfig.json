@@ -273,6 +273,90 @@
     },
     {
       "name": "DSS_M_COLLECT_DASHBOARD",
+      "id": "ulb-mCollect",
+      "isActive": "",
+      "style": "linear",
+      "visualizations": [
+        {
+          "row": 1,
+          "name": "DSS_REVENUE",
+          "vizArray": [
+            {
+              "id": 311,
+              "name": "DSS_OVERVIEW",
+              "dimensions": {
+                "height": 350,
+                "width": 5
+              },
+              "vizType": "metric-collection",
+              "label": "DSS_OVERVIEW",
+              "noUnit": true,
+              "isCollapsible": false,
+              "charts": [
+                {
+                  "id": "todaysCollection",
+                  "name": "DSS_TOTAL_COLLECTION_TODAY",
+                  "code": "",
+                  "chartType": "metric",
+                  "filter": {
+                    "title": "TODAY"
+                  },
+                  "headers": []
+                },
+                {
+                  "id": "totalCollection",
+                  "name": "DSS_TOTAL_COLLECTION",
+                  "code": "",
+                  "chartType": "metric",
+                  "filter": "",
+                  "headers": []
+                },
+                {
+                  "id": "targetCollection",
+                  "name": "DSS_TARGET_COLLECTION",
+                  "code": "",
+                  "chartType": "metric",
+                  "filter": "",
+                  "headers": []
+                },
+                {
+                  "id": "mcTargetAchieved",
+                  "name": "DSS_TARGET_ACHIEVED",
+                  "code": "",
+                  "chartType": "metric",
+                  "filter": "",
+                  "headers": []
+                }
+              ]
+            },
+            {
+              "id": 312,
+              "name": "Total Cumulative Collection",
+              "dimensions": {
+                "height": 350,
+                "width": 7
+              },
+              "vizType": "chart",
+              "label": "",
+              "noUnit": true,
+              "isCollapsible": false,
+              "charts": [
+                {
+                  "id": "mcCumulativeCollection",
+                  "name": "Monthly",
+                  "code": "",
+                  "chartType": "line",
+                  "filter": "",
+                  "headers": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "DSS_M_COLLECT_DASHBOARD",
       "id": "mCollect",
       "isActive": "",
       "style": "linear",
@@ -310,50 +394,42 @@
                   "chartType": "metric",
                   "filter": "",
                   "headers": []
+                },
+                {
+                  "id": "targetCollection",
+                  "name": "DSS_TARGET_COLLECTION",
+                  "code": "",
+                  "chartType": "metric",
+                  "filter": "",
+                  "headers": []
+                },
+                {
+                  "id": "mcTargetAchieved",
+                  "name": "DSS_TARGET_ACHIEVED",
+                  "code": "",
+                  "chartType": "metric",
+                  "filter": "",
+                  "headers": []
                 }
               ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "name": "DSS_M_COLLECT_DASHBOARD",
-      "id": "ulb-mCollect",
-      "isActive": "",
-      "style": "linear",
-      "visualizations": [
-        {
-          "row": 1,
-          "name": "DSS_REVENUE",
-          "vizArray": [
+            },
             {
-              "id": 311,
-              "name": "DSS_OVERVIEW",
+              "id": 312,
+              "name": "Total Cumulative Collection",
               "dimensions": {
                 "height": 350,
-                "width": 5
+                "width": 7
               },
-              "vizType": "metric-collection",
-              "label": "DSS_OVERVIEW",
+              "vizType": "chart",
+              "label": "",
               "noUnit": true,
               "isCollapsible": false,
               "charts": [
                 {
-                  "id": "todaysCollection",
-                  "name": "DSS_TOTAL_COLLECTION_TODAY",
+                  "id": "mcCumulativeCollection",
+                  "name": "Monthly",
                   "code": "",
-                  "chartType": "metric",
-                  "filter": {
-                    "title": "TODAY"
-                  },
-                  "headers": []
-                },
-                {
-                  "id": "totalCollection",
-                  "name": "DSS_TOTAL_COLLECTION",
-                  "code": "",
-                  "chartType": "metric",
+                  "chartType": "line",
                   "filter": "",
                   "headers": []
                 }
