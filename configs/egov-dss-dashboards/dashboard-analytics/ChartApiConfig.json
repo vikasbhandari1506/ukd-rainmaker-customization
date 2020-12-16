@@ -37,6 +37,31 @@
     },
     "_comment": " "
   },
+  "mcCumulativeCollection": {
+    "chartName": "DSS_TOTAL_CUMULATIVE_COLLECTION",
+    "queries": [
+      {
+        "module": "COMMON",
+        "dateRefField": "dataObject.paymentDetails.receiptDate",
+        "requestQueryMap": "{\"wardId\" : \"domainObject.ward.name.keyword\",\r\n  \"module\" : \"dataObject.paymentDetails.businessService.keyword\", \n\"tenantId\" : \"dataObject.tenantId\"}",
+        "indexName": "dss-collection_v2",
+        "aggrQuery": "{\"aggs\":{\"AGGR\":{\"filter\":{\"bool\":{\"must_not\":[{\"term\":{\"dataObject.tenantId.keyword\":\"pb.testing\"}},{\"terms\":{\"dataObject.bill.status.keyword\":[\"Cancelled\"]}},{\"terms\":{\"dataObject.paymentDetails.businessService.keyword\":[\"TL\",\"PT\"]}}],\"must\":[]}},\"aggs\":{\"Collections\":{\"date_histogram\":{\"field\":\"dataObject.paymentDetails.receiptDate\",\"interval\":\"intervalvalue\"},\"aggs\":{\"Sum\":{\"sum\":{\"field\":\"dataObject.paymentDetails.totalAmountPaid\"}}}}}}}}"
+      }
+    ],
+    "chartType": "line",
+    "valueType": "amount",
+    "action": "",
+    "drillChart": "none",
+    "documentType": "_doc",
+    "aggregationPaths": [
+      "Collections"
+    ],
+    "isCumulative": true,
+    "interval": "day",
+    "insight": {
+    },
+    "_comment": " "
+  },
   "cumulativeCollection": {
     "chartName": "DSS_TOTAL_CUMULATIVE_COLLECTION",
     "queries": [
@@ -59,6 +84,45 @@
     "isCumulative": true,
     "interval": "month",
     "insight": {},
+    "_comment": " "
+  },
+   "mcTargetAchieved": {
+    "chartName": "DSS_TARGET_ACHIEVED",
+    "queries": [
+      {
+        "module": "COMMON",
+        "requestQueryMap": "{\r\n  \"module\" : \"businessService.keyword\", \n\"tenantId\" : \"tenantIdForMunicipalCorporation\"}",
+        "dateRefField": "",
+        "indexName": "dss-target_v1",
+        "aggrQuery": "{\"aggs\":{\"Actual collection\":{\"sum\":{\"field\":\"budgetProposedForMunicipalCorporation\"}}}}"
+      },
+      {
+        "module": "COMMON",
+        "requestQueryMap": "{\"wardId\" : \"domainObject.ward.name.keyword\",\r\n  \"district\" : \"dataObject.tenantData.city.districtCode\", \"module\" : \"dataObject.paymentDetails.businessService.keyword\", \n\"tenantId\" : \"dataObject.tenantId\"}",
+        "dateRefField": "dataObject.paymentDetails.receiptDate",
+        "indexName": "dss-collection_v2",
+        "aggrQuery": "{\"aggs\":{\"AGGR\":{\"filter\":{\"bool\":{\"must_not\":[{\"term\":{\"dataObject.tenantId.keyword\":\"uk.testing\"}},{\"terms\":{\"dataObject.paymentDetails.bill.status.keyword\":[\"Cancelled\"]}},{\"terms\":{\"dataObject.paymentDetails.businessService.keyword\":[\"TL\",\"PT\"]}}]}},\"aggs\":{\"Total Collection\":{\"sum\":{\"field\":\"dataObject.paymentDetails.totalAmountPaid\"}}}}}}"
+      }
+
+    ],
+    "chartType": "metric",
+    "valueType": "percentage",
+    "drillChart": "none",
+    "documentType": "_doc",
+    "action": "percentage",
+    "aggregationPaths": [
+      "Total Collection3",
+      "Actual collection"
+    ],
+    "insight": {
+      "chartResponseMap" : "targetAchieved",
+      "action" : "differenceOfNumbers",
+      "upwardIndicator" : "positive",
+      "downwardIndicator" : "negative",
+      "textMessage" : "$indicator$value% than last $insightInterval",
+      "colorCode" : "#228B22",
+      "insightInterval" : "month"
+    },
     "_comment": " "
   },
   "targetAchieved": {
@@ -247,14 +311,8 @@
         "aggrQuery": "{\"aggs\":{\"AGGR\":{\"filter\":{\"bool\":{\"must_not\":[{\"term\":{\"Data.tradelicense.tenantId.keyword\":\"uk.testing\"}}]}},\"aggs\":{\"Total Application\":{\"value_count\":{\"field\":\"Data.tradelicense.applicationNumber.keyword\"}}}}}}",
         "requestQueryMap": "{\"wardId\" : \"Data.ward.name.keyword\", \r\n  \"district\" : \"Data.tenantData.city.districtCode\", \r\n\"tenantId\" : \"Data.tradelicense.tenantId.keyword\" \r\n}",
         "dateRefField": "Data.tradelicense.applicationDate"
-      },
-       {
-        "module": "MC",
-        "indexName": "tlindex-v1",
-        "aggrQuery": "{\"aggs\":{\"AGGR\":{\"filter\":{\"bool\":{\"must_not\":[{\"term\":{\"Data.tradelicense.tenantId.keyword\":\"uk.testing\"}}]}},\"aggs\":{\"Total Application\":{\"value_count\":{\"field\":\"Data.tradelicense.applicationNumber.keyword\"}}}}}}",
-        "requestQueryMap": "{\"wardId\" : \"Data.ward.name.keyword\", \r\n  \"district\" : \"Data.tenantData.city.districtCode\", \r\n\"tenantId\" : \"Data.tradelicense.tenantId.keyword\" \r\n}",
-        "dateRefField": "Data.tradelicense.applicationDate"
       }
+       
     ],
     "chartType": "metric",
     "valueType": "number",
