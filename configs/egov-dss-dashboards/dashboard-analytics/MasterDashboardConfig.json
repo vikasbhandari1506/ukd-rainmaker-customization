@@ -398,28 +398,6 @@
                   "headers": []
                 }
               ]
-            },
-            {
-              "id": 323,
-              "name": "DSS_MC_COLLECTION_BY_PAYMENT_TYPE",
-              "dimensions": {
-                "height": 250,
-                "width": 4
-              },
-              "vizType": "chart",
-              "label": "",
-              "noUnit": false,
-              "isCollapsible": false,
-              "charts": [
-                {
-                  "id": "mcCollectionByPaymentType",
-                  "name": "DSS_MC_COLLECTION_BY_PAYMENT_TYPE",
-                  "code": "",
-                  "chartType": "donut",
-                  "filter": "",
-                  "headers": []
-                }
-              ]
             }
           ]
         },
