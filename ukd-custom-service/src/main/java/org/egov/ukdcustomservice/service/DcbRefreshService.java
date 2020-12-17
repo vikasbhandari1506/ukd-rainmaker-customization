@@ -22,9 +22,9 @@ public class DcbRefreshService {
 	+ "select propertyid from eg_pt_property_v2 prop,egbs_demand_v1 demand, egbs_demanddetail_v1 dd " +
 	" where demand.id=dd.demandid and demand.consumercode=prop.propertyid and prop.tenantid=':tenantId' and "+
     " ( "
-    + "to_timestamp(dd.lastmodifiedtime/1000)>(select max(updatedtime) from dcb where tenantid=':tenantId' ) "+
+    + "to_timestamp(dd.lastmodifiedtime/1000)>(select case when max(updatedtime) is not null then max(updatedtime) else '2019-04-01' end from dcb where tenantid=':tenantId' ) "+
     " OR " + 
-    " to_timestamp(prop.lastmodifiedtime/1000)>(select max(updatedtime) from dcb where tenantid=':tenantId' ) "
+    " to_timestamp(prop.lastmodifiedtime/1000)>(select case when max(updatedtime) is not null then max(updatedtime) else '2019-04-01' end from dcb where tenantid=':tenantId' ) "
     + ") "
     + ")" +
     " and tenantid=':tenantId';";
@@ -255,9 +255,9 @@ public class DcbRefreshService {
 				" select propertyid from eg_pt_property_v2 prop,egbs_demand_v1 demand, egbs_demanddetail_v1 dd " +
 				" where demand.id=dd.demandid and demand.consumercode=prop.propertyid and prop.tenantid=':tenantId' and "+
 			    " ( "
-			    + "to_timestamp(dd.lastmodifiedtime/1000)>(select max(updatedtime) from dcb where tenantid=':tenantId' ) "+
+			    + "to_timestamp(dd.lastmodifiedtime/1000)>(select case when max(updatedtime) is not null then max(updatedtime) else '2019-04-01' end from dcb where tenantid=':tenantId' ) "+
 			    " OR " + 
-			    " to_timestamp(prop.lastmodifiedtime/1000)>(select max(updatedtime) from dcb where tenantid=':tenantId' ) "
+			    " to_timestamp(prop.lastmodifiedtime/1000)>(select case when max(updatedtime) is not null then max(updatedtime) else '2019-04-01' end from dcb where tenantid=':tenantId' ) "
 			    + ") "
 			    + ") "
 				+ ";";
