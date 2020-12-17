@@ -108,11 +108,11 @@ ReportDefinitions:
     pd.billid=bill.id and
     bd.billid=bill.id and
     bad.billdetailid=bd.id and
-    pay.createdby=CAST(un.id as varchar)
+    pay.createdby=CAST(un.id as varchar) and
     pay.tenantid LIKE $tenantid and 
     pd.businessservice='PT'and 
     pay.paymentstatus != 'CANCELLED' AND pay.tenantid != 'uk.testing'
-  groupby: GROUP BY pay.tenantid,pd.receiptnumber,bill.consumercode,pd.receiptdate,pay.transactionnumber,pay.paymentmode,un.id
+  groupby: GROUP BY pay.tenantid,pd.receiptnumber,bill.consumercode,pd.receiptdate,pay.transactionnumber,pay.paymentmode,un.name
 
 - reportName: CancelledReceiptRegister
   summary: Receipt Register for cancelled Receipts
