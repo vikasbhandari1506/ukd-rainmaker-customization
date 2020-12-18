@@ -1122,7 +1122,7 @@
               "label": "",
               "charts": [
                 {
-                  "id": "mcTotalCollection",
+                  "id": "totalCollection",
                   "name": "DSS_TOTAL_COLLECTION",
                   "code": "",
                   "chartType": "metric",
