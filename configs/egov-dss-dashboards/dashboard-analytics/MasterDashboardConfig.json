@@ -1110,6 +1110,28 @@
           "name": "DSS_OVERVIEW",
           "vizArray": [
             {
+              "id": 121,
+              "name": "DSS_M_COLLECT",
+              "vizType": "module",
+              "moduleLevel": "TL",
+              "ref": {
+                "url": "mCollect",
+                "logoUrl": "",
+                "type": "internal"
+              },
+              "label": "",
+              "charts": [
+                {
+                  "id": "mcTotalCollection",
+                  "name": "DSS_TOTAL_COLLECTION",
+                  "code": "",
+                  "chartType": "metric",
+                  "filter": "",
+                  "headers": []
+                }
+              ]
+            },
+            {
               "id": 141,
               "name": "DSS_TRADE_LICENCE",
               "vizType": "module",
