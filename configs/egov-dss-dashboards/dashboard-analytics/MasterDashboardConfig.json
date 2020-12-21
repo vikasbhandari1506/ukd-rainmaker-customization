@@ -28,7 +28,7 @@
                   "headers": []
                 },
                 {
-                  "id": "totalCollection",
+                  "id": "overviewTotalCollection",
                   "name": "DSS_TOTAL_COLLECTION",
                   "code": "",
                   "chartType": "metric",
@@ -304,7 +304,7 @@
                   "headers": []
                 },
                 {
-                  "id": "totalCollection",
+                  "id": "mcTotalCollection",
                   "name": "DSS_TOTAL_COLLECTION",
                   "code": "",
                   "chartType": "metric",
@@ -508,7 +508,7 @@
                   "headers": []
                 },
                 {
-                  "id": "totalCollection",
+                  "id": "mcTotalCollection",
                   "name": "DSS_TOTAL_COLLECTION",
                   "code": "",
                   "chartType": "metric",
