@@ -498,7 +498,7 @@
               "isCollapsible": false,
               "charts": [
                 {
-                  "id": "todaysCollection",
+                  "id": "mcTodaysCollection",
                   "name": "DSS_TOTAL_COLLECTION_TODAY",
                   "code": "",
                   "chartType": "metric",
