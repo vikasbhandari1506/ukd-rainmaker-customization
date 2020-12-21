@@ -285,7 +285,7 @@
                 FROM egcl_payment p, egcl_paymentdetail pd 
                 WHERE p.id=pd.paymentid  and pd.businessservice ='PT'
                 and (p.lastmodifiedtime/1000)  <=  (extract (epoch FROM NOW()))) as revenuecollected, 
-                (select count(*)
+                (select to_char(count(*), 'FM99,FM99,99,999')
                 FROM egcl_payment p, egcl_paymentdetail pd 
                 WHERE p.id=pd.paymentid  and pd.businessservice ='PT'
                 and (p.lastmodifiedtime/1000)  <=  (extract (epoch FROM NOW()))) as receiptscreated, 
@@ -304,7 +304,7 @@
                 FROM egcl_payment p, egcl_paymentdetail pd 
                 WHERE p.id=pd.paymentid  and pd.businessservice ='PT'
                 and (p.lastmodifiedtime/1000)  <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800)) as revenuecollected, 
-                (select count(p.*)  
+                (select to_char(count(p.*), 'FM99,FM99,99,999') 
                 FROM egcl_payment p, egcl_paymentdetail pd 
                 WHERE p.id=pd.paymentid  and pd.businessservice ='PT'
                 and (p.lastmodifiedtime/1000)  <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 1) )  as receiptscreated, 
@@ -323,7 +323,7 @@
                 FROM egcl_payment p, egcl_paymentdetail pd 
                 WHERE p.id=pd.paymentid  and pd.businessservice ='PT'
                 and (p.lastmodifiedtime/1000)  <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 *2 ) ) as revenuecollected, 
-                (select count(p.*)  
+                (select to_char(count(p.*), 'FM99,FM99,99,999') 
                 FROM egcl_payment p, egcl_paymentdetail pd 
                 WHERE p.id=pd.paymentid  and pd.businessservice ='PT'
                 and (p.lastmodifiedtime/1000)  <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 *2 ) )  as receiptscreated, 
@@ -342,7 +342,7 @@
                 FROM egcl_payment p, egcl_paymentdetail pd 
                 WHERE p.id=pd.paymentid  and pd.businessservice ='PT'
                 and (p.lastmodifiedtime/1000)  <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 3) ) as revenuecollected, 
-                (select count(p.*)
+                (select to_char(count(p.*), 'FM99,FM99,99,999')
                 FROM egcl_payment p, egcl_paymentdetail pd 
                 WHERE p.id=pd.paymentid  and pd.businessservice ='PT'
                 and (p.lastmodifiedtime/1000)  <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 3) )  as receiptscreated, 
@@ -361,7 +361,7 @@
                 FROM egcl_payment p, egcl_paymentdetail pd 
                 WHERE p.id=pd.paymentid  and pd.businessservice ='PT'
                 and (p.lastmodifiedtime/1000)  <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 4) ) as revenuecollected, 
-                (select count(p.*)
+                (select to_char(count(p.*), 'FM99,FM99,99,999')
                 FROM egcl_payment p, egcl_paymentdetail pd 
                 WHERE p.id=pd.paymentid  and pd.businessservice ='PT'
                 and (p.lastmodifiedtime/1000)  <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 4) )   as receiptscreated, 
@@ -380,7 +380,7 @@
                 FROM egcl_payment p, egcl_paymentdetail pd 
                 WHERE p.id=pd.paymentid  and pd.businessservice ='PT'
                 and (p.lastmodifiedtime/1000)  <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 *5) ) as revenuecollected, 
-                (select count(p.*)
+                (select to_char(count(p.*), 'FM99,FM99,99,999')
                 FROM egcl_payment p, egcl_paymentdetail pd 
                 WHERE p.id=pd.paymentid  and pd.businessservice ='PT'
                 and (p.lastmodifiedtime/1000)  <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 *5) ) as receiptscreated, 
@@ -435,7 +435,7 @@
                 WHERE (pd.receiptdate/1000)  <= (extract (epoch FROM NOW()))
                 AND tl.tenantid != 'uk.testing' AND tl.status = 'APPROVED' 
                 AND pymt.paymentstatus != 'Cancelled' AND bill.status != 'CANCELLED') / 100000, 2), 'FM99,FM99,99,999D00')) as revenuecollected,
-                (SELECT count(pymt.*) FROM eg_tl_tradelicense tl 
+                (SELECT to_char(count(pymt.*), 'FM99,FM99,99,999') FROM eg_tl_tradelicense tl 
                 INNER JOIN eg_tl_tradelicensedetail tld ON tld.tradelicenseid = tl.id 
                 INNER JOIN 
                 (SELECT tradelicensedetailid,message.message as tradeSubType FROM eg_tl_tradeunit 
@@ -470,7 +470,7 @@
                 bill.id = pd.billid INNER JOIN egcl_payment pymt ON pd.paymentid = pymt.id 
                 WHERE (pd.receiptdate/1000) <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800)  AND tl.tenantid != 'uk.testing' and tl.status = 'APPROVED' 
                 AND pymt.paymentstatus != 'Cancelled' AND bill.status != 'CANCELLED') / 100000, 2), 'FM99,FM99,99,999D00')) as revenuecollected,
-                (SELECT count(pymt.*) FROM eg_tl_tradelicense tl 
+                (SELECT to_char(count(pymt.*), 'FM99,FM99,99,999') FROM eg_tl_tradelicense tl 
                 INNER JOIN eg_tl_tradelicensedetail tld ON tld.tradelicenseid = tl.id 
                 INNER JOIN 
                 (SELECT tradelicensedetailid,message.message as tradeSubType FROM eg_tl_tradeunit 
@@ -511,7 +511,7 @@
                 ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 2) 
                 AND tl.tenantid != 'uk.testing' AND tl.status = 'APPROVED' 
                 AND pymt.paymentstatus != 'Cancelled' AND bill.status != 'CANCELLED') / 100000, 2), 'FM99,FM99,99,999D00')) as revenuecollected,
-                (SELECT count(pymt.*) FROM eg_tl_tradelicense tl 
+                (SELECT to_char(count(pymt.*), 'FM99,FM99,99,999') FROM eg_tl_tradelicense tl 
                 INNER JOIN eg_tl_tradelicensedetail tld ON tld.tradelicenseid = tl.id 
                 INNER JOIN 
                 (SELECT tradelicensedetailid,message.message as tradeSubType FROM eg_tl_tradeunit 
@@ -553,7 +553,7 @@
                 ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 3) 
                 AND tl.tenantid != 'uk.testing' AND tl.status = 'APPROVED' 
                 AND pymt.paymentstatus != 'Cancelled' AND bill.status != 'CANCELLED') / 100000, 2), 'FM99,FM99,99,999D00')) as revenuecollected,
-                (SELECT count(pymt.*) FROM eg_tl_tradelicense tl 
+                (SELECT to_char(count(pymt.*), 'FM99,FM99,99,999') FROM eg_tl_tradelicense tl 
                 INNER JOIN eg_tl_tradelicensedetail tld ON tld.tradelicenseid = tl.id 
                 INNER JOIN 
                 (SELECT tradelicensedetailid,message.message as tradeSubType FROM eg_tl_tradeunit 
@@ -595,7 +595,7 @@
                 ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 4) 
                 AND tl.tenantid != 'uk.testing' AND tl.status = 'APPROVED' 
                 AND pymt.paymentstatus != 'Cancelled' AND bill.status != 'CANCELLED') / 100000, 2), 'FM99,FM99,99,999D00')) as revenuecollected,
-                (SELECT count(pymt.*) FROM eg_tl_tradelicense tl 
+                (SELECT to_char(count(pymt.*), 'FM99,FM99,99,999') FROM eg_tl_tradelicense tl 
                 INNER JOIN eg_tl_tradelicensedetail tld ON tld.tradelicenseid = tl.id 
                 INNER JOIN 
                 (SELECT tradelicensedetailid,message.message as tradeSubType FROM eg_tl_tradeunit 
@@ -636,7 +636,7 @@
                 ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 5) 
                 AND tl.tenantid != 'uk.testing' AND tl.status = 'APPROVED' 
                 AND pymt.paymentstatus != 'Cancelled' AND bill.status != 'CANCELLED') / 100000, 2), 'FM99,FM99,99,999D00')) as revenuecollected,
-                (SELECT count(pymt.*) FROM eg_tl_tradelicense tl 
+                (SELECT to_char(count(pymt.*), 'FM99,FM99,99,999') FROM eg_tl_tradelicense tl 
                 INNER JOIN eg_tl_tradelicensedetail tld ON tld.tradelicenseid = tl.id 
                 INNER JOIN 
                 (SELECT tradelicensedetailid,message.message as tradeSubType FROM eg_tl_tradeunit 
