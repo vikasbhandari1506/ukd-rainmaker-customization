@@ -37,7 +37,7 @@
     },
     "_comment": " "
   },
-    "mcTodaysCollection": {
+  "mcTodaysCollection": {
     "chartName": "DSS_TOTAL_COLLECTION",
     "queries": [
       {
@@ -45,7 +45,7 @@
         "dateRefField": "dataObject.paymentDetails.receiptDate",
         "requestQueryMap": "{\"wardId\" : \"domainObject.ward.name.keyword\",\"module\" : \"dataObject.paymentDetails.businessService.keyword\", \"tenantId\" : \"dataObject.tenantId\"}",
         "indexName": "dss-collection_v2",
-        "aggrQuery":"{\"aggs\":{\"AGGR\":{\"filter\":{\"bool\":{\"must_not\":[{\"term\":{\"dataObject.tenantId.keyword\":\"uk.testing\"}},{\"terms\":{\"dataObject.bill.status.keyword\":[\"Cancelled\"]}},{\"terms\":{\"dataObject.paymentDetails.businessService.keyword\":[\"TL\",\"PT\"]}}],\"must\":[{\"range\":{\"dataObject.paymentDetails.receiptDate\":{\"gt\":\"now-1d\/d\",\"lte\":\"now\"}}}]}},\"aggs\":{\"Todays Collection\":{\"sum\":{\"field\":\"dataObject.paymentDetails.bill.billDetails.amountPaid\"}}}}}}" 
+        "aggrQuery": "{\"aggs\":{\"AGGR\":{\"filter\":{\"bool\":{\"must_not\":[{\"term\":{\"dataObject.tenantId.keyword\":\"uk.testing\"}},{\"terms\":{\"dataObject.bill.status.keyword\":[\"Cancelled\"]}},{\"terms\":{\"dataObject.paymentDetails.businessService.keyword\":[\"TL\",\"PT\"]}}],\"must\":[{\"range\":{\"dataObject.paymentDetails.receiptDate\":{\"gt\":\"now-1d/d\",\"lte\":\"now\"}}}]}},\"aggs\":{\"Todays Collection\":{\"sum\":{\"field\":\"dataObject.paymentDetails.bill.billDetails.amountPaid\"}}}}}}"
       }
     ],
     "chartType": "metric",
@@ -57,18 +57,17 @@
       "Todays Collection"
     ],
     "insight": {
-      "chartResponseMap" : "totalCollection",
-      "action" : "differenceOfNumbers",
-      "upwardIndicator" : "positive",
-      "downwardIndicator" : "negative",
-      "textMessage" : "$indicator$value% than last $insightInterval",
-      "colorCode" : "#228B22",
-      "insightInterval" : "month"
+      "chartResponseMap": "totalCollection",
+      "action": "differenceOfNumbers",
+      "upwardIndicator": "positive",
+      "downwardIndicator": "negative",
+      "textMessage": "$indicator$value% than last $insightInterval",
+      "colorCode": "#228B22",
+      "insightInterval": "month"
     },
     "_comment": " "
   },
-  
-"overviewTotalCollection": {
+  "overviewTotalCollection": {
     "chartName": "DSS_TOTAL_COLLECTION",
     "queries": [
       {
@@ -88,17 +87,16 @@
       "Total Collection6"
     ],
     "insight": {
-      "chartResponseMap" : "totalCollection",
-      "action" : "differenceOfNumbers",
-      "upwardIndicator" : "positive",
-      "downwardIndicator" : "negative",
-      "textMessage" : "$indicator$value% than last $insightInterval",
-      "colorCode" : "#228B22",
-      "insightInterval" : "month"
+      "chartResponseMap": "totalCollection",
+      "action": "differenceOfNumbers",
+      "upwardIndicator": "positive",
+      "downwardIndicator": "negative",
+      "textMessage": "$indicator$value% than last $insightInterval",
+      "colorCode": "#228B22",
+      "insightInterval": "month"
     },
     "_comment": " "
-  },  
-  
+  },
   "mcTotalCollection": {
     "chartName": "DSS_TOTAL_COLLECTION",
     "queries": [
@@ -107,7 +105,7 @@
         "dateRefField": "dataObject.paymentDetails.receiptDate",
         "requestQueryMap": "{\"wardId\" : \"domainObject.ward.name.keyword\",\"module\" : \"dataObject.paymentDetails.businessService.keyword\", \"tenantId\" : \"dataObject.tenantId\"}",
         "indexName": "dss-collection_v2",
-        "aggrQuery":"{\"aggs\":{\"AGGR\":{\"filter\":{\"bool\":{\"must_not\":[{\"term\":{\"dataObject.tenantId.keyword\":\"uk.testing\"}},{\"terms\":{\"dataObject.paymentDetails.businessService.keyword\":[\"TL\",\"PT\"]}}]}},\"aggs\":{\"Total Collection\":{\"sum\":{\"field\":\"dataObject.paymentDetails.bill.billDetails.amountPaid\"}}}}}}" 
+        "aggrQuery": "{\"aggs\":{\"AGGR\":{\"filter\":{\"bool\":{\"must_not\":[{\"term\":{\"dataObject.tenantId.keyword\":\"uk.testing\"}},{\"terms\":{\"dataObject.paymentDetails.businessService.keyword\":[\"TL\",\"PT\"]}}]}},\"aggs\":{\"Total Collection\":{\"sum\":{\"field\":\"dataObject.paymentDetails.bill.billDetails.amountPaid\"}}}}}}"
       }
     ],
     "chartType": "metric",
@@ -119,13 +117,13 @@
       "Total Collection"
     ],
     "insight": {
-      "chartResponseMap" : "totalCollection",
-      "action" : "differenceOfNumbers",
-      "upwardIndicator" : "positive",
-      "downwardIndicator" : "negative",
-      "textMessage" : "$indicator$value% than last $insightInterval",
-      "colorCode" : "#228B22",
-      "insightInterval" : "month"
+      "chartResponseMap": "totalCollection",
+      "action": "differenceOfNumbers",
+      "upwardIndicator": "positive",
+      "downwardIndicator": "negative",
+      "textMessage": "$indicator$value% than last $insightInterval",
+      "colorCode": "#228B22",
+      "insightInterval": "month"
     },
     "_comment": " "
   },
@@ -662,7 +660,6 @@
     "aggregationPaths": [
       "Total Collection",
       "Transactions",
-      "Total Licence Issued",
       "Target Collection"
     ],
     "pathDataTypeMapping": [
@@ -672,7 +669,6 @@
       {
         "Transactions": "number"
       },
-      
       {
         "Target Collection": "amount"
       }
@@ -714,7 +710,6 @@
     "aggregationPaths": [
       "Total Collection",
       "Transactions",
-      "Total Licence Issued",
       "Target Collection"
     ],
     "pathDataTypeMapping": [
@@ -724,7 +719,6 @@
       {
         "Transactions": "number"
       },
-     
       {
         "Target Collection": "amount"
       }
@@ -753,7 +747,6 @@
     "aggregationPaths": [
       "Total Collection",
       "Transactions",
-      "Total Licence Issued",
       "Target Collection"
     ],
     "pathDataTypeMapping": [
@@ -763,7 +756,6 @@
       {
         "Transactions": "number"
       },
-     
       {
         "Target Collection": "amount"
       }
@@ -771,7 +763,6 @@
     "insight": {},
     "_comment": ""
   },
-  
   "activeUlbs": {
     "chartName": "DSS_PT_TOTAL_ACTIVE_ULBS",
     "queries": [
