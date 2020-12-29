@@ -695,7 +695,7 @@
               "charts": [
                 {
                   "id": "totalmcBoundaryDrillDown",
-                  "name": "DSS_MC_DEMAND_COLLECTION_BOUNDARY",
+                  "name": "DSS_MC_DEMAND_COLLECTION_BOUNDARYDDR",
                   "code": "",
                   "chartType": "table",
                   "filter": "",
