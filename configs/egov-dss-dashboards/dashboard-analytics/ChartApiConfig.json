@@ -740,7 +740,7 @@
     "postAggregationTheory": "repsonseToDifferenceOfDates",
     "chartType": "table",
     "valueType": "number",
-    "drillChart": "",
+    "drillChart": "none",
     "documentType": "_doc",
     "action": "",
     "plotLabel": "Business Service",
