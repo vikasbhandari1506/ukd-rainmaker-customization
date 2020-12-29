@@ -694,8 +694,8 @@
               "isCollapsible": false,
               "charts": [
                 {
-                  "id": "totalmcBoundaryRevenue",
-                  "name": "DSS_MC_DEMAND_COLLECTION_BOUNDARY",
+                  "id": "totalmcBoundaryDrillDown",
+                  "name": "DSS_MC_DEMAND_COLLECTION_BOUNDARYDDR",
                   "code": "",
                   "chartType": "table",
                   "filter": "",
