@@ -727,7 +727,7 @@
     "_comment": ""
   },
   "totalmcBoundaryDrillDown": {
-    "chartName": "",
+    "chartName": "DSS_MC_DEMAND_COLLECTION_BOUNDARYDDR",
     "queries": [
       {
         "module": "COMMON",
