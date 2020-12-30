@@ -691,6 +691,8 @@
     "valueType": "number",
     "drillChart": "none",
     "documentType": "_doc",
+     "isPostResponseHandler": true,
+   "isMdmsEnabled": true,
     "action": "",
     "plotLabel": "Business Service",
     "aggregationPaths": [
