@@ -680,24 +680,37 @@
     "chartName": "DSS_MC_DEMAND_COLLECTION_BOUNDARY",
     "queries": [
       {
-        "module": "MC",
+        "module": "COMMON",
         "requestQueryMap": "{\"wardId\" : \"domainObject.ward.name.keyword\", \"tenantId\" : \"dataObject.tenantId\", \"district\" : \"dataObject.tenantData.cityDistrictCode\"}",
         "dateRefField": "dataObject.paymentDetails.receiptDate",
         "indexName": "dss-collection_v2",
-        "aggrQuery": "{\"aggs\":{\"AGGR\":{\"filter\":{\"bool\":{\"must_not\":[{\"term\":{\"dataObject.tenantId.keyword\":\"uk.testing\"}},{\"terms\":{\"dataObject.paymentDetails.bill.status.keyword\":[\"Cancelled\"]}}]}},\"aggs\":{\"Business Service \":{\"terms\":{\"field\":\"dataObject.paymentDetails.businessService.keyword\",\"size\":200,\"order\":{\"total\":\"asc\"}},\"aggs\":{\"Total Collection\":{\"sum\":{\"field\":\"dataObject.paymentDetails.totalAmountPaid\"}},\"Transactions\":{\"value_count\":{\"field\":\"dataObject.transactionNumber.keyword\"}}}}}}}}"
+        "aggrQuery": "{\"aggs\":{\"AGGR\":{\"filter\":{\"bool\":{\"must_not\":[{\"term\":{\"dataObject.tenantId.keyword\":\"uk.testing\"}},{\"terms\":{\"dataObject.paymentDetails.bill.status.keyword\":[\"Cancelled\"]}}]}},\"aggs\":{\"Business Service \":{\"terms\":{\"field\":\"dataObject.paymentDetails.businessService.keyword\",\"size\":2000,\"order\":{\"total\":\"asc\"}},\"aggs\":{\"Total Collection\":{\"sum\":{\"field\":\"dataObject.paymentDetails.totalAmountPaid\"}},\"Transactions\":{\"value_count\":{\"field\":\"dataObject.transactionNumber.keyword\"}}}}}}}}"
+      },
+      {
+        "module": "COMMON",
+        "requestQueryMap": "{\"module\" : \"businessService.keyword\", \"tenantId\" : \"tenantIdForMunicipalCorporation.keyword\"}",
+        "dateRefField": "",
+        "indexName": "dss-target_v1",
+        "aggrQuery": "{\"aggs\":{\"Business Service \":{\"terms\":{\"field\":\"tenantIdForMunicipalCorporation.keyword\",\"size\":1000},\"aggs\":{\"Target Collection\":{\"sum\":{\"field\":\"budgetProposedForMunicipalCorporation\"}}}}}}"
       }
     ],
-    "chartType": "xtable",
+    "filterKeys": [
+      {
+        "key": "Business Service",
+        "column": "Business Service"
+      }
+    ],
+    "postAggregationTheory": "repsonseToDifferenceOfDates",
+    "chartType": "table",
     "valueType": "number",
-    "drillChart": "none",
+    "drillChart": "totalmcBoundaryDrillDown",
     "documentType": "_doc",
-     "isPostResponseHandler": true,
-   "isMdmsEnabled": true,
     "action": "",
     "plotLabel": "Business Service",
     "aggregationPaths": [
       "Total Collection",
-      "Transactions"
+      "Transactions",
+      "Target Collection"
     ],
     "pathDataTypeMapping": [
       {
@@ -705,6 +718,9 @@
       },
       {
         "Transactions": "number"
+      },
+      {
+        "Target Collection": "amount"
       }
     ],
     "insight": {},
@@ -724,7 +740,7 @@
     "postAggregationTheory": "repsonseToDifferenceOfDates",
     "chartType": "table",
     "valueType": "number",
-    "drillChart": "none",
+    "drillChart": "",
     "documentType": "_doc",
     "action": "",
     "plotLabel": "Business Service",
