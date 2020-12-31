@@ -730,7 +730,7 @@
     "chartName": "DSS_MC_DEMAND_COLLECTION_BOUNDARYDDR",
     "queries": [
       {
-        "module": "COMMON",
+        "module": "MC",
         "requestQueryMap": "{\"module\" : \"businessService.keyword\", \"tenantId\" : \"tenantIdForMunicipalCorporation.keyword\"}",
         "dateRefField": "dataObject.paymentDetails.receiptDate",
         "indexName": "dss-collection_v2",
@@ -747,8 +747,7 @@
     "plotLabel": "Business Service",
     "aggregationPaths": [
       "Total Collection",
-      "Transactions",
-      "Target Collection"
+      "Transactions"
     ],
     "pathDataTypeMapping": [
       {
@@ -756,9 +755,6 @@
       },
       {
         "Transactions": "number"
-      },
-      {
-        "Target Collection": "amount"
       }
     ],
     "insight": {},
