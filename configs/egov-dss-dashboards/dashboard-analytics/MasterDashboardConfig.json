@@ -683,7 +683,7 @@
           "vizArray": [
             {
               "id": 231,
-              "name": "DSS_MC_DEMAND_COLLECTION_BOUNDARY",
+              "name": "DSS_MC_DEMAND_COLLECTION_BOUNDARYDDR",
               "dimensions": {
                 "height": 350,
                 "width": 12
@@ -694,8 +694,8 @@
               "isCollapsible": false,
               "charts": [
                 {
-                  "id": "totalmcBoundaryRevenue",
-                  "name": "DSS_MC_DEMAND_COLLECTION_BOUNDARY",
+                  "id": "totalmcBoundaryDrillDown",
+                  "name": "DSS_MC_DEMAND_COLLECTION_BOUNDARYDDR",
                   "code": "",
                   "chartType": "table",
                   "filter": "",
