@@ -495,8 +495,7 @@
                   "code": "",
                   "chartType": "table",
                   "filter": "",
-                  "headers": [],
-                  "tabName": ""
+                  "headers": []
                 }
               ]
             }
@@ -610,27 +609,6 @@
                   "headers": []
                 }
               ]
-            },
-            {
-              "id": 123,
-              "name": "DSS_MC_COLLECTION:_CATEGORY_WISE_PERCENT",
-              "dimensions": {
-                "height": 250,
-                "width": 4
-              },
-              "vizType": "chart",
-              "noUnit": false,
-              "isCollapsible": false,
-              "charts": [
-                {
-                  "id": "mcTotalCollectionCategoryWise",
-                  "name": "DSS_MC_COLLECTION:_CATEGORY_WISE",
-                  "code": "",
-                  "chartType": "donut",
-                  "filter": "",
-                  "headers": []
-                }
-              ]
             }
           ]
         },
@@ -728,8 +706,7 @@
                   "code": "",
                   "chartType": "table",
                   "filter": "",
-                  "headers": [],
-                  "tabName": ""
+                  "headers": []
                 }
               ]
             }
