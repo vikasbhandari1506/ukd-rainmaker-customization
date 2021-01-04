@@ -472,6 +472,35 @@
               ]
             }
           ]
+        },
+        {
+          "row": 4,
+          "name": "DSS_REVENUE",
+          "vizArray": [
+            {
+              "id": 231,
+              "name": "DSS_MC_DEMAND_COLLECTION_BOUNDARYDDR",
+              "dimensions": {
+                "height": 350,
+                "width": 12
+              },
+              "vizType": "chart",
+              "label": "",
+              "noUnit": false,
+              "isCollapsible": false,
+              "charts": [
+                {
+                  "id": "totalmcBoundaryDrillDown",
+                  "name": "DSS_MC_DEMAND_COLLECTION_BOUNDARYDDR",
+                  "code": "",
+                  "chartType": "table",
+                  "filter": "",
+                  "headers": [],
+                  "tabName": ""
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -700,7 +729,7 @@
                   "chartType": "table",
                   "filter": "",
                   "headers": [],
-                  "tabName": "Boundary"
+                  "tabName": ""
                 }
               ]
             }
