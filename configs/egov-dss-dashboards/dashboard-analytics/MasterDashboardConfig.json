@@ -696,7 +696,6 @@
                 "width": 12
               },
               "vizType": "chart",
-              "label": "",
               "noUnit": false,
               "isCollapsible": false,
               "charts": [
