@@ -458,10 +458,7 @@
           }
         ]
       },
-      {
-        "style": "no-signature",
-        "text": "{{no_signature}}"
-      },
+      
        {
         "style": "noc-head1",
         "table": {
@@ -489,7 +486,7 @@
                     "style": "receipt-logo-header"
                   },
                   {
-                    "text": "{{payment_receipt}}",
+                    "text": "{{payment_receipt1}}",
                     "style": "receipt-logo-sub-header"
                   }
                 ],
