@@ -136,6 +136,18 @@
                  }
                 },
                 {
+                  "variable": "payment_receipt1",
+                  "value": {
+                    "path": "PDF_STATIC_LABEL_CONSOLIDATED_RECEIPT_PAYMENT_RECEIPT_CITIZEN"
+                  },
+                  "type": "label",
+                  "localisation":{
+                    "required":true,
+                    "prefix": null,
+                    "module":"rainmaker-common"
+                 }
+                },
+                {
                   "variable": "receipt_no",
                   "value": {
                     "path": "PDF_STATIC_LABEL_CONSOLIDATED_RECEIPT_RECEIPT_NO"
