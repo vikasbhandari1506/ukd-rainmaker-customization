@@ -135,6 +135,7 @@ ReportDefinitions:
     RIGHT(po.propertydetail,6)=RIGHT(bill.consumercode,6) and
     eu.uuid=po.userid and
     msg.tenantid=pay.tenantid and
+    msg.locale='hi_IN' and
     pay.tenantid LIKE $tenantid and 
     pd.businessservice='PT'and 
     pay.paymentstatus != 'CANCELLED' AND pay.tenantid != 'uk.testing'
