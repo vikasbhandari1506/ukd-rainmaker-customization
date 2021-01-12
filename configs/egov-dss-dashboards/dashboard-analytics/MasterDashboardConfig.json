@@ -426,50 +426,6 @@
                   "headers": []
                 }
               ]
-            },
-            {
-              "id": 321,
-              "name": "DSS_TL_TOP_3_PERFORMING_ULBS",
-              "dimensions": {
-                "height": 250,
-                "width": 4
-              },
-              "vizType": "performing-metric",
-              "label": "",
-              "noUnit": false,
-              "isCollapsible": false,
-              "charts": [
-                {
-                  "id": "topPerformingUlbs",
-                  "name": "DSS_TL_TOP_3_PERFORMING_ULBS",
-                  "code": "",
-                  "chartType": "bar",
-                  "filter": "",
-                  "headers": []
-                }
-              ]
-            },
-            {
-              "id": 322,
-              "name": "DSS_TL_BOTTOM_3_PERFORMING_ULBS",
-              "dimensions": {
-                "height": 250,
-                "width": 4
-              },
-              "vizType": "performing-metric",
-              "label": "",
-              "noUnit": false,
-              "isCollapsible": false,
-              "charts": [
-                {
-                  "id": "bottomPerformingUlbs",
-                  "name": "DSS_TL_BOTTOM_3_PERFORMING_ULBS",
-                  "code": "",
-                  "chartType": "bar",
-                  "filter": "",
-                  "headers": []
-                }
-              ]
             }
           ]
         },
