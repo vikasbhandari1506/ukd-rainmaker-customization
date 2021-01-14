@@ -451,7 +451,9 @@
                   "code": "",
                   "chartType": "table",
                   "filter": "",
-                  "headers": []
+                  "headers": [],
+                  "tabName": "Boundary"
+                  
                 }
               ]
             }
