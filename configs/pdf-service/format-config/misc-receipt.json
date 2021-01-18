@@ -458,10 +458,7 @@
           }
         ]
       },
-      {	
-        "style": "no-signature",	
-        "text": "{{no_signature}}"	
-      },
+      
       {
         "style": "pt-disclaimer",
         "stack": [
@@ -953,6 +950,41 @@
                -5,
                 0
             ]
+          }
+        ]
+      },
+       {
+        "style": "pt-disclaimer",
+        "stack": [
+          {
+            "text": "{{disclamer}}",
+            "bold": true,
+            "style": "pt-disclaimer-value"
+          },
+          {
+            "text": "{{disclamer_1}}",
+            "bold": false,
+            "style": "pt-disclaimer-value"
+          },
+          {
+            "text": "{{disclamer_2}}",
+            "bold": false,
+            "style": "pt-disclaimer-value"
+          },
+          {
+            "text": "{{disclamer_3}}",
+            "bold": false,
+            "style": "pt-disclaimer-value"
+          },
+          {
+            "text": "{{disclamer_4}}",
+            "bold": false,
+            "style": "pt-disclaimer-value"
+          },
+          {
+            "text": "{{disclamer_5}}",
+            "bold": false,
+            "style": "pt-disclaimer-value"
           }
         ]
       }
