@@ -738,6 +738,9 @@
       }
     ],
     "postAggregationTheory": "repsonseToDifferenceOfDates",
+     "filterKeys": [
+      {"key": "businessService", "column": "Business Service"}
+    ],
     "chartType": "xtable",
     "valueType": "number",
     "drillChart": "none",
@@ -746,6 +749,7 @@
     "action": "",
     "filterKeys": [],
     "plotLabel": "Business Service",
+    
     "aggregationPaths": [
       "Total Collection",
       "Transactions"
