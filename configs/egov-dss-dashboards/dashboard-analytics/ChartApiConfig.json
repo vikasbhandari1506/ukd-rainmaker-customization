@@ -747,7 +747,7 @@
     "filterKeys": [],
     "plotLabel": "Business Service",
     "aggregationPaths": [
-      "Business Service",
+     
       "Total Collection",
       "Transactions"
     ],
