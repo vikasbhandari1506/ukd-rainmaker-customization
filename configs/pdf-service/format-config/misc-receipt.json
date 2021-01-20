@@ -28,7 +28,7 @@
               {
                 "stack": [
                   {
-                    "text": "{{logo-header}} {{municipalityName}}",
+                    "text": "{{logo-header}}",
                     "style": "receipt-logo-header"
                   },
                   {
