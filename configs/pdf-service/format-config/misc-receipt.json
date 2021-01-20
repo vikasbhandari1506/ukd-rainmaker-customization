@@ -28,7 +28,7 @@
               {
                 "stack": [
                   {
-                    "text": "{{logo-header}}",
+                    "text": "{{municipalityName}}",
                     "style": "receipt-logo-header"
                   },
                   {
@@ -542,7 +542,7 @@
               {
                 "stack": [
                   {
-                    "text": "{{logo-header}} {{municipalityName}}",
+                    "text": " {{municipalityName}}",
                     "style": "receipt-logo-header"
                   },
                   {
