@@ -243,7 +243,7 @@
                   true,
                   true,
                   false,
-                  true
+                  false
                 ],
                 "style": "receipt-table-value"
               },
@@ -253,7 +253,7 @@
                   false,
                   true,
                   true,
-                  true
+                  false
                 ],
                 "style": "receipt-table"
               }
@@ -381,7 +381,7 @@
                 "text": "{{g8_receipt_no}}.",
                 "border": [
                   true,
-                  true,
+                  false,
                   false,
                   true
                 ],
@@ -401,7 +401,7 @@
                 "text": "{{g8_receipt_date}}",
                 "border": [
                   true,
-                  true,
+                  false,
                   false,
                   true
                 ],
@@ -411,7 +411,7 @@
                 "text": "{{G8ReceiptDate}}",
                 "border": [
                   false,
-                  true,
+                  false,
                   true,
                   true
                 ],
@@ -511,6 +511,8 @@
           }
         ]
       },
+      
+      
       {
         "style": "dot-line",
         "text": "_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _"
@@ -668,7 +670,8 @@
         ]
       },
       
-         {
+     
+      {
         "style": "noc-table",
         "table": {
           "widths": [
@@ -754,7 +757,7 @@
                   true,
                   true,
                   false,
-                  true
+                  false
                 ],
                 "style": "receipt-table-value"
               },
@@ -763,8 +766,8 @@
                 "border": [
                   false,
                   true,
-                  false,
-                  true
+                  true,
+                  false
                 ],
                 "style": "receipt-table"
               }
@@ -892,7 +895,7 @@
                 "text": "{{g8_receipt_no}}.",
                 "border": [
                   true,
-                  true,
+                  false,
                   false,
                   true
                 ],
@@ -912,7 +915,7 @@
                 "text": "{{g8_receipt_date}}",
                 "border": [
                   true,
-                  true,
+                  false,
                   false,
                   true
                 ],
@@ -922,7 +925,7 @@
                 "text": "{{G8ReceiptDate}}",
                 "border": [
                   false,
-                  true,
+                  false,
                   true,
                   true
                 ],
