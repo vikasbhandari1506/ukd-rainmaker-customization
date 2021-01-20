@@ -530,8 +530,8 @@
                         "value":"$.MdmsRes.tenant.tenants[0].code",
                         "localisation":{
                           "required":true,
-                          "prefix": "TENANT_TENANTS",
-                          "module":"rainmaker-pgr"
+                          "prefix": "RECEIPT_MUNICIPALITY",
+                          "module":"rainmaker-receipt"
                           }
                       }
                     ]
