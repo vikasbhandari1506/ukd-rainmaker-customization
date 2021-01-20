@@ -16,8 +16,8 @@
             [
               {
                 "image": "{{logoImage}}",
-                "width": 50,
-                "height": 61.25,
+                "width": 48,
+                "height": 59,
                 "margin": [
                   5,
                   0,
@@ -28,7 +28,7 @@
               {
                 "stack": [
                   {
-                    "text": "{{logo-header}} {{Municipal_Corporation}}",
+                    "text": "{{logo-header}} {{municipalityName}}",
                     "style": "receipt-logo-header"
                   },
                   {
@@ -530,8 +530,8 @@
             [
               {
                 "image": "{{logoImage}}",
-                "width": 50,
-                "height": 61.25,
+                "width": 48,
+                "height": 59,
                 "margin": [
                   5,
                   0,
@@ -542,7 +542,7 @@
               {
                 "stack": [
                   {
-                    "text": "{{logo-header}} {{Municipal_Corporation}}",
+                    "text": "{{logo-header}} {{municipalityName}}",
                     "style": "receipt-logo-header"
                   },
                   {
