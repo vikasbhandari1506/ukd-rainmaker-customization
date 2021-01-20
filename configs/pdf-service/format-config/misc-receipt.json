@@ -252,7 +252,7 @@
                 "border": [
                   false,
                   true,
-                  false,
+                  true,
                   true
                 ],
                 "style": "receipt-table"
@@ -368,8 +368,8 @@
         "style": "noc-table",
         "table": {
           "widths": [
-            "20%",
-            "40%",
+            "25%",
+            "35%",
             "25%",
             "15%"
             
@@ -879,8 +879,8 @@
         "style": "noc-table",
         "table": {
           "widths": [
-            "20%",
-            "40%",
+            "25%",
+            "35%",
             "25%",
             "15%"
             
