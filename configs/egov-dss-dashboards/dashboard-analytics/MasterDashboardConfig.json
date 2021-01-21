@@ -1560,7 +1560,7 @@
                   "headers": []
                 },
                 {
-                  "id": "overviewtotalCollection",
+                  "id": "totalCollection",
                   "name": "DSS_TOTAL_COLLECTION",
                   "code": "",
                   "chartType": "metric",
@@ -1626,7 +1626,7 @@
               "isCollapsible": false,
               "charts": [
                 {
-                  "id": "overviewtotalCollectionDeptWise",
+                  "id": "totalCollectionDeptWise",
                   "name": "DSS_TOTAL_CUMULATIVE_COLLECTION:_DEPARTMENT_WISE",
                   "code": "",
                   "chartType": "donut",
@@ -1653,7 +1653,7 @@
               "label": "",
               "charts": [
                 {
-                  "id": "overviewtotalApplication",
+                  "id": "totalApplication",
                   "name": "DSS_TOTAL_APPLICATION",
                   "code": "",
                   "chartType": "metric",
@@ -1785,7 +1785,7 @@
               },
               "charts": [
                 {
-                  "id": "overviewtotalCollection",
+                  "id": "totalCollection",
                   "name": "DSS_TOTAL_COLLECTION",
                   "code": "",
                   "chartType": "metric",
@@ -1801,7 +1801,7 @@
                   "headers": []
                 },
                 {
-                  "id": "overviewtotalApplication",
+                  "id": "totalApplication",
                   "name": "DSS_TOTAL_APPLICATION",
                   "code": "",
                   "chartType": "metric",
