@@ -661,7 +661,7 @@
                                 "style": "receipttablevalue"
                             },
                             {
-                                "text": "NA",
+                                "text": "{{bankName}}",
                                 "border": [
                                     false,
                                     true,
