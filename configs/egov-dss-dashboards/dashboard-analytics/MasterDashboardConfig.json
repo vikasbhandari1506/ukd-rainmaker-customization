@@ -1606,7 +1606,51 @@
                   "headers": []
                 }
               ]
+            }, 
+            {	
+              "id": 121,	
+              "name": "DSS_TOP_PERFORMING_ULBS",	
+              "dimensions": {	
+                "height": 250,	
+                "width": 4	
+              },	
+              "vizType": "performing-metric",	
+              "noUnit": false,	
+              "isCollapsible": false,	
+              "label": "",	
+              "charts": [	
+                {	
+                  "id": "topPerformingUlbs",	
+                  "name": "DSS_TOP_PERFORMING_ULBS",	
+                  "code": "",	
+                  "chartType": "bar",	
+                  "filter": "",	
+                  "headers": []	
+                }	
+              ]	
+            },	
+            {	
+              "id": 122,	
+              "name": "DSS_BOTTOM_PERFORMING_ULBS",	
+              "dimensions": {	
+                "height": 250,	
+                "width": 4	
+              },	
+              "vizType": "performing-metric",	
+              "noUnit": false,	
+              "isCollapsible": false,	
+              "charts": [	
+                {	
+                  "id": "bottomPerformingUlbs",	
+                  "name": "DSS_BOTTOM_PERFORMING_ULBS",	
+                  "code": "",	
+                  "chartType": "bar",	
+                  "filter": "",	
+                  "headers": []	
+                }	
+              ]	
             }
+            
           ]
         },
         {
@@ -1732,26 +1776,6 @@
                   "name": "DSS_BOTTOM_PERFORMING_ULBS",
                   "code": "",
                   "chartType": "bar",
-                  "filter": "",
-                  "headers": []
-                }
-              ]
-            },
-            {
-              "id": 143,
-              "name": "DSS_TOTAL_APPLICATIONS:_DEPARTMENT_WISE",
-              "dimensions": {
-                "height": 250,
-                "width": 4
-              },
-              "vizType": "chart",
-              "isCollapsible": false,
-              "charts": [
-                {
-                  "id": "totalApplicationDeptWise",
-                  "name": "DSS_TOTAL_APPLICATIONS:_DEPARTMENT_WISE",
-                  "code": "",
-                  "chartType": "donut",
                   "filter": "",
                   "headers": []
                 }
