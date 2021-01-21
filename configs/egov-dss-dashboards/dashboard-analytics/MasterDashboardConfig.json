@@ -18,7 +18,7 @@
               "isCollapsible": false,
               "charts": [
                 {
-                  "id": "todaysCollection",
+                  "id": "overviewtodaysCollection",
                   "name": "DSS_TOTAL_COLLECTION_TODAY",
                   "code": "",
                   "chartType": "",
@@ -66,7 +66,7 @@
               "isCollapsible": false,
               "charts": [
                 {
-                  "id": "cumulativeCollection",
+                  "id": "overviewcumulativeCollection",
                   "name": "Weekly",
                   "code": "",
                   "chartType": "line",
@@ -136,7 +136,7 @@
               "isCollapsible": false,
               "charts": [
                 {
-                  "id": "totalCollectionDeptWise",
+                  "id": "overviewtotalCollectionDeptWise",
                   "name": "DSS_TOTAL_CUMULATIVE_COLLECTION:_DEPARTMENT_WISE",
                   "code": "",
                   "chartType": "donut",
@@ -258,7 +258,7 @@
               "isCollapsible": false,
               "charts": [
                 {
-                  "id": "totalApplicationDeptWise",
+                  "id": "overviewtotalApplicationDeptWise",
                   "name": "DSS_TOTAL_APPLICATIONS:_DEPARTMENT_WISE",
                   "code": "",
                   "chartType": "donut",
@@ -1087,7 +1087,7 @@
                   "headers": []
                 },
                 {
-                  "id": "totalApplication",
+                  "id": "overviewtotalApplication",
                   "name": "DSS_TOTAL_APPLICATION",
                   "code": "",
                   "chartType": "metric",
@@ -1550,7 +1550,7 @@
               "isCollapsible": false,
               "charts": [
                 {
-                  "id": "todaysCollection",
+                  "id": "overviewtodaysCollection",
                   "name": "DSS_TOTAL_COLLECTION_TODAY",
                   "code": "",
                   "chartType": "",
@@ -1560,7 +1560,7 @@
                   "headers": []
                 },
                 {
-                  "id": "totalCollection",
+                  "id": "overviewtotalCollection",
                   "name": "DSS_TOTAL_COLLECTION",
                   "code": "",
                   "chartType": "metric",
@@ -1598,7 +1598,7 @@
               "isCollapsible": false,
               "charts": [
                 {
-                  "id": "cumulativeCollection",
+                  "id": "overviewcumulativeCollection",
                   "name": "Weekly",
                   "code": "",
                   "chartType": "line",
@@ -1613,49 +1613,7 @@
           "row": 2,
           "name": "DSS_REVENUE",
           "vizArray": [
-            {
-              "id": 121,
-              "name": "DSS_TOP_PERFORMING_ULBS",
-              "dimensions": {
-                "height": 250,
-                "width": 4
-              },
-              "vizType": "performing-metric",
-              "noUnit": false,
-              "isCollapsible": false,
-              "label": "",
-              "charts": [
-                {
-                  "id": "topPerformingUlbs",
-                  "name": "DSS_TOP_PERFORMING_ULBS",
-                  "code": "",
-                  "chartType": "bar",
-                  "filter": "",
-                  "headers": []
-                }
-              ]
-            },
-            {
-              "id": 122,
-              "name": "DSS_BOTTOM_PERFORMING_ULBS",
-              "dimensions": {
-                "height": 250,
-                "width": 4
-              },
-              "vizType": "performing-metric",
-              "noUnit": false,
-              "isCollapsible": false,
-              "charts": [
-                {
-                  "id": "bottomPerformingUlbs",
-                  "name": "DSS_BOTTOM_PERFORMING_ULBS",
-                  "code": "",
-                  "chartType": "bar",
-                  "filter": "",
-                  "headers": []
-                }
-              ]
-            },
+           
             {
               "id": 123,
               "name": "DSS_TOTAL_CUMULATIVE_COLLECTION:_DEPARTMENT_WISE",
@@ -1668,7 +1626,7 @@
               "isCollapsible": false,
               "charts": [
                 {
-                  "id": "totalCollectionDeptWise",
+                  "id": "overviewtotalCollectionDeptWise",
                   "name": "DSS_TOTAL_CUMULATIVE_COLLECTION:_DEPARTMENT_WISE",
                   "code": "",
                   "chartType": "donut",
@@ -1695,7 +1653,7 @@
               "label": "",
               "charts": [
                 {
-                  "id": "totalApplication",
+                  "id": "overviewtotalApplication",
                   "name": "DSS_TOTAL_APPLICATION",
                   "code": "",
                   "chartType": "metric",
@@ -1790,7 +1748,7 @@
               "isCollapsible": false,
               "charts": [
                 {
-                  "id": "totalApplicationDeptWise",
+                  "id": "overviewtotalApplicationDeptWise",
                   "name": "DSS_TOTAL_APPLICATIONS:_DEPARTMENT_WISE",
                   "code": "",
                   "chartType": "donut",
@@ -1827,7 +1785,7 @@
               },
               "charts": [
                 {
-                  "id": "totalCollection",
+                  "id": "overviewtotalCollection",
                   "name": "DSS_TOTAL_COLLECTION",
                   "code": "",
                   "chartType": "metric",
@@ -1843,7 +1801,7 @@
                   "headers": []
                 },
                 {
-                  "id": "totalApplication",
+                  "id": "overviewtotalApplication",
                   "name": "DSS_TOTAL_APPLICATION",
                   "code": "",
                   "chartType": "metric",
