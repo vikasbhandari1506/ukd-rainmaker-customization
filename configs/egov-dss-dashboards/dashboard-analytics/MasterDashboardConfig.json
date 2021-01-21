@@ -1606,7 +1606,37 @@
                   "headers": []
                 }
               ]
-            }, 
+            } 
+            
+            
+          ]
+        },
+        {
+          "row": 2,
+          "name": "DSS_REVENUE",
+          "vizArray": [
+           
+            {
+              "id": 123,
+              "name": "DSS_TOTAL_CUMULATIVE_COLLECTION:_DEPARTMENT_WISE",
+              "dimensions": {
+                "height": 250,
+                "width": 4
+              },
+              "vizType": "chart",
+              "noUnit": true,
+              "isCollapsible": false,
+              "charts": [
+                {
+                  "id": "totalCollectionDeptWise",
+                  "name": "DSS_TOTAL_CUMULATIVE_COLLECTION:_DEPARTMENT_WISE",
+                  "code": "",
+                  "chartType": "donut",
+                  "filter": "",
+                  "headers": []
+                }
+              ]
+            },
             {	
               "id": 121,	
               "name": "DSS_TOP_PERFORMING_ULBS",	
@@ -1649,35 +1679,6 @@
                   "headers": []	
                 }	
               ]	
-            }
-            
-          ]
-        },
-        {
-          "row": 2,
-          "name": "DSS_REVENUE",
-          "vizArray": [
-           
-            {
-              "id": 123,
-              "name": "DSS_TOTAL_CUMULATIVE_COLLECTION:_DEPARTMENT_WISE",
-              "dimensions": {
-                "height": 250,
-                "width": 4
-              },
-              "vizType": "chart",
-              "noUnit": true,
-              "isCollapsible": false,
-              "charts": [
-                {
-                  "id": "totalCollectionDeptWise",
-                  "name": "DSS_TOTAL_CUMULATIVE_COLLECTION:_DEPARTMENT_WISE",
-                  "code": "",
-                  "chartType": "donut",
-                  "filter": "",
-                  "headers": []
-                }
-              ]
             }
           ]
         },
