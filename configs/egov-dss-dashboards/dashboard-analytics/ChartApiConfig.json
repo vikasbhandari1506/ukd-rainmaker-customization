@@ -119,7 +119,7 @@
     },
     "_comment": " "
   },
-  "overviewCumulativeCollection": {
+  "overviewcumulativeCollection": {
     "chartName": "DSS_TOTAL_CUMULATIVE_COLLECTION",
     "queries": [
       {
