@@ -86,6 +86,12 @@
                  }
                 },
                 {
+                  "variable": "bankName",
+                  "value": {
+                    "path": "$.bankName"
+                  }
+                },
+                {
                   "variable": "G8ReceiptNo",
                   "value": {
                     "path": "$.paymentDetails[0].manualReceiptNumber"
