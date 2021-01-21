@@ -281,7 +281,7 @@
                 FROM ((SELECT (SELECT count(DISTINCT tenantid) as ulbCovered 
                 FROM eg_pt_property_v2 
                 WHERE (createdtime/1000) <= (extract (epoch FROM NOW())) AND tenantid != 'uk.testing'),
-                (select to_char(TRUNC(SUM(p.totalamountpaid) / 100000, 2), 'FM99,FM99,99,999D00')  
+                (select to_char(TRUNC(SUM(p.totalamountpaid) / 10000000, 2), 'FM99,FM99,99,9990D00')  
                 FROM egcl_payment p, egcl_paymentdetail pd 
                 WHERE p.id=pd.paymentid  and pd.businessservice ='PT'
                 and (p.lastmodifiedtime/1000)  <=  (extract (epoch FROM NOW()))) as revenuecollected, 
@@ -300,7 +300,7 @@
                 UNION (SELECT (SELECT count(DISTINCT tenantid) as ulbCovered 
                 FROM eg_pt_property_v2 WHERE (createdtime/1000)  <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800) 
                 AND tenantid != 'uk.testing'), 
-                (select to_char(TRUNC(SUM(p.totalamountpaid) / 100000, 2), 'FM99,FM99,99,999D00')  
+                (select to_char(TRUNC(SUM(p.totalamountpaid) / 10000000, 2), 'FM99,FM99,99,9990D00')  
                 FROM egcl_payment p, egcl_paymentdetail pd 
                 WHERE p.id=pd.paymentid  and pd.businessservice ='PT'
                 and (p.lastmodifiedtime/1000)  <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800)) as revenuecollected, 
@@ -319,7 +319,7 @@
                 UNION (SELECT (SELECT count(DISTINCT tenantid) as ulbCovered 
                 FROM eg_pt_property_v2 WHERE (createdtime/1000)  <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 2) 
                 AND tenantid != 'uk.testing'), 
-                (select to_char(TRUNC(SUM(p.totalamountpaid) / 100000, 2), 'FM99,FM99,99,999D00')  
+                (select to_char(TRUNC(SUM(p.totalamountpaid) / 10000000, 2), 'FM99,FM99,99,9990D00')  
                 FROM egcl_payment p, egcl_paymentdetail pd 
                 WHERE p.id=pd.paymentid  and pd.businessservice ='PT'
                 and (p.lastmodifiedtime/1000)  <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 *2 ) ) as revenuecollected, 
@@ -338,7 +338,7 @@
                 UNION (SELECT (SELECT count(DISTINCT tenantid) as ulbCovered 
                 FROM eg_pt_property_v2 WHERE (createdtime/1000)  <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 3) 
                 AND tenantid != 'uk.testing'), 
-                (select to_char(TRUNC(SUM(p.totalamountpaid) / 100000, 2), 'FM99,FM99,99,999D00')  
+                (select to_char(TRUNC(SUM(p.totalamountpaid) / 10000000, 2), 'FM99,FM99,99,9990D00')  
                 FROM egcl_payment p, egcl_paymentdetail pd 
                 WHERE p.id=pd.paymentid  and pd.businessservice ='PT'
                 and (p.lastmodifiedtime/1000)  <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 3) ) as revenuecollected, 
@@ -357,7 +357,7 @@
                 UNION (SELECT (SELECT count(DISTINCT tenantid) as ulbCovered 
                 FROM eg_pt_property_v2 WHERE (createdtime/1000)  <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 4) 
                 AND tenantid != 'uk.testing'), 
-                (select to_char(TRUNC(SUM(p.totalamountpaid) / 100000, 2), 'FM99,FM99,99,999D00')  
+                (select to_char(TRUNC(SUM(p.totalamountpaid) / 10000000, 2), 'FM99,FM99,99,9990D00')  
                 FROM egcl_payment p, egcl_paymentdetail pd 
                 WHERE p.id=pd.paymentid  and pd.businessservice ='PT'
                 and (p.lastmodifiedtime/1000)  <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 4) ) as revenuecollected, 
@@ -376,7 +376,7 @@
                 UNION (SELECT (SELECT count(DISTINCT tenantid) as ulbCovered 
                 FROM eg_pt_property_v2 WHERE (createdtime/1000)  <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 5) 
                 AND tenantid != 'uk.testing'), 
-                (select to_char(TRUNC(SUM(p.totalamountpaid) / 100000, 2), 'FM99,FM99,99,999D00')  
+                (select to_char(TRUNC(SUM(p.totalamountpaid) / 10000000, 2), 'FM99,FM99,99,9990D00')  
                 FROM egcl_payment p, egcl_paymentdetail pd 
                 WHERE p.id=pd.paymentid  and pd.businessservice ='PT'
                 and (p.lastmodifiedtime/1000)  <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 *5) ) as revenuecollected, 
@@ -666,7 +666,7 @@
      query: 
       baseQuery:    select array_to_json(array_agg(row_to_json(mcReports))) 
                     FROM (SELECT (
-                    SELECT to_char(TRUNC(SUM(totalamountpaid) / 100000, 2), 'FM99,FM99,99,999D00') as revenuecollected 
+                    SELECT to_char(TRUNC(SUM(totalamountpaid) / 10000000, 2), 'FM99,FM99,99,9990D00') as revenuecollected 
                     FROM egcl_payment p, egcl_paymentdetail pd 
                     WHERE (p.createdtime/1000) <= (extract (epoch FROM NOW()))  
                     AND p.id=pd.paymentid AND p.paymentstatus != 'Cancelled' AND p.tenantid!='uk.testing' AND pd.businessservice not in ('PT','TL','WC','FIRENOC','PT.MUTATION')), 
@@ -675,7 +675,7 @@
                     'Week0' as day FROM egcl_payment p, egcl_paymentdetail pd WHERE (p.createdtime/1000) <= (extract (epoch FROM NOW()))    
                     AND p.id=pd.paymentid AND p.paymentstatus != 'Cancelled' AND p.tenantid!='uk.testing' AND pd.businessservice not in ('PT','TL','WC','FIRENOC','PT.MUTATION') 
                     UNION SELECT 
-                    (SELECT to_char(TRUNC(SUM(totalamountpaid) / 100000, 2), 'FM99,FM99,99,999D00') as revenuecollected FROM egcl_payment p, egcl_paymentdetail pd  WHERE (p.createdtime/1000) <= 
+                    (SELECT to_char(TRUNC(SUM(totalamountpaid) / 10000000, 2), 'FM99,FM99,99,9990D00') as revenuecollected FROM egcl_payment p, egcl_paymentdetail pd  WHERE (p.createdtime/1000) <= 
                     ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800)   
                     AND p.id=pd.paymentid AND p.paymentstatus != 'Cancelled' AND p.tenantid!='uk.testing' AND pd.businessservice not in ('PT','TL','WC','FIRENOC','PT.MUTATION') ), 
                     to_char(count(*), 'FM99,FM99,99,999') as receiptscreated, 
@@ -684,7 +684,7 @@
                     <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800) 
                     AND p.id=pd.paymentid AND p.paymentstatus != 'Cancelled' AND p.tenantid!='uk.testing' AND pd.businessservice not in ('PT','TL','WC','FIRENOC','PT.MUTATION') 
                     UNION SELECT 
-                    (SELECT to_char(TRUNC(SUM(totalamountpaid) / 100000, 2), 'FM99,FM99,99,999D00') as revenuecollected FROM egcl_payment p, egcl_paymentdetail pd  WHERE (p.createdtime/1000) 
+                    (SELECT to_char(TRUNC(SUM(totalamountpaid) / 10000000, 2), 'FM99,FM99,99,9990D00') as revenuecollected FROM egcl_payment p, egcl_paymentdetail pd  WHERE (p.createdtime/1000) 
                     <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 2)  
                     AND p.id=pd.paymentid AND p.paymentstatus != 'Cancelled' AND p.tenantid!='uk.testing' AND pd.businessservice not in ('PT','TL','WC','FIRENOC','PT.MUTATION') ), 
                     to_char(count(*), 'FM99,FM99,99,999') as receiptscreated, 
@@ -693,7 +693,7 @@
                     <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 2) 
                     AND p.id=pd.paymentid AND p.paymentstatus != 'Cancelled' AND p.tenantid!='uk.testing' AND pd.businessservice not in ('PT','TL','WC','FIRENOC','PT.MUTATION') 
                     UNION SELECT 
-                    (SELECT to_char(TRUNC(SUM(totalamountpaid) / 100000, 2), 'FM99,FM99,99,999D00') as revenuecollected FROM egcl_payment p, egcl_paymentdetail pd  WHERE (p.createdtime/1000) 
+                    (SELECT to_char(TRUNC(SUM(totalamountpaid) / 10000000, 2), 'FM99,FM99,99,9990D00') as revenuecollected FROM egcl_payment p, egcl_paymentdetail pd  WHERE (p.createdtime/1000) 
                     <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 3)
                     AND p.id=pd.paymentid AND p.paymentstatus != 'Cancelled' AND p.tenantid!='uk.testing' AND pd.businessservice not in ('PT','TL','WC','FIRENOC','PT.MUTATION') ), 
                     to_char(count(*), 'FM99,FM99,99,999') as receiptscreated, 
@@ -702,7 +702,7 @@
                     <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 3)  
                     AND p.id=pd.paymentid AND p.paymentstatus != 'Cancelled' AND p.tenantid!='uk.testing' AND pd.businessservice not in ('PT','TL','WC','FIRENOC','PT.MUTATION') 
                     UNION SELECT 
-                    (SELECT to_char(TRUNC(SUM(totalamountpaid) / 100000, 2), 'FM99,FM99,99,999D00') as revenuecollected FROM egcl_payment p, egcl_paymentdetail pd  WHERE (p.createdtime/1000) 
+                    (SELECT to_char(TRUNC(SUM(totalamountpaid) / 10000000, 2), 'FM99,FM99,99,9990D00') as revenuecollected FROM egcl_payment p, egcl_paymentdetail pd  WHERE (p.createdtime/1000) 
                     <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 4) 
                     AND p.id=pd.paymentid AND p.paymentstatus != 'Cancelled' AND p.tenantid!='uk.testing' AND pd.businessservice not in ('PT','TL','WC','FIRENOC','PT.MUTATION') ), 
                     to_char(count(*), 'FM99,FM99,99,999') as receiptscreated, 
@@ -711,7 +711,7 @@
                     <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 4) 
                     AND p.id=pd.paymentid AND p.paymentstatus != 'Cancelled' AND p.tenantid!='uk.testing' AND pd.businessservice not in ('PT','TL','WC','FIRENOC','PT.MUTATION')   
                     UNION SELECT 
-                    (SELECT to_char(TRUNC(SUM(totalamountpaid) / 100000, 2), 'FM99,FM99,99,999D00') as revenuecollected FROM egcl_payment p, egcl_paymentdetail pd  WHERE (p.createdtime/1000) 
+                    (SELECT to_char(TRUNC(SUM(totalamountpaid) / 10000000, 2), 'FM99,FM99,99,9990D00') as revenuecollected FROM egcl_payment p, egcl_paymentdetail pd  WHERE (p.createdtime/1000) 
                     <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 5) 
                     AND p.id=pd.paymentid AND p.paymentstatus != 'Cancelled' AND p.tenantid!='uk.testing' AND pd.businessservice not in ('PT','TL','WC','FIRENOC','PT.MUTATION') ), 
                     to_char(count(*), 'FM99,FM99,99,999') as receiptscreated, 
