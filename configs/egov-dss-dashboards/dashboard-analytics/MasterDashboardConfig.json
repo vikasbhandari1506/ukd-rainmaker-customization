@@ -1748,7 +1748,7 @@
               "isCollapsible": false,
               "charts": [
                 {
-                  "id": "overviewtotalApplicationDeptWise",
+                  "id": "totalApplicationDeptWise",
                   "name": "DSS_TOTAL_APPLICATIONS:_DEPARTMENT_WISE",
                   "code": "",
                   "chartType": "donut",
