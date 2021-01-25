@@ -16,8 +16,8 @@
             [
               {
                 "image": "{{logoImage}}",
-                "width": 50,
-                "height": 61.25,
+                "width": 48,
+                "height": 59,
                 "margin": [
                   5,
                   0,
@@ -28,7 +28,7 @@
               {
                 "stack": [
                   {
-                    "text": "{{logo-header}} {{Municipal_Corporation}}",
+                    "text": "{{municipalityName}}",
                     "style": "receipt-logo-header"
                   },
                   {
@@ -155,6 +155,8 @@
           }
         ]
       },
+      
+      
       {
         "style": "noc-table",
         "table": {
@@ -226,13 +228,12 @@
         ]
       },
       {
-        "style": "next-noc-table",
+        "style": "noc-table",
         "table": {
           "widths": [
-            "25%",
-            "25%",
-            "25%",
-            "25%"
+            "30%",
+            "70%"
+            
           ],
           "body": [
             [
@@ -242,7 +243,7 @@
                   true,
                   true,
                   false,
-                  true
+                  false
                 ],
                 "style": "receipt-table-value"
               },
@@ -251,32 +252,28 @@
                 "border": [
                   false,
                   true,
-                  false,
-                  true
-                ],
-                "style": "receipt-table"
-              },
-              {
-                "text": " ",
-                "border": [
-                  false,
                   true,
-                  false,
-                  true
-                ],
-                "style": "receipt-table-value"
-              },
-              {
-                "text": " ",
-                "border": [
-                  false,
-                  true,
-                  true,
-                  true
+                  false
                 ],
                 "style": "receipt-table"
               }
-            ],
+            
+            ]
+          ]              
+        },
+        "layout": {}
+      },
+      {
+        "style": "next-noc-table",
+        "table": {
+          "widths": [
+            "25%",
+            "25%",
+            "25%",
+            "25%"
+          ],
+          "body": [
+        
             [
               {
                 "text": "{{billing_period}}",
@@ -361,27 +358,30 @@
                 "style": "receipt-table"
               }
             ]
-            
+           
           ]
         },
         "layout": {}
       },
+      
       {
         "style": "noc-table",
         "table": {
           "widths": [
-            "20%",
-            "40%",
+            "25%",
+            "35%",
             "25%",
             "15%"
+            
           ],
           "body": [
             [
+            
               {
                 "text": "{{g8_receipt_no}}.",
                 "border": [
                   true,
-                  true,
+                  false,
                   false,
                   true
                 ],
@@ -401,7 +401,7 @@
                 "text": "{{g8_receipt_date}}",
                 "border": [
                   true,
-                  true,
+                  false,
                   false,
                   true
                 ],
@@ -411,19 +411,19 @@
                 "text": "{{G8ReceiptDate}}",
                 "border": [
                   false,
-                  true,
+                  false,
                   true,
                   true
                 ],
                 "style": "receipt-table"
               }
+            
             ]
           ]              
         },
         "layout": {}
       },
-      
-      
+
       {
         "style": "receipt-approver",
         "columns": [
@@ -511,6 +511,8 @@
           }
         ]
       },
+      
+      
       {
         "style": "dot-line",
         "text": "_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _"
@@ -528,8 +530,8 @@
             [
               {
                 "image": "{{logoImage}}",
-                "width": 50,
-                "height": 61.25,
+                "width": 48,
+                "height": 59,
                 "margin": [
                   5,
                   0,
@@ -540,7 +542,7 @@
               {
                 "stack": [
                   {
-                    "text": "{{logo-header}} {{Municipal_Corporation}}",
+                    "text": " {{municipalityName}}",
                     "style": "receipt-logo-header"
                   },
                   {
@@ -667,6 +669,8 @@
           }
         ]
       },
+      
+     
       {
         "style": "noc-table",
         "table": {
@@ -738,13 +742,12 @@
         ]
       },
       {
-        "style": "next-noc-table",
+        "style": "noc-table",
         "table": {
           "widths": [
-            "25%",
-            "25%",
-            "25%",
-            "25%"
+            "30%",
+            "70%"
+            
           ],
           "body": [
             [
@@ -754,7 +757,7 @@
                   true,
                   true,
                   false,
-                  true
+                  false
                 ],
                 "style": "receipt-table-value"
               },
@@ -763,32 +766,28 @@
                 "border": [
                   false,
                   true,
-                  false,
-                  true
-                ],
-                "style": "receipt-table"
-              },
-              {
-                "text": " ",
-                "border": [
-                  false,
                   true,
-                  false,
-                  true
-                ],
-                "style": "receipt-table-value"
-              },
-              {
-                "text": " ",
-                "border": [
-                  false,
-                  true,
-                  true,
-                  true
+                  false
                 ],
                 "style": "receipt-table"
               }
-            ],
+            
+            ]
+          ]              
+        },
+        "layout": {}
+      },
+      {
+        "style": "next-noc-table",
+        "table": {
+          "widths": [
+            "25%",
+            "25%",
+            "25%",
+            "25%"
+          ],
+          "body": [
+        
             [
               {
                 "text": "{{billing_period}}",
@@ -873,27 +872,30 @@
                 "style": "receipt-table"
               }
             ]
-            
+           
           ]
         },
         "layout": {}
       },
+      
       {
         "style": "noc-table",
         "table": {
           "widths": [
-            "20%",
-            "40%",
+            "25%",
+            "35%",
             "25%",
             "15%"
+            
           ],
           "body": [
             [
+            
               {
                 "text": "{{g8_receipt_no}}.",
                 "border": [
                   true,
-                  true,
+                  false,
                   false,
                   true
                 ],
@@ -913,7 +915,7 @@
                 "text": "{{g8_receipt_date}}",
                 "border": [
                   true,
-                  true,
+                  false,
                   false,
                   true
                 ],
@@ -923,17 +925,19 @@
                 "text": "{{G8ReceiptDate}}",
                 "border": [
                   false,
-                  true,
+                  false,
                   true,
                   true
                 ],
                 "style": "receipt-table"
               }
+            
             ]
           ]              
         },
         "layout": {}
       },
+
       {
         "style": "receipt-approver",
         "columns": [
@@ -985,7 +989,8 @@
           }
         ]
       },
-       {
+      
+      {
         "style": "pt-disclaimer",
         "stack": [
           {
@@ -1120,7 +1125,7 @@
       "fontSize": 12,
       "margin": [
         -5,
-        1,
+        0,
         -5,
         1
       ],
