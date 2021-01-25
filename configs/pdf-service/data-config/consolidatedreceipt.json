@@ -260,6 +260,12 @@
                                     "module": "rainmaker-receipt"
                                 }
                             },
+                             {
+                              "variable": "bankName",
+                              "value": {
+                                  "path": "$.bankName"
+                              }
+                            },
                             {
                                 "variable": "door_no",
                                 "value": {
