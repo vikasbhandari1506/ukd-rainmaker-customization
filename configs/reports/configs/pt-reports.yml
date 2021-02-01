@@ -75,11 +75,6 @@ ReportDefinitions:
     type: string
     source: pt
     total: false
-  - name: ownername
-    label: reports.pt.ownername
-    type: string
-    source: pt
-    total: false
   searchParams:
   - name: fromDate
     label: reports.pt.fromDate
@@ -114,8 +109,7 @@ ReportDefinitions:
     (SUM(CASE WHEN taxheadcode LIKE 'PT_TIME_INTEREST' THEN bad.amount ELSE 0 END)  + SUM(CASE WHEN taxheadcode LIKE 'PT_TIME_PENALTY%' or taxheadcode LIKE 'PT_LATE_ASSESSMENT_PENALTY' THEN bad.amount ELSE 0 END) +SUM(CASE WHEN taxheadcode LIKE 'SWATCHATHA_TAX' THEN bad.amount ELSE 0 END) +SUM(CASE WHEN taxheadcode LIKE 'PT_TAX' or taxheadcode like 'PT_TIME_REBATE' or taxheadcode like 'PT_PROMOTIONAL_REBATE' THEN bad.amount ELSE 0 END) ) as totalcollection,
     un.name as collectorname,
     msg.message as mohallaname,
-    addr.doorno as doorno,
-    eu.name as ownername
+    addr.doorno as doorno
     from egcl_payment pay,
     egcl_paymentdetail pd,
     egcl_bill bill,
@@ -123,8 +117,7 @@ ReportDefinitions:
     egcl_billaccountdetail bad,
     eg_user as un,
     eg_pt_address_v2 addr,
-    message msg,
-    eg_pt_owner_v2 po join eg_user eu on eu.uuid=po.userid
+    message msg
     where pd.paymentid= pay.id and
     pd.billid=bill.id and
     bd.billid=bill.id and
@@ -132,14 +125,12 @@ ReportDefinitions:
     pay.createdby=CAST(un.id as varchar) and
     addr.property=bill.consumercode and
     RIGHT(msg.code,5)=addr.locality and
-    RIGHT(po.propertydetail,6)=RIGHT(bill.consumercode,6) and
-    eu.uuid=po.userid and
     msg.tenantid=pay.tenantid and
     msg.locale='hi_IN' and
     pay.tenantid LIKE $tenantid and 
     pd.businessservice='PT'and 
     pay.paymentstatus != 'CANCELLED' AND pay.tenantid != 'uk.testing'
-  groupby: GROUP BY pay.tenantid,pd.receiptnumber,bill.consumercode,pd.receiptdate,pay.transactionnumber,pay.paymentmode,un.name,msg.message,addr.doorno,eu.name
+  groupby: GROUP BY pay.tenantid,pd.receiptnumber,bill.consumercode,pd.receiptdate,pay.transactionnumber,pay.paymentmode,un.name,msg.message,addr.doorno
 
 - reportName: CancelledReceiptRegister
   summary: Receipt Register for cancelled Receipts
