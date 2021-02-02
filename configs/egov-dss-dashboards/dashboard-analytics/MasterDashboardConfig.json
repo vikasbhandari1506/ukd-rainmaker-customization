@@ -163,7 +163,7 @@
               "label": "",
               "charts": [
                 {
-                  "id": "totalApplication",
+                  "id": "overviewtotalApplication",
                   "name": "DSS_TOTAL_APPLICATION",
                   "code": "",
                   "chartType": "metric",
@@ -377,8 +377,28 @@
                   "headers": []
                 }
               ]
+            },
+            {
+              "id": 123,
+              "name": "DSS_MC_COLLECTION:_CATEGORY_WISE_PERCENT",
+              "dimensions": {
+                "height": 250,
+                "width": 4
+              },
+              "vizType": "chart",
+              "noUnit": false,
+              "isCollapsible": false,
+              "charts": [
+                {
+                  "id": "mcTotalCollectionCategoryWise",
+                  "name": "DSS_MC_COLLECTION:_CATEGORY_WISE",
+                  "code": "",
+                  "chartType": "donut",
+                  "filter": "",
+                  "headers": []
+                }
+              ]
             }
-            
           ]
         },
         {
@@ -400,27 +420,6 @@
                 {
                   "id": "mcCollectionByPaymentType",
                   "name": "DSS_MC_COLLECTION_BY_PAYMENT_TYPE",
-                  "code": "",
-                  "chartType": "donut",
-                  "filter": "",
-                  "headers": []
-                }
-              ]
-            },
-            {
-              "id": 123,
-              "name": "DSS_MC_COLLECTION:_CATEGORY_WISE_PERCENT",
-              "dimensions": {
-                "height": 250,
-                "width": 4
-              },
-              "vizType": "chart",
-              "noUnit": false,
-              "isCollapsible": false,
-              "charts": [
-                {
-                  "id": "mcTotalCollectionCategoryWise",
-                  "name": "DSS_MC_COLLECTION:_CATEGORY_WISE",
                   "code": "",
                   "chartType": "donut",
                   "filter": "",
@@ -1699,7 +1698,7 @@
               "label": "",
               "charts": [
                 {
-                  "id": "totalApplication",
+                  "id": "overviewtotalApplication",
                   "name": "DSS_TOTAL_APPLICATION",
                   "code": "",
                   "chartType": "metric",
