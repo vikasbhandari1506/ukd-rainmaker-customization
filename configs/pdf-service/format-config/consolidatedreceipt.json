@@ -800,11 +800,6 @@
                         "text": "{{disclaimer4}}",
                         "bold": false,
                         "style": "ptdisclaimervalue"
-                    },
-                    {
-                        "text": "{{disclaimer5}}",
-                        "bold": false,
-                        "style": "ptdisclaimervalue"
                     }
                 ]
             }
