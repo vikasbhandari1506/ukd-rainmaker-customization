@@ -637,18 +637,6 @@
                                     "prefix": null,
                                     "module": "rainmaker-receipt"
                                 }
-                            },
-                            {
-                                "variable": "disclaimer5",
-                                "value": {
-                                    "path": "PT_RECEIPT_LABEL_DISCLAIMER5"
-                                },
-                                "type": "label",
-                                "localisation": {
-                                    "required": true,
-                                    "prefix": null,
-                                    "module": "rainmaker-receipt"
-                                }
                             }
                         ]
                     },
