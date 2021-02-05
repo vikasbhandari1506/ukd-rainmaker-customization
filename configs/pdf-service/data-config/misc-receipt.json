@@ -86,13 +86,13 @@
                  }
                 },
                 {
-                  "variable": "mscReceiptNo",
+                  "variable": "G8ReceiptNo",
                   "value": {
                     "path": "$.paymentDetails[0].manualReceiptNumber"
                   }
                 },
                 {
-                  "variable": "mscReceiptDate",
+                  "variable": "G8ReceiptDate",
                   "value": {
                     "path": "$.paymentDetails[0].manualReceiptDate"
                   },
@@ -124,9 +124,21 @@
                   }
                 },
                 {
-                  "variable": "payment_receipt",
+                  "variable": "payment_receipt_emp",
                   "value": {
-                    "path": "PDF_STATIC_LABEL_CONSOLIDATED_RECEIPT_PAYMENT_RECEIPT"
+                    "path": "PDF_STATIC_LABEL_CONSOLIDATED_RECEIPT_PAYMENT_RECEIPT_EMPLOYEE"
+                  },
+                  "type": "label",
+                  "localisation":{
+                    "required":true,
+                    "prefix": null,
+                    "module":"rainmaker-common"
+                 }
+                },
+                {
+                  "variable": "payment_receipt1",
+                  "value": {
+                    "path": "PDF_STATIC_LABEL_CONSOLIDATED_RECEIPT_PAYMENT_RECEIPT_CITIZEN"
                   },
                   "type": "label",
                   "localisation":{
@@ -457,7 +469,7 @@
                     "required":true,
                     "prefix": null,
                     "module":"rainmaker-common"
-                  }
+                 }
                 },
                 {
                   "variable": "comment_label",
@@ -518,8 +530,8 @@
                         "value":"$.MdmsRes.tenant.tenants[0].code",
                         "localisation":{
                           "required":true,
-                          "prefix": "TENANT_TENANTS",
-                          "module":"rainmaker-pgr"
+                          "prefix": "RECEIPT_MUNICIPALITY",
+                          "module":"rainmaker-receipt"
                           }
                       }
                     ]
