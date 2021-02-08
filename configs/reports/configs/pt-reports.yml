@@ -123,7 +123,7 @@ ReportDefinitions:
     egcl_billaccountdetail bad,
     eg_user un,
     eg_pt_address_v2 addr,
-    eg_pt_owner_v2 po join eg_user eu on eu.uuid=po.userid,
+    eg_user eu,
     message msg
     where pd.paymentid= pay.id and
     pd.billid=bill.id and
@@ -132,15 +132,12 @@ ReportDefinitions:
     pay.createdby=CAST(un.id as varchar) and
     addr.property=bill.consumercode and
     RIGHT(msg.code,5)=addr.locality and
-    RIGHT(po.propertydetail,6)=RIGHT(bill.consumercode,6) and
-    eu.uuid=po.userid and
     msg.tenantid=pay.tenantid and
+    eu.uuid=(select poo.userid from eg_pt_owner_v2 poo where poo.propertydetail=(select pdd.assessmentnumber from eg_pt_propertydetail_v2 pdd where pdd.property= bill.consumercode fetch first 1 row only) fetch first 1 row only) and
     msg.locale='hi_IN' and
     pay.tenantid LIKE $tenantid and 
     pd.businessservice='PT'and 
     pay.paymentstatus != 'CANCELLED' AND pay.tenantid != 'uk.testing'
-    and eu.name=(select eum.name from eg_pt_owner_v2 po join eg_user eum on eum.uuid=po.userid where RIGHT(po.propertydetail,6)=RIGHT(bill.consumercode,6) and
-    eum.uuid=po.userid fetch first 1 row only)
   groupby: GROUP BY pay.tenantid,pd.receiptnumber,bill.consumercode,pd.receiptdate,pay.transactionnumber,pay.paymentmode,un.name,msg.message,addr.doorno,eu.name
 
 - reportName: CancelledReceiptRegister
