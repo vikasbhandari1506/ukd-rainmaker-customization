@@ -158,6 +158,12 @@
                                 }
                             },
                             {
+                                "variable": "financialYear",
+                                "value": {
+                                    "path": "$.paymentDetails[0].bill.additionalDetails.financialYear"
+                                }
+                            },
+                            {
                                 "variable": "paymentDate",
                                 "value": {
                                     "path": "$.transactionDate"
@@ -730,10 +736,6 @@
                                     {
                                         "variable": "gaurdianName",
                                         "value": "$.Properties[0].propertyDetails[0].owners[0].fatherOrHusbandName"
-                                    },
-                                    {
-                                        "variable": "financialYear",
-                                        "value": "$.Properties[0].propertyDetails[0].financialYear"
                                     },
                                     {
                                         "variable": "var_owners",                        
