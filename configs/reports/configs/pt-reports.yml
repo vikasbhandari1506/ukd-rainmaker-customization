@@ -100,10 +100,10 @@ ReportDefinitions:
     source: pt
     isMandatory: false
     searchClause: AND paymentmode = $paymentMode
-  - name: collectorName
+  - name: collectorname
     label: Collector Name
     type: singlevaluelist
-    pattern:  http://egov-hrms:8080/egov-hrms/employees/_search?tenantId=$tenantid&roles=PTCEMP%7C$.Employees[*].user.id%7C$.Employees[*].user.name
+    pattern: http://egov-hrms:8080/egov-hrms/employees/_search?tenantId=$tenantid&roles=PTCEMP|$.Employees[*].user.id|$.Employees[*].user.name
     source: pt
     wrapper: true
     isMandatory: false
