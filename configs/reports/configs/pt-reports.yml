@@ -143,7 +143,7 @@ ReportDefinitions:
     msg.tenantid=pay.tenantid and
     eu.uuid=(select poo.userid from eg_pt_owner_v2 poo where poo.propertydetail=(select pdd.assessmentnumber from eg_pt_propertydetail_v2 pdd where pdd.property= bill.consumercode fetch first 1 row only) fetch first 1 row only) and
     msg.locale='hi_IN' and
-    un.name LIKE $collectorname and
+    un.id = $collectorname and
     pay.tenantid LIKE $tenantid and 
     pd.businessservice='PT'and 
     pay.paymentstatus != 'CANCELLED' AND pay.tenantid != 'uk.testing'
