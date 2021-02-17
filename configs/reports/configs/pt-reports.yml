@@ -935,14 +935,14 @@ ReportDefinitions:
     source: pt
     isMandatory: false
     searchClause: AND dcb.createddate <= $toDate
-  - name: Mohallaname
-    label: MohallaName
+  - name: Wardname
+    label: WardName
     type: singlevaluelist
-    pattern: http://egov-location:8080/egov-location/location/v11/boundarys/_search?hierarchyTypeCode=REVENUE&boundaryType=Locality&tenantId=$tenantid|$.TenantBoundary[*].boundary[*].code|$.TenantBoundary[*].boundary[*].name
+    pattern: http://egov-location:8080/egov-location/location/v11/boundarys/_search?hierarchyTypeCode=REVENUE&boundaryType=Block&tenantId=$tenantid|$.TenantBoundary[*].boundary[*].name|$.TenantBoundary[*].boundary[*].name
     source: pt
     wrapper: true
     isMandatory: false
-    searchClause: AND mohalla = $Mohallaname
+    searchClause: AND trim(split_part(mohalla,'-',2)) = $Wardname
   query: | 
     select * from dcb where tenantid = $tenantid                             
 
