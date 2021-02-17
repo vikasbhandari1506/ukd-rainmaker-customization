@@ -942,7 +942,7 @@ ReportDefinitions:
     source: pt
     wrapper: true
     isMandatory: false
-    searchClause: AND split_part(mohalla,'-',2) = $Wardname
+    searchClause: AND trim(split_part(mohalla,'-',2)) = $Wardname
   query: | 
     select * from dcb where tenantid = $tenantid                                
     
