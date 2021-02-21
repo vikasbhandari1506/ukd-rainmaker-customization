@@ -35,7 +35,7 @@
                       "style": "receiptlogoheader"
                     },
                     {
-                      "text": "{{serviceType}} {{payment_receipt}}",
+                      "text": "{{serviceType}} {{paymentMode}} {{payment_receipt}} ",
                       "style": "receiptlogosubheader"
                     }
                   ],
