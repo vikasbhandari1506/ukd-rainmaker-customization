@@ -105,7 +105,6 @@ ReportDefinitions:
     type: singlevaluelist
     pattern: http://egov-hrms:8080/egov-hrms/employees/_search?tenantId=$tenantid&roles=PTCEMP|$.Employees[*].user.id|$.Employees[*].user.name
     source: pt
-    wrapper: true
     isMandatory: false
     searchClause: AND un.id = $collectorname::INTEGER
   query: |
@@ -142,7 +141,6 @@ ReportDefinitions:
     RIGHT(msg.code,5)=addr.locality and
     msg.tenantid=pay.tenantid and
     eu.uuid=(select poo.userid from eg_pt_owner_v2 poo where poo.propertydetail=(select pdd.assessmentnumber from eg_pt_propertydetail_v2 pdd where pdd.property= bill.consumercode fetch first 1 row only) fetch first 1 row only) and
-    un.id = $collectorname and
     msg.locale='hi_IN' and
     pay.tenantid LIKE $tenantid and 
     pd.businessservice='PT'and 
