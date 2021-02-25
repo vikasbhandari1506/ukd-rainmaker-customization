@@ -105,6 +105,7 @@ ReportDefinitions:
     type: singlevaluelist
     pattern: http://egov-hrms:8080/egov-hrms/employees/_search?tenantId=$tenantid&roles=PTCEMP|$.Employees[*].user.id|$.Employees[*].user.name
     source: pt
+    wrapper: true
     isMandatory: false
     searchClause: AND un.id = $collectorname::INTEGER
   query: |
