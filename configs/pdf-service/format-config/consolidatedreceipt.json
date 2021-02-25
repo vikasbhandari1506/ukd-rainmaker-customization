@@ -304,8 +304,51 @@
                         "*",
                         "*"
                     ],
-                    "body": ["{{#var_owners}}[{\"text\":\"{{owner_name}}\",\"border\":[true,true,false,true],\"style\":\"receipt-table-key\"},{\"text\":\"{{name2}}\",\"border\":[false,true,true,true]},{\"text\":\"{{gaurdian_name}}\",\"border\":[true,true,false,true],\"style\":\"receipt-table-key\"},{\"text\":\"{{fatherOrHusbandName2}}\",\"border\":[false,true,true,true]}]{{/var_owners}}"]
-                                   },
+                    "body": [
+                        [
+                            {
+                                "text": "{{owner_name}} :",
+                                "border": [
+                                    true,
+                                    true,
+                                    false,
+                                    true
+                                ],
+                                "style": "receipttablevalue"
+                            },
+                            {
+                                "text": "{{ownerName}}",
+                                "border": [
+                                    false,
+                                    true,
+                                    true,
+                                    true
+                                ],
+                                "style": "receipttable"
+                            },
+                            {
+                                "text": "{{gaurdian_name}} :",
+                                "border": [
+                                    false,
+                                    true,
+                                    false,
+                                    true
+                                ],
+                                "style": "receipttablevalue"
+                            },
+                            {
+                                "text": "{{gaurdianName}}",
+                                "border": [
+                                    false,
+                                    true,
+                                    true,
+                                    true
+                                ],
+                                "style": "receipttable"
+                            }
+                        ]
+                    ]
+                },
                 "layout": {}
             },
             {
@@ -757,11 +800,6 @@
                         "text": "{{disclaimer4}}",
                         "bold": false,
                         "style": "ptdisclaimervalue"
-                    },
-                    {
-                        "text": "{{disclaimer5}}",
-                        "bold": false,
-                        "style": "ptdisclaimervalue"
                     }
                 ]
             }
@@ -813,16 +851,6 @@
                     -8
                 ]
             },
-             "next-noc-table": {
-                "fontSize": 8,
-                "color": "#000000",
-                  "margin": [
-                    -25,
-                    10,
-                    -22,
-                    -8
-                  ]
-                 },
             "receipttablevalue": {
                 "color": "#000000",
                 "bold": true,
