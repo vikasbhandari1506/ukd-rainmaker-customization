@@ -110,6 +110,12 @@
                                 "type":"date"
                             },
                             {
+                                "variable": "financialYear",
+                                "value": {
+                                    "path": "$.paymentDetails[0].bill.additionalDetails.financialYear"
+                                }
+                            },
+                            {
                                 "variable": "propertyTax",
                                 "value": {
                                     "path": "$.paymentDetails[0].bill.additionalDetails.tax"
@@ -727,10 +733,6 @@
                    {
                      "variable":"assessmentNumber",
                      "value":"$.Assessments[0].assessmentNumber"
-                   },
-                   {
-                     "variable": "financialYear",                        
-                     "value":"$.Assessments[0].financialYear"                             
                    }
                  ]
                }
