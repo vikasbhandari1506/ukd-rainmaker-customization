@@ -119,7 +119,7 @@ ReportDefinitions:
     SUM(CASE WHEN taxheadcode LIKE 'PT_TIME_PENALTY%' or taxheadcode LIKE 'PT_LATE_ASSESSMENT_PENALTY' THEN bad.amount ELSE 0 END) as penalty,
     SUM(CASE WHEN taxheadcode LIKE 'SWATCHATHA_TAX%' THEN bad.amount ELSE 0 END) as swatchathatax,
     SUM(CASE WHEN taxheadcode LIKE 'PT_TAX%' or taxheadcode like 'PT_TIME_REBATE' or taxheadcode like 'PT_PROMOTIONAL_REBATE' THEN bad.amount ELSE 0 END) as propertytax,
-    (SUM(CASE WHEN taxheadcode LIKE 'PT_TIME_INTEREST' THEN bad.amount ELSE 0 END)  + SUM(CASE WHEN taxheadcode LIKE 'PT_TIME_PENALTY%' or taxheadcode LIKE 'PT_LATE_ASSESSMENT_PENALTY' THEN bad.amount ELSE 0 END) +SUM(CASE WHEN taxheadcode LIKE 'SWATCHATHA_TAX' THEN bad.amount ELSE 0 END) +SUM(CASE WHEN taxheadcode LIKE 'PT_TAX' or taxheadcode like 'PT_TIME_REBATE' or taxheadcode like 'PT_PROMOTIONAL_REBATE' THEN bad.amount ELSE 0 END) ) as totalcollection,
+    pd.amountpaid as totalcollection,
     un.name as collectorname,
     msg.message as mohallaname,
     addr.doorno as doorno,
@@ -148,7 +148,7 @@ ReportDefinitions:
     pay.tenantid LIKE $tenantid and 
     pd.businessservice='PT'and 
     pay.paymentstatus != 'CANCELLED' AND pay.tenantid != 'uk.testing'
-  groupby: GROUP BY pay.tenantid,pd.receiptnumber,bill.consumercode,pd.receiptdate,pay.transactionnumber,pay.paymentmode,un.name,msg.message,addr.doorno,eu.name
+  groupby: GROUP BY pay.tenantid,pd.receiptnumber,bill.consumercode,pd.receiptdate,pay.transactionnumber,pay.paymentmode,un.name,msg.message,addr.doorno,eu.name,pd.amountpaid
 
 - reportName: ReceiptRegister_v1
   summary: Receipt Register
