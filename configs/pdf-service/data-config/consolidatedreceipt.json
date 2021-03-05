@@ -655,6 +655,10 @@
                             {
                                 "variable": "rebate",
                                 "formula": "-{{Rebate}}"
+                            },
+			    {
+                                "variable": "currentTax",
+                                "formula": "{{propertyTax}}+{{Rebate}}"
                             }
                         ]
                     },
