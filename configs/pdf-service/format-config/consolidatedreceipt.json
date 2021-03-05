@@ -482,7 +482,7 @@
                                 "style": "receipttable"
                             },
                             {
-                                "text": "₹ {{propertyTax}}",
+                                "text": "₹ {{currentTax}}",
                                 "alignment": "center",
                                 "border": [
                                     true,
