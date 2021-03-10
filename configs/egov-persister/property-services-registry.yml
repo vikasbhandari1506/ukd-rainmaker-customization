@@ -543,4 +543,4 @@ serviceMaps:
 
       - jsonPath: $.Property.units.*.additionalDetails
         type: JSON
-        dbType: JSONB      
+        dbType: JSONB
