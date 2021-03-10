@@ -540,3 +540,7 @@ serviceMaps:
       - jsonPath: $.Property.auditDetails.lastModifiedTime
 
       - jsonPath: $.Property.units.*.id      
+
+      - jsonPath: $.Property.units.*.additionalDetails
+        type: JSON
+        dbType: JSONB      
