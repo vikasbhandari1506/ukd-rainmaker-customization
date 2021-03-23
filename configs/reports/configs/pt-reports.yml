@@ -811,7 +811,7 @@ ReportDefinitions:
     source: pt
     wrapper: true
     isMandatory: false
-    searchClause: AND usagecategorymajor = $usage
+    searchClause: AND split_part(usagecategory, '.', 1) = $usage
   query: |
       SELECT 
       initcap(split_part(tenantid, '.', 2)) as tenantid, 
@@ -821,7 +821,7 @@ ReportDefinitions:
       SUM(CASE WHEN collectiontype LIKE 'ONLINE' THEN amount ELSE 0 END) AS totalonline, 
       SUM(CASE WHEN collectiontype LIKE 'COUNTER' THEN amount ELSE 0 END) AS totaloffline, 
       (SUM(totalamount) - SUM(amount)) AS totalamountdue 
-      FROM eg_pt_asmt_assessment AS pd 
+      FROM eg_pt_property AS pd 
       LEFT OUTER JOIN (SELECT consumercode, totalamount, amount, collectiontype, receiptdate FROM egcl_receiptheader_v1 AS rh 
       LEFT OUTER JOIN egcl_receiptinstrument_v1 AS ri ON rh.id = ri.receiptheader 
       LEFT OUTER JOIN egcl_instrumentheader_v1 AS ih ON ri.instrumentheader = ih.id and ih.instrumentstatus	 != 'CANCELLED' 
