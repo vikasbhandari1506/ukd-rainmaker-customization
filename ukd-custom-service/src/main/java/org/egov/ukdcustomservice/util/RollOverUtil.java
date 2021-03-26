@@ -31,6 +31,10 @@ public class RollOverUtil {
                 .append(SEPARATER)
                 .append("consumerCode=").append(criteria.getPropertyId())
                 .append(SEPARATER)
-                .append("status=").append("ACTIVE");
+                .append("status=").append("ACTIVE")
+                .append(SEPARATER)
+                .append("periodFrom=").append(criteria.getPeriodFrom())
+                .append(SEPARATER)
+                .append("periodTo=").append(criteria.getPeriodTo());
     }
 }
