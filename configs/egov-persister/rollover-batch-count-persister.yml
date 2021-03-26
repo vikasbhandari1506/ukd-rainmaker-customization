@@ -1,0 +1,27 @@
+serviceMaps:
+  serviceName: ukdcustomservice
+  mappings:
+  - version: 1.0
+    description: Persists property details in EG_PT_PROPERTY_ROLLOVER  table
+    fromTopic: rollover-batch-count
+    isTransaction: true
+    queryMaps:
+
+
+    - query: INSERT INTO eg_pt_rolloverbatch (id,batch,batchsize,createdtime,tenantid,recordCount) VALUES (?,?,?,?,?,?);
+      basePath: RollOverCount
+      jsonMaps:
+
+      - jsonPath: $.RollOverCount.id
+
+      - jsonPath: $.RollOverCount.offset
+
+      - jsonPath: $.RollOverCount.limit
+
+      - jsonPath: $.RollOverCount.createdTime
+
+      - jsonPath: $.RollOverCount.tenantid
+
+      - jsonPath: $.RollOverCount.recordCount
+
+ 
