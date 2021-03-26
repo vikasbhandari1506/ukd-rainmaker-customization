@@ -111,6 +111,7 @@ public class RollOverService {
     public static final String TENANT_QUERY = "select distinct tenantid from eg_pt_property;";
     public static final String MIGARTION_COUNT_QUERY = "select count(*) from eg_pt_rolloverbatch;";
     public static final String MIGARTION_POINT_QUERY ="select id,batch,batchsize,createdtime,tenantid,recordCount from eg_pt_rolloverbatch as rollover where tenantid = ? and createdtime = (select max(createdtime) from eg_pt_rolloverbatch where tenantid = ?);";
+    public static final String PROP_ROLL_COUNT_QUERY = "select count(*) from eg_pt_rollover where tenantid = '{}';";
 
     
     public static final String URL_PARAMS_SEPARATER = "?";
@@ -150,6 +151,7 @@ public class RollOverService {
 
         for(int i= 0;i<tenantList.size();i++){
         	RollOverCount rollOverCount = getRollOverCountForTenant(tenantList.get(i));
+        	long propRollCount = getPropRollOverCountForTenant(tenantList.get(i));
             System.out.println("\n\nMigration count--->"+rollOverCount.toString()+"\n\n");
             if(ObjectUtils.isEmpty(rollOverCount) || rollOverCount.getId() == null){
                 propertyCriteria.setTenantId(tenantList.get(i));
@@ -166,7 +168,7 @@ public class RollOverService {
                     resultMap = rollOverForFailedProps(requestInfoWrapper,propertyCriteria,masters,errorMap);
                 }else{
                     propertyCriteria.setTenantId(tenantList.get(i));
-                    propertyCriteria.setOffset(rollOverCount.getOffset()+rollOverCount.getLimit());
+                    propertyCriteria.setOffset(propRollCount);
                     resultMap = initiateRollOver(requestInfoWrapper, propertyCriteria,masters,errorMap);
                 }
 
@@ -365,6 +367,11 @@ public class RollOverService {
 		return rollOverCount;
 	}
 	
+	private long getPropRollOverCountForTenant(String tenantId) {
+		String query = PROP_ROLL_COUNT_QUERY.replace("{}", tenantId);
+		long count = (long) jdbcTemplate.queryForObject(query, Integer.class);
+		return count;
+	}
 
     public List<Property> searchPropertyFromURL(RequestInfoWrapper requestInfoWrapper,PropertyCriteria propertyCriteria){
 
