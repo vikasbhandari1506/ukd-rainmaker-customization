@@ -10,8 +10,8 @@ public class DemandSearchCriteria {
 
     private String propertyId;
 
-    private Long fromDate;
+    private Long periodFrom;
 
-    private Long toDate;
+    private Long periodTo;
 
 }

@@ -246,8 +246,8 @@ public class RollOverService {
 				DemandSearchCriteria criteria = new DemandSearchCriteria();
 				criteria.setTenantId(property.getTenantId());
 				criteria.setPropertyId(property.getPropertyId());
-				criteria.setFromDate(Long.valueOf(nextFinYear.get(0).get("startingDate").toString()));
-				criteria.setToDate(Long.valueOf(nextFinYear.get(0).get("endingDate").toString()));
+				criteria.setPeriodFrom(Long.valueOf(nextFinYear.get(0).get("startingDate").toString()));
+				criteria.setPeriodTo(Long.valueOf(nextFinYear.get(0).get("endingDate").toString()));
 
 				List<Demand> demands = new ArrayList<Demand>();
 				DemandResponse res = mapper.convertValue(( rollOverRepository
