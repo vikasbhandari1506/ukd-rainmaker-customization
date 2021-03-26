@@ -1474,7 +1474,7 @@ ReportDefinitions:
     source: pt
     wrapper: true
     isMandatory: false
-    searchClause: tenantid = $tenanid 
+    searchClause: AND tenantid = $tenantid 
   - name: status
     label: Status
     type: singlevaluelist
@@ -1484,4 +1484,4 @@ ReportDefinitions:
     isMandatory: false
     searchClause: AND status = $status
   query: | 
-    select * from eg_pt_rollover                            
+    select * from eg_pt_rollover where tenantid !='uk.testing'                          
