@@ -1468,7 +1468,7 @@ ReportDefinitions:
     total: false
   searchParams:
   - name: tenantid
-    label: WardName
+    label: ULB
     type: singlevaluelist
     pattern: http://egov-mdms-service:8080/egov-mdms-service/v1/_get?tenantId=$tenantid&moduleName=tenant&masterName=tenants|$.MdmsRes.tenant.tenants.*.code|$.MdmsRes.tenant.tenants.*.name
     source: pt
