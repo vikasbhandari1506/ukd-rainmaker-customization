@@ -7,7 +7,7 @@
      query: 
       baseQuery: 
         select array_to_json(array_agg(row_to_json(stateWideReports))) FROM 
-        ((SELECT (SELECT count(*) FROM ((SELECT DISTINCT tenantid FROM eg_pt_property_v2 
+        ((SELECT (SELECT count(*) FROM ((SELECT DISTINCT tenantid FROM eg_pt_property 
         WHERE (createdtime/1000) <= (extract(epoch FROM NOW())) AND tenantid != 'uk.testing') 
         UNION (SELECT DISTINCT tenantid FROM eg_tl_tradelicense WHERE (createdtime/1000) <= (extract(epoch FROM NOW())) 
         AND tenantid != 'uk.testing') UNION (SELECT DISTINCT tenantid FROM eg_pgr_service 
@@ -43,7 +43,7 @@
         AND pd.businessservice not in
         ('PT','TL','WC','FIRENOC','PT.MUTATION')) as b) as servicesApplied, 
         (SELECT to_char(count(*), 'FM99,FM99,99,999') FROM eg_user WHERE (createddate <= NOW()) AND tenantid != 'uk.testing' AND type = 'CITIZEN') as noOfUsersRegistered, 
-        'Week0' as day) UNION (SELECT (SELECT count(*) FROM ((SELECT DISTINCT tenantid FROM eg_pt_property_v2 WHERE (createdtime/1000) 
+        'Week0' as day) UNION (SELECT (SELECT count(*) FROM ((SELECT DISTINCT tenantid FROM eg_pt_property WHERE (createdtime/1000) 
         <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800) 
         AND tenantid != 'uk.testing') UNION (SELECT DISTINCT tenantid FROM eg_tl_tradelicense WHERE (createdtime/1000) 
         <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800) 
@@ -84,7 +84,7 @@
         (SELECT to_char(count(*), 'FM99,FM99,99,999') FROM eg_user 
         WHERE createddate <= to_timestamp((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800) 
         AND tenantid != 'uk.testing' AND type = 'CITIZEN') as noOfUsersRegistered, 'Week1' as day) 
-        UNION (SELECT (SELECT count(*) FROM ((SELECT DISTINCT tenantid FROM eg_pt_property_v2 WHERE (createdtime/1000) <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 2) 
+        UNION (SELECT (SELECT count(*) FROM ((SELECT DISTINCT tenantid FROM eg_pt_property WHERE (createdtime/1000) <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 2) 
         AND tenantid != 'uk.testing') UNION (SELECT DISTINCT tenantid FROM eg_tl_tradelicense WHERE (createdtime/1000) <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 2)
         AND tenantid != 'uk.testing') UNION (SELECT DISTINCT tenantid FROM eg_pgr_service WHERE (createdtime/1000) <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 2) AND tenantid != 'uk.testing')) AS tenants) 
         as ulbCovered,(SELECT to_char(TRUNC(((
@@ -120,7 +120,7 @@
         AND pd.businessservice not in
         ('PT','TL','WC','FIRENOC','PT.MUTATION')) as b) as servicesApplied, 
         (SELECT to_char(count(*), 'FM99,FM99,99,999') FROM eg_user WHERE createddate <= to_timestamp((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 2) AND tenantid != 'uk.testing' AND type = 'CITIZEN') as noOfUsersRegistered, 'Week2' as day) 
-        UNION (SELECT (SELECT count(*) FROM ((SELECT DISTINCT tenantid FROM eg_pt_property_v2 WHERE (createdtime/1000) <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 3) AND tenantid != 'uk.testing') 
+        UNION (SELECT (SELECT count(*) FROM ((SELECT DISTINCT tenantid FROM eg_pt_property WHERE (createdtime/1000) <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 3) AND tenantid != 'uk.testing') 
         UNION (SELECT DISTINCT tenantid FROM eg_tl_tradelicense WHERE (createdtime/1000) <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 3) AND tenantid != 'uk.testing') 
         UNION (SELECT DISTINCT tenantid FROM eg_pgr_service WHERE (createdtime/1000) <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 3) AND tenantid != 'uk.testing')) AS tenants) as ulbCovered,
         (SELECT to_char(TRUNC(((
@@ -157,7 +157,7 @@
         ('PT','TL','WC','FIRENOC','PT.MUTATION')) as b) as servicesApplied,
          (SELECT to_char(count(*), 'FM99,FM99,99,999') FROM eg_user WHERE createddate <= to_timestamp((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 3)
         AND tenantid != 'uk.testing' AND type = 'CITIZEN') as noOfUsersRegistered, 'Week3' as day)
-        UNION (SELECT (SELECT count(*) FROM ((SELECT DISTINCT tenantid FROM eg_pt_property_v2 WHERE (createdtime/1000) <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 4) AND tenantid != 'uk.testing') UNION (SELECT DISTINCT tenantid FROM eg_tl_tradelicense
+        UNION (SELECT (SELECT count(*) FROM ((SELECT DISTINCT tenantid FROM eg_pt_property WHERE (createdtime/1000) <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 4) AND tenantid != 'uk.testing') UNION (SELECT DISTINCT tenantid FROM eg_tl_tradelicense
         WHERE (createdtime/1000) <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 4) AND tenantid != 'uk.testing') UNION (SELECT DISTINCT tenantid FROM eg_pgr_service WHERE (createdtime/1000) <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 4) AND tenantid != 'uk.testing')) AS tenants) as ulbCovered,
         (SELECT to_char(TRUNC(((
         SELECT SUM(p.totalamountpaid) FROM egcl_payment p, egcl_paymentdetail pd 
@@ -192,7 +192,7 @@
         AND pd.businessservice not in
         ('PT','TL','WC','FIRENOC','PT.MUTATION')) as b) as servicesApplied,
          (SELECT to_char(count(*), 'FM99,FM99,99,999') FROM eg_user WHERE createddate <= to_timestamp((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 4) AND tenantid != 'uk.testing' AND type = 'CITIZEN') as noOfUsersRegistered, 
-        'Week4' as day) UNION (SELECT (SELECT count(*) FROM ((SELECT DISTINCT tenantid FROM eg_pt_property_v2 WHERE (createdtime/1000) <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 5) AND tenantid != 'uk.testing') 
+        'Week4' as day) UNION (SELECT (SELECT count(*) FROM ((SELECT DISTINCT tenantid FROM eg_pt_property WHERE (createdtime/1000) <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 5) AND tenantid != 'uk.testing') 
         UNION (SELECT DISTINCT tenantid FROM eg_tl_tradelicense WHERE (createdtime/1000) <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 5) AND tenantid != 'uk.testing') UNION (SELECT DISTINCT tenantid FROM eg_pgr_service WHERE (createdtime/1000) <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 5) AND tenantid != 'uk.testing')) AS tenants) as ulbCovered,
         (SELECT to_char(TRUNC(((
         SELECT SUM(p.totalamountpaid) FROM egcl_payment p, egcl_paymentdetail pd 
@@ -279,7 +279,7 @@
       baseQuery:
                 select array_to_json(array_agg(row_to_json(ptReports))) 
                 FROM ((SELECT (SELECT count(DISTINCT tenantid) as ulbCovered 
-                FROM eg_pt_property_v2 
+                FROM eg_pt_property 
                 WHERE (createdtime/1000) <= (extract (epoch FROM NOW())) AND tenantid != 'uk.testing'),
                 (select to_char(TRUNC(SUM(p.totalamountpaid) / 10000000, 2), 'FM99,FM99,99,9990D00')  
                 FROM egcl_payment p, egcl_paymentdetail pd 
@@ -290,15 +290,15 @@
                 WHERE p.id=pd.paymentid  and pd.businessservice ='PT'
                 and (p.lastmodifiedtime/1000)  <=  (extract (epoch FROM NOW()))) as receiptscreated, 
                 (SELECT to_char(count(*), 'FM99,FM99,99,999') 
-                 FROM eg_pt_property_v2 WHERE (createdtime/1000) <= (extract (epoch FROM NOW())) 
+                 FROM eg_pt_property WHERE (createdtime/1000) <= (extract (epoch FROM NOW())) 
                  AND tenantid != 'uk.testing') as noofpropertiescreated,
-                'Week0' as day FROM eg_pt_property_v2 pt INNER JOIN egcl_bill bill ON 
+                'Week0' as day FROM eg_pt_property pt INNER JOIN egcl_bill bill ON 
                 pt.propertyid = bill.consumercode INNER JOIN egcl_paymentdetail pd ON 
                 bill.id = pd.billid INNER JOIN egcl_payment pymt ON pd.paymentid = pymt.id 
                 WHERE (pd.receiptdate/1000) <= (extract(epoch FROM NOW()))
                 AND pt.tenantid != 'uk.testing' AND pymt.paymentstatus != 'Cancelled' AND bill.status != 'CANCELLED')
                 UNION (SELECT (SELECT count(DISTINCT tenantid) as ulbCovered 
-                FROM eg_pt_property_v2 WHERE (createdtime/1000)  <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800) 
+                FROM eg_pt_property WHERE (createdtime/1000)  <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800) 
                 AND tenantid != 'uk.testing'), 
                 (select to_char(TRUNC(SUM(p.totalamountpaid) / 10000000, 2), 'FM99,FM99,99,9990D00')  
                 FROM egcl_payment p, egcl_paymentdetail pd 
@@ -309,15 +309,15 @@
                 WHERE p.id=pd.paymentid  and pd.businessservice ='PT'
                 and (p.lastmodifiedtime/1000)  <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 1) )  as receiptscreated, 
                 (SELECT to_char(count(*), 'FM99,FM99,99,999') 
-                 FROM eg_pt_property_v2 WHERE (createdtime/1000) <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800) 
+                 FROM eg_pt_property WHERE (createdtime/1000) <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800) 
                  AND tenantid != 'uk.testing') as noofpropertiescreated,
-                'Week1' as day FROM eg_pt_property_v2 pt INNER JOIN egcl_bill bill ON 
+                'Week1' as day FROM eg_pt_property pt INNER JOIN egcl_bill bill ON 
                 pt.propertyid = bill.consumercode INNER JOIN egcl_paymentdetail pd ON 
                 bill.id = pd.billid INNER JOIN egcl_payment pymt ON pd.paymentid = pymt.id 
                 WHERE (pd.receiptdate/1000) <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800) 
                 AND pt.tenantid != 'uk.testing' AND pymt.paymentstatus != 'Cancelled' AND bill.status != 'CANCELLED')
                 UNION (SELECT (SELECT count(DISTINCT tenantid) as ulbCovered 
-                FROM eg_pt_property_v2 WHERE (createdtime/1000)  <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 2) 
+                FROM eg_pt_property WHERE (createdtime/1000)  <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 2) 
                 AND tenantid != 'uk.testing'), 
                 (select to_char(TRUNC(SUM(p.totalamountpaid) / 10000000, 2), 'FM99,FM99,99,9990D00')  
                 FROM egcl_payment p, egcl_paymentdetail pd 
@@ -328,15 +328,15 @@
                 WHERE p.id=pd.paymentid  and pd.businessservice ='PT'
                 and (p.lastmodifiedtime/1000)  <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 *2 ) )  as receiptscreated, 
                 (SELECT to_char(count(*), 'FM99,FM99,99,999') 
-                 FROM eg_pt_property_v2 WHERE (createdtime/1000) <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 2) 
+                 FROM eg_pt_property WHERE (createdtime/1000) <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 2) 
                  AND tenantid != 'uk.testing') as noofpropertiescreated,
-                'Week2' as day FROM eg_pt_property_v2 pt INNER JOIN egcl_bill bill ON 
+                'Week2' as day FROM eg_pt_property pt INNER JOIN egcl_bill bill ON 
                 pt.propertyid = bill.consumercode INNER JOIN egcl_paymentdetail pd ON 
                 bill.id = pd.billid INNER JOIN egcl_payment pymt ON pd.paymentid = pymt.id 
                 WHERE (pd.receiptdate/1000) <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 2) 
                 AND pt.tenantid != 'uk.testing' AND pymt.paymentstatus != 'Cancelled' AND bill.status != 'CANCELLED')
                 UNION (SELECT (SELECT count(DISTINCT tenantid) as ulbCovered 
-                FROM eg_pt_property_v2 WHERE (createdtime/1000)  <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 3) 
+                FROM eg_pt_property WHERE (createdtime/1000)  <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 3) 
                 AND tenantid != 'uk.testing'), 
                 (select to_char(TRUNC(SUM(p.totalamountpaid) / 10000000, 2), 'FM99,FM99,99,9990D00')  
                 FROM egcl_payment p, egcl_paymentdetail pd 
@@ -347,15 +347,15 @@
                 WHERE p.id=pd.paymentid  and pd.businessservice ='PT'
                 and (p.lastmodifiedtime/1000)  <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 3) )  as receiptscreated, 
                 (SELECT to_char(count(*), 'FM99,FM99,99,999') 
-                 FROM eg_pt_property_v2 WHERE (createdtime/1000) <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 3) 
+                 FROM eg_pt_property WHERE (createdtime/1000) <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 3) 
                  AND tenantid != 'uk.testing') as noofpropertiescreated,
-                'Week3' as day FROM eg_pt_property_v2 pt INNER JOIN egcl_bill bill ON 
+                'Week3' as day FROM eg_pt_property pt INNER JOIN egcl_bill bill ON 
                 pt.propertyid = bill.consumercode INNER JOIN egcl_paymentdetail pd ON 
                 bill.id = pd.billid INNER JOIN egcl_payment pymt ON pd.paymentid = pymt.id 
                 WHERE (pd.receiptdate/1000) <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 3) 
                 AND pt.tenantid != 'uk.testing' AND pymt.paymentstatus != 'Cancelled' AND bill.status != 'CANCELLED')
                 UNION (SELECT (SELECT count(DISTINCT tenantid) as ulbCovered 
-                FROM eg_pt_property_v2 WHERE (createdtime/1000)  <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 4) 
+                FROM eg_pt_property WHERE (createdtime/1000)  <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 4) 
                 AND tenantid != 'uk.testing'), 
                 (select to_char(TRUNC(SUM(p.totalamountpaid) / 10000000, 2), 'FM99,FM99,99,9990D00')  
                 FROM egcl_payment p, egcl_paymentdetail pd 
@@ -366,15 +366,15 @@
                 WHERE p.id=pd.paymentid  and pd.businessservice ='PT'
                 and (p.lastmodifiedtime/1000)  <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 4) )   as receiptscreated, 
                 (SELECT to_char(count(*), 'FM99,FM99,99,999') 
-                 FROM eg_pt_property_v2 WHERE (createdtime/1000) <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 4) 
+                 FROM eg_pt_property WHERE (createdtime/1000) <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 4) 
                  AND tenantid != 'uk.testing') as noofpropertiescreated,                
-                'Week4' as day FROM eg_pt_property_v2 pt INNER JOIN egcl_bill bill ON 
+                'Week4' as day FROM eg_pt_property pt INNER JOIN egcl_bill bill ON 
                 pt.propertyid = bill.consumercode INNER JOIN egcl_paymentdetail pd ON 
                 bill.id = pd.billid INNER JOIN egcl_payment pymt ON pd.paymentid = pymt.id 
                 WHERE (pd.receiptdate/1000) <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 4) 
                 AND pt.tenantid != 'uk.testing' AND pymt.paymentstatus != 'Cancelled' AND bill.status != 'CANCELLED')
                 UNION (SELECT (SELECT count(DISTINCT tenantid) as ulbCovered 
-                FROM eg_pt_property_v2 WHERE (createdtime/1000)  <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 5) 
+                FROM eg_pt_property WHERE (createdtime/1000)  <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 5) 
                 AND tenantid != 'uk.testing'), 
                 (select to_char(TRUNC(SUM(p.totalamountpaid) / 10000000, 2), 'FM99,FM99,99,9990D00')  
                 FROM egcl_payment p, egcl_paymentdetail pd 
@@ -385,9 +385,9 @@
                 WHERE p.id=pd.paymentid  and pd.businessservice ='PT'
                 and (p.lastmodifiedtime/1000)  <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 *5) ) as receiptscreated, 
                 (SELECT to_char(count(*), 'FM99,FM99,99,999') 
-                 FROM eg_pt_property_v2 WHERE (createdtime/1000) <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 5) 
+                 FROM eg_pt_property WHERE (createdtime/1000) <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 5) 
                  AND tenantid != 'uk.testing') as noofpropertiescreated,                
-                'Week5' as day FROM eg_pt_property_v2 pt INNER JOIN egcl_bill bill ON 
+                'Week5' as day FROM eg_pt_property pt INNER JOIN egcl_bill bill ON 
                 pt.propertyid = bill.consumercode INNER JOIN egcl_paymentdetail pd ON 
                 bill.id = pd.billid INNER JOIN egcl_payment pymt ON pd.paymentid = pymt.id 
                 WHERE (pd.receiptdate/1000) <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 5) 
