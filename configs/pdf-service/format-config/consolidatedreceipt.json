@@ -372,6 +372,10 @@
                         "*",
                         "*",
                         "*",
+                        "*",
+                        "*",
+                        "*",
+                        "*",
                         "*"
                     ],
                     "body": [
@@ -419,71 +423,7 @@
                                     true
                                 ],
                                 "style": "receipttablevalue"
-                            }
-                            
-                        ],
-                        [
-                            {
-                                "text": "₹ {{arrears}}",
-                                "alignment": "center",
-                                "border": [
-                                    true,
-                                    true,
-                                    true,
-                                    true
-                                ],
-                                "style": "receipttable"
                             },
-                            {
-                                "text": "₹ {{currentTax}}",
-                                "alignment": "center",
-                                "border": [
-                                    true,
-                                    true,
-                                    true,
-                                    true
-                                ],
-                                "style": "receipttable"
-                            },
-                            {
-                                "text": "₹ {{swatchatha}}",
-                                "alignment": "center",
-                                "border": [
-                                    true,
-                                    true,
-                                    true,
-                                    true
-                                ],
-                                "style": "receipttable"
-                            },
-                            {
-                                "text": "₹ {{penalty}}",
-                                "alignment": "center",
-                                "border": [
-                                    true,
-                                    true,
-                                    true,
-                                    true
-                                ],
-                                "style": "receipttable"
-                            }
-                        ]
-                    ]
-                },
-                "layout": {}
-            },
-            {
-                "style": "nextnoctable",
-                "table": {
-                    "widths": [
-                        "*",
-                        "*",
-                        "*",
-                        "*"
-                    ],
-                    "body": [
-                        [
-                           
                             {
                                 "text": "{{pt_interest}}",
                                 "alignment": "center",
@@ -530,7 +470,50 @@
                             }
                         ],
                         [
-                           
+                            {
+                                "text": "₹ {{arrears}}",
+                                "alignment": "center",
+                                "border": [
+                                    true,
+                                    true,
+                                    true,
+                                    true
+                                ],
+                                "style": "receipttable"
+                            },
+                            {
+                                "text": "₹ {{currentTax}}",
+                                "alignment": "center",
+                                "border": [
+                                    true,
+                                    true,
+                                    true,
+                                    true
+                                ],
+                                "style": "receipttable"
+                            },
+                            {
+                                "text": "₹ {{swatchatha}}",
+                                "alignment": "center",
+                                "border": [
+                                    true,
+                                    true,
+                                    true,
+                                    true
+                                ],
+                                "style": "receipttable"
+                            },
+                            {
+                                "text": "₹ {{penalty}}",
+                                "alignment": "center",
+                                "border": [
+                                    true,
+                                    true,
+                                    true,
+                                    true
+                                ],
+                                "style": "receipttable"
+                            },
                             {
                                 "text": "₹ {{interest}}",
                                 "alignment": "center",
