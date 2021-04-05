@@ -33,8 +33,6 @@ public class RollOverUtil {
                 .append(SEPARATER)
                 .append("status=").append("ACTIVE")
                 .append(SEPARATER)
-                .append("periodFrom=").append(criteria.getPeriodFrom())
-                .append(SEPARATER)
-                .append("periodTo=").append(criteria.getPeriodTo());
+                .append("periodFrom=").append(criteria.getPeriodFrom());
     }
 }
