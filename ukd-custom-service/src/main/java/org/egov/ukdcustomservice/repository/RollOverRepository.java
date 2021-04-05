@@ -32,12 +32,12 @@ public class RollOverRepository {
     private RestTemplate restTemplate;
 
 
-    public void saveRollOver(Property property, String finYear, String status, String reason) {
+    public void saveRollOver(String propertyId, String tenantId, String finYear, String status, String reason) {
 		List<Object> preparedStmtList = new ArrayList<>();
-		String basequery = "insert into eg_pt_rollover (propertyid, tenantid, financialyear, status, reason) values (?, ?, ?, ?, ?)";
+		String basequery = "insert into eg_pt_rollover (propertyid, tenantid, financialyear, status, reason) values (?, ?, ?, ?, ?) ON CONFLICT (propertyid) DO UPDATE SET financialyear=EXCLUDED.financialyear, status=EXCLUDED.status, reason=EXCLUDED.reason";
 		StringBuilder builder = new StringBuilder(basequery);
-		preparedStmtList.add(property.getPropertyId());
-		preparedStmtList.add(property.getTenantId());
+		preparedStmtList.add(propertyId);
+		preparedStmtList.add(tenantId);
 		preparedStmtList.add(finYear);
 		preparedStmtList.add(status);
 		preparedStmtList.add(reason);
@@ -50,7 +50,7 @@ public class RollOverRepository {
 		String basequery = "select * from  eg_pt_rollover ";
 		StringBuilder builder = new StringBuilder(basequery);
 		builder.append("where tenantid = ?");
-		builder.append(" and status != 'SUCCESS'");
+		builder.append(" and status = 'FAILED'");
 		preparedStmtList.add(tenantid);
 		return jdbcTemplate.queryForList(builder.toString(), preparedStmtList.toArray());
 	}
