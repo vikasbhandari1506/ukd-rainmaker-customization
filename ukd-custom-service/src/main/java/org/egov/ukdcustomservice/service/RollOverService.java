@@ -168,7 +168,7 @@ public class RollOverService {
                     resultMap = rollOverForFailedProps(requestInfoWrapper,propertyCriteria,masters,errorMap);
                 }else{
                     propertyCriteria.setTenantId(tenantList.get(i));
-                    propertyCriteria.setOffset(propRollCount);
+                    propertyCriteria.setOffset(rollOverCount.getOffset()+rollOverCount.getLimit());
                     resultMap = initiateRollOver(requestInfoWrapper, propertyCriteria,masters,errorMap);
                 }
 
@@ -324,7 +324,6 @@ public class RollOverService {
 
 	}
 
-	@SuppressWarnings("unused")
 	private List<Map<String, Object>> getMasterFinancialYearData(String tenantid, RequestInfo requestInfo) {
 		StringBuilder uri = new StringBuilder(mdmsHost).append(mdmsEndpoint);
         List<MasterDetail> masterDetails = new ArrayList<>();
@@ -335,7 +334,6 @@ public class RollOverService {
         MdmsCriteriaReq req = MdmsCriteriaReq.builder().requestInfo(requestInfo).mdmsCriteria(mdmsCriteria).build();
         
         try {
-            @SuppressWarnings("unchecked")
 			Optional<Object> result =  rollOverRepository.fetchResult(uri, req);
             return JsonPath.read(result.get(),"$.MdmsRes.egf-master.FinancialYear");
         } catch (Exception e) {
@@ -343,17 +341,6 @@ public class RollOverService {
                     INVALID_TENANT_ID_MDMS_MSG);
         }
 		
-	}
-
-	private List<Property> getPropertiesForRollOver(List<Map<String, Object>> propsForRollOver,
-			List<Property> properties) {
-			if(!CollectionUtils.isEmpty(propsForRollOver)){
-				propsForRollOver.stream().filter(prop -> prop.get("status") != "SUCCESS").collect(Collectors.toList());
-				properties.stream().filter(property -> propsForRollOver.contains(property.getPropertyId())).collect(Collectors.toList());
-				return properties;
-			}
-			else
-				return properties;
 	}
 
 	private Assessment createAssessmentForRollOver(List<Demand> newDemands, RequestInfo requestInfo, String tenantId,String propertyId) {
