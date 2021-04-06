@@ -296,7 +296,7 @@
                 ]
             },
              {
-      "style": "next-noc-table",
+      "style": "nextnoctable",
       "table": {
         "widths": [
           "*",
