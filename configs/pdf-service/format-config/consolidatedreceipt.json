@@ -295,62 +295,19 @@
                     }
                 ]
             },
-            {
-                "style": "nextnoctable",
-                "table": {
-                    "widths": [
-                        "*",
-                        "*",
-                        "*",
-                        "*"
-                    ],
-                    "body": [
-                        [
-                            {
-                                "text": "{{owner_name}} :",
-                                "border": [
-                                    true,
-                                    true,
-                                    false,
-                                    true
-                                ],
-                                "style": "receipttablevalue"
-                            },
-                            {
-                                "text": "{{ownerName}}",
-                                "border": [
-                                    false,
-                                    true,
-                                    true,
-                                    true
-                                ],
-                                "style": "receipttable"
-                            },
-                            {
-                                "text": "{{gaurdian_name}} :",
-                                "border": [
-                                    false,
-                                    true,
-                                    false,
-                                    true
-                                ],
-                                "style": "receipttablevalue"
-                            },
-                            {
-                                "text": "{{gaurdianName}}",
-                                "border": [
-                                    false,
-                                    true,
-                                    true,
-                                    true
-                                ],
-                                "style": "receipttable"
-                            }
-                        ]
-                    ]
-                },
-                "layout": {}
-            },
+             {
+      "style": "next-noc-table",
+      "table": {
+        "widths": [
+          "*",
+          "*",
+          "*",
+          "*"
+        ],
+        "body": ["{{#var_owners}}[{\"text\":\"Owner Name\",\"border\":[true,true,false,true],\"style\":\"receipt-table-key\"},{\"text\":\"{{name2}}\",\"border\":[false,true,true,true]},{\"text\":\"Father/Husband Name\",\"border\":[true,true,false,true],\"style\":\"receipt-table-key\"},{\"text\":\"{{fatherOrHusbandName2}}\",\"border\":[false,true,true,true]}]{{/var_owners}}"]
+      },
+      "layout": {}
+    },
             {
                 "style": "receiptapprover",
                 "columns": [
