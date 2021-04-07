@@ -6,11 +6,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import org.egov.common.contract.request.RequestInfo;
 import org.egov.mdms.model.MasterDetail;
@@ -111,7 +109,6 @@ public class RollOverService {
     public static final String TENANT_QUERY = "select distinct tenantid from eg_pt_property;";
     public static final String MIGARTION_COUNT_QUERY = "select count(*) from eg_pt_rolloverbatch;";
     public static final String MIGARTION_POINT_QUERY ="select id,batch,batchsize,createdtime,tenantid,recordCount from eg_pt_rolloverbatch as rollover where tenantid = ? and createdtime = (select max(createdtime) from eg_pt_rolloverbatch where tenantid = ?);";
-    public static final String PROP_ROLL_COUNT_QUERY = "select count(*) from eg_pt_rollover where tenantid = '{}';";
 
     
     public static final String URL_PARAMS_SEPARATER = "?";
@@ -151,7 +148,6 @@ public class RollOverService {
 
         for(int i= 0;i<tenantList.size();i++){
         	RollOverCount rollOverCount = getRollOverCountForTenant(tenantList.get(i));
-        	long propRollCount = getPropRollOverCountForTenant(tenantList.get(i));//FIXME: No use of this db call.
             System.out.println("\n\nMigration count--->"+rollOverCount.toString()+"\n\n");
             if(ObjectUtils.isEmpty(rollOverCount) || rollOverCount.getId() == null){
                 propertyCriteria.setTenantId(tenantList.get(i));
@@ -183,14 +179,13 @@ public class RollOverService {
 		List<Map<String, Object>> failedProps = rollOverRepository.fetchPropertiesForRollOver(propertyCriteria.getTenantId());
 		RequestInfo requestInfo =  requestInfoWrapper.getRequestInfo();
         Map<String, String> responseMap = new HashMap<>();
+		List<Map<String, Object>> previousFinYear = masters.stream().filter(master -> master.get("code").equals(CURR_FinYear)).collect(Collectors.toList());
 
 		failedProps.forEach(prop -> {
-			List<Map<String, Object>> nextFinYear = masters.stream().filter(master -> master.get("code").equals(CURR_FinYear)).collect(Collectors.toList());
-//FIXME: Rename nextFinYear to previousFinYear.
 			DemandSearchCriteria criteria = new DemandSearchCriteria();
 			criteria.setTenantId(prop.get("tenantid").toString());
 			criteria.setPropertyId(prop.get("propertyid").toString());
-			criteria.setPeriodFrom(Long.valueOf(nextFinYear.get(0).get("startingDate").toString()));
+			criteria.setPeriodFrom(Long.valueOf(previousFinYear.get(0).get("startingDate").toString()));
 
 			List<Demand> demands = new ArrayList<Demand>();
 			DemandResponse res = mapper.convertValue(( rollOverRepository
@@ -201,7 +196,7 @@ public class RollOverService {
 			List<Demand> newDemands = prepareDemandRequest(demand, masters);
 			try{
 				
-				Assessment assessment = createAssessmentForRollOver(newDemands, requestInfo, prop.get("tenantid").toString(), prop.get("propertyid").toString());
+				createAssessmentForRollOver(newDemands, requestInfo, prop.get("tenantid").toString(), prop.get("propertyid").toString());
 			
 				rollOverRepository.saveRollOver(prop.get("propertyid").toString(), prop.get("tenantid").toString(), "2021-22", "SUCCESS",
 						"Roll Over is Successfully Done");
@@ -272,16 +267,14 @@ public class RollOverService {
 	private List<Property> rollOverProperty(RequestInfo requestInfo, List<Property> properties,
 			List<Map<String, Object>> masters, Map<String, String> errorMap) {
 
-	
-		
+		List<Map<String, Object>> previousFinYear = masters.stream().filter(master -> master.get("code").equals(CURR_FinYear)).collect(Collectors.toList());
+
 		if (!CollectionUtils.isEmpty(properties)) {
 			for (Property property : properties) {
-				List<Map<String, Object>> nextFinYear = masters.stream().filter(master -> master.get("code").equals(CURR_FinYear)).collect(Collectors.toList());
-//FIXME: Move this line to above the for loop. No need to call repeatedly for each property.
 				DemandSearchCriteria criteria = new DemandSearchCriteria();
 				criteria.setTenantId(property.getTenantId());
 				criteria.setPropertyId(property.getPropertyId());
-				criteria.setPeriodFrom(Long.valueOf(nextFinYear.get(0).get("startingDate").toString()));
+				criteria.setPeriodFrom(Long.valueOf(previousFinYear.get(0).get("startingDate").toString()));
 
 				List<Demand> demands = new ArrayList<Demand>();
 				DemandResponse res = mapper.convertValue(( rollOverRepository
@@ -295,8 +288,7 @@ public class RollOverService {
 					Demand demand = demands.get(0);
 					List<Demand> newDemands = prepareDemandRequest(demand, masters);
 					try{
-						//FIXME: No need to assign back to asessment object.
-						Assessment assessment = createAssessmentForRollOver(newDemands, requestInfo, property.getTenantId(), property.getPropertyId());
+						createAssessmentForRollOver(newDemands, requestInfo, property.getTenantId(), property.getPropertyId());
 					
 						rollOverRepository.saveRollOver(property.getPropertyId(), property.getTenantId(), "2021-22", "SUCCESS",
 								"Roll Over is Successfully Done");
@@ -397,11 +389,6 @@ public class RollOverService {
 		return rollOverCount;
 	}
 	
-	private long getPropRollOverCountForTenant(String tenantId) {
-		String query = PROP_ROLL_COUNT_QUERY.replace("{}", tenantId);
-		long count = (long) jdbcTemplate.queryForObject(query, Integer.class);
-		return count;
-	}
 
     public List<Property> searchPropertyFromURL(RequestInfoWrapper requestInfoWrapper,PropertyCriteria propertyCriteria){
 
