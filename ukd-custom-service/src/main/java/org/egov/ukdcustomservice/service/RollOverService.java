@@ -141,7 +141,7 @@ public class RollOverService {
 		if (!CollectionUtils.isEmpty(tenantIdList)) {
 			tenantList = tenantIdList;
 		} else
-			tenantList = getTenantList();
+			tenantList = getTenantList();//FIXME: Do not run for all the tenants. Make tenantlist as mandatory.
 
         if(StringUtils.isEmpty(propertyCriteria.getLimit()))
             propertyCriteria.setLimit(Long.valueOf(batchSize));
@@ -151,7 +151,7 @@ public class RollOverService {
 
         for(int i= 0;i<tenantList.size();i++){
         	RollOverCount rollOverCount = getRollOverCountForTenant(tenantList.get(i));
-        	long propRollCount = getPropRollOverCountForTenant(tenantList.get(i));
+        	long propRollCount = getPropRollOverCountForTenant(tenantList.get(i));//FIXME: No use of this db call.
             System.out.println("\n\nMigration count--->"+rollOverCount.toString()+"\n\n");
             if(ObjectUtils.isEmpty(rollOverCount) || rollOverCount.getId() == null){
                 propertyCriteria.setTenantId(tenantList.get(i));
@@ -160,7 +160,7 @@ public class RollOverService {
             else{
                 long count = getTenantCount(tenantList.get(i));
 
-                System.out.println("\n\ntenant--->"+tenantList.get(i)+"\n\n");
+                System.out.println("\n\ntenant--->"+tenantList.get(i)+"\n\n");//FIXME: Remove System out println
                 System.out.println("\n\ncount--->"+count+"\n\n");
 
                 if(rollOverCount.getRecordCount() >= count){
@@ -186,7 +186,7 @@ public class RollOverService {
 
 		failedProps.forEach(prop -> {
 			List<Map<String, Object>> nextFinYear = masters.stream().filter(master -> master.get("code").equals(CURR_FinYear)).collect(Collectors.toList());
-
+//FIXME: Rename nextFinYear to previousFinYear.
 			DemandSearchCriteria criteria = new DemandSearchCriteria();
 			criteria.setTenantId(prop.get("tenantid").toString());
 			criteria.setPropertyId(prop.get("propertyid").toString());
@@ -197,7 +197,7 @@ public class RollOverService {
 					.fetchResult(util.getDemandSearchUrl(criteria), new RequestInfoWrapper(requestInfo))).get(),
 					DemandResponse.class);
 			demands.addAll(res.getDemands());
-			Demand demand = demands.get(0);
+			Demand demand = demands.get(0);//FIXME: IF THE RECORD DATA CORRECTED FOR THE FAILED ONES, THEN DO NOT RUN AGAIN.
 			List<Demand> newDemands = prepareDemandRequest(demand, masters);
 			try{
 				
@@ -277,7 +277,7 @@ public class RollOverService {
 		if (!CollectionUtils.isEmpty(properties)) {
 			for (Property property : properties) {
 				List<Map<String, Object>> nextFinYear = masters.stream().filter(master -> master.get("code").equals(CURR_FinYear)).collect(Collectors.toList());
-
+//FIXME: Move this line to above the for loop. No need to call repeatedly for each property.
 				DemandSearchCriteria criteria = new DemandSearchCriteria();
 				criteria.setTenantId(property.getTenantId());
 				criteria.setPropertyId(property.getPropertyId());
@@ -295,7 +295,7 @@ public class RollOverService {
 					Demand demand = demands.get(0);
 					List<Demand> newDemands = prepareDemandRequest(demand, masters);
 					try{
-						
+						//FIXME: No need to assign back to asessment object.
 						Assessment assessment = createAssessmentForRollOver(newDemands, requestInfo, property.getTenantId(), property.getPropertyId());
 					
 						rollOverRepository.saveRollOver(property.getPropertyId(), property.getTenantId(), "2021-22", "SUCCESS",
