@@ -25,14 +25,19 @@ public class RollOverUtil {
 
 	public StringBuilder getDemandSearchUrl(DemandSearchCriteria criteria) {
 
-        return new StringBuilder().append(egbsHost)
-                .append(egbsSearchDemand).append(URL_PARAMS_SEPARATER)
-                .append(TENANT_ID_FIELD_FOR_SEARCH_URL).append(criteria.getTenantId())
-                .append(SEPARATER)
-                .append("consumerCode=").append(criteria.getPropertyId())
-                .append(SEPARATER)
-                .append("status=").append("ACTIVE")
-                .append(SEPARATER)
-                .append("periodFrom=").append(criteria.getPeriodFrom());
+		StringBuilder url = new StringBuilder().append(egbsHost).append(egbsSearchDemand);
+
+		if (criteria.getTenantId() != null) {
+			url.append(URL_PARAMS_SEPARATER).append(TENANT_ID_FIELD_FOR_SEARCH_URL).append(criteria.getTenantId());
+		}
+		if (criteria.getPropertyId() != null) {
+			url.append(SEPARATER).append("consumerCode=").append(criteria.getPropertyId());
+		}
+		if (criteria.getPeriodFrom() != null) {
+			url.append(SEPARATER).append("periodFrom=").append(criteria.getPeriodFrom());
+		}
+		url.append(SEPARATER).append("status=").append("ACTIVE");
+
+		return url;
     }
 }

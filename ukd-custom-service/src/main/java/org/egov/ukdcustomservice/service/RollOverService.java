@@ -133,13 +133,13 @@ public class RollOverService {
         Map<String, String> resultMap = null;
         List<Map<String, Object>> masters = getMasterFinancialYearData(propertyCriteria.getTenantId(), requestInfoWrapper.getRequestInfo());
         
-		List<String> tenantList;
+		List<String> tenantList = null;
 
 		if (!CollectionUtils.isEmpty(tenantIdList)) {
 			tenantList = tenantIdList;
-		} else
-			tenantList = getTenantList();//FIXME: Do not run for all the tenants. Make tenantlist as mandatory.
-
+		} 
+//		else
+//			tenantList = getTenantList();
         if(StringUtils.isEmpty(propertyCriteria.getLimit()))
             propertyCriteria.setLimit(Long.valueOf(batchSize));
 
@@ -148,7 +148,7 @@ public class RollOverService {
 
         for(int i= 0;i<tenantList.size();i++){
         	RollOverCount rollOverCount = getRollOverCountForTenant(tenantList.get(i));
-            System.out.println("\n\nMigration count--->"+rollOverCount.toString()+"\n\n");
+        	log.info("\n\nMigration count--->"+rollOverCount.toString()+"\n\n");
             if(ObjectUtils.isEmpty(rollOverCount) || rollOverCount.getId() == null){
                 propertyCriteria.setTenantId(tenantList.get(i));
                 resultMap = initiateRollOver(requestInfoWrapper, propertyCriteria,masters,errorMap);
@@ -156,8 +156,8 @@ public class RollOverService {
             else{
                 long count = getTenantCount(tenantList.get(i));
 
-                System.out.println("\n\ntenant--->"+tenantList.get(i)+"\n\n");//FIXME: Remove System out println
-                System.out.println("\n\ncount--->"+count+"\n\n");
+                log.info("\n\ntenant--->"+tenantList.get(i)+"\n\n");//FIXME: Remove System out println
+                log.info("\n\ncount--->"+count+"\n\n");
 
                 if(rollOverCount.getRecordCount() >= count){
                 	propertyCriteria.setTenantId(tenantList.get(i));
@@ -179,21 +179,29 @@ public class RollOverService {
 		List<Map<String, Object>> failedProps = rollOverRepository.fetchPropertiesForRollOver(propertyCriteria.getTenantId());
 		RequestInfo requestInfo =  requestInfoWrapper.getRequestInfo();
         Map<String, String> responseMap = new HashMap<>();
+		List<Map<String, Object>> currentFinYear = masters.stream().filter(master -> master.get("code").equals("2021-22")).collect(Collectors.toList());
 		List<Map<String, Object>> previousFinYear = masters.stream().filter(master -> master.get("code").equals(CURR_FinYear)).collect(Collectors.toList());
 
 		failedProps.forEach(prop -> {
 			DemandSearchCriteria criteria = new DemandSearchCriteria();
 			criteria.setTenantId(prop.get("tenantid").toString());
 			criteria.setPropertyId(prop.get("propertyid").toString());
-			criteria.setPeriodFrom(Long.valueOf(previousFinYear.get(0).get("startingDate").toString()));
 
 			List<Demand> demands = new ArrayList<Demand>();
 			DemandResponse res = mapper.convertValue(( rollOverRepository
 					.fetchResult(util.getDemandSearchUrl(criteria), new RequestInfoWrapper(requestInfo))).get(),
 					DemandResponse.class);
 			demands.addAll(res.getDemands());
-			Demand demand = demands.get(0);//FIXME: IF THE RECORD DATA CORRECTED FOR THE FAILED ONES, THEN DO NOT RUN AGAIN.
-			List<Demand> newDemands = prepareDemandRequest(demand, masters);
+			Demand currDemand = demands.stream().filter(dmnd -> dmnd.getTaxPeriodFrom().equals(Long.valueOf(currentFinYear.get(0).get("startingDate").toString()))).collect(Collectors.toList()).get(0);
+			if(currDemand != null){
+				rollOverRepository.saveRollOver(prop.get("propertyid").toString(), prop.get("tenantid").toString(), "2021-22", "SUCCESS",
+						"Roll Over is Successfully Done");
+				responseMap.put(prop.get("propertyid").toString(), "Success");
+			}else 
+			{
+			Demand prevDemand = demands.stream().filter(dmnd -> dmnd.getTaxPeriodFrom().equals(Long.valueOf(previousFinYear.get(0).get("startingDate").toString()))).collect(Collectors.toList()).get(0);
+
+			List<Demand> newDemands = prepareDemandRequest(prevDemand, masters);
 			try{
 				
 				createAssessmentForRollOver(newDemands, requestInfo, prop.get("tenantid").toString(), prop.get("propertyid").toString());
@@ -208,6 +216,7 @@ public class RollOverService {
 				rollOverRepository.saveRollOver(prop.get("propertyid").toString(), prop.get("tenantid").toString(), "2021-22", "FAILED",
 						"Assessment or Demand Creation Failed");
 				responseMap.put(prop.get("propertyid").toString(), "Failure");
+			}
 			}
 		});
 

@@ -50,7 +50,7 @@ public class RollOverRepository {
 		String basequery = "select * from  eg_pt_rollover ";
 		StringBuilder builder = new StringBuilder(basequery);
 		builder.append("where tenantid = ?");
-		builder.append(" and status = 'FAILED'");
+		builder.append(" and status = 'FAILED' OR status = 'NOTINITIATED'");
 		preparedStmtList.add(tenantid);
 		return jdbcTemplate.queryForList(builder.toString(), preparedStmtList.toArray());
 	}
