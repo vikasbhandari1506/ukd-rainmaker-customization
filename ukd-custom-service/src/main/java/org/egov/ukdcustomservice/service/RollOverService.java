@@ -177,6 +177,7 @@ public class RollOverService {
 			PropertyCriteria propertyCriteria, List<Map<String, Object>> masters, Map<String, String> errorMap) {
 
 		List<Map<String, Object>> failedProps = rollOverRepository.fetchPropertiesForRollOver(propertyCriteria.getTenantId());
+		log.info("Count Props:"+failedProps.size());
 		RequestInfo requestInfo =  requestInfoWrapper.getRequestInfo();
         Map<String, String> responseMap = new HashMap<>();
 		List<Map<String, Object>> currentFinYear = masters.stream().filter(master -> master.get("code").equals("2021-22")).collect(Collectors.toList());

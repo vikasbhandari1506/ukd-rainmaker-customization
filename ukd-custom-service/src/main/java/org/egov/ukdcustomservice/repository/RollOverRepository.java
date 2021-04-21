@@ -52,6 +52,7 @@ public class RollOverRepository {
 		builder.append("where tenantid = ?");
 		builder.append(" and (status = 'FAILED' OR status = 'NOTINITIATED')");
 		preparedStmtList.add(tenantid);
+		log.info("Query : "+builder.toString());
 		return jdbcTemplate.queryForList(builder.toString(), preparedStmtList.toArray());
 	}
 	
