@@ -183,7 +183,7 @@ public class RollOverService {
 		List<Map<String, Object>> currentFinYear = masters.stream().filter(master -> master.get("code").equals("2021-22")).collect(Collectors.toList());
 		List<Map<String, Object>> previousFinYear = masters.stream().filter(master -> master.get("code").equals(CURR_FinYear)).collect(Collectors.toList());
 
-		failedProps.forEach(prop -> {
+		for (Map<String, Object> prop : failedProps){
 			DemandSearchCriteria criteria = new DemandSearchCriteria();
 			criteria.setTenantId(prop.get("tenantid").toString());
 			criteria.setPropertyId(prop.get("propertyid").toString());
@@ -219,7 +219,7 @@ public class RollOverService {
 				responseMap.put(prop.get("propertyid").toString(), "Failure");
 			}
 			}
-		});
+		}
 
 		return responseMap;
 	}
