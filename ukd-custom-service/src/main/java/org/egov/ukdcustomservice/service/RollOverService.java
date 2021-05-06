@@ -3,6 +3,7 @@ package org.egov.ukdcustomservice.service;
 import java.math.BigDecimal;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -196,22 +197,29 @@ public class RollOverService {
 						"2021-22", "NOTINITIATED", "No Demands found this property ");
 			} else {
 				demands.addAll(res.getDemands());
-				Demand currDemand = demands.stream()
+				List<Demand> currDemand = demands.stream()
 						.filter(dmnd -> dmnd.getTaxPeriodFrom()
 								.equals(Long.valueOf(currentFinYear.get(0).get("startingDate").toString())))
-						.collect(Collectors.toList()).get(0);
-				if (currDemand != null) {
+						.collect(Collectors.toList());
+				if(CollectionUtils.isEmpty(currDemand)){
+					rollOverRepository.saveRollOver(prop.get("propertyid").toString(), prop.get("tenantid").toString(),
+							"2021-22", "NOTINITIATED", "No Demands found this property ");
+				}
+				else if (currDemand.get(0) != null) {
 					rollOverRepository.saveRollOver(prop.get("propertyid").toString(), prop.get("tenantid").toString(),
 							"2021-22", "SUCCESS", "Roll Over is Successfully Done");
 					responseMap.put(prop.get("propertyid").toString(), "Success");
 				} else {
-					Demand prevDemand = demands.stream()
+					List<Demand> prevDemand = demands.stream()
 							.filter(dmnd -> dmnd.getTaxPeriodFrom()
 									.equals(Long.valueOf(previousFinYear.get(0).get("startingDate").toString())))
-							.collect(Collectors.toList()).get(0);
-
-					if (prevDemand != null) {
-						List<Demand> newDemands = prepareDemandRequest(prevDemand, masters);
+							.collect(Collectors.toList());
+					if(CollectionUtils.isEmpty(prevDemand)){
+						rollOverRepository.saveRollOver(prop.get("propertyid").toString(), prop.get("tenantid").toString(),
+								"2021-22", "NOTINITIATED", "No Demands found this property ");
+					}
+					else if (prevDemand.get(0) != null) {
+						List<Demand> newDemands = prepareDemandRequest(prevDemand.get(0), masters);
 						try {
 
 							createAssessmentForRollOver(newDemands, requestInfo, prop.get("tenantid").toString(),
