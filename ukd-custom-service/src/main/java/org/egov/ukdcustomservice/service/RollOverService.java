@@ -183,41 +183,57 @@ public class RollOverService {
 		List<Map<String, Object>> currentFinYear = masters.stream().filter(master -> master.get("code").equals("2021-22")).collect(Collectors.toList());
 		List<Map<String, Object>> previousFinYear = masters.stream().filter(master -> master.get("code").equals(CURR_FinYear)).collect(Collectors.toList());
 
-		for (Map<String, Object> prop : failedProps){
+		for (Map<String, Object> prop : failedProps) {
 			DemandSearchCriteria criteria = new DemandSearchCriteria();
 			criteria.setTenantId(prop.get("tenantid").toString());
 			criteria.setPropertyId(prop.get("propertyid").toString());
 
 			List<Demand> demands = new ArrayList<Demand>();
-			DemandResponse res = mapper.convertValue(( rollOverRepository
-					.fetchResult(util.getDemandSearchUrl(criteria), new RequestInfoWrapper(requestInfo))).get(),
-					DemandResponse.class);
-			demands.addAll(res.getDemands());
-			Demand currDemand = demands.stream().filter(dmnd -> dmnd.getTaxPeriodFrom().equals(Long.valueOf(currentFinYear.get(0).get("startingDate").toString()))).collect(Collectors.toList()).get(0);
-			if(currDemand != null){
-				rollOverRepository.saveRollOver(prop.get("propertyid").toString(), prop.get("tenantid").toString(), "2021-22", "SUCCESS",
-						"Roll Over is Successfully Done");
-				responseMap.put(prop.get("propertyid").toString(), "Success");
-			}else 
-			{
-			Demand prevDemand = demands.stream().filter(dmnd -> dmnd.getTaxPeriodFrom().equals(Long.valueOf(previousFinYear.get(0).get("startingDate").toString()))).collect(Collectors.toList()).get(0);
+			DemandResponse res = mapper.convertValue((rollOverRepository.fetchResult(util.getDemandSearchUrl(criteria),
+					new RequestInfoWrapper(requestInfo))).get(), DemandResponse.class);
+			if (res.getDemands().size() == 0) {
+				rollOverRepository.saveRollOver(prop.get("propertyid").toString(), prop.get("tenantid").toString(),
+						"2021-22", "NOTINITIATED", "No Demands found this property ");
+			} else {
+				demands.addAll(res.getDemands());
+				Demand currDemand = demands.stream()
+						.filter(dmnd -> dmnd.getTaxPeriodFrom()
+								.equals(Long.valueOf(currentFinYear.get(0).get("startingDate").toString())))
+						.collect(Collectors.toList()).get(0);
+				if (currDemand != null) {
+					rollOverRepository.saveRollOver(prop.get("propertyid").toString(), prop.get("tenantid").toString(),
+							"2021-22", "SUCCESS", "Roll Over is Successfully Done");
+					responseMap.put(prop.get("propertyid").toString(), "Success");
+				} else {
+					Demand prevDemand = demands.stream()
+							.filter(dmnd -> dmnd.getTaxPeriodFrom()
+									.equals(Long.valueOf(previousFinYear.get(0).get("startingDate").toString())))
+							.collect(Collectors.toList()).get(0);
 
-			List<Demand> newDemands = prepareDemandRequest(prevDemand, masters);
-			try{
-				
-				createAssessmentForRollOver(newDemands, requestInfo, prop.get("tenantid").toString(), prop.get("propertyid").toString());
-			
-				rollOverRepository.saveRollOver(prop.get("propertyid").toString(), prop.get("tenantid").toString(), "2021-22", "SUCCESS",
-						"Roll Over is Successfully Done");
-				responseMap.put(prop.get("propertyid").toString(), "Success");
-			}
-			catch(Exception e)
-			{						
-				log.error("Assessment Creation Failed "+e.toString());
-				rollOverRepository.saveRollOver(prop.get("propertyid").toString(), prop.get("tenantid").toString(), "2021-22", "FAILED",
-						"Assessment or Demand Creation Failed");
-				responseMap.put(prop.get("propertyid").toString(), "Failure");
-			}
+					if (prevDemand != null) {
+						List<Demand> newDemands = prepareDemandRequest(prevDemand, masters);
+						try {
+
+							createAssessmentForRollOver(newDemands, requestInfo, prop.get("tenantid").toString(),
+									prop.get("propertyid").toString());
+
+							rollOverRepository.saveRollOver(prop.get("propertyid").toString(),
+									prop.get("tenantid").toString(), "2021-22", "SUCCESS",
+									"Roll Over is Successfully Done");
+							responseMap.put(prop.get("propertyid").toString(), "Success");
+						} catch (Exception e) {
+							log.error("Assessment Creation Failed " + e.toString());
+							rollOverRepository.saveRollOver(prop.get("propertyid").toString(),
+									prop.get("tenantid").toString(), "2021-22", "FAILED",
+									"Assessment or Demand Creation Failed");
+							responseMap.put(prop.get("propertyid").toString(), "Failure");
+						}
+					} else {
+						rollOverRepository.saveRollOver(prop.get("propertyid").toString(),
+								prop.get("tenantid").toString(), "2021-22", "NOTINITIATED",
+								"No Demands found this property ");
+					}
+				}
 			}
 		}
 
