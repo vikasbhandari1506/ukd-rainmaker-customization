@@ -1414,3 +1414,52 @@ ReportDefinitions:
      and prop.tenantid LIKE $tenantid and 
   groupby: GROUP BY prop.tenantid, prop.propertyid              
   
+- reportName: DemandRollOverReport
+  summary: Reports for Roll Over of Demand for PT
+  version: 1.0.0
+  moduleName: rainmaker-pt
+  sourceColumns:
+  - name: propertyid
+    label: reports.pt.PropertyId
+    type: string
+    source: pt
+    total: false
+  - name: financialYear
+    label: reports.pt.rollover.FinancialYear
+    type: string
+    source: pt
+    total: false
+  - name: tenantid
+    label: reports.pt.rollover.TenantId
+    type: string
+    source: pt
+    total: false
+  - name: status
+    label: reports.pt.rollover.Status
+    type: string
+    source: pt
+    total: false
+  - name: reason
+    label: reports.pt.rollover.Reason
+    type: string
+    source: pt
+    total: false
+  searchParams:
+  - name: tenantid
+    label: ULB
+    type: singlevaluelist
+    pattern: http://egov-mdms-service:8080/egov-mdms-service/v1/_get?tenantId=$tenantid&moduleName=tenant&masterName=tenants|$.MdmsRes.tenant.tenants.*.code|$.MdmsRes.tenant.tenants.*.name
+    source: pt
+    wrapper: true
+    isMandatory: false
+    searchClause: AND tenantid = $tenantid 
+  - name: status
+    label: Status
+    type: singlevaluelist
+    pattern: 'list://SUCCESS:SUCCESS,FAILED:FAILED,NOTINITIATED:NOTINITIATED'
+    source: pt
+    wrapper: true
+    isMandatory: false
+    searchClause: AND status = $status
+  query: | 
+    select * from eg_pt_rollover where tenantid !='uk.testing'
