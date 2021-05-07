@@ -110,6 +110,12 @@
                                 "type":"date"
                             },
                             {
+                                "variable": "financialYear",
+                                "value": {
+                                    "path": "$.paymentDetails[0].bill.additionalDetails.financialYear"
+                                }
+                            },
+                            {
                                 "variable": "propertyTax",
                                 "value": {
                                     "path": "$.paymentDetails[0].bill.additionalDetails.tax"
@@ -649,6 +655,10 @@
                             {
                                 "variable": "rebate",
                                 "formula": "-{{Rebate}}"
+                            },
+			    {
+                                "variable": "currentTax",
+                                "formula": "({{propertyTax}}+{{Rebate}}).toFixed(1)"
                             }
                         ]
                     },
@@ -708,15 +718,28 @@
                      "variable": "locality",                        
                      "value":"$.Properties[0].address.locality.name"                             
                    },
+                    {             
+                    "variable":"fatherHusbandName",
+                    "value":"$.Properties[0].owners[0].fatherOrHusbandName"
+                  },
+
                    {
-                     "variable": "ownerName",                        
-                     "value":"$.Properties[0].owners[0].name"
-                            
-                   },
-                   {
-                     "variable": "gaurdianName",                        
-                     "value":"$.Properties[0].owners[0].fatherOrHusbandName"                             
-                   }
+                    "variable": "var_owners",                        
+                    "value":"$.Properties[0].owners[?(@.active== true && @.status== 'ACTIVE')]",
+                     "type":"array",
+                     "format":{                            
+                        "type":"string",
+                        "scema":[
+                           {
+                              "variable":"name2",
+                              "value":"name"
+                           },
+                           {
+                              "variable":"fatherOrHusbandName2",
+                              "value":"fatherOrHusbandName"
+                           }]
+                    } 
+                 }
                  ]
                },
                               { 
@@ -727,10 +750,6 @@
                    {
                      "variable":"assessmentNumber",
                      "value":"$.Assessments[0].assessmentNumber"
-                   },
-                   {
-                     "variable": "financialYear",                        
-                     "value":"$.Assessments[0].financialYear"                             
                    }
                  ]
                }
