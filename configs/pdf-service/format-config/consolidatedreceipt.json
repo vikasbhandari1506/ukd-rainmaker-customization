@@ -349,7 +349,7 @@
                                 "style": "receipttablevalue"
                             },
                             {
-                                "text": "{{pt_tax_current}}",
+                                "text": "{{pt_tax_current}} {{financialYear}}",
                                 "alignment": "center",
                                 "border": [
                                     true,
