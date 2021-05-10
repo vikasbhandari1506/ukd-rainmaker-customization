@@ -202,14 +202,6 @@ public class RollOverService {
 								.equals(Long.valueOf(currentFinYear.get(0).get("startingDate").toString())))
 						.collect(Collectors.toList());
 				if(CollectionUtils.isEmpty(currDemand)){
-					rollOverRepository.saveRollOver(prop.get("propertyid").toString(), prop.get("tenantid").toString(),
-							"2021-22", "NOTINITIATED", "No Demands found this property ");
-				}
-				else if (currDemand.get(0) != null) {
-					rollOverRepository.saveRollOver(prop.get("propertyid").toString(), prop.get("tenantid").toString(),
-							"2021-22", "SUCCESS", "Roll Over is Successfully Done");
-					responseMap.put(prop.get("propertyid").toString(), "Success");
-				} else {
 					List<Demand> prevDemand = demands.stream()
 							.filter(dmnd -> dmnd.getTaxPeriodFrom()
 									.equals(Long.valueOf(previousFinYear.get(0).get("startingDate").toString())))
@@ -242,6 +234,11 @@ public class RollOverService {
 								"No Demands found this property ");
 					}
 				}
+				else if (currDemand.get(0) != null) {
+					rollOverRepository.saveRollOver(prop.get("propertyid").toString(), prop.get("tenantid").toString(),
+							"2021-22", "SUCCESS", "Roll Over is Successfully Done");
+					responseMap.put(prop.get("propertyid").toString(), "Success");
+				} 
 			}
 		}
 
