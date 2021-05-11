@@ -357,9 +357,9 @@
                                 }
                             },
                             {
-                                "variable": "pt_tax_arrear",
+                                "variable": "pt_mutation_application_fee",
                                 "value": {
-                                    "path": "PT_RECEIPT_LABEL_PT_TAX_ARREAR"
+                                    "path": "PT_RECEIPT_LABEL_PT_MUTATION_APPLICATION_FEE"
                                 },
                                 "type": "label",
                                 "localisation": {
@@ -369,9 +369,9 @@
                                 }
                             },
                             {
-                                "variable": "pt_tax_current",
+                                "variable": "pt_mutation_fee",
                                 "value": {
-                                    "path": "PT_RECEIPT_LABEL_PT_TAX_CURRENT"
+                                    "path": "PT_RECEIPT_LABEL_PT_MUTATION_FEE"
                                 },
                                 "type": "label",
                                 "localisation": {
@@ -381,9 +381,9 @@
                                 }
                             },
                             {
-                                "variable": "pt_swatchatha",
+                                "variable": "pt_mutation_late_fee",
                                 "value": {
-                                    "path": "PT_RECEIPT_LABEL_PT_SWATCHATHA"
+                                    "path": "PT_RECEIPT_LABEL_PT_MUTATION_LATE_FEE"
                                 },
                                 "type": "label",
                                 "localisation": {
@@ -393,9 +393,9 @@
                                 }
                             },
                             {
-                                "variable": "pt_penalty",
+                                "variable": "pt_mutation_processing_fee",
                                 "value": {
-                                    "path": "PT_RECEIPT_LABEL_PT_PENALTY"
+                                    "path": "PT_RECEIPT_LABEL_PT_MUTATION_PROCESSING_FEE"
                                 },
                                 "type": "label",
                                 "localisation": {
@@ -405,9 +405,9 @@
                                 }
                             },
                             {
-                                "variable": "pt_rebate",
+                                "variable": "pt_mutation_publication_fee",
                                 "value": {
-                                    "path": "PT_RECEIPT_LABEL_PT_REBATE"
+                                    "path": "PT_RECEIPT_LABEL_PT_MUTATION_PUBLICATION_FEE"
                                 },
                                 "type": "label",
                                 "localisation": {
@@ -415,31 +415,7 @@
                                     "prefix": null,
                                     "module": "rainmaker-receipt"
                                 }
-                            },
-                            {
-                                "variable": "pt_interest",
-                                "value": {
-                                    "path": "PT_RECEIPT_LABEL_PT_INTEREST"
-                                },
-                                "type": "label",
-                                "localisation": {
-                                    "required": true,
-                                    "prefix": null,
-                                    "module": "rainmaker-receipt"
-                                }
-                            },
-                            {
-                                "variable": "pt_round_off",
-                                "value": {
-                                    "path": "PT_RECEIPT_LABEL_PT_ROUND_OFF"
-                                },
-                                "type": "label",
-                                "localisation": {
-                                    "required": true,
-                                    "prefix": null,
-                                    "module": "rainmaker-receipt"
-                                }
-                            },
+                            },                            
                             {
                                 "variable": "pt_total",
                                 "value": {
