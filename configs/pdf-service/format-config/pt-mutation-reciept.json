@@ -428,7 +428,7 @@
                         ],
                         [
                             {
-                                "text": "₹ {{arrears}}",
+                                "text": "₹ {{ptMutationFee}}",
                                 "alignment": "center",
                                 "border": [
                                     true,
@@ -439,7 +439,7 @@
                                 "style": "receipttable"
                             },
                             {
-                                "text": "₹ {{currentTax}}",
+                                "text": "₹ {{ptMutationLateFee}}",
                                 "alignment": "center",
                                 "border": [
                                     true,
@@ -450,7 +450,7 @@
                                 "style": "receipttable"
                             },
                             {
-                                "text": "₹ {{swatchatha}}",
+                                "text": "₹ {{ptMutationApplicationFee}}",
                                 "alignment": "center",
                                 "border": [
                                     true,
@@ -461,7 +461,7 @@
                                 "style": "receipttable"
                             },
                             {
-                                "text": "₹ {{penalty}}",
+                                "text": "₹ {{ptMutationProcessingFee}}",
                                 "alignment": "center",
                                 "border": [
                                     true,
@@ -472,7 +472,7 @@
                                 "style": "receipttable"
                             },
                             {
-                                "text": "₹ {{interest}}",
+                                "text": "₹ {{ptMutationPublicationFee}}",
                                 "alignment": "center",
                                 "border": [
                                     true,
@@ -481,29 +481,7 @@
                                     true
                                 ],
                                 "style": "receipttable"
-                            },
-                            {
-                                "text": "₹ {{rebate}}",
-                                "alignment": "center",
-                                "border": [
-                                    true,
-                                    true,
-                                    true,
-                                    true
-                                ],
-                                "style": "receipttable"
-                            },
-                            {
-                                "text": "₹ {{roundOff}}",
-                                "alignment": "center",
-                                "border": [
-                                    true,
-                                    true,
-                                    true,
-                                    true
-                                ],
-                                "style": "receipttable"
-                            },
+                            },                         
                             {
                                 "text": "₹ {{total}}",
                                 "alignment": "center",
