@@ -116,47 +116,35 @@
                                 }
                             },
                             {
-                                "variable": "propertyTax",
+                                "variable": "ptMutationFee",
                                 "value": {
-                                    "path": "$.paymentDetails[0].bill.additionalDetails.tax"
+                                    "path": "$.paymentDetails[0].bill.additionalDetails.ptMutationFee"
                                 }
                             },
                             {
-                                "variable": "arrears",
+                                "variable": "ptMutationLateFee",
                                 "value": {
-                                    "path": "$.paymentDetails[0].bill.additionalDetails.arrear"
+                                    "path": "$.paymentDetails[0].bill.additionalDetails.ptMutationLateFee"
                                 }
                             },
                             {
-                                "variable": "swatchatha",
+                                "variable": "ptMutationApplicationFee",
                                 "value": {
-                                    "path": "$.paymentDetails[0].bill.additionalDetails.swatchatha"
+                                    "path": "$.paymentDetails[0].bill.additionalDetails.ptMutationApplicationFee"
                                 }
                             },
                             {
-                                "variable": "penalty",
+                                "variable": "ptMutationProcessingFee",
                                 "value": {
-                                    "path": "$.paymentDetails[0].bill.additionalDetails.penalty"
+                                    "path": "$.paymentDetails[0].bill.additionalDetails.ptMutationProcessingFee"
                                 }
                             },
                             {
-                                "variable": "Rebate",
+                                "variable": "ptMutationPublicationFee",
                                 "value": {
-                                    "path": "$.paymentDetails[0].bill.additionalDetails.rebate"
+                                    "path": "$.paymentDetails[0].bill.additionalDetails.ptMutationPublicationFee"
                                 }
-                            },
-                            {
-                                "variable": "interest",
-                                "value": {
-                                    "path": "$.paymentDetails[0].bill.additionalDetails.interest"
-                                }
-                            },
-                            {
-                                "variable": "roundOff",
-                                "value": {
-                                    "path": "$.paymentDetails[0].bill.additionalDetails.roundOff"
-                                }
-                            },
+                            },                     
                             {
                                 "variable": "total",
                                 "value": {
