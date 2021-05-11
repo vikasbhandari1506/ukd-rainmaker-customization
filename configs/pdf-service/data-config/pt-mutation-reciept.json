@@ -615,10 +615,6 @@
                             {
                                 "variable": "pendingAmount",
                                 "formula": "{{dueAmount}}-{{paidAmount}}"
-                            },
-                            {
-                                "variable": "rebate",
-                                "formula": "-{{Rebate}}"
                             }
                         ]
                     },
