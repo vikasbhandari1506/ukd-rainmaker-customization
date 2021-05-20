@@ -118,31 +118,31 @@
                             {
                                 "variable": "ptMutationFee",
                                 "value": {
-                                    "path": "$.paymentDetails[0].bill.additionalDetails.ptMutationFee"
+                                    "path": "$.paymentDetails[0].bill.billDetails[0].billAccountDetails[0].amount"
                                 }
                             },
                             {
                                 "variable": "ptMutationLateFee",
                                 "value": {
-                                    "path": "$.paymentDetails[0].bill.additionalDetails.ptMutationLateFee"
+                                    "path": "$.paymentDetails[0].bill.billDetails[0].billAccountDetails[1].amount"
                                 }
                             },
                             {
                                 "variable": "ptMutationApplicationFee",
                                 "value": {
-                                    "path": "$.paymentDetails[0].bill.additionalDetails.ptMutationApplicationFee"
+                                    "path": "$.paymentDetails[0].bill.billDetails[0].billAccountDetails[4].amount"
                                 }
                             },
                             {
                                 "variable": "ptMutationProcessingFee",
                                 "value": {
-                                    "path": "$.paymentDetails[0].bill.additionalDetails.ptMutationProcessingFee"
+                                    "path": "$.paymentDetails[0].bill.billDetails[0].billAccountDetails[3].amount"
                                 }
                             },
                             {
                                 "variable": "ptMutationPublicationFee",
                                 "value": {
-                                    "path": "$.paymentDetails[0].bill.additionalDetails.ptMutationPublicationFee"
+                                    "path": "$.paymentDetails[0].bill.billDetails[0].billAccountDetails[2].amount"
                                 }
                             },                     
                             {
