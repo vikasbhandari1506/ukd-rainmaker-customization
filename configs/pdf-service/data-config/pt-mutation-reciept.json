@@ -655,7 +655,7 @@
                  "responseMapping":[
                    {             
                      "variable":"oldPropertyId",
-                     "value":"$.Properties[0].propertyId"
+                     "value":"$.Properties[0].oldPropertyId"
                    },
                    {
                      "variable":"houseNo",
