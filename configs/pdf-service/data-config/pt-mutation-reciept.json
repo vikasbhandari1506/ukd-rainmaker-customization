@@ -650,12 +650,12 @@
                             },
                { 
                  "path": "http://property-services:8080/property-services/property/_search",
-                 "queryParam": "tenantId=$.paymentDetails[0].tenantId,propertyIds=$.paymentDetails[0].bill.consumerCode",
+                 "queryParam": "tenantId=$.paymentDetails[0].tenantId,acknowledgementIds=$.paymentDetails[0].bill.consumerCode",
                  "apiRequest": null,
                  "responseMapping":[
                    {             
                      "variable":"oldPropertyId",
-                     "value":"$.Properties[0].oldPropertyId"
+                     "value":"$.Properties[0].propertyId"
                    },
                    {
                      "variable":"houseNo",
