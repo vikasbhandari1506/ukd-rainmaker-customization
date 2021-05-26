@@ -118,9 +118,9 @@ public class BulkBillService {
 			try {
 				for (Map<String, Object> id : propertyIds) {
 					StringBuilder url = new StringBuilder(billHost).append(fetchBillEndPoint)
-							.append(URL_PARAMS_SEPARATER).append("tenantid = ").append(criteria.getTenantId())
-							.append(SEPARATER).append("businessService = ").append(criteria.getBusinessService())
-							.append(SEPARATER).append("consumerCode = ").append(id.get("propertyid").toString());
+							.append(URL_PARAMS_SEPARATER).append("tenantId=").append(criteria.getTenantId())
+							.append(SEPARATER).append("businessService=").append(criteria.getBusinessService())
+							.append(SEPARATER).append("consumerCode=").append(id.get("propertyid").toString());
 					try {
 						mapper.convertValue(repository.fetchResult(url, requestInfoWrapper).get(),
 								BillResponseV2.class);

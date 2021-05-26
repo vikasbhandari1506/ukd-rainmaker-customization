@@ -60,11 +60,11 @@ public class RollOverRepository {
 		List<Object> preparedStmtList = new ArrayList<>();
 		String basequery = "select propertyid from  eg_pt_property ";
 		StringBuilder builder = new StringBuilder(basequery);
-		builder.append("where tenantid = ?");
+		builder.append("where tenantid = ? ");
 		preparedStmtList.add(criteria.getTenantId());
-		builder.append("and offset = ?");
+		builder.append("OFFSET ? ");
 		preparedStmtList.add(criteria.getOffset());
-		builder.append("where limit = ?");
+		builder.append("LIMIT ? ");
 		preparedStmtList.add(criteria.getLimit());
 		log.info("Query : "+builder.toString());
 		return jdbcTemplate.queryForList(builder.toString(), preparedStmtList.toArray());
