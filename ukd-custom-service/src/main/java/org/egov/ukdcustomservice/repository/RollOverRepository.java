@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.Optional;
 
 import org.egov.tracer.model.ServiceCallException;
-import org.egov.ukdcustomservice.models.Property;
+import org.egov.ukdcustomservice.models.GenerateBillCriteria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -56,6 +56,19 @@ public class RollOverRepository {
 		return jdbcTemplate.queryForList(builder.toString(), preparedStmtList.toArray());
 	}
 	
+	public List<Map<String, Object>> fetchPropertiyIds(GenerateBillCriteria criteria) {
+		List<Object> preparedStmtList = new ArrayList<>();
+		String basequery = "select propertyid from  eg_pt_property ";
+		StringBuilder builder = new StringBuilder(basequery);
+		builder.append("where tenantid = ?");
+		preparedStmtList.add(criteria.getTenantId());
+		builder.append("and offset = ?");
+		preparedStmtList.add(criteria.getOffset());
+		builder.append("where limit = ?");
+		preparedStmtList.add(criteria.getLimit());
+		log.info("Query : "+builder.toString());
+		return jdbcTemplate.queryForList(builder.toString(), preparedStmtList.toArray());
+	}
 	 public Optional<Object> fetchResult(StringBuilder uri, Object request) {
 	        mapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
 	        Object response = null;

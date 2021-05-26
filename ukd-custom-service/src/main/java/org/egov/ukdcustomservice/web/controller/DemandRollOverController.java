@@ -40,7 +40,7 @@ public class DemandRollOverController {
 
 		long endtime = System.nanoTime();
 		long elapsetime = endtime - startTime;
-		System.out.println("Elapsed time--->"+elapsetime);
+		log.info("Elapsed time--->"+elapsetime);
 		
 		return new ResponseEntity<>(resultMap, HttpStatus.OK);}
 

@@ -21,7 +21,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class RollOverCount   {
+public class PropertyCount   {
 
     @Size(max=64)
     @JsonProperty("id")
