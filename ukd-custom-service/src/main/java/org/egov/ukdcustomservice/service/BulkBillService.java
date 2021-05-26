@@ -13,6 +13,7 @@ import org.egov.ukdcustomservice.producer.Producer;
 import org.egov.ukdcustomservice.repository.PropertyCountRowMapper;
 import org.egov.ukdcustomservice.repository.RollOverRepository;
 import org.egov.ukdcustomservice.web.contract.BillResponseV2;
+import org.egov.ukdcustomservice.web.contract.PropertyCountRequest;
 import org.egov.ukdcustomservice.web.contract.PropertyRollOverCountRequest;
 import org.egov.ukdcustomservice.web.contract.RequestInfoWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,7 +67,7 @@ public class BulkBillService {
 	public static final String URL_PARAMS_SEPARATER = "?";
 
 	public static final String SEPARATER = "&";
-	public static final String MIGARTION_POINT_QUERY = "select id,batch,batchsize,createdtime,tenantid,recordCount from eg_pt_rolloverbatch as rollover where tenantid = ? and createdtime = (select max(createdtime) from eg_pt_rolloverbatch where tenantid = ?);";
+	public static final String MIGARTION_POINT_QUERY = "select id,batch,batchsize,createdtime,tenantid,recordCount from eg_bulkbill_batch as rollover where tenantid = ? and createdtime = (select max(createdtime) from eg_bulkbill_batch where tenantid = ?);";
 
 	public Map<String, String> generateBulkBills(RequestInfoWrapper requestInfoWrapper, GenerateBillCriteria criteria) {
 		Map<String, String> resultMap = null;
@@ -140,15 +141,15 @@ public class BulkBillService {
 			long elapsetime = endtime - startTime;
 			log.info("\n\nBatch elapsed time: " + elapsetime + "\n\n");
 
-			RollOverCount rollOverCount = new RollOverCount();
-			rollOverCount.setId(UUID.randomUUID().toString());
-			rollOverCount.setOffset(Long.valueOf(startBatch));
-			rollOverCount.setLimit(Long.valueOf(batchSizeInput));
-			rollOverCount.setCreatedTime(System.currentTimeMillis());
-			rollOverCount.setTenantid(criteria.getTenantId());
-			rollOverCount.setRecordCount(Long.valueOf(startBatch + batchSizeInput));
-			PropertyRollOverCountRequest request = PropertyRollOverCountRequest.builder().requestInfo(requestInfo)
-					.rollOverCount(rollOverCount).build();
+			PropertyCount propertyCount = new PropertyCount();
+			propertyCount.setId(UUID.randomUUID().toString());
+			propertyCount.setOffset(Long.valueOf(startBatch));
+			propertyCount.setLimit(Long.valueOf(batchSizeInput));
+			propertyCount.setCreatedTime(System.currentTimeMillis());
+			propertyCount.setTenantid(criteria.getTenantId());
+			propertyCount.setRecordCount(Long.valueOf(startBatch + batchSizeInput));
+			PropertyCountRequest request = PropertyCountRequest.builder().requestInfo(requestInfo)
+					.propertyCount(propertyCount).build();
 			producer.push(bulkBillBatchCountTopic, request);
 
 			startBatch = startBatch + batchSizeInput;
