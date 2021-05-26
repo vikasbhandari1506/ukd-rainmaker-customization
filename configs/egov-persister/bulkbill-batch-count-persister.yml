@@ -1,0 +1,25 @@
+serviceMaps:
+  serviceName: ukdcustomservice
+  mappings:
+  - version: 1.0
+    description: Persists property details in EG_BULKBILL_BATCH  table
+    fromTopic: bulkbill-batch-count
+    isTransaction: true
+    queryMaps:
+
+
+    - query: INSERT INTO eg_bulkbill_batch (id,batch,batchsize,createdtime,tenantid,recordCount) VALUES (?,?,?,?,?,?);
+      basePath: PropertyCount
+      jsonMaps:
+
+      - jsonPath: $.PropertyCount.id
+
+      - jsonPath: $.PropertyCount.offset
+
+      - jsonPath: $.PropertyCount.limit
+
+      - jsonPath: $.PropertyCount.createdTime
+
+      - jsonPath: $.PropertyCount.tenantid
+
+      - jsonPath: $.PropertyCount.recordCount
