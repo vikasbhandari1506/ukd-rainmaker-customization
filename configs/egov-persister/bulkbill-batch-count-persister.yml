@@ -22,4 +22,4 @@ serviceMaps:
 
       - jsonPath: $.PropertyCount.tenantid
 
-      - jsonPath: $.PropertyCount.recordCoun
+      - jsonPath: $.PropertyCount.recordCount
