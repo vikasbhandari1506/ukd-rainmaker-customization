@@ -118,19 +118,19 @@
                             {
                                 "variable": "ptMutationFee",
                                 "value": {
-                                    "path": "$.paymentDetails[0].bill.billDetails[0].billAccountDetails[0].amount"
+                                    "path": "$.paymentDetails[0].bill.billDetails[0].billAccountDetails[2].amount"
                                 }
                             },
                             {
                                 "variable": "ptMutationLateFee",
                                 "value": {
-                                    "path": "$.paymentDetails[0].bill.billDetails[0].billAccountDetails[1].amount"
+                                    "path": "$.paymentDetails[0].bill.billDetails[0].billAccountDetails[5].amount"
                                 }
                             },
                             {
                                 "variable": "ptMutationApplicationFee",
                                 "value": {
-                                    "path": "$.paymentDetails[0].bill.billDetails[0].billAccountDetails[4].amount"
+                                    "path": "$.paymentDetails[0].bill.billDetails[0].billAccountDetails[6].amount"
                                 }
                             },
                             {
@@ -142,7 +142,7 @@
                             {
                                 "variable": "ptMutationPublicationFee",
                                 "value": {
-                                    "path": "$.paymentDetails[0].bill.billDetails[0].billAccountDetails[2].amount"
+                                    "path": "$.paymentDetails[0].bill.billDetails[0].billAccountDetails[4].amount"
                                 }
                             },                     
                             {
@@ -655,7 +655,7 @@
                  "responseMapping":[
                    {             
                      "variable":"oldPropertyId",
-                     "value":"$.Properties[0].oldPropertyId"
+                     "value":"$.Properties[0].propertyId"
                    },
                    {
                      "variable":"houseNo",
