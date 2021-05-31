@@ -118,31 +118,31 @@
                             {
                                 "variable": "ptMutationFee",
                                 "value": {
-                                    "path": "$.paymentDetails[0].bill.billDetails[0].billAccountDetails[2].amount"
+                                    "path": "$.paymentDetails[0].bill.billDetails[0].billAccountDetails[?(@.taxHeadCode=='PT_MUTATION_FEE')].amount"
                                 }
                             },
                             {
                                 "variable": "ptMutationLateFee",
                                 "value": {
-                                    "path": "$.paymentDetails[0].bill.billDetails[0].billAccountDetails[5].amount"
+                                    "path": "$.paymentDetails[0].bill.billDetails[0].billAccountDetails[?(@.taxHeadCode=='PT_MUTATION_LATE_FEE')].amount"
                                 }
                             },
                             {
                                 "variable": "ptMutationApplicationFee",
                                 "value": {
-                                    "path": "$.paymentDetails[0].bill.billDetails[0].billAccountDetails[6].amount"
+                                    "path": "$.paymentDetails[0].bill.billDetails[0].billAccountDetails[?(@.taxHeadCode=='PT_MUTATION_APPLICATION_FEE')].amount"
                                 }
                             },
                             {
                                 "variable": "ptMutationProcessingFee",
                                 "value": {
-                                    "path": "$.paymentDetails[0].bill.billDetails[0].billAccountDetails[3].amount"
+                                    "path": "$.paymentDetails[0].bill.billDetails[0].billAccountDetails[?(@.taxHeadCode=='PT_MUTATION_PROCESSING_FEE')].amount"
                                 }
                             },
                             {
                                 "variable": "ptMutationPublicationFee",
                                 "value": {
-                                    "path": "$.paymentDetails[0].bill.billDetails[0].billAccountDetails[4].amount"
+                                    "path": "$.paymentDetails[0].bill.billDetails[0].billAccountDetails[?(@.taxHeadCode=='PT_MUTATION_PUBLICATION_FEE')].amount"
                                 }
                             },                     
                             {
