@@ -334,7 +334,7 @@
                         "*"
                     ],
                     "body": [
-                        [
+                         [
                             {
                                 "text": "{{pt_mutation_fee}}",
                                 "alignment": "center",
@@ -402,6 +402,11 @@
                                 "style": "receipttablevalue"
                             }
                         ],
+
+
+
+
+
                         [
                             {
                                 "text": "₹ {{ptMutationFee}}",
@@ -415,7 +420,7 @@
                                 "style": "receipttable"
                             },
                             {
-                                "text": "₹ {{ptMutationLateFee}}",
+                                "text": "₹ {{ptMutationApplicationFee}}",
                                 "alignment": "center",
                                 "border": [
                                     true,
@@ -426,7 +431,7 @@
                                 "style": "receipttable"
                             },
                             {
-                                "text": "₹ {{ptMutationApplicationFee}}",
+                                "text": "₹ {{ptMutationLateFee}}",
                                 "alignment": "center",
                                 "border": [
                                     true,
