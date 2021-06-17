@@ -1219,6 +1219,71 @@ ReportDefinitions:
       WHERE pd1.tenantid != 'uk.testing' GROUP BY pd1.tenantid) AS e ON e.tenant = a.tenant 
   orderby: ORDER BY a.tenant
 
+- reportName: PTAdoptionReportV2
+  summary: Number of applications
+  version: 1.0.0
+  moduleName: rainmaker-pt
+  sourceColumns:
+  - name: tenantId
+    label: reports.pt.tenantid
+    type: string
+    source: pt
+    total: false
+  - name: totalmigratedproperties
+    label: reports.pt.totalmigratedproperties
+    type: string
+    source: pt
+    total: true
+  - name: dataentry
+    label: reports.pt.dataentry
+    type: string
+    source: pt
+    total: true
+  - name: updatedprops
+    label: reports.pt.updatedprops
+    type: string
+    source: pt
+    total: true
+  - name: totaldemand
+    label: reports.pt.totaldemand
+    type: string
+    source: pt
+    total: true
+  - name: totalrevenuecollected
+    label: reports.pt.totalrevenuecollected
+    type: string
+    source: pt
+    total: true   
+  searchParams:
+  - name: ulb
+    label: ULB
+    type: singlevaluelist
+    pattern: http://egov-mdms-service:8080/egov-mdms-service/v1/_get?tenantId=$tenantid&moduleName=tenant&masterName=tenants|$.MdmsRes.tenant.tenants.*.code|$.MdmsRes.tenant.tenants.*.name
+    source: pt
+    wrapper: true
+    isMandatory: false
+    searchClause: AND pt.tenantid = $ulb
+  query: |
+    SELECT
+    initcap(split_part(pt.tenantid, '.', 2)) as tenantId,
+    SUM(dd.taxamount) as totaldemand,
+    SUM(dd.collectionamount) as totalrevenuecollected,
+    count(distinct asmt.propertyid) as totalmigratedproperties,
+    SUM(case when asmt.additionaldetails ->>'is_migrated' = 'true' then 1 else 0 end) as migration,
+    (count(DISTINCT asmt.propertyid)-SUM(case when asmt.additionaldetails ->>'is_migrated' = 'true' then 1 else 0 end)) as dataentry,
+    SUM(case when asmt.additionaldetails ->>'is_migrated' = 'true' and asmt.createdtime > asmt.lastmodifiedtime then 1 else 0 end) updatedprops
+    FROM eg_pt_property as pt
+    JOIN (SELECT DISTINCT ON (propertyid) *  FROM eg_pt_asmt_assessment order by propertyid, lastmodifiedtime desc) as asmt 
+    on asmt.propertyid=pt.propertyid 
+    JOIN (SELECT DISTINCT ON (consumercode) *  FROM egbs_demand_v1 dd order by consumercode, lastmodifiedtime desc ) as d
+    on d.consumercode = asmt.propertyid 
+    JOIN egbs_demanddetail_v1 dd on dd.demandid = d.id 
+    where 
+    pt.source = 'MUNICIPAL_RECORDS' 
+    and pt.tenantid != 'uk.testing'
+  groupby: GROUP BY pt.tenantid
+  orderby: ORDER BY pt.tenantid
+  
 - reportName: StateWiseAdoptionReport
   summary: Reports for State Wise Adoption Report
   version: 1.0.0
@@ -1276,6 +1341,62 @@ ReportDefinitions:
     and b.tenantid=c.tenantid               
   orderby: ORDER BY a.tenantid  
 
+- reportName: StateWiseAdoptionReportV2
+  summary: Reports for State Wise Adoption Report
+  version: 1.0.0
+  moduleName: rainmaker-pt
+  sourceColumns:
+  - name: tenantid
+    label: reports.pt.tenantid
+    type: string
+    source: pt
+    total: false       
+  - name: propertiestobeupdated
+    label: reports.pt.propertiestobeupdated
+    type: string
+    source: pt
+    total: true
+  - name: propertiesverified
+    label: reports.pt.propertiesverified
+    type: string
+    source: pt
+    total: true
+  - name: verificationpercentage
+    label: reports.pt.verificationpercentage
+    type: string
+    source: pt
+    total: true
+  searchParams:
+  - name: ulb
+    label: ULB
+    type: singlevaluelist
+    pattern: http://egov-mdms-service:8080/egov-mdms-service/v1/_get?tenantId=$tenantid&moduleName=tenant&masterName=tenants|$.MdmsRes.tenant.tenants.*.code|$.MdmsRes.tenant.tenants.*.name
+    source: pt
+    wrapper: true
+    isMandatory: false
+    searchClause: AND c.tenantid = $ulb
+  query: | 
+    select initcap(split_part(a.tenantid, '.', 2)) as tenantid, 
+    (b.Total_properties_to_be_update) propertiestobeupdated,
+    (c.Total_properties_updated) propertiesverified,
+    round((c.Total_properties_updated*100/Total_properties_to_be_update),2) verificationpercentage 
+    from(select pd.tenantid,
+    count(distinct pd.propertyid) as Total_properties  from eg_pt_asmt_assessment pd where pd.tenantid != 'uk.testing' group by pd.tenantid) as a,
+    (select pd1.tenantid,
+    count( distinct pd1.propertyid) Total_properties_to_be_update from eg_pt_asmt_assessment pd1 where pd1.tenantid != 'uk.testing' 
+    and pd1.additionaldetails ->>'isMigrated' = 'true' group by pd1.tenantid) as b,
+    (select d.tenantid,count(distinct d.consumercode) Total_properties_updated from egbs_demand_v1 d,egbs_demanddetail_v1 dd,eg_pt_property_v2 
+    pt,eg_pt_asmt_assessment pd where pd.propertyid=pt.propertyid and pd.ctid in(select max(ctid) from eg_pt_asmt_assessment  group 
+    by financialyear,propertyid having propertyid=pd.propertyid) and d.id=dd.demandid and dd.taxamount<>0 and pd.propertyid=d.consumercode 
+    and taxheadcode like 'PT_TAX%' and pd.propertyid in (select  distinct pd.propertyid from egbs_demand_v1 d,egbs_demanddetail_v1 
+    dd,eg_pt_property_v2 pt,eg_pt_asmt_assessment pd where pd.propertyid=pt.propertyid and pd.additionaldetails ->>'isMigrated' = 
+    'true' and pd.ctid in(select max(ctid) from eg_pt_asmt_assessment  group by financialyear,propertyid having propertyid=pd.propertyid) 
+    and d.id=dd.demandid and dd.taxamount<>0 and pd.propertyid=d.consumercode and taxheadcode like 'PT_TAX%' and 
+    pd.financialyear=to_char(to_timestamp(d.taxperiodfrom/1000),'YYYY')||'-'||to_char(to_timestamp(d.taxperiodto/1000),'YY') and 
+    pd.financialyear='2020-21') group by d.tenantid) as c
+    where a.tenantid=b.tenantid 
+    and b.tenantid=c.tenantid           
+  orderby: ORDER BY a.tenantid  
 
 - reportName: StateWiseDCBReport
   summary: Reports for State Wise DCB Report
