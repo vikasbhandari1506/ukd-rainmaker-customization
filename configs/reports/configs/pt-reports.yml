@@ -1268,19 +1268,17 @@ ReportDefinitions:
     initcap(split_part(pt.tenantid, '.', 2)) as tenantId,
     SUM(dd.taxamount) as totaldemand,
     SUM(dd.collectionamount) as totalrevenuecollected,
-    count(distinct asmt.propertyid) as totalmigratedproperties,
-    SUM(case when asmt.additionaldetails ->>'is_migrated' = 'true' then 1 else 0 end) as migration,
-    (count(DISTINCT asmt.propertyid)-SUM(case when asmt.additionaldetails ->>'is_migrated' = 'true' then 1 else 0 end)) as dataentry,
-    SUM(case when asmt.additionaldetails ->>'is_migrated' = 'true' and asmt.createdtime > asmt.lastmodifiedtime then 1 else 0 end) updatedprops
+    count(distinct pt.propertyid) as totalmigratedproperties,
+    SUM(case when pt.additionaldetails ->>'is_migrated' = 'true' then 1 else 0 end) as migration,
+    (count(DISTINCT pt.propertyid)-SUM(case when pt.additionaldetails ->>'is_migrated' = 'true' then 1 else 0 end)) as dataentry,
+    SUM(case when pt.additionaldetails ->>'is_migrated' = 'true' and pt.createdtime > pt.lastmodifiedtime then 1 else 0 end) updatedprops
     FROM eg_pt_property as pt
-    JOIN (SELECT DISTINCT ON (propertyid) *  FROM eg_pt_asmt_assessment order by propertyid, lastmodifiedtime desc) as asmt 
-    on asmt.propertyid=pt.propertyid 
+    JOIN (SELECT DISTINCT ON (propertyid) *  FROM eg_pt_asmt_assessment order by propertyid, lastmodifiedtime desc) as asmt
+    on asmt.propertyid=pt.propertyid
     JOIN (SELECT DISTINCT ON (consumercode) *  FROM egbs_demand_v1 dd order by consumercode, lastmodifiedtime desc ) as d
-    on d.consumercode = asmt.propertyid 
-    JOIN egbs_demanddetail_v1 dd on dd.demandid = d.id 
-    where 
-    pt.source = 'MUNICIPAL_RECORDS' 
-    and pt.tenantid != 'uk.testing'
+    on d.consumercode = pt.propertyid
+    JOIN egbs_demanddetail_v1 dd on dd.demandid = d.id
+    where pt.tenantid != 'uk.testing'
   groupby: GROUP BY pt.tenantid
   orderby: ORDER BY pt.tenantid
   
