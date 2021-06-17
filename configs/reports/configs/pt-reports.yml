@@ -1159,8 +1159,8 @@ ReportDefinitions:
     type: string
     source: pt
     total: false
-  - name: totalpropertycount
-    label: reports.pt.totalpropertycount
+  - name: totalmigratedproperties
+    label: reports.pt.totalmigratedproperties
     type: string
     source: pt
     total: true
@@ -1169,21 +1169,21 @@ ReportDefinitions:
     type: string
     source: pt
     total: true
-  - name: propertiestobeupdated
-    label: reports.pt.propertiestobeupdated
+  - name: updatedprops
+    label: reports.pt.updatedprops
     type: string
     source: pt
     total: true
-  - name: propertiesverified
-    label: reports.pt.propertiesverified
+  - name: totaldemand
+    label: reports.pt.totaldemand
     type: string
     source: pt
     total: true
-  - name: verificationpercentage
-    label: reports.pt.verificationpercentage
+  - name: totalrevenuecollected
+    label: reports.pt.totalrevenuecollected
     type: string
     source: pt
-    total: true
+    total: true   
   searchParams:
   - name: ulb
     label: ULB
@@ -1196,18 +1196,16 @@ ReportDefinitions:
   query: |
     SELECT
     initcap(split_part(pt.tenantid, '.', 2)) as tenantId,
-    SUM(dd.taxamount) as totaldemand,
+    SUM(case when dd.taxamount is null then 0 else dd.taxamount end) as totaldemand,
     SUM(dd.collectionamount) as totalrevenuecollected,
-    count(distinct pt.propertyid) as totalmigratedproperties,
+    count( distinct pt.propertyid)  as totalmigratedproperties,
     SUM(case when pt.additionaldetails ->>'is_migrated' = 'true' then 1 else 0 end) as migration,
     (count(DISTINCT pt.propertyid)-SUM(case when pt.additionaldetails ->>'is_migrated' = 'true' then 1 else 0 end)) as dataentry,
     SUM(case when pt.additionaldetails ->>'is_migrated' = 'true' and pt.createdtime > pt.lastmodifiedtime then 1 else 0 end) updatedprops
     FROM eg_pt_property as pt
-    JOIN (SELECT DISTINCT ON (propertyid) *  FROM eg_pt_asmt_assessment order by propertyid, lastmodifiedtime desc) as asmt
-    on asmt.propertyid=pt.propertyid
-    JOIN (SELECT DISTINCT ON (consumercode) *  FROM egbs_demand_v1 dd order by consumercode, lastmodifiedtime desc ) as d
+    LEFT OUTER JOIN egbs_demand_v1 d
     on d.consumercode = pt.propertyid
-    JOIN egbs_demanddetail_v1 dd on dd.demandid = d.id
+    LEFT OUTER JOIN egbs_demanddetail_v1 dd on dd.demandid = d.id
     where pt.tenantid != 'uk.testing'
   groupby: GROUP BY pt.tenantid
   orderby: ORDER BY pt.tenantid
