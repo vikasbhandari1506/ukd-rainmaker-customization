@@ -1159,18 +1159,8 @@ ReportDefinitions:
     type: string
     source: pt
     total: false
-  - name: totalmigratedproperties
-    label: reports.pt.totalmigratedproperties
-    type: string
-    source: pt
-    total: true
-  - name: dataentry
-    label: reports.pt.dataentry
-    type: string
-    source: pt
-    total: true
-  - name: updatedprops
-    label: reports.pt.updatedprops
+  - name: totalproperties
+    label: reports.pt.totalproperties
     type: string
     source: pt
     total: true
@@ -1198,7 +1188,7 @@ ReportDefinitions:
     initcap(split_part(pt.tenantid, '.', 2)) as tenantId,
     SUM(case when dd.taxamount is null then 0 else dd.taxamount end) as totaldemand,
     SUM(dd.collectionamount) as totalrevenuecollected,
-    count( distinct pt.propertyid)  as totalmigratedproperties,
+    count( distinct pt.propertyid)  as totalproperties,
     SUM(case when pt.additionaldetails ->>'is_migrated' = 'true' then 1 else 0 end) as migration,
     (count(DISTINCT pt.propertyid)-SUM(case when pt.additionaldetails ->>'is_migrated' = 'true' then 1 else 0 end)) as dataentry,
     SUM(case when pt.additionaldetails ->>'is_migrated' = 'true' and pt.createdtime > pt.lastmodifiedtime then 1 else 0 end) updatedprops
