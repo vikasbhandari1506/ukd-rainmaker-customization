@@ -148,11 +148,11 @@
               {
                 "variable": "Mutation_Declaration_Label",
                 "value": {
-                  "path": "$.tenantId"
+                  "path": "PDF_STATIC_LABEL_MUTATION_DECLARATION_LABEL"
                 },
                 "localisation":{
                   "required":true,
-                  "prefix": "PDF_STATIC_LABEL_MUTATION_DECLARATION_LABEL",
+                  "prefix": null,
                   "module":"rainmaker-common"
               }
             },
