@@ -457,11 +457,11 @@
               "color": "#484848",
               "fontSize": 14,
               "letterSpacing": 0.1,
-              "alignment": "center",
+              "alignment": "right",
               "margin": [
-                0,
-                5,
-                0,
+                50,
+                30,
+                -110,
                 0
               ]
             },
@@ -469,11 +469,11 @@
               "color": "#484848",
               "fontSize": 14,
               "letterSpacing": 0.1,
-              "alignment": "center",
+              "alignment": "right",
               "margin": [
-                 0,
-                5,
-                0,
+                50,
+                30,
+                -110,
                 0
               ]
             },
