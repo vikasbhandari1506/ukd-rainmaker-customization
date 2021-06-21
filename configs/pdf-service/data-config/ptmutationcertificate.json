@@ -150,6 +150,7 @@
                 "value": {
                   "path": "PDF_STATIC_LABEL_MUTATION_DECLARATION_LABEL"
                 },
+                 "type": "label",
                 "localisation":{
                   "required":true,
                   "prefix": null,
