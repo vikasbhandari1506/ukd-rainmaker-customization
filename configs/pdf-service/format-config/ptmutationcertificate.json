@@ -459,9 +459,9 @@
               "letterSpacing": 0.1,
               "alignment": "center",
               "margin": [
-                70,
+                0,
                 30,
-                70,
+                0,
                 0
               ]
             },
