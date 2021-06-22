@@ -457,11 +457,11 @@
               "color": "#484848",
               "fontSize": 14,
               "letterSpacing": 0.1,
-              "alignment": "right",
+              "alignment": "center",
               "margin": [
-                50,
+                210,
                 30,
-                -110,
+                -90,
                 0
               ]
             },
