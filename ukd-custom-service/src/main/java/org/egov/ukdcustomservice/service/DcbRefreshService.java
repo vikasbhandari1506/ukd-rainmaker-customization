@@ -34,7 +34,7 @@ public class DcbRefreshService {
 	{
  
 		log.info("Refresh initiated  for "+tenant);
-		String insertQuery="insert into dcb_temp (propertyid ,oldpropertyid ,doorno ,mohalla ,propertytype ,createddate ,usage "+
+		String insertQuery="insert into dcb (propertyid ,oldpropertyid ,doorno ,mohalla ,propertytype ,createddate ,usage "+
 				" ,tenantid ,ownernamemobile ,currenttax ,currentarv ,arreartax ,penaltytax ,rebate ,totaltax ,currentcollected,arrearcollected ,penaltycollected,totalcollected ,updatedtime )"+
 				"SELECT distinct prop.propertyid AS propertyid,"+
 				" prop.oldpropertyid AS oldpropertyid,"+
