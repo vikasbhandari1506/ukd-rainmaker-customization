@@ -166,7 +166,7 @@ public class DcbRefreshService {
 				" message msg"+
 				"WHERE prop.id = address.propertyid"+
 				"AND demand.id=dd.demandid and demand.consumercode=prop.propertyid and demand.businessservice ='PT' "+
-				"AND ( "+ "to_timestamp(dd.lastmodifiedtime/1000)>(select case when max(updatedtime) is not null then max(updatedtime) else '2019-04-01' end from dcb where tenantid=':tenantId')"
+				"AND ( "+ "to_timestamp(dd.lastmodifiedtime/1000)>(select case when max(updatedtime) is not null then max(updatedtime) else '2019-04-01' end from dcb where tenantid=':tenantId')"+
 				" OR " + 
 				" to_timestamp(prop.lastmodifiedtime/1000)>(select case when max(updatedtime) is not null then max(updatedtime) else '2019-04-01' end from dcb where tenantid=':tenantId') )"+
 				"AND upper(replace(address.tenantid, '.', '_'))"+
