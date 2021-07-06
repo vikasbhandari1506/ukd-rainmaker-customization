@@ -413,7 +413,7 @@
                 FROM egcl_payment p, egcl_paymentdetail pd 
                 WHERE p.id=pd.paymentid  and pd.businessservice ='PT' and p.paymentmode = 'ONLINE'
                 and (p.lastmodifiedtime/1000)  <=  (extract (epoch FROM NOW()))) as onlinecollection,
-                (select to_char(TRUNC(COALESCE(SUM(dd.collectionamount), 0) / 10000000, 2), 'FM99,FM99,99,9990D00') 
+                (select to_char(TRUNC(COALESCE(SUM(dd.collectionamount), 0) / 100000, 2), 'FM99,FM99,99,999D00') 
                 from egbs_demand_v1 d, egbs_demanddetail_v1 dd where d.id = dd.demandid and d.consumercode not in 
                 (select distinct consumercode from egcl_bill b, egcl_payment p, egcl_paymentdetail pd where p.id = pd.paymentid and pd.billid = b.id 
                 and pd.businessservice = 'PT' and p.paymentstatus in ('NEW','DEPOSITED') and p.instrumentstatus in ('TO_BE_SUBMITTED','APPROVED','REMITTED') 
@@ -443,7 +443,7 @@
                 FROM egcl_payment p, egcl_paymentdetail pd 
                 WHERE p.id=pd.paymentid  and pd.businessservice ='PT' and p.paymentmode = 'ONLINE'  
                 and (p.lastmodifiedtime/1000)  <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800)) as onlinecollection,
-                (select to_char(TRUNC(COALESCE(SUM(dd.collectionamount), 0) / 10000000, 2), 'FM99,FM99,99,9990D00') 
+                (select to_char(TRUNC(COALESCE(SUM(dd.collectionamount), 0) / 100000, 2), 'FM99,FM99,99,999D00') 
                 from egbs_demand_v1 d, egbs_demanddetail_v1 dd where d.id = dd.demandid and d.consumercode not in 
                 (select distinct consumercode from egcl_bill b, egcl_payment p, egcl_paymentdetail pd where p.id = pd.paymentid and pd.billid = b.id 
                 and pd.businessservice = 'PT' and p.paymentstatus in ('NEW','DEPOSITED') and p.instrumentstatus in ('TO_BE_SUBMITTED','APPROVED','REMITTED') 
@@ -473,7 +473,7 @@
                 FROM egcl_payment p, egcl_paymentdetail pd 
                 WHERE p.id=pd.paymentid  and pd.businessservice ='PT' and p.paymentmode = 'ONLINE' 
                 and (p.lastmodifiedtime/1000)  <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 2 ) ) as onlinecollection, 
-                (select to_char(TRUNC(COALESCE(SUM(dd.collectionamount), 0) / 10000000, 2), 'FM99,FM99,99,9990D00') 
+                (select to_char(TRUNC(COALESCE(SUM(dd.collectionamount), 0) / 100000, 2), 'FM99,FM99,99,999D00') 
                 from egbs_demand_v1 d, egbs_demanddetail_v1 dd where d.id = dd.demandid and d.consumercode not in 
                 (select distinct consumercode from egcl_bill b, egcl_payment p, egcl_paymentdetail pd where p.id = pd.paymentid and pd.billid = b.id 
                 and pd.businessservice = 'PT' and p.paymentstatus in ('NEW','DEPOSITED') and p.instrumentstatus in ('TO_BE_SUBMITTED','APPROVED','REMITTED') 
@@ -503,7 +503,7 @@
                 FROM egcl_payment p, egcl_paymentdetail pd 
                 WHERE p.id=pd.paymentid  and pd.businessservice ='PT' and p.paymentmode = 'ONLINE' 
                 and (p.lastmodifiedtime/1000)  <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 3) ) as onlinecollection,
-               (select to_char(TRUNC(COALESCE(SUM(dd.collectionamount), 0) / 10000000, 2), 'FM99,FM99,99,9990D00') 
+               (select to_char(TRUNC(COALESCE(SUM(dd.collectionamount), 0) / 100000, 2), 'FM99,FM99,99,999D00') 
                from egbs_demand_v1 d, egbs_demanddetail_v1 dd where d.id = dd.demandid and d.consumercode not in 
                (select distinct consumercode from egcl_bill b, egcl_payment p, egcl_paymentdetail pd where p.id = pd.paymentid and pd.billid = b.id 
                and pd.businessservice = 'PT' and p.paymentstatus in ('NEW','DEPOSITED') and p.instrumentstatus in ('TO_BE_SUBMITTED','APPROVED','REMITTED') 
@@ -533,7 +533,7 @@
                 FROM egcl_payment p, egcl_paymentdetail pd 
                 WHERE p.id=pd.paymentid  and pd.businessservice ='PT' and p.paymentmode = 'ONLINE' 
                 and (p.lastmodifiedtime/1000)  <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 4) ) as onlinecollection, 
-                (select to_char(TRUNC(COALESCE(SUM(dd.collectionamount), 0) / 10000000, 2), 'FM99,FM99,99,9990D00') 
+                (select to_char(TRUNC(COALESCE(SUM(dd.collectionamount), 0) / 100000, 2), 'FM99,FM99,99,999D00') 
                 from egbs_demand_v1 d, egbs_demanddetail_v1 dd where d.id = dd.demandid and d.consumercode not in 
                 (select distinct consumercode from egcl_bill b, egcl_payment p, egcl_paymentdetail pd where p.id = pd.paymentid and pd.billid = b.id 
                 and pd.businessservice = 'PT' and p.paymentstatus in ('NEW','DEPOSITED') and p.instrumentstatus in ('TO_BE_SUBMITTED','APPROVED','REMITTED') 
@@ -563,7 +563,7 @@
                 FROM egcl_payment p, egcl_paymentdetail pd 
                 WHERE p.id=pd.paymentid  and pd.businessservice ='PT' and p.paymentmode = 'ONLINE' 
                 and (p.lastmodifiedtime/1000)  <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 5) ) as onlinecollection, 
-                (select to_char(TRUNC(COALESCE(SUM(dd.collectionamount), 0) / 10000000, 2), 'FM99,FM99,99,9990D00') 
+                (select to_char(TRUNC(COALESCE(SUM(dd.collectionamount), 0) / 100000, 2), 'FM99,FM99,99,999D00') 
                 from egbs_demand_v1 d, egbs_demanddetail_v1 dd where d.id = dd.demandid and d.consumercode not in 
                 (select distinct consumercode from egcl_bill b, egcl_payment p, egcl_paymentdetail pd where p.id = pd.paymentid and pd.billid = b.id 
                 and pd.businessservice = 'PT' and p.paymentstatus in ('NEW','DEPOSITED') and p.instrumentstatus in ('TO_BE_SUBMITTED','APPROVED','REMITTED') 
