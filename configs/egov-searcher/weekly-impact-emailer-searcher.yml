@@ -417,8 +417,8 @@
                 from egbs_demand_v1 d, egbs_demanddetail_v1 dd where d.id = dd.demandid and d.consumercode not in 
                 (select distinct consumercode from egcl_bill b, egcl_payment p, egcl_paymentdetail pd where p.id = pd.paymentid and pd.billid = b.id 
                 and pd.businessservice = 'PT' and p.paymentstatus in ('NEW','DEPOSITED') and p.instrumentstatus in ('TO_BE_SUBMITTED','APPROVED','REMITTED') 
-                and (p.lastmodifiedtime/1000)  <=  (extract (epoch FROM NOW())) and p.tenantid != 'uk.testing') and d.businessservice = 'PT' 
-                and d.tenantid != 'uk.testing' and (d.lastmodifiedtime/1000)  <=  (extract (epoch FROM NOW()))) as updatedcollection
+                and (p.lastmodifiedtime/1000) between ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800) and (extract (epoch FROM NOW())) and p.tenantid != 'uk.testing') and d.businessservice = 'PT' 
+                and d.tenantid != 'uk.testing' and (d.lastmodifiedtime/1000) between ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800) and (extract (epoch FROM NOW()))) as updatedcollection
                 FROM eg_pt_property pt INNER JOIN egcl_bill bill ON 
                 pt.propertyid = bill.consumercode INNER JOIN egcl_paymentdetail pd ON 
                 bill.id = pd.billid INNER JOIN egcl_payment pymt ON pd.paymentid = pymt.id 
@@ -447,8 +447,8 @@
                 from egbs_demand_v1 d, egbs_demanddetail_v1 dd where d.id = dd.demandid and d.consumercode not in 
                 (select distinct consumercode from egcl_bill b, egcl_payment p, egcl_paymentdetail pd where p.id = pd.paymentid and pd.billid = b.id 
                 and pd.businessservice = 'PT' and p.paymentstatus in ('NEW','DEPOSITED') and p.instrumentstatus in ('TO_BE_SUBMITTED','APPROVED','REMITTED') 
-                and (p.lastmodifiedtime/1000)  <=  ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800) and p.tenantid != 'uk.testing') and d.businessservice = 'PT' 
-                and d.tenantid != 'uk.testing' and (d.lastmodifiedtime/1000)  <=  ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800)) as updatedcollection  
+                and (p.lastmodifiedtime/1000) between ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 2) and ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800) and p.tenantid != 'uk.testing') and d.businessservice = 'PT' 
+                and d.tenantid != 'uk.testing' and (d.lastmodifiedtime/1000) between ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 2) and ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800)) as updatedcollection   
                 FROM eg_pt_property pt INNER JOIN egcl_bill bill ON 
                 pt.propertyid = bill.consumercode INNER JOIN egcl_paymentdetail pd ON 
                 bill.id = pd.billid INNER JOIN egcl_payment pymt ON pd.paymentid = pymt.id 
@@ -477,8 +477,8 @@
                 from egbs_demand_v1 d, egbs_demanddetail_v1 dd where d.id = dd.demandid and d.consumercode not in 
                 (select distinct consumercode from egcl_bill b, egcl_payment p, egcl_paymentdetail pd where p.id = pd.paymentid and pd.billid = b.id 
                 and pd.businessservice = 'PT' and p.paymentstatus in ('NEW','DEPOSITED') and p.instrumentstatus in ('TO_BE_SUBMITTED','APPROVED','REMITTED') 
-                and (p.lastmodifiedtime/1000)  <=  ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 2 ) and p.tenantid != 'uk.testing') and d.businessservice = 'PT' 
-                and d.tenantid != 'uk.testing' and (d.lastmodifiedtime/1000)  <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 2 )) as updatedcollection  
+                and (p.lastmodifiedtime/1000) between ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 3) and ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 2) and p.tenantid != 'uk.testing') and d.businessservice = 'PT' 
+                and d.tenantid != 'uk.testing' and (d.lastmodifiedtime/1000) between ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 3) and ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 2)) as updatedcollection  
                 FROM eg_pt_property pt INNER JOIN egcl_bill bill ON 
                 pt.propertyid = bill.consumercode INNER JOIN egcl_paymentdetail pd ON 
                 bill.id = pd.billid INNER JOIN egcl_payment pymt ON pd.paymentid = pymt.id 
@@ -507,8 +507,8 @@
                from egbs_demand_v1 d, egbs_demanddetail_v1 dd where d.id = dd.demandid and d.consumercode not in 
                (select distinct consumercode from egcl_bill b, egcl_payment p, egcl_paymentdetail pd where p.id = pd.paymentid and pd.billid = b.id 
                and pd.businessservice = 'PT' and p.paymentstatus in ('NEW','DEPOSITED') and p.instrumentstatus in ('TO_BE_SUBMITTED','APPROVED','REMITTED') 
-               and (p.lastmodifiedtime/1000)  <=  ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 3 ) and p.tenantid != 'uk.testing') and d.businessservice = 'PT' 
-               and d.tenantid != 'uk.testing' and (d.lastmodifiedtime/1000)  <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 3 )) as updatedcollection 
+               and (p.lastmodifiedtime/1000) between ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 4) and ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 3) and p.tenantid != 'uk.testing') and d.businessservice = 'PT' 
+               and d.tenantid != 'uk.testing' and (d.lastmodifiedtime/1000) between ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 4) and ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 3)) as updatedcollection  
                 FROM eg_pt_property pt INNER JOIN egcl_bill bill ON 
                 pt.propertyid = bill.consumercode INNER JOIN egcl_paymentdetail pd ON 
                 bill.id = pd.billid INNER JOIN egcl_payment pymt ON pd.paymentid = pymt.id 
@@ -537,8 +537,8 @@
                 from egbs_demand_v1 d, egbs_demanddetail_v1 dd where d.id = dd.demandid and d.consumercode not in 
                 (select distinct consumercode from egcl_bill b, egcl_payment p, egcl_paymentdetail pd where p.id = pd.paymentid and pd.billid = b.id 
                 and pd.businessservice = 'PT' and p.paymentstatus in ('NEW','DEPOSITED') and p.instrumentstatus in ('TO_BE_SUBMITTED','APPROVED','REMITTED') 
-                and (p.lastmodifiedtime/1000)  <=  ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 4 ) and p.tenantid != 'uk.testing') and d.businessservice = 'PT' 
-                and d.tenantid != 'uk.testing' and (d.lastmodifiedtime/1000)  <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 4 )) as updatedcollection 
+                and (p.lastmodifiedtime/1000) between ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 5) and ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 4) and p.tenantid != 'uk.testing') and d.businessservice = 'PT' 
+                and d.tenantid != 'uk.testing' and (d.lastmodifiedtime/1000) between ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 5) and ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 4)) as updatedcollection 
                 FROM eg_pt_property pt INNER JOIN egcl_bill bill ON 
                 pt.propertyid = bill.consumercode INNER JOIN egcl_paymentdetail pd ON 
                 bill.id = pd.billid INNER JOIN egcl_payment pymt ON pd.paymentid = pymt.id 
@@ -567,8 +567,8 @@
                 from egbs_demand_v1 d, egbs_demanddetail_v1 dd where d.id = dd.demandid and d.consumercode not in 
                 (select distinct consumercode from egcl_bill b, egcl_payment p, egcl_paymentdetail pd where p.id = pd.paymentid and pd.billid = b.id 
                 and pd.businessservice = 'PT' and p.paymentstatus in ('NEW','DEPOSITED') and p.instrumentstatus in ('TO_BE_SUBMITTED','APPROVED','REMITTED') 
-                and (p.lastmodifiedtime/1000)  <=  ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 5 ) and p.tenantid != 'uk.testing') and d.businessservice = 'PT' 
-                and d.tenantid != 'uk.testing' and (d.lastmodifiedtime/1000)  <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 5 )) as updatedcollection 
+                and (p.lastmodifiedtime/1000) between ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 6) and ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 5) and p.tenantid != 'uk.testing') and d.businessservice = 'PT' 
+                and d.tenantid != 'uk.testing' and (d.lastmodifiedtime/1000) between ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 6) and ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 5)) as updatedcollection 
                 FROM eg_pt_property pt INNER JOIN egcl_bill bill ON 
                 pt.propertyid = bill.consumercode INNER JOIN egcl_paymentdetail pd ON 
                 bill.id = pd.billid INNER JOIN egcl_payment pymt ON pd.paymentid = pymt.id 
