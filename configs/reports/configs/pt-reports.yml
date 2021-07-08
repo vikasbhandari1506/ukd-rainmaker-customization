@@ -143,7 +143,7 @@ ReportDefinitions:
     pt.propertyid=bill.consumercode and
     RIGHT(msg.code,5)=addr.locality and
     msg.tenantid=pay.tenantid and
-    eu.uuid=(select poo.userid from eg_pt_owner poo where poo.propertyid=(select pdd.id from eg_pt_property pdd where pdd.propertyid= bill.consumercode fetch first 1 row only) fetch first 1 row only) and
+    eu.uuid=(select poo.userid from eg_pt_owner poo where poo.propertyid=pt.id and poo.tenantid = $tenantid fetch first 1 row only) and
     msg.locale='hi_IN' and
     pay.tenantid LIKE $tenantid and 
     pd.businessservice='PT'and 
