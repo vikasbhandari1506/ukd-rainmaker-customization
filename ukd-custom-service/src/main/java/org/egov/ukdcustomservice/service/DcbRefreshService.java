@@ -158,24 +158,24 @@ public class DcbRefreshService {
 				" AND demand.id = dd.demandid"+
 				" AND dd.taxheadcode NOT LIKE '%REBATE%'"+
 				" AND demand.consumercode = prop.propertyid), 0) totalcollected ,"+
-				" now() AS updatedtime"+
-				"FROM eg_pt_property prop,"+
+				" now() AS updatedtime "+
+				" FROM eg_pt_property prop,"+
 				" eg_pt_address address,"+
 				" egbs_demand_v1 demand,"+
 				" egbs_demanddetail_v1 dd,"+
-				" message msg"+
-				"WHERE prop.id = address.propertyid"+
-				"AND demand.id=dd.demandid and demand.consumercode=prop.propertyid and demand.businessservice ='PT' "+
-				"AND ( "+ "to_timestamp(dd.lastmodifiedtime/1000)>(select case when max(updatedtime) is not null then max(updatedtime) else '2019-04-01' end from dcb where tenantid=':tenantId')"+
+				" message msg "+
+				" WHERE prop.id = address.propertyid "+
+				" AND demand.id=dd.demandid and demand.consumercode=prop.propertyid and demand.businessservice ='PT' "+
+				" AND ( "+ "to_timestamp(dd.lastmodifiedtime/1000)>(select case when max(updatedtime) is not null then max(updatedtime) else '2019-04-01' end from dcb where tenantid=':tenantId')"+
 				" OR " + 
 				" to_timestamp(prop.lastmodifiedtime/1000)>(select case when max(updatedtime) is not null then max(updatedtime) else '2019-04-01' end from dcb where tenantid=':tenantId') )"+
-				"AND upper(replace(address.tenantid, '.', '_'))"+
+				" AND upper(replace(address.tenantid, '.', '_'))"+
 				" || '_REVENUE_'"+
 				" || address.locality = msg.code"+
-				"AND msg.locale = 'en_IN'"+
+				" AND msg.locale = 'en_IN'"+
 				" AND msg.tenantid=prop.tenantid"+
-				"AND prop.tenantid = address.tenantid"+
-				"AND prop.tenantid= :tenantId" 
+				" AND prop.tenantid = address.tenantid"+
+				" AND prop.tenantid= :tenantId" 
 				+ ";";
 		
 		String deletedQuery=	deleteQuery.replaceAll(":tenantId", tenant);
