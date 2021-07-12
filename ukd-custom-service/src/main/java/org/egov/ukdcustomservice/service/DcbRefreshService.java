@@ -36,7 +36,7 @@ public class DcbRefreshService {
 		log.info("Refresh initiated  for "+tenant);
 		String insertQuery="insert into dcb (propertyid ,oldpropertyid ,doorno ,mohalla ,propertytype ,createddate ,usage "+
 				" ,tenantid ,ownernamemobile ,currenttax ,currentarv ,arreartax ,penaltytax ,rebate ,totaltax ,currentcollected,arrearcollected ,penaltycollected,totalcollected ,updatedtime )"+
-				"SELECT distinct prop.propertyid AS propertyid,"+
+				" SELECT distinct prop.propertyid AS propertyid,"+
 				" prop.oldpropertyid AS oldpropertyid,"+
 				" address.doorno AS doorno,"+
 				" msg.message AS mohalla,"+
@@ -57,7 +57,7 @@ public class DcbRefreshService {
 				" SELECT sum(dd.taxamount)"+
 				" FROM egbs_demand_v1 demand,"+
 				" egbs_demanddetail_v1 dd"+
-				" WHERE demand.tenantid = dd.tenantid and businessservice ='PT' AND prop.tenantid= :tenantId"+
+				" WHERE demand.tenantid = dd.tenantid and businessservice ='PT' AND prop.tenantid=':tenantId'"+
 				" AND demand.id = dd.demandid"+
 				" AND dd.taxheadcode IN ( 'PT_TAX',"+
 				" 'SWATCHATHA_TAX',"+
@@ -76,7 +76,7 @@ public class DcbRefreshService {
 				" SELECT sum(dd.taxamount)"+
 				" FROM egbs_demand_v1 demand,"+
 				" egbs_demanddetail_v1 dd"+
-				" WHERE demand.tenantid = dd.tenantid and businessservice ='PT' AND prop.tenantid= :tenantId"+
+				" WHERE demand.tenantid = dd.tenantid and businessservice ='PT' AND prop.tenantid= ':tenantId'"+
 				" AND demand.id = dd.demandid"+
 				" AND dd.taxheadcode IN ( 'PT_TAX',"+
 				" 'SWATCHATHA_TAX',"+
@@ -89,7 +89,7 @@ public class DcbRefreshService {
 				" SELECT sum(dd.taxamount)"+
 				" FROM egbs_demand_v1 demand,"+
 				" egbs_demanddetail_v1 dd"+
-				" WHERE demand.tenantid = dd.tenantid and businessservice ='PT' AND prop.tenantid= :tenantId"+
+				" WHERE demand.tenantid = dd.tenantid and businessservice ='PT' AND prop.tenantid= ':tenantId'"+
 				" AND demand.id = dd.demandid"+
 				" AND dd.taxheadcode IN ( 'PT_TIME_INTEREST',"+
 				" 'PT_TIME_PENALTY',"+
@@ -100,7 +100,7 @@ public class DcbRefreshService {
 				" SELECT sum(dd.taxamount)"+
 				" FROM egbs_demand_v1 demand,"+
 				" egbs_demanddetail_v1 dd"+
-				" WHERE demand.tenantid = dd.tenantid and businessservice ='PT' AND prop.tenantid= :tenantId"+
+				" WHERE demand.tenantid = dd.tenantid and businessservice ='PT' AND prop.tenantid= ':tenantId'"+
 				" AND demand.id = dd.demandid"+
 				" AND dd.taxheadcode LIKE '%REBATE%'"+
 				" AND demand.consumercode = prop.propertyid), 0) rebate,"+
@@ -109,7 +109,7 @@ public class DcbRefreshService {
 				" SELECT sum(dd.taxamount)"+
 				" FROM egbs_demand_v1 demand,"+
 				" egbs_demanddetail_v1 dd"+
-				" WHERE demand.tenantid = dd.tenantid and businessservice ='PT' AND prop.tenantid= :tenantId"+
+				" WHERE demand.tenantid = dd.tenantid and businessservice ='PT' AND prop.tenantid= ':tenantId'"+
 				" AND demand.id = dd.demandid"+
 				" AND demand.consumercode = prop.propertyid), 0) totaltax,"+
 				" COALESCE("+
@@ -117,7 +117,7 @@ public class DcbRefreshService {
 				" SELECT sum(dd.collectionamount)"+
 				" FROM egbs_demand_v1 demand,"+
 				" egbs_demanddetail_v1 dd"+
-				" WHERE demand.tenantid = dd.tenantid and businessservice ='PT' AND prop.tenantid= :tenantId"+
+				" WHERE demand.tenantid = dd.tenantid and businessservice ='PT' AND prop.tenantid= ':tenantId'"+
 				" AND demand.id = dd.demandid"+
 				" AND dd.taxheadcode IN ( 'PT_TAX',"+
 				" 'SWATCHATHA_TAX',"+
@@ -130,7 +130,7 @@ public class DcbRefreshService {
 				" SELECT sum(dd.collectionamount)"+
 				" FROM egbs_demand_v1 demand,"+
 				" egbs_demanddetail_v1 dd"+
-				" WHERE demand.tenantid = dd.tenantid and businessservice ='PT' AND prop.tenantid= :tenantId"+
+				" WHERE demand.tenantid = dd.tenantid and businessservice ='PT' AND prop.tenantid= ':tenantId'"+
 				" AND demand.id = dd.demandid"+
 				" AND dd.taxheadcode IN ( 'PT_TAX',"+
 				" 'SWATCHATHA_TAX',"+
@@ -143,7 +143,7 @@ public class DcbRefreshService {
 				" SELECT sum(dd.collectionamount)"+
 				" FROM egbs_demand_v1 demand,"+
 				" egbs_demanddetail_v1 dd"+
-				" WHERE demand.tenantid = dd.tenantid and businessservice ='PT' AND prop.tenantid= :tenantId"+
+				" WHERE demand.tenantid = dd.tenantid and businessservice ='PT' AND prop.tenantid= ':tenantId'"+
 				" AND demand.id = dd.demandid"+
 				" AND dd.taxheadcode IN ( 'PT_TIME_INTEREST',"+
 				" 'PT_TIME_PENALTY',"+
@@ -154,7 +154,7 @@ public class DcbRefreshService {
 				" SELECT sum(dd.collectionamount)"+
 				" FROM egbs_demand_v1 demand,"+
 				" egbs_demanddetail_v1 dd"+
-				" WHERE demand.tenantid = dd.tenantid and businessservice ='PT' AND prop.tenantid= :tenantId"+
+				" WHERE demand.tenantid = dd.tenantid and businessservice ='PT' AND prop.tenantid= ':tenantId'"+
 				" AND demand.id = dd.demandid"+
 				" AND dd.taxheadcode NOT LIKE '%REBATE%'"+
 				" AND demand.consumercode = prop.propertyid), 0) totalcollected ,"+
@@ -175,7 +175,7 @@ public class DcbRefreshService {
 				" AND msg.locale = 'en_IN'"+
 				" AND msg.tenantid=prop.tenantid"+
 				" AND prop.tenantid = address.tenantid"+
-				" AND prop.tenantid= :tenantId" 
+				" AND prop.tenantid= ':tenantId'" 
 				+ ";";
 		
 		String deletedQuery=	deleteQuery.replaceAll(":tenantId", tenant);
