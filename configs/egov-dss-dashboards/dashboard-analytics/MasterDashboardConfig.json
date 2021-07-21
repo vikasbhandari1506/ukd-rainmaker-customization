@@ -1927,7 +1927,7 @@
               "label": "DSS_OVERVIEW",
               "noUnit": true,
               "isCollapsible": false,
-              "moduleLevel":"PT",
+             
               "charts": [
                 {
                   "id": "todaysCollection",
@@ -1940,7 +1940,7 @@
                   "headers": []
                 },
                 {
-                  "id": "totalCollection",
+                  "id": "ptTotalCollection",
                   "name": "DSS_TOTAL_COLLECTION",
                   "code": "",
                   "chartType": "metric",
@@ -2057,7 +2057,7 @@
               "vizType": "metric-collection",
               "isCollapsible": false,
               "label": "DSS_OVERVIEW",
-              "moduleLevel":"PT",
+             
               "charts": [
                 {
                   "id": "totalApplication",
