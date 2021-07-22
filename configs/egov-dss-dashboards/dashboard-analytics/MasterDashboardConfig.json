@@ -2051,8 +2051,8 @@
               "id": 341,
               "name": "DSS_OVERVIEW",
               "dimensions": {
-                "height": 350,
-                "width": 5
+                "height": 250,
+                "width": 4
               },
               "vizType": "metric-collection",
               "isCollapsible": false,
@@ -2091,7 +2091,7 @@
               "charts": [
                 {
                  "id": "ptCollectionByPaymentType",
-                  "name": "DSS_PT_LICENSE_BY_TYPE",
+                  "name": "DSS_TL_LICENSE_BY_TYPE",
                   "code": "",
                   "chartType": "pie",
                   "filter": "",
