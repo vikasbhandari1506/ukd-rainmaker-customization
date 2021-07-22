@@ -2076,16 +2076,10 @@
                   "headers": []
                 }
               ]
-            }
-          ]
-        },
-        {
-          "row": 4,
-          "name": "DSS_SERVICE",
-          "vizArray": [
+            },
             {
-              "id": 351,
-              "name": "DSS_PT_TOP_3_PERFORMING_ULBS",
+              "id": 343,
+              "name": "DSS_TL_TOP_3_PERFORMING_ULBS",
               "dimensions": {
                 "height": 250,
                 "width": 4
@@ -2096,33 +2090,40 @@
               "isCollapsible": false,
               "charts": [
                 {
-                  "id": "topPerformingUlbsCompletionRate",
-                  "name": "DSS_PT_TOP_3_PERFORMING_ULBS",
+                 "id": "ptLicenseByLicenseType",
+                  "name": "DSS_PT_LICENSE_BY_TYPE",
                   "code": "",
-                  "chartType": "bar",
+                  "chartType": "pie",
                   "filter": "",
                   "headers": []
                 }
               ]
-            },
+            }
+          ]
+        },
+        {
+          "row": 4,
+          "name": "DSS_REVENUE",
+          "vizArray": [
             {
-              "id": 352,
-              "name": "DSS_PT_BOTTOM_3_PERFORMING_ULBS",
+              "id": 231,
+              "name": "DSS_MC_DEMAND_COLLECTION_BOUNDARYDDR",
               "dimensions": {
-                "height": 250,
-                "width": 4
+                "height": 350,
+                "width": 12
               },
-              "vizType": "performing-metric",
+              "vizType": "chart",
               "noUnit": false,
               "isCollapsible": false,
               "charts": [
                 {
-                  "id": "bottomPerformingUlbsCompletionRate",
-                  "name": "DSS_PT_BOTTOM_3_PERFORMING_ULBS",
+                  "id": "totalptBoundaryDrillDown",
+                  "name": "DSS_PT_DEMAND_COLLECTION_BOUNDARYDDR",
                   "code": "",
-                  "chartType": "bar",
+                  "chartType": "table",
                   "filter": "",
-                  "headers": []
+                  "headers": [],
+                  "tabName": "Boundary"
                 }
               ]
             }
