@@ -1930,7 +1930,7 @@
              
               "charts": [
                 {
-                  "id": "todaysCollection",
+                  "id": "ptTodaysCollection",
                   "name": "DSS_TOTAL_COLLECTION_TODAY",
                   "code": "",
                   "chartType": "metric",
@@ -1956,7 +1956,7 @@
                   "headers": []
                 },
                 {
-                  "id": "targetAchieved",
+                  "id": "ptTargetAchieved",
                   "name": "DSS_TARGET_ACHIEVED",
                   "code": "",
                   "chartType": "metric",
@@ -1976,10 +1976,10 @@
               "label": "",
               "noUnit": true,
               "isCollapsible": false,
-              "moduleLevel":"PT",
+             
               "charts": [
                 {
-                  "id": "cumulativeCollection",
+                  "id": "ptCumulativeCollection",
                   "name": "Monthly",
                   "code": "",
                   "chartType": "line",
@@ -2007,7 +2007,7 @@
               "isCollapsible": false,
               "charts": [
                 {
-                  "id": "topPerformingUlbs",
+                  "id": "ptTopPerformingUlbs",
                   "name": "DSS_TL_TOP_3_PERFORMING_ULBS",
                   "code": "",
                   "chartType": "bar",
@@ -2029,7 +2029,7 @@
               "isCollapsible": false,
               "charts": [
                 {
-                  "id": "bottomPerformingUlbs",
+                  "id": "ptBottomPerformingUlbs",
                   "name": "DSS_TL_BOTTOM_3_PERFORMING_ULBS",
                   "code": "",
                   "chartType": "bar",
@@ -2060,7 +2060,7 @@
              
               "charts": [
                 {
-                  "id": "totalApplication",
+                  "id": "ptTotalApplication",
                   "name": "DSS_TOTAL_APPLICATION",
                   "code": "",
                   "chartType": "metric",
@@ -2068,7 +2068,7 @@
                   "headers": []
                 },
                 {
-                  "id": "activeUlbs",
+                  "id": "ptActiveUlbs",
                   "name": "DSS_PT_TOTAL_ACTIVE_ULBS",
                   "code": "",
                   "chartType": "metric",
