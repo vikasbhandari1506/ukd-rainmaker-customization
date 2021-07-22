@@ -335,6 +335,7 @@
     },
     "_comment": " "
   },
+  
   "ptTargetAchieved": {
     "chartName": "DSS_TARGET_ACHIEVED",
     "queries": [
@@ -350,7 +351,7 @@
         "requestQueryMap": "{\"wardId\" : \"domainObject.ward.name.keyword\",\r\n  \"district\" : \"dataObject.tenantData.city.districtCode\", \"module\" : \"dataObject.paymentDetails.businessService.keyword\", \n\"tenantId\" : \"dataObject.tenantId\"}",
         "dateRefField": "dataObject.paymentDetails.receiptDate",
         "indexName": "dss-collection_v2",
-        "aggrQuery": "{\"aggs\":{\"AGGR\":{\"filter\":{\"bool\":{\"must_not\":[{\"term\":{\"dataObject.tenantId.keyword\":\"uk.testing\"}},{\"terms\":{\"dataObject.paymentDetails.bill.status.keyword\":[\"Cancelled\"]}}]}},\"aggs\":{\"Total Collection\":{\"sum\":{\"field\":\"dataObject.paymentDetails.totalAmountPaid\"}}}}}}"
+        "aggrQuery": "{\"size\":0,\"query\":{\"bool\":{\"must\":[{\"range\":{\"dataObject.paymentDetails.receiptDate\":{\"from\":\"1585679400000\",\"to\":\"1617215399000\",\"include_lower\":true,\"include_upper\":true,\"boost\":1}}}],\"adjust_pure_negative\":true,\"boost\":1}},\"aggs\":{\"AGGR\":{\"filter\":{\"bool\":{\"must_not\":[{\"term\":{\"dataObject.tenantId.keyword\":\"uk.testing\"}},{\"terms\":{\"dataObject.bill.status.keyword\":[\"Cancelled\"]}}],\"must\":[{\"terms\":{\"dataObject.paymentDetails.businessService.keyword\":[\"PT\"]}}]}},\"aggs\":{\"Total Collection3\":{\"sum\":{\"field\":\"dataObject.paymentDetails.totalAmountPaid\"}}}}}}"
       }
     ],
     "chartType": "metric",
@@ -359,7 +360,7 @@
     "documentType": "_doc",
     "action": "percentage",
     "aggregationPaths": [
-      "Total Collection",
+      "Total Collection3",
       "Actual collection"
     ],
     "insight": {
@@ -369,10 +370,12 @@
       "downwardIndicator": "negative",
       "textMessage": "$indicator$value% than last $insightInterval",
       "colorCode": "#228B22",
-      "insightInterval": "year"
+      "insightInterval": "month"
     },
     "_comment": " "
   },
+  
+  
   "overviewtodaysCollection": {
     "chartName": "DSS_TOTAL_COLLECTION",
     "queries": [
