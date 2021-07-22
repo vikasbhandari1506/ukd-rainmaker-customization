@@ -2078,31 +2078,6 @@
               ]
             },
             {
-              "id": 343,
-              "name": "DSS_TL_TOP_3_PERFORMING_ULBS",
-              "dimensions": {
-                "height": 250,
-                "width": 4
-              },
-              "vizType": "performing-metric",
-              "label": "",
-              "noUnit": false,
-              "isCollapsible": false,
-              "charts": [
-                {
-                 "id": "ptCollectionByPaymentType",
-                  "name": "DSS_TL_LICENSE_BY_TYPE",
-                  "code": "",
-                  "chartType": "pie",
-                  "filter": "",
-                  "headers": []
-                }
-              ]
-            }
-          ]
-        },
-      
-         {
               "id": 423,
               "name": "DSS_MC_COLLECTION_BY_PAYMENT_TYPE",
               "dimensions": {
@@ -2124,6 +2099,10 @@
                 }
               ]
             }
+          ]
+        }
+      
+      
       ]
     }
     
