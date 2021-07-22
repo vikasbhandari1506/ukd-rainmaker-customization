@@ -435,7 +435,7 @@
     "chartName": "DSS_TOTAL_COLLECTION",
     "queries": [
       {
-        "module": "TL",
+        "module": "PT",
         "dateRefField": "dataObject.paymentDetails.receiptDate",
         "requestQueryMap": "{\"wardId\" : \"domainObject.ward.name.keyword\",\"module\" : \"dataObject.paymentDetails.businessService.keyword\", \"tenantId\" : \"dataObject.tenantId\", \"district\" : \"dataObject.tenantData.city.districtCode\"}",
         "indexName": "dss-collection_v2",
@@ -773,7 +773,7 @@
     "chartName": "DSS_TOTAL_APPLICATION",
     "queries": [
       {
-        "module": "TL",
+        "module": "PT",
         "indexName": "ptindex-v1",
         "aggrQuery": "{\"aggs\":{\"AGGR\":{\"filter\":{\"bool\":{\"must_not\":[{\"term\":{\"Data.tradelicense.tenantId.keyword\":\"uk.testing\"}}]}},\"aggs\":{\"Total Application\":{\"value_count\":{\"field\":\"Data.tradelicense.applicationNumber.keyword\"}}}}}}",
         "requestQueryMap": "{\"wardId\" : \"Data.ward.name.keyword\", \r\n  \"district\" : \"Data.tenantData.city.districtCode\", \r\n\"tenantId\" : \"Data.propertytax.tenantId.keyword\" \r\n}",
@@ -1012,7 +1012,7 @@
     "chartName": "DSS_PT_TOTAL_ACTIVE_ULBS",
     "queries": [
       {
-        "module": "TL",
+        "module": "PT",
         "requestQueryMap": "{\"wardId\" : \"Data.ward.name.keyword\", \"tenantId\" : \"Data.tenantData.code\"}",
         "dateRefField": "Data.@timestamp",
         "indexName": "ptindex-v1",
@@ -1104,7 +1104,7 @@
     "chartName": "DSS_TOTAL_APPLICATIONS:_DEPARTMENT_WISE",
     "queries": [
       {
-        "module": "TL",
+        "module": "PT",
         "dateRefField": "Data.@timestamp",
         "requestQueryMap": "{\"wardId\" : \"Data.ward.name.keyword\", \r\n  \"district\" : \"Data.tenantData.city.districtCode\", \r\n\"tenantId\" : \"Data.tenantId\" \r\n}",
         "indexName": "tlindex-v1",
