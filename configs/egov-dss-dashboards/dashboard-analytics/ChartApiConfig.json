@@ -1636,7 +1636,7 @@
         "column": "Districts"
       }
     ],
-    "isPostResponseHandlerA": true,
+    "isPostResponseHandler": true,
     "chartType": "xtable",
     "valueType": "number",
     "drillChart": "licenceTaxHeadsBreakupBoundary",
