@@ -1048,10 +1048,6 @@
       ]
     },
     
-    
-    
-    
-    
     {
       "name": "DSS_HOME_DASHBOARD",
       "id": "home",
@@ -2041,10 +2037,85 @@
           
           ]
         },
+        {
+          "row": 3,
+          "name": "DSS_REVENUE",
+          "vizArray": [
+            {
+              "id": 231,
+              "name": "DSS_PT_KEY_FY_INDICATORS",
+              "dimensions": {
+                "height": 350,
+                "width": 12
+              },
+              "vizType": "chart",
+              "noUnit": false,
+              "isCollapsible": false,
+              "charts": [
+                {
+                  "id": "demandCollectionIndexDDRRevenue",
+                  "name": "DSS_PT_DEMAND_COLLECTION_BOUNDARY",
+                  "code": "",
+                  "chartType": "table",
+                  "filter": "",
+                  "headers": [],
+                  "tabName": "Boundary"
+                },
+                {
+                  "id": "demandCollectionIndexUsageRevenue",
+                  "name": "DSS_PT_DEMAND_COLLECTION_USAGETYPE",
+                  "code": "",
+                  "chartType": "table",
+                  "filter": "",
+                  "headers": [],
+                  "tabName": "Usage"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "row": 4,
+          "name": "DSS_REVENUE",
+          "vizArray": [
+            {
+              "id": 231,
+              "name": "DSS_PT_TAX_HEAD",
+              "dimensions": {
+                "height": 350,
+                "width": 12
+              },
+              "vizType": "chart",
+              "label": "",
+              "noUnit": false,
+              "isCollapsible": true,
+              "charts": [
+                {
+                  "id": "taxHeadsBreakupDDRRevenue",
+                  "name": "DSS_PT_TAX_HEAD_BREAKUP_REVENUE",
+                  "code": "",
+                  "chartType": "table",
+                  "filter": "",
+                  "headers": [],
+                  "tabName": "Boundary"
+                },
+                {
+                  "id": "taxHeadsBreakupUsage",
+                  "name": "DSS_PT_TAX_HEAD_BREAKUP_USAGE",
+                  "code": "",
+                  "chartType": "table",
+                  "filter": "",
+                  "headers": [],
+                  "tabName": "Usage"
+                }
+              ]
+            }
+          ]
+        },
         
      
         {
-          "row": 3,
+          "row": 5,
           "name": "DSS_SERVICE",
           "vizArray": [
             {
