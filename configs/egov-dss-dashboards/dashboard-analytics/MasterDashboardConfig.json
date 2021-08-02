@@ -2060,15 +2060,6 @@
                   "filter": "",
                   "headers": [],
                   "tabName": "Boundary"
-                },
-                {
-                  "id": "demandCollectionIndexUsageRevenue",
-                  "name": "DSS_PT_DEMAND_COLLECTION_USAGETYPE",
-                  "code": "",
-                  "chartType": "table",
-                  "filter": "",
-                  "headers": [],
-                  "tabName": "Usage"
                 }
               ]
             }
@@ -2098,15 +2089,6 @@
                   "filter": "",
                   "headers": [],
                   "tabName": "Boundary"
-                },
-                {
-                  "id": "taxHeadsBreakupUsage",
-                  "name": "DSS_PT_TAX_HEAD_BREAKUP_USAGE",
-                  "code": "",
-                  "chartType": "table",
-                  "filter": "",
-                  "headers": [],
-                  "tabName": "Usage"
                 }
               ]
             }
