@@ -2169,6 +2169,28 @@
                   "headers": []
                 }
               ]
+            },
+             {
+              "id": 423,
+              "name": "DSS_PT_COLLECTION_BY_CREATION_TYPE",
+              "dimensions": {
+                "height": 250,
+                "width": 4
+              },
+              "vizType": "chart",
+              "label": "",
+              "noUnit": false,
+              "isCollapsible": false,
+              "charts": [
+                {
+                  "id": "pttotalApplicationDeptWise",
+                  "name": "DSS_TOTAL_APPLICATIONS:_DEPARTMENT_WISE",
+                  "code": "",
+                  "chartType": "donut",
+                  "filter": "",
+                  "headers": []
+                }
+              ]
             }
           ]
         }
