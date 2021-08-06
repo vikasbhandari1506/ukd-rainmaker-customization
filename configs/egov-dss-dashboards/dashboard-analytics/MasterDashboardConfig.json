@@ -2060,6 +2060,15 @@
                   "filter": "",
                   "headers": [],
                   "tabName": "Boundary"
+                },
+                {
+                  "id": "demandCollectionIndexUsageRevenue",
+                  "name": "DSS_PT_DEMAND_COLLECTION_USAGETYPE",
+                  "code": "",
+                  "chartType": "table",
+                  "filter": "",
+                  "headers": [],
+                  "tabName": "Usage"
                 }
               ]
             }
