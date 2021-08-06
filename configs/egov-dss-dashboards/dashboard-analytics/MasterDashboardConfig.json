@@ -1154,6 +1154,36 @@
                   "headers": []
                 }
               ]
+            },
+             {
+              "id": 141,
+              "name": "DSS_PROPERTY_TAX",
+              "vizType": "module",
+             
+              "ref": {
+                "url": "propertytax",
+                "logoUrl": "",
+                "type": "internal"
+              },
+              "label": "",
+              "charts": [
+                {
+                  "id": "ptTotalCollection",
+                  "name": "DSS_TOTAL_COLLECTION",
+                  "code": "",
+                  "chartType": "metric",
+                  "filter": "",
+                  "headers": []
+                },
+                {
+                  "id": "ptTotalApplication",
+                  "name": "DSS_TOTAL_APPLICATION",
+                  "code": "",
+                  "chartType": "metric",
+                  "filter": "",
+                  "headers": []
+                }
+              ]
             }
           ]
         }
