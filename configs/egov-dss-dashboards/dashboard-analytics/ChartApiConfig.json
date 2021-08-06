@@ -925,7 +925,7 @@
    "_comment": "PT COLLECTION CHARTS (Tax heads)",
 
   "_comment": "PT COLLECTION CHARTS (Demands) ",
-  "demandCollectionIndexDDRRevenue": {
+   "demandCollectionIndexDDRRevenue": {
     "chartName": "DSS_PT_KEY_FY_INDICATORS",
     "queries": [
       {
@@ -994,15 +994,12 @@
       }
     ],
     "filterKeys": [
-      {"key": "tenantId", "column": "Boundary"}
+      {"key": "tenantId", "column": "DDRs"}
     ],
-    "postAggregationTheory" : "repsonseToDifferenceOfDates",    "chartType": "table",
+    "postAggregationTheory" : "repsonseToDifferenceOfDates",    "chartType": "xtable",
     "valueType": "number",
-    "drillChart": "boundaryDrillDown",
-    "drillFields": [
-      "Ward",
-      ""
-    ],
+    "drillChart": "none",
+  
     "documentType": "_doc",
     "action": "",
     "plotLabel": "Boundary",
@@ -1010,6 +1007,7 @@
       "Total Collection",
       "Transactions",
       "Target Collection"
+      
     ],
     "pathDataTypeMapping": [
       {
@@ -1021,6 +1019,7 @@
       {
         "Target Collection": "amount"
       }
+     
     ],
     "insight": {
     },
