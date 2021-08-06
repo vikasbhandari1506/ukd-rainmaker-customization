@@ -925,7 +925,7 @@
    "_comment": "PT COLLECTION CHARTS (Tax heads)",
 
   "_comment": "PT COLLECTION CHARTS (Demands) ",
- "demandCollectionIndexDDRRevenue": {
+  "demandCollectionIndexDDRRevenue": {
     "chartName": "DSS_PT_KEY_FY_INDICATORS",
     "queries": [
       {
@@ -933,7 +933,7 @@
         "requestQueryMap": "{\"wardId\" : \"domainObject.ward.name.keyword\", \"tenantId\" : \"dataObject.tenantId\", \"district\" : \"dataObject.tenantData.cityDistrictCode\"}",
         "dateRefField": "dataObject.paymentDetails.receiptDate",
         "indexName": "dss-collection_v2",
-        "aggrQuery": "{\"aggs\":{\"AGGR\":{\"filter\":{\"bool\":{\"must_not\":[{\"term\":{\"dataObject.tenantId.keyword\":\"uk.testing\"}},{\"terms\":{\"dataObject.paymentDetails.bill.status.keyword\":[\"Cancelled\"]}}],\"must\":[{\"term\":{\"dataObject.paymentDetails.businessService.keyword\":\"PT\"}}]}},\"aggs\":{\"Total Collection\":{\"sum\":{\"field\":\"dataObject.paymentDetails.totalAmountPaid\"}},\"Transactions\":{\"value_count\":{\"field\":\"dataObject.transactionNumber.keyword\"}}}}}}"
+        "aggrQuery": "{\"aggs\":{\"AGGR\":{\"filter\":{\"bool\":{\"must_not\":[{\"term\":{\"dataObject.tenantId.keyword\":\"uk.testing\"}},{\"terms\":{\"dataObject.paymentDetails.bill.status.keyword\":[\"Cancelled\"]}}],\"must\":[{\"term\":{\"dataObject.paymentDetails.businessService.keyword\":[\"PT\"]}}]}},\"aggs\":{\"Total Collection\":{\"sum\":{\"field\":\"dataObject.paymentDetails.totalAmountPaid\"}},\"Transactions\":{\"value_count\":{\"field\":\"dataObject.transactionNumber.keyword\"}}}}}}"
       },
       {
         "module": "COMMON",
@@ -1009,7 +1009,6 @@
     "aggregationPaths": [
       "Total Collection",
       "Transactions",
-    
       "Target Collection"
     ],
     "pathDataTypeMapping": [
@@ -1036,7 +1035,7 @@
         "requestQueryMap": "{\"wardId\" : \"domainObject.ward.name.keyword\", \"tenantId\" : \"dataObject.tenantId\", \"district\" : \"dataObject.tenantData.cityDistrictCode\"}",
         "dateRefField": "dataObject.paymentDetails.receiptDate",
         "indexName": "dss-collection_v2",
-        "aggrQuery": "{\"aggs\":{\"AGGR\":{\"filter\":{\"bool\":{\"must_not\":[{\"term\":{\"dataObject.tenantId.keyword\":\"uk.testing\"}},{\"terms\":{\"paymentDetails.bill.status.keyword\":[\"Cancelled\"]}}],\"must\":[{\"term\":{\"dataObject.paymentDetails.businessService.keyword\":\"PT\"}}]}},\"aggs\":{\"Ward \":{\"terms\":{\"field\":\"domainObject.ward.name.keyword\",\"size\":200},\"aggs\":{\"Total Collection\":{\"sum\":{\"field\":\"dataObject.paymentDetails.totalAmountPaid\"}},\"Transactions\":{\"value_count\":{\"field\":\"dataObject.transactionNumber.keyword\"}}}}}}}}"
+        "aggrQuery": "{\"aggs\":{\"AGGR\":{\"filter\":{\"bool\":{\"must_not\":[{\"term\":{\"dataObject.tenantId.keyword\":\"uk.testing\"}},{\"terms\":{\"paymentDetails.bill.status.keyword\":[\"Cancelled\"]}}],\"must\":[{\"term\":{\"dataObject.paymentDetails.businessService.keyword\":[\"PT\"]}}]}},\"aggs\":{\"Ward \":{\"terms\":{\"field\":\"domainObject.ward.name.keyword\",\"size\":200},\"aggs\":{\"Total Collection\":{\"sum\":{\"field\":\"dataObject.paymentDetails.totalAmountPaid\"}},\"Transactions\":{\"value_count\":{\"field\":\"dataObject.transactionNumber.keyword\"}}}}}}}}"
       }
     ],
     "chartType": "table",
@@ -1066,7 +1065,6 @@
     },
     "_comment": ""
   },
-
 
   "_comment": " PT Nested Array related new queries",
   "taxHeadsBreakupDDRRevenue": {
