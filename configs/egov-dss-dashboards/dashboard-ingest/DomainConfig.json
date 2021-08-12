@@ -2,6 +2,25 @@
   "domainConfig": [
     {
       "id": "1",
+      "businessType": "PT",
+      "indexName": "property-services",
+      "documentType": "",
+      "query": "{\"query\":{\"bool\":{\"must\":[{\"match_phrase\":{\"Data.acknowldgementNumber\":\"value\"}},{\"match_phrase\":{\"Data.propertyId\":\"value\"}}]}}}",
+      "references": [
+        {
+          "fieldName": "consumerCode",
+          "argument": "Data.propertyId",
+          "dataType": "String"
+        },
+        {
+          "fieldName": "consumerCode",
+          "argument": "Data.acknowldgementNumber",
+          "dataType": "String"
+        }
+      ]
+    },
+    {
+      "id": "2",
       "domain": "TL",
       "indexName": "tlindex-v1",
       "documentType": "",
