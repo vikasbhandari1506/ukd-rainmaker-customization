@@ -616,7 +616,7 @@
                 bill.id = pd.billid INNER JOIN egcl_payment pymt ON pd.paymentid = pymt.id 
                 WHERE (pd.receiptdate/1000)  <= (extract (epoch FROM NOW()))
                 AND tl.tenantid != 'uk.testing' AND tl.status = 'APPROVED' 
-                AND pymt.paymentstatus != 'Cancelled' AND bill.status != 'CANCELLED') / 100000, 2), 'FM99,FM99,99,999D00')) as revenuecollected,
+                AND pymt.paymentstatus != 'Cancelled' AND bill.status != 'CANCELLED') / 10000000, 2), 'FM99,FM99,99,9990D00')) as revenuecollected,
                 (SELECT to_char(count(pymt.*), 'FM99,FM99,99,999') FROM eg_tl_tradelicense tl 
                 INNER JOIN eg_tl_tradelicensedetail tld ON tld.tradelicenseid = tl.id 
                 INNER JOIN 
@@ -663,7 +663,7 @@
                 tl.applicationnumber = bill.consumercode INNER JOIN egcl_paymentdetail pd ON 
                 bill.id = pd.billid INNER JOIN egcl_payment pymt ON pd.paymentid = pymt.id 
                 WHERE (pd.receiptdate/1000) <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800)  AND tl.tenantid != 'uk.testing' and tl.status = 'APPROVED' 
-                AND pymt.paymentstatus != 'Cancelled' AND bill.status != 'CANCELLED') / 100000, 2), 'FM99,FM99,99,999D00')) as revenuecollected,
+                AND pymt.paymentstatus != 'Cancelled' AND bill.status != 'CANCELLED') / 10000000, 2), 'FM99,FM99,99,9990D00')) as revenuecollected,
                 (SELECT to_char(count(pymt.*), 'FM99,FM99,99,999') FROM eg_tl_tradelicense tl 
                 INNER JOIN eg_tl_tradelicensedetail tld ON tld.tradelicenseid = tl.id 
                 INNER JOIN 
@@ -715,7 +715,7 @@
                 WHERE (pd.receiptdate/1000)  <= 
                 ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 2) 
                 AND tl.tenantid != 'uk.testing' AND tl.status = 'APPROVED' 
-                AND pymt.paymentstatus != 'Cancelled' AND bill.status != 'CANCELLED') / 100000, 2), 'FM99,FM99,99,999D00')) as revenuecollected,
+                AND pymt.paymentstatus != 'Cancelled' AND bill.status != 'CANCELLED') / 10000000, 2), 'FM99,FM99,99,9990D00')) as revenuecollected,
                 (SELECT to_char(count(pymt.*), 'FM99,FM99,99,999') FROM eg_tl_tradelicense tl 
                 INNER JOIN eg_tl_tradelicensedetail tld ON tld.tradelicenseid = tl.id 
                 INNER JOIN 
@@ -770,7 +770,7 @@
                 WHERE (pd.receiptdate/1000)  <= 
                 ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 3) 
                 AND tl.tenantid != 'uk.testing' AND tl.status = 'APPROVED' 
-                AND pymt.paymentstatus != 'Cancelled' AND bill.status != 'CANCELLED') / 100000, 2), 'FM99,FM99,99,999D00')) as revenuecollected,
+                AND pymt.paymentstatus != 'Cancelled' AND bill.status != 'CANCELLED') / 10000000, 2), 'FM99,FM99,99,9990D00')) as revenuecollected,
                 (SELECT to_char(count(pymt.*), 'FM99,FM99,99,999') FROM eg_tl_tradelicense tl 
                 INNER JOIN eg_tl_tradelicensedetail tld ON tld.tradelicenseid = tl.id 
                 INNER JOIN 
@@ -825,7 +825,7 @@
                 WHERE (pd.receiptdate/1000)  <= 
                 ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 4) 
                 AND tl.tenantid != 'uk.testing' AND tl.status = 'APPROVED' 
-                AND pymt.paymentstatus != 'Cancelled' AND bill.status != 'CANCELLED') / 100000, 2), 'FM99,FM99,99,999D00')) as revenuecollected,
+                AND pymt.paymentstatus != 'Cancelled' AND bill.status != 'CANCELLED') / 10000000, 2), 'FM99,FM99,99,9990D00')) as revenuecollected,
                 (SELECT to_char(count(pymt.*), 'FM99,FM99,99,999') FROM eg_tl_tradelicense tl 
                 INNER JOIN eg_tl_tradelicensedetail tld ON tld.tradelicenseid = tl.id 
                 INNER JOIN 
@@ -879,7 +879,7 @@
                 WHERE (pd.receiptdate/1000)  <= 
                 ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 5) 
                 AND tl.tenantid != 'uk.testing' AND tl.status = 'APPROVED' 
-                AND pymt.paymentstatus != 'Cancelled' AND bill.status != 'CANCELLED') / 100000, 2), 'FM99,FM99,99,999D00')) as revenuecollected,
+                AND pymt.paymentstatus != 'Cancelled' AND bill.status != 'CANCELLED') / 10000000, 2), 'FM99,FM99,99,9990D00')) as revenuecollected,
                 (SELECT to_char(count(pymt.*), 'FM99,FM99,99,999') FROM eg_tl_tradelicense tl 
                 INNER JOIN eg_tl_tradelicensedetail tld ON tld.tradelicenseid = tl.id 
                 INNER JOIN 
