@@ -374,8 +374,6 @@
     },
     "_comment": " "
   },
-  
-  
   "overviewtodaysCollection": {
     "chartName": "DSS_TOTAL_COLLECTION",
     "queries": [
@@ -799,10 +797,10 @@
     "queries": [
       {
         "module": "PT",
-        "indexName": "ptindex-v1",
-        "aggrQuery": "{\"aggs\":{\"AGGR\":{\"filter\":{\"bool\":{\"must_not\":[{\"term\":{\"Data.tradelicense.tenantId.keyword\":\"uk.testing\"}}]}},\"aggs\":{\"Total Application\":{\"value_count\":{\"field\":\"Data.tradelicense.applicationNumber.keyword\"}}}}}}",
-        "requestQueryMap": "{\"wardId\" : \"Data.ward.name.keyword\", \r\n  \"district\" : \"Data.tenantData.city.districtCode\", \r\n\"tenantId\" : \"Data.propertytax.tenantId.keyword\" \r\n}",
-        "dateRefField": "Data.propertyDetails.createdDate"
+        "indexName": "property-services",
+        "aggrQuery": "{\"aggs\":{\"AGGR\":{\"filter\":{\"bool\":{\"must_not\":[{\"term\":{\"Data.code.keyword\":\"uk.testing\"}}]}},\"aggs\":{\"Total Application\":{\"value_count\":{\"field\":\"Data.acknowldgementNumber.keyword\"}}}}}}",
+        "requestQueryMap": "{\"wardId\" : \"Data.ward.name.keyword\", \r\n  \"district\" : \"Data.tenantData.city.districtCode\", \r\n\"tenantId\" : \"Data.code.keyword\" \r\n}",
+        "dateRefField": "Data.@timestamp"
       }
     ],
     "chartType": "metric",
