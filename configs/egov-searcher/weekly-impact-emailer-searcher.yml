@@ -422,7 +422,7 @@
                 (select to_char(TRUNC(COALESCE(SUM(p.totalamountpaid),0) / 100000, 2), 'FM99,FM99,99,999D00')    
                 FROM egcl_payment p, egcl_paymentdetail pd 
                 WHERE p.id=pd.paymentid  and pd.businessservice ='PT' and p.paymentmode = 'ONLINE' and p.createdby in (select id::text  from eg_user where username in ('BBPS_ADMIN')) 
-                and (p.lastmodifiedtime/1000) between ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800) and (extract (epoch FROM NOW()))) as bbpscollection 
+                and (p.lastmodifiedtime/1000)  <=  (extract (epoch FROM NOW()))) as bbpscollection 
                 FROM eg_pt_property pt INNER JOIN egcl_bill bill ON 
                 pt.propertyid = bill.consumercode INNER JOIN egcl_paymentdetail pd ON 
                 bill.id = pd.billid INNER JOIN egcl_payment pymt ON pd.paymentid = pymt.id 
@@ -456,7 +456,7 @@
                 (select to_char(TRUNC(COALESCE(SUM(p.totalamountpaid),0) / 100000, 2), 'FM99,FM99,99,999D00') 
                 FROM egcl_payment p, egcl_paymentdetail pd 
                 WHERE p.id=pd.paymentid  and pd.businessservice ='PT' and p.paymentmode = 'ONLINE' and p.createdby in (select id::text  from eg_user where username in ('BBPS_ADMIN')) 
-                and (p.lastmodifiedtime/1000) between ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 2) and ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800)) as bbpscollection 
+                and (p.lastmodifiedtime/1000)  <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800)) as bbpscollection 
                 FROM eg_pt_property pt INNER JOIN egcl_bill bill ON 
                 pt.propertyid = bill.consumercode INNER JOIN egcl_paymentdetail pd ON 
                 bill.id = pd.billid INNER JOIN egcl_payment pymt ON pd.paymentid = pymt.id 
@@ -490,7 +490,7 @@
                 (select to_char(TRUNC(COALESCE(SUM(p.totalamountpaid),0) / 100000, 2), 'FM99,FM99,99,999D00')  
                 FROM egcl_payment p, egcl_paymentdetail pd 
                 WHERE p.id=pd.paymentid  and pd.businessservice ='PT' and p.paymentmode = 'ONLINE' and p.createdby in (select id::text  from eg_user where username in ('BBPS_ADMIN')) 
-                and (p.lastmodifiedtime/1000) between ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 3) and ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 2) ) as bbpscollection 
+                and (p.lastmodifiedtime/1000)  <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 2 ) ) as bbpscollection 
                 FROM eg_pt_property pt INNER JOIN egcl_bill bill ON 
                 pt.propertyid = bill.consumercode INNER JOIN egcl_paymentdetail pd ON 
                 bill.id = pd.billid INNER JOIN egcl_payment pymt ON pd.paymentid = pymt.id 
@@ -524,7 +524,7 @@
                 (select to_char(TRUNC(COALESCE(SUM(p.totalamountpaid),0) / 100000, 2), 'FM99,FM99,99,999D00') 
                 FROM egcl_payment p, egcl_paymentdetail pd 
                 WHERE p.id=pd.paymentid  and pd.businessservice ='PT' and p.paymentmode = 'ONLINE' and p.createdby in (select id::text  from eg_user where username in ('BBPS_ADMIN')) 
-                and (p.lastmodifiedtime/1000) between ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 4) and ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 3) ) as bbpscollection 
+                and (p.lastmodifiedtime/1000)  <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 3) ) as bbpscollection 
                 FROM eg_pt_property pt INNER JOIN egcl_bill bill ON 
                 pt.propertyid = bill.consumercode INNER JOIN egcl_paymentdetail pd ON 
                 bill.id = pd.billid INNER JOIN egcl_payment pymt ON pd.paymentid = pymt.id 
@@ -558,7 +558,7 @@
                 (select to_char(TRUNC(COALESCE(SUM(p.totalamountpaid),0) / 100000, 2), 'FM99,FM99,99,999D00')  
                 FROM egcl_payment p, egcl_paymentdetail pd 
                 WHERE p.id=pd.paymentid  and pd.businessservice ='PT' and p.paymentmode = 'ONLINE' and p.createdby in (select id::text  from eg_user where username in ('BBPS_ADMIN')) 
-                and (p.lastmodifiedtime/1000) between ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 5) and ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 4) ) as bbpscollection 
+                and (p.lastmodifiedtime/1000)  <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 4) ) as bbpscollection 
                 FROM eg_pt_property pt INNER JOIN egcl_bill bill ON 
                 pt.propertyid = bill.consumercode INNER JOIN egcl_paymentdetail pd ON 
                 bill.id = pd.billid INNER JOIN egcl_payment pymt ON pd.paymentid = pymt.id 
@@ -592,7 +592,7 @@
                 (select to_char(TRUNC(COALESCE(SUM(p.totalamountpaid),0) / 100000, 2), 'FM99,FM99,99,999D00') 
                 FROM egcl_payment p, egcl_paymentdetail pd 
                 WHERE p.id=pd.paymentid  and pd.businessservice ='PT' and p.paymentmode = 'ONLINE' and p.createdby in (select id::text  from eg_user where username in ('BBPS_ADMIN')) 
-                and (p.lastmodifiedtime/1000) between ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 6) and ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 5) ) as bbpscollection 
+                and (p.lastmodifiedtime/1000)  <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 5) ) as bbpscollection 
                 FROM eg_pt_property pt INNER JOIN egcl_bill bill ON 
                 pt.propertyid = bill.consumercode INNER JOIN egcl_paymentdetail pd ON 
                 bill.id = pd.billid INNER JOIN egcl_payment pymt ON pd.paymentid = pymt.id 
