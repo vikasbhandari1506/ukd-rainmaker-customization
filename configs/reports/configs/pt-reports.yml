@@ -1255,6 +1255,18 @@ ReportDefinitions:
     source: pt
     total: true   
   searchParams:
+  - name: fromDate
+    label: reports.pt.fromDate
+    type: epoch
+    source: pt
+    isMandatory: false
+    searchClause: AND dcb.createddate >= $fromDate
+  - name: toDate
+    label: reports.pt.toDate
+    type: epoch
+    source: pt
+    isMandatory: false
+    searchClause: AND dcb.createddate <= $toDate  
   - name: ulb
     label: ULB
     type: singlevaluelist
