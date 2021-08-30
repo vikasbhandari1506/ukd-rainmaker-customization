@@ -2239,6 +2239,34 @@
               ]
             }
           ]
+        },
+             {
+          "row": 8,
+          "name": "DSS_REVENUE",
+          "vizArray": [
+            {
+              "id": 231,
+              "name": "DSS_PT_TABLE_COLLECTION",
+              "dimensions": {
+                "height": 350,
+                "width": 12
+              },
+              "vizType": "chart",
+              "noUnit": false,
+              "isCollapsible": false,
+              "charts": [
+                {
+                  "id": "ptUsageCategoryTable",
+                  "name": "DSS_PT_TABLE_USAGE",
+                  "code": "",
+                  "chartType": "table",
+                  "filter": "",
+                  "headers": [],
+                  "tabName": "Boundary"
+                }
+              ]
+            }
+          ]
         }
       
       
