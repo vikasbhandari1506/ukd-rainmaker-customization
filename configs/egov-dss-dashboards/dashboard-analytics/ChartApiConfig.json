@@ -292,7 +292,7 @@
     "_comment": " Top Performing Ulbs for target achieved"
   },
    "ptUsageCategoryTable": {
-    "chartName": "DSS_PT_TABLE_USAGE",
+    "chartName": "DSS_PT_TOP_3_PERFORMING_ULBS",
     "queries": [
       {
         "module": "PT",
@@ -324,13 +324,26 @@
       }
     ],
     "chartType": "xtable",
+    "postAggregationTheory": "repsonseToDifferenceOfDates",
      "valueType": "number",
     "drillChart": "none",
     "documentType": "_doc",
     "action": "",
-    "plotLabel": "DSS_TARGET_ACHIEVED",
+    "plotLabel": "ULBs",
     "order": "desc",
     "filterKeys": [],
+     "pathDataTypeMapping": [
+      {
+        "Residential": "number"
+      },
+      {
+        "Non-Residential": "number"
+      },
+  
+      {
+        "Mixed": "number"
+      }
+    ],
     "aggregationPaths": [
       "Residential",
       "Non-Residential",
