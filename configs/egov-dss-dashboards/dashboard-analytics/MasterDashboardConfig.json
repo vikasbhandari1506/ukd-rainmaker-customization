@@ -1928,10 +1928,7 @@
         }
       ]
     },
-    
-    
-    
-    
+
      {
       "name": "DSS_PROPERTY_TAX_DASHBOARD",
       "id": "propertyTax",
@@ -2210,6 +2207,34 @@
                   "chartType": "donut",
                   "filter": "",
                   "headers": []
+                }
+              ]
+            }
+          ]
+        },
+                {
+          "row": 7,
+          "name": "DSS_REVENUE",
+          "vizArray": [
+            {
+              "id": 231,
+              "name": "DSS_PT_TABLE_COLLECTION",
+              "dimensions": {
+                "height": 350,
+                "width": 12
+              },
+              "vizType": "chart",
+              "noUnit": false,
+              "isCollapsible": false,
+              "charts": [
+                {
+                  "id": "ptTopPerformingUlbsTable",
+                  "name": "DSS_PT_TABLE",
+                  "code": "",
+                  "chartType": "table",
+                  "filter": "",
+                  "headers": [],
+                  "tabName": "Boundary"
                 }
               ]
             }
