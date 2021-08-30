@@ -291,6 +291,55 @@
     "insight": {},
     "_comment": " Top Performing Ulbs for target achieved"
   },
+   "ptUsageCategoryTable": {
+    "chartName": "DSS_PT_TABLE_USAGE",
+    "queries": [
+      {
+        "module": "PT",
+        "requestQueryMap": "{\r\n  \"module\" : \"businessService.keyword\", \n\"tenantId\" : \"tenantIdForMunicipalCorporation\"}",
+        "dateRefField": "",
+        "indexName": "dss-target_v1",
+        "aggrQuery": "{\"aggs\":{\"Target Collection\":{\"terms\":{\"field\":\"tenantIdForMunicipalCorporation.keyword\",\"size\":\"200\",\"order\":{\"Sum\":\"desc\"}},\"aggs\":{\"Sum\":{\"sum\":{\"field\":\"budgetProposedForMunicipalCorporation\"}}}}}}"
+      },
+      {
+        "module": "PT",
+        "requestQueryMap": "{\"wardId\" : \"Data.ward.name.keyword\", \r\n\"tenantId\" : \"Data.code.keyword\" \r\n  \"district\" : \"Data.tenantData.city.districtCode\" \r\n}",
+        "dateRefField": "Data.@timestamp",
+        "indexName": "property-services",
+        "aggrQuery": "{\"aggs\":{\"AGGR\":{\"filter\":{\"bool\":{\"must_not\":[{\"term\":{\"Data.code.keyword\":\"uk.testing\"}}],\"must\":[{\"terms\":{\"Data.usageCategory.keyword\":[\"Residential\"]}}]}},\"aggs\":{\"Residential\":{\"terms\":{\"field\":\"dataObject.tenantId.keyword\"},\"aggs\":{\"value_count\":{\"field\":\"Data.acknowldgementNumber.keyword\"}}}}}}}"
+      },
+        {
+        "module": "PT",
+        "requestQueryMap": "{\"wardId\" : \"Data.ward.name.keyword\", \r\n\"tenantId\" : \"Data.code.keyword\" \r\n  \"district\" : \"Data.tenantData.city.districtCode\" \r\n}",
+        "dateRefField": "Data.@timestamp",
+        "indexName": "property-services",
+        "aggrQuery": "{\"aggs\":{\"AGGR\":{\"filter\":{\"bool\":{\"must_not\":[{\"term\":{\"Data.code.keyword\":\"uk.testing\"}}],\"must\":[{\"terms\":{\"Data.usageCategory.keyword\":[\"Non-Residential\"]}}]}},\"aggs\":{\"Non-Residential\":{\"terms\":{\"field\":\"dataObject.tenantId.keyword\"},\"aggs\":{\"value_count\":{\"field\":\"Data.acknowldgementNumber.keyword\"}}}}}}}"
+      },
+      {
+        "module": "PT",
+        "requestQueryMap": "{\"wardId\" : \"Data.ward.name.keyword\", \r\n\"tenantId\" : \"Data.code.keyword\" \r\n  \"district\" : \"Data.tenantData.city.districtCode\" \r\n}",
+        "dateRefField": "Data.@timestamp",
+        "indexName": "property-services",
+        "aggrQuery": "{\"aggs\":{\"AGGR\":{\"filter\":{\"bool\":{\"must_not\":[{\"term\":{\"Data.code.keyword\":\"uk.testing\"}}],\"must\":[{\"terms\":{\"Data.usageCategory.keyword\":[\"Mixed\"]}}]}},\"aggs\":{\"Mixed\":{\"terms\":{\"field\":\"dataObject.tenantId.keyword\"},\"aggs\":{\"value_count\":{\"field\":\"Data.acknowldgementNumber.keyword\"}}}}}}}"
+      }
+    ],
+    "chartType": "xtable",
+     "valueType": "number",
+    "drillChart": "none",
+    "documentType": "_doc",
+    "action": "",
+    "plotLabel": "DSS_TARGET_ACHIEVED",
+    "order": "desc",
+    "filterKeys": [],
+    "aggregationPaths": [
+      "Residential",
+      "Non-Residential",
+      "Mixed",
+      "Target Collection"
+    ],
+    "insight": {},
+    "_comment": " Top Performing Ulbs for target achieved"
+  },
   "mcTargetAchieved": {
     "chartName": "DSS_TARGET_ACHIEVED",
     "queries": [
