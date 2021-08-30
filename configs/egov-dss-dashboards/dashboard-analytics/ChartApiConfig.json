@@ -1534,7 +1534,7 @@
         "dateRefField": "Data.@timestamp",
         "requestQueryMap": "{\"wardId\" : \"Data.ward.name.keyword\", \r\n  \"district\" : \"Data.tenantData.city.districtCode\", \r\n\"tenantId\" : \"Data.code.keyword\" \r\n}",
         "indexName": "property_services",
-        "aggrQuery": "{\"aggs\":{\"AGGR\":{\"filter\":{\"bool\":{\"must_not\":[{\"term\":{\"data.tenantData.code.keyword\":\"uk.testing\"}}],\"must\":[{\"term\":{\"data.creationReason.keyword\":\"MUTATION\"}}]}},\"aggs\":{\"PT Mutation\":{\"value_count1\":{\"field\":\"Data.acknowldgementNumber.keyword\"}}}}}}"
+        "aggrQuery": "{\"aggs\":{\"AGGR\":{\"filter\":{\"bool\":{\"must_not\":[{\"term\":{\"Data.tenantData.code.keyword\":\"uk.testing\"}}],\"must\":[{\"term\":{\"data.creationReason.keyword\":\"MUTATION\"}}]}},\"aggs\":{\"PT Mutation\":{\"value_count\":{\"field\":\"Data.acknowldgementNumber.keyword\"}}}}}}"
       },
        
       {
