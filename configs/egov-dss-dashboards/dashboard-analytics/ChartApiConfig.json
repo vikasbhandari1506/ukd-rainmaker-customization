@@ -278,11 +278,11 @@
       }
     ],
     "chartType": "xtable",
-     "valueType": "number",
+     "valueType": "Amount",
     "drillChart": "none",
     "documentType": "_doc",
     "action": "",
-    "plotLabel": "DSS_TARGET_ACHIEVED",
+    "plotLabel": "ULBs",
     "filterKeys": [],
     "aggregationPaths": [
       "Total Collection9",
@@ -989,10 +989,10 @@
     "queries": [
       {
         "module": "PT",
-        "requestQueryMap": "{\"wardId\" : \"Data.ward.name.keyword\", \"tenantId\" : \"Data.tenantData.code\"}",
+        "requestQueryMap": "{\"wardId\" : \"Data.ward.name.keyword\", \"tenantId\" : \"Data.code.keyword\"}",
         "dateRefField": "Data.@timestamp",
         "indexName": "property_services",
-        "aggrQuery": "{\"aggs\":{\"AGGR\":{\"filter\":{\"bool\":{\"must_not\":[{\"term\":{\"Data.tenantData.code.keyword\":\"uk.testing\"}}]}},\"aggs\":{\"Active ULBs\":{\"cardinality\":{\"field\":\"Data.tenantData.code.keyword\"}}}}}}"
+        "aggrQuery": "{\"aggs\":{\"AGGR\":{\"filter\":{\"bool\":{\"must_not\":[{\"term\":{\"Data.code.keyword\":\"uk.testing\"}}]}},\"aggs\":{\"Active ULBs\":{\"cardinality\":{\"field\":\"Data.code.keyword\"}}}}}}"
       }
     ],
     "chartType": "metric",
@@ -1625,10 +1625,11 @@
     "queries": [
       {
         "module": "PT",
-        "requestQueryMap": "{\"wardId\" : \"Data.ward.name.keyword\", \r\n\"tenantId\" : \"Data.code.keyword\" \r\n  \"district\" : \"Data.tenantData.city.districtCode\" \r\n}",
+       
         "dateRefField": "Data.@timestamp",
         "indexName": "property-services",
-        "aggrQuery": "{\"aggs\":{\"AGGR\":{\"filter\":{\"bool\":{\"must_not\":[{\"term\":{\"Data.code.keyword\":\"uk.testing\"}}]}},\"aggs\":{\"Creation Reason\":{\"terms\":{\"field\":\"data.creationReason.keyword\"},\"aggs\":{\"total\":{\"value_count\":{\"field\":\"Data.acknowldgementNumber.keyword\"}}}}}}}}"
+        "aggrQuery": "{\"aggs\":{\"AGGR\":{\"filter\":{\"bool\":{\"must_not\":[{\"term\":{\"Data.code.keyword\":\"uk.testing\"}}]}},\"aggs\":{\"Creation Reason\":{\"terms\":{\"field\":\"data.creationReason.keyword\"},\"aggs\":{\"total\":{\"value_count\":{\"field\":\"Data.acknowldgementNumber.keyword\"}}}}}}}}",
+         "requestQueryMap": "{\"wardId\" : \"Data.ward.name.keyword\", \r\n\"tenantId\" : \"Data.code.keyword\" \r\n  \"district\" : \"Data.tenantData.city.districtCode\" \r\n}"
       }
     ],
     "chartType": "pie",
@@ -1642,6 +1643,7 @@
     "insight": {},
     "_comment": " "
   },
+  
   "totalApplication&ClosedApplication": {
     "chartName": "DSS_TOTAL_APPLICATION_&_CLOSED_APPLICATION",
     "queries": [
