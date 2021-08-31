@@ -1623,33 +1623,24 @@
    "pttotalApplicationDeptWise": {
     "chartName": "DSS_PT_COLLECTION_BY_CREATION_TYPE",
     "queries": [
-     {
-        "module": "PT",
-        "dateRefField": "Data.@timestamp",
-        "requestQueryMap": "{\"wardId\" : \"Data.ward.name.keyword\", \r\n  \"district\" : \"Data.tenantData.city.districtCode\", \r\n\"tenantId\" : \"Data.code.keyword\" \r\n}",
-        "indexName": "property_services",
-        "aggrQuery": "{\"aggs\":{\"AGGR\":{\"filter\":{\"bool\":{\"must_not\":[{\"term\":{\"Data.tenantData.code.keyword\":\"uk.testing\"}}],\"must\":[{\"term\":{\"data.creationReason.keyword\":\"MUTATION\"}}]}},\"aggs\":{\"PT Mutation\":{\"value_count\":{\"field\":\"Data.acknowldgementNumber.keyword\"}}}}}}"
-      },
-      
       {
         "module": "PT",
+        "requestQueryMap": "{\"wardId\" : \"Data.ward.name.keyword\", \r\n\"tenantId\" : \"Data.code.keyword\" \r\n  \"district\" : \"Data.tenantData.city.districtCode\" \r\n}",
         "dateRefField": "Data.@timestamp",
-        "requestQueryMap": "{\"wardId\" : \"Data.ward.name.keyword\", \r\n  \"district\" : \"Data.tenantData.city.districtCode\", \r\n\"tenantId\" : \"Data.code.keyword\" \r\n}",
-        "indexName": "property_services",
-        "aggrQuery": "{\"aggs\":{\"AGGR\":{\"filter\":{\"bool\":{\"must_not\":[{\"term\":{\"Data.tenantData.code.keyword\":\"uk.testing\"}}],\"must\":[{\"term\":{\"data.creationReason.keyword\":\"CREATE\"}}]}},\"aggs\":{\"Property Tax\":{\"value_count\":{\"field\":\"Data.acknowldgementNumber.keyword\"}}}}}}"
+        "indexName": "property-services",
+        "aggrQuery": "{\"aggs\":{\"AGGR\":{\"filter\":{\"bool\":{\"must_not\":[{\"term\":{\"Data.code.keyword\":\"uk.testing\"}}]}},\"aggs\":{\"Creation Reason\":{\"terms\":{\"field\":\"data.creationReason.keyword\"},\"aggs\":{\"total\":{\"value_count\":{\"field\":\"Data.acknowldgementNumber.keyword\"}}}}}}}}"
       }
     ],
     "chartType": "pie",
     "valueType": "number",
-    "action": "",
-    "documentType": "_doc",
     "drillChart": "none",
+    "documentType": "_doc",
+    "action": "",
     "aggregationPaths": [
-      "PT Mutation",
-      "Property Tax"
+      "Creation Reason"
     ],
     "insight": {},
-    "_comment": " totalApplication is the chartId"
+    "_comment": " "
   },
   "totalApplication&ClosedApplication": {
     "chartName": "DSS_TOTAL_APPLICATION_&_CLOSED_APPLICATION",
