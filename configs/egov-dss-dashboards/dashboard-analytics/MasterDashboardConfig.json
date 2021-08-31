@@ -2064,6 +2064,7 @@
           
           ]
         },
+ 
         {
           "row": 5,
           "name": "DSS_SERVICE",
@@ -2120,9 +2121,10 @@
                 }
               ]
             },
-             {
+           
+              {
               "id": 424,
-              "name": "DSS_PT_COLLECTION_BY_CREATION_TYPE",
+              "name": "DSS_MC_COLLECTION_BY_PAYMENT_TYPE",
               "dimensions": {
                 "height": 250,
                 "width": 4
@@ -2134,7 +2136,7 @@
               "charts": [
                 {
                   "id": "pttotalApplicationDeptWise",
-                  "name": "DSS_TOTAL_APPLICATIONS:_DEPARTMENT_WISE",
+                  "name": "DSS_PT_COLLECTION_BY_CREATION_TYPE",
                   "code": "",
                   "chartType": "donut",
                   "filter": "",
