@@ -641,19 +641,19 @@
     "queries": [
       {
         "module": "COMMON",
-        "requestQueryMap": "{\"wardId\" : \"domainObject.ward.name.keyword\",\"module\" : \"dataObject.paymentDetails.businessService.keyword\", \"tenantId\" : \"dataObject.tenantId\", \"district\" : \"dataObject.tenantData.city.districtCode\"}",
-        "dateRefField": "dataObject.paymentDetails.receiptDate",
-        "indexName": "dss-collection_v2",
-        "aggrQuery": "{\"aggs\":{\"AGGR\":{\"filter\":{\"bool\":{\"must_not\":[{\"term\":{\"dataObject.tenantId.keyword\":\"uk.testing\"}},{\"terms\":{\"dataObject.paymentDetails.bill.status.keyword\":[\"Cancelled\"]}}],\"must\":[{\"terms\":{\"dataObject.paymentDetails.businessService.keyword\":[\"PT\"]}}]}},\"aggs\":{\"Business Service\":{\"terms\":{\"field\":\"dataObject.paymentDetails.businessService.keyword\"},\"aggs\":{\"total\":{\"sum\":{\"field\":\"dataObject.paymentDetails.totalAmountPaid\"}}}}}}}}"
+        "requestQueryMap": "{\"wardId\" : \"Data.ward.name.keyword\",\r\n\"tenantId\" : \"Data.code.keyword\" \r\n}",
+        "dateRefField": "Data.@timestamp",
+        "indexName": "ptindex-v1",
+        "aggrQuery": "{\"aggs\":{\"AGGR\":{\"filter\":{\"bool\":{\"must_not\":[{\"term\":{\"Data.tenantId.keyword\":\"uk.testing\"}}]}},\"aggs\":{\"Usage Category\":{\"terms\":{\"field\":\"Data.propertyDetails.usageCategoryMajor.keyword\"},\"aggs\":{\"total\":{\"value_count\":{\"field\":\"Data.propertyDetails.assessmentNumber.keyword\"}}}}}}}}"
       }
     ],
     "chartType": "pie",
-    "valueType": "Amount",
+    "valueType": "number",
     "drillChart": "none",
     "documentType": "_doc",
     "action": "",
     "aggregationPaths": [
-      "Business Service"
+      "Usage Category"
     ],
     "insight": {},
     "_comment": " "
@@ -983,7 +983,6 @@
     },
     "_comment": " totalApplication is the chartId"
   },
-  
   "ptActiveUlbs": {
     "chartName": "DSS_PT_TOTAL_ACTIVE_ULBS",
     "queries": [
