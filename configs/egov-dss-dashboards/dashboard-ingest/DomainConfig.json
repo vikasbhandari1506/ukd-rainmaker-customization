@@ -9,7 +9,7 @@
       "sourceReferences": [
         {
           "fieldName": "consumerCode",
-          "argument": "Data.propertyId",
+          "argument": "Bill.billDetails.consumerCode",
           "dataType": "String",
            "value": "$value",
           "seperator": " ",
