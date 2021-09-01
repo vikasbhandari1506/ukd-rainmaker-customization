@@ -2120,30 +2120,9 @@
                   "headers": []
                 }
               ]
-            },
-           
-              {
-              "id": 424,
-              "name": "DSS_MC_COLLECTION_BY_PAYMENT_TYPE",
-              "dimensions": {
-                "height": 250,
-                "width": 4
-              },
-              "vizType": "chart",
-              "label": "",
-              "noUnit": false,
-              "isCollapsible": false,
-              "charts": [
-                {
-                  "id": "pttotalApplicationDeptWise",
-                  "name": "DSS_PT_COLLECTION_BY_CREATION_TYPE",
-                  "code": "",
-                  "chartType": "donut",
-                  "filter": "",
-                  "headers": []
-                }
-              ]
             }
+           
+             
           ]
         },
         {
