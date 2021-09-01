@@ -6,16 +6,24 @@
       "indexName": "property-services",
       "documentType": "",
       "query": "{\"query\":{\"bool\":{\"must\":[{\"match_phrase\":{\"Data.acknowldgementNumber\":\"value\"}},{\"match_phrase\":{\"Data.propertyId\":\"value\"}}]}}}",
-      "references": [
+      "sourceReferences": [
         {
           "fieldName": "consumerCode",
           "argument": "Data.propertyId",
-          "dataType": "String"
-        },
+          "dataType": "String",
+           "value": "$value",
+          "seperator": " ",
+          "expression": "propertyId"
+        }
+      ],
+         "targetReferences": [
         {
-          "fieldName": "consumerCode",
-          "argument": "Data.acknowldgementNumber",
-          "dataType": "String"
+          "fieldName": "propertyId",
+          "argument": "Data.propertyId",
+          "dataType": "String",
+           "value": "$value",
+          "seperator": " ",
+          "expression": "propertyId"
         }
       ]
     },
