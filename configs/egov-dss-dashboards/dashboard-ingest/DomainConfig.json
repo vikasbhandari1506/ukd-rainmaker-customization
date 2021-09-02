@@ -2,24 +2,25 @@
   "domainConfig": [
     {
       "id": "1",
-      "businessType": "PT",
+      "domain": "PT",
       "indexName": "property-services",
       "documentType": "",
-      "query": "{\"query\":{\"bool\":{\"must\":[{\"match_phrase\":{\"Data.acknowldgementNumber\":\"value\"}},{\"match_phrase\":{\"Data.propertyId\":\"value\"}}]}}}",
-      "sourceReferences": [
+      "query": "{\"query\":{\"bool\":{\"must\":[{\"match_phrase\":{\"Data.propertyId\":\"value\"}}]}}}",
+      
+         "targetReferences": [
         {
-          "fieldName": "consumerCode",
-          "argument": "Bill.billDetails.consumerCode",
+          "fieldName": "propertyId",
+          "argument": "Data.propertyId",
           "dataType": "String",
            "value": "$value",
           "seperator": " ",
           "expression": "propertyId"
         }
       ],
-         "targetReferences": [
+      "sourceReferences": [
         {
-          "fieldName": "propertyId",
-          "argument": "Data.propertyId",
+          "fieldName": "consumerCode",
+          "argument": "Bill.billDetails.consumerCode",
           "dataType": "String",
            "value": "$value",
           "seperator": " ",
