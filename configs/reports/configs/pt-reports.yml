@@ -1200,7 +1200,82 @@ ReportDefinitions:
   groupby: GROUP BY pt.tenantid
   orderby: ORDER BY pt.tenantid
   
-  - reportName: StateWiseAdoptionReportV2
+- reportName: PTAdoptionReportV2
+  summary: Number of applications
+  version: 1.0.0
+  moduleName: rainmaker-pt
+  sourceColumns:
+  - name: tenantId
+    label: reports.pt.tenantid
+    type: string
+    source: pt
+    total: false
+  - name: totalmigratedproperties
+    label: reports.pt.totalmigratedproperties
+    type: string
+    source: pt
+    total: true
+  - name: dataentry
+    label: reports.pt.dataentry
+    type: string
+    source: pt
+    total: true
+  - name: updatedprops
+    label: reports.pt.updatedprops
+    type: string
+    source: pt
+    total: true
+  - name: totaldemand
+    label: reports.pt.totaldemand
+    type: string
+    source: pt
+    total: true
+  - name: totalrevenuecollected
+    label: reports.pt.totalrevenuecollected
+    type: string
+    source: pt
+    total: true   
+  searchParams:
+  - name: fromDate
+    label: reports.pt.fromDate
+    type: epoch
+    source: pt
+    isMandatory: false
+    searchClause: AND pt.createdtime >= $fromDate
+  - name: toDate
+    label: reports.pt.toDate
+    type: epoch
+    source: pt
+    isMandatory: false
+    searchClause: AND pt.createdtime <= $toDate  
+  - name: ulb
+    label: ULB
+    type: singlevaluelist
+    pattern: http://egov-mdms-service:8080/egov-mdms-service/v1/_get?tenantId=$tenantid&moduleName=tenant&masterName=tenants|$.MdmsRes.tenant.tenants.*.code|$.MdmsRes.tenant.tenants.*.name
+    source: pt
+    wrapper: true
+    isMandatory: false
+    searchClause: AND pt.tenantid = $ulb
+  query: |
+    SELECT
+    initcap(split_part(pt.tenantid, '.', 2)) as tenantId,
+    SUM(dd.taxamount) as totaldemand,
+    SUM(dd.collectionamount) as totalrevenuecollected,
+    count(distinct pt.propertyid) as totalmigratedproperties,
+    SUM(case when pt.additionaldetails ->>'is_migrated' = 'true' then 1 else 0 end) as migration,
+    (count(DISTINCT pt.propertyid)-SUM(case when pt.additionaldetails ->>'is_migrated' = 'true' then 1 else 0 end)) as dataentry,
+    SUM(case when pt.additionaldetails ->>'is_migrated' = 'true' and pt.createdtime > pt.lastmodifiedtime then 1 else 0 end) updatedprops
+    FROM eg_pt_property as pt
+    JOIN (SELECT DISTINCT ON (propertyid) *  FROM eg_pt_asmt_assessment order by propertyid, lastmodifiedtime desc) as asmt
+    on asmt.propertyid=pt.propertyid
+    JOIN (SELECT DISTINCT ON (consumercode) *  FROM egbs_demand_v1 dd order by consumercode, lastmodifiedtime desc ) as d
+    on d.consumercode = pt.propertyid
+    JOIN egbs_demanddetail_v1 dd on dd.demandid = d.id
+    where pt.tenantid != 'uk.testing'
+  groupby: GROUP BY pt.tenantid
+  orderby: ORDER BY pt.tenantid
+  
+- reportName: StateWiseAdoptionReportV2
   summary: Reports for State Wise Adoption Report
   version: 1.0.0
   moduleName: rainmaker-pt
