@@ -419,7 +419,7 @@
                 and pd.businessservice = 'PT' and p.paymentstatus in ('NEW','DEPOSITED') and p.instrumentstatus in ('TO_BE_SUBMITTED','APPROVED','REMITTED') 
                 and (p.lastmodifiedtime/1000) between ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800) and (extract (epoch FROM NOW())) and p.tenantid != 'uk.testing') and d.businessservice = 'PT' 
                 and d.tenantid != 'uk.testing' and (d.lastmodifiedtime/1000) between ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800) and (extract (epoch FROM NOW()))) as updatedcollection,
-                (select COALESCE(SUM(p.totalamountpaid),0)     
+                (select to_char(TRUNC(COALESCE(SUM(p.totalamountpaid),0) / 100000, 2), 'FM99,FM99,99,999D00') 
                 FROM egcl_payment p, egcl_paymentdetail pd 
                 WHERE p.id=pd.paymentid  and pd.businessservice ='PT' and p.paymentmode = 'ONLINE' and p.createdby in (select id::text  from eg_user where username in ('BBPS_ADMIN')) 
                 and (p.lastmodifiedtime/1000)  <=  (extract (epoch FROM NOW()))) as bbpscollection 
@@ -453,7 +453,7 @@
                 and pd.businessservice = 'PT' and p.paymentstatus in ('NEW','DEPOSITED') and p.instrumentstatus in ('TO_BE_SUBMITTED','APPROVED','REMITTED') 
                 and (p.lastmodifiedtime/1000) between ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 2) and ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800) and p.tenantid != 'uk.testing') and d.businessservice = 'PT' 
                 and d.tenantid != 'uk.testing' and (d.lastmodifiedtime/1000) between ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 2) and ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800)) as updatedcollection,
-                (select COALESCE(SUM(p.totalamountpaid),0) 
+                (select to_char(TRUNC(COALESCE(SUM(p.totalamountpaid),0) / 100000, 2), 'FM99,FM99,99,999D00')  
                 FROM egcl_payment p, egcl_paymentdetail pd 
                 WHERE p.id=pd.paymentid  and pd.businessservice ='PT' and p.paymentmode = 'ONLINE' and p.createdby in (select id::text  from eg_user where username in ('BBPS_ADMIN')) 
                 and (p.lastmodifiedtime/1000)  <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800)) as bbpscollection 
@@ -487,7 +487,7 @@
                 and pd.businessservice = 'PT' and p.paymentstatus in ('NEW','DEPOSITED') and p.instrumentstatus in ('TO_BE_SUBMITTED','APPROVED','REMITTED') 
                 and (p.lastmodifiedtime/1000) between ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 3) and ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 2) and p.tenantid != 'uk.testing') and d.businessservice = 'PT' 
                 and d.tenantid != 'uk.testing' and (d.lastmodifiedtime/1000) between ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 3) and ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 2)) as updatedcollection,
-                (select COALESCE(SUM(p.totalamountpaid),0)  
+                (select to_char(TRUNC(COALESCE(SUM(p.totalamountpaid),0) / 100000, 2), 'FM99,FM99,99,999D00')  
                 FROM egcl_payment p, egcl_paymentdetail pd 
                 WHERE p.id=pd.paymentid  and pd.businessservice ='PT' and p.paymentmode = 'ONLINE' and p.createdby in (select id::text  from eg_user where username in ('BBPS_ADMIN')) 
                 and (p.lastmodifiedtime/1000)  <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 2 ) ) as bbpscollection 
@@ -521,7 +521,7 @@
                and pd.businessservice = 'PT' and p.paymentstatus in ('NEW','DEPOSITED') and p.instrumentstatus in ('TO_BE_SUBMITTED','APPROVED','REMITTED') 
                and (p.lastmodifiedtime/1000) between ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 4) and ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 3) and p.tenantid != 'uk.testing') and d.businessservice = 'PT' 
                and d.tenantid != 'uk.testing' and (d.lastmodifiedtime/1000) between ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 4) and ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 3)) as updatedcollection, 
-                (select COALESCE(SUM(p.totalamountpaid),0) 
+                (select to_char(TRUNC(COALESCE(SUM(p.totalamountpaid),0) / 100000, 2), 'FM99,FM99,99,999D00') 
                 FROM egcl_payment p, egcl_paymentdetail pd 
                 WHERE p.id=pd.paymentid  and pd.businessservice ='PT' and p.paymentmode = 'ONLINE' and p.createdby in (select id::text  from eg_user where username in ('BBPS_ADMIN')) 
                 and (p.lastmodifiedtime/1000)  <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 3) ) as bbpscollection 
@@ -555,7 +555,7 @@
                 and pd.businessservice = 'PT' and p.paymentstatus in ('NEW','DEPOSITED') and p.instrumentstatus in ('TO_BE_SUBMITTED','APPROVED','REMITTED') 
                 and (p.lastmodifiedtime/1000) between ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 5) and ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 4) and p.tenantid != 'uk.testing') and d.businessservice = 'PT' 
                 and d.tenantid != 'uk.testing' and (d.lastmodifiedtime/1000) between ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 5) and ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 4)) as updatedcollection, 
-                (select COALESCE(SUM(p.totalamountpaid),0) 
+                (select to_char(TRUNC(COALESCE(SUM(p.totalamountpaid),0) / 100000, 2), 'FM99,FM99,99,999D00') 
                 FROM egcl_payment p, egcl_paymentdetail pd 
                 WHERE p.id=pd.paymentid  and pd.businessservice ='PT' and p.paymentmode = 'ONLINE' and p.createdby in (select id::text  from eg_user where username in ('BBPS_ADMIN')) 
                 and (p.lastmodifiedtime/1000)  <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 4) ) as bbpscollection 
@@ -589,7 +589,7 @@
                 and pd.businessservice = 'PT' and p.paymentstatus in ('NEW','DEPOSITED') and p.instrumentstatus in ('TO_BE_SUBMITTED','APPROVED','REMITTED') 
                 and (p.lastmodifiedtime/1000) between ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 6) and ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 5) and p.tenantid != 'uk.testing') and d.businessservice = 'PT' 
                 and d.tenantid != 'uk.testing' and (d.lastmodifiedtime/1000) between ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 6) and ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 5)) as updatedcollection, 
-                (select COALESCE(SUM(p.totalamountpaid),0)  
+                (select to_char(TRUNC(COALESCE(SUM(p.totalamountpaid),0) / 100000, 2), 'FM99,FM99,99,999D00')  
                 FROM egcl_payment p, egcl_paymentdetail pd 
                 WHERE p.id=pd.paymentid  and pd.businessservice ='PT' and p.paymentmode = 'ONLINE' and p.createdby in (select id::text  from eg_user where username in ('BBPS_ADMIN')) 
                 and (p.lastmodifiedtime/1000)  <= ((extract (epoch FROM (to_timestamp(CONCAT(CURRENT_DATE + integer '1'), 'YYYY-MM-DD H24:MI:SS')))) - 604800 * 5) ) as bbpscollection 
