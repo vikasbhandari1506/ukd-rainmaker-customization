@@ -225,4 +225,3 @@ serviceMaps:
 
       - jsonPath: $.Assessment.documents.*.auditDetails.lastModifiedTime
 
-
