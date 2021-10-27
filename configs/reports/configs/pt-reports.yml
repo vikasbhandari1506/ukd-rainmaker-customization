@@ -1091,7 +1091,7 @@ ReportDefinitions:
     source: pt
     wrapper: true
     isMandatory: false
-    searchClause: AND SUBSTRING(mohalla , position('-' in mohalla)+1,LENGTH(mohalla)) = $Wardname
+    searchClause: AND trim(SUBSTRING(mohalla , position('-' in mohalla)+1,LENGTH(mohalla))) = $Wardname
   query: | 
     select * from dcb where tenantid = $tenantid                                
     
