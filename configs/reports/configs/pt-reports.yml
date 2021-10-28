@@ -99,7 +99,7 @@ ReportDefinitions:
     pattern: 'list://CASH:CASH,Online:Online,CARD:CARD,DD:DD,CHEQUE:CHEQUE,POS:POS,NEFT:NEFT,RTGS:RTGS'
     source: pt
     isMandatory: false
-    searchClause: AND paymentmode = $paymentMode
+    searchClause: AND trim(SUBSTRING(paymentmode , position('_' in paymentmode)+1,LENGTH(paymentmode))) = $paymentMode
   - name: collectorname
     label: Collector Name
     type: singlevaluelist
