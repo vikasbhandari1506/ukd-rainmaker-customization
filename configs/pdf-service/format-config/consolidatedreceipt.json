@@ -660,7 +660,7 @@
                                 "style": "receipttablevalue"
                             },
                             {
-                                "text": "{{paymentDate}}",
+                                "text": "{{instrumentDate}}",
                                 "border": [
                                     false,
                                     true,
