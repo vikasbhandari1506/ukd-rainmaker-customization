@@ -170,6 +170,13 @@
                                 },
                                 "type":"date"
                             },
+			    {
+                                "variable": "instrumentDate",
+                                "value": {
+                                    "path": "$.instrumentDate"
+                                },
+                                "type":"date"
+                            },	
                             {
                                 "variable": "consumerID",
                                 "value": {
