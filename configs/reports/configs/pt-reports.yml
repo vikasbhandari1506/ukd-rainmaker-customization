@@ -1665,16 +1665,16 @@ ReportDefinitions:
       searchClause: AND pi.lastmodifiedtime <= $toDate
     query: |
       SELECT initcap(split_part(tenantId, '.', 2)) as tenantId,
-        count(*) as total,
-        SUM(CASE action when 'OPEN' then 1 else 0 end) as applicationinitiated,
-        SUM(CASE action when 'SKIP_PAYMENT' then 1 else 0 end) as pendingpayment,
-        SUM(CASE action when 'VERIFY' then 1 else 0 end) as fieldverified,
-        SUM(CASE action when 'PAY' then 1 else 0 end) as mutationfeepaid,
-        SUM(CASE action when 'FORWARD' then 1 else 0 end) as documentverified,
-        SUM(CASE action when 'APPROVE' then 1 else 0 end) as approved,
-        SUM(CASE action when 'REJECT' then 1 else 0 end) as rejected,
-        SUM(CASE action when 'CANCELLED' then 1 else 0 end) as cancelled
+      count(*) as total,
+      SUM(CASE action when 'OPEN' then 1 else 0 end) as applicationinitiated,
+      SUM(CASE action when 'SKIP_PAYMENT' then 1 else 0 end) as pendingpayment,
+      SUM(CASE action when 'VERIFY' then 1 else 0 end) as fieldverified,
+      SUM(CASE action when 'PAY' then 1 else 0 end) as mutationfeepaid,
+      SUM(CASE action when 'FORWARD' then 1 else 0 end) as documentverified,
+      SUM(CASE action when 'APPROVE' then 1 else 0 end) as approved,
+      SUM(CASE action when 'REJECT' then 1 else 0 end) as rejected,
+      SUM(CASE action when 'CANCELLED' then 1 else 0 end) as cancelled
       FROM eg_wf_processinstance_v2 as pi
       WHERE pi.tenantid != 'uk.testing'
     groupby: GROUP BY tenantid
-    orderby: ORDER BY tenantid asc;
+    orderby: ORDER BY tenantid asc
