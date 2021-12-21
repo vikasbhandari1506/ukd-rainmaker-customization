@@ -2126,6 +2126,35 @@
           ]
         },
         {
+          "row": 6,
+          "name": "DSS_SERVICE",
+          "vizArray": [
+            {
+              "id": 235,
+              "name": "DSS_PT_PROPERTIES_BY_FINANCIAL_YEAR",
+              "dimensions": {
+                "height": 350,
+                "width": 12
+              },
+              "vizType": "chart",
+              "label": "",
+              "noUnit": false,
+              "isCollapsible": true,
+              "charts": [
+                {
+                  "id": "xptFyByDDR",
+                  "name": "",
+                  "code": "",
+                  "chartType": "table",
+                  "filter": "",
+                  "headers": [],
+                  "tabName": "Boundary"
+                }
+              ]
+            }
+          ]
+        },
+        {
           "row": 7,
           "name": "DSS_SERVICE",
           "vizArray": [
