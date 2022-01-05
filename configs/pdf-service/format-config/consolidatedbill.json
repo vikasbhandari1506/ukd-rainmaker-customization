@@ -748,7 +748,6 @@
       },
       "receipt-logo-header": {
         "color": "#484848",
-        "fontFamily": "Roboto",
         "fontSize": 14,
         "bold": true,
         "letterSpacing": 0.74,
@@ -761,7 +760,6 @@
       },
       "receipt-logo-sub-header": {
         "color": "#484848",
-        "fontFamily": "Roboto",
         "fontSize": 13,
         "letterSpacing": 0.6
       },
@@ -806,7 +804,7 @@
         ]
       },
       "receipt-table-value": {
-        "color": "#000000",
+        "color": "#484848",
         "bold": true,
         "fontSize": 12,
         "fontWeight": 500,
@@ -818,7 +816,7 @@
         ]
       },
       "receipt-table-value2": {
-        "color": "#000000",
+        "color": "#484848",
         "bold": true,
         "fontSize": 12,
         "fontWeight": 500,
@@ -854,7 +852,7 @@
         ]
       },
       "right-receipt-table": {
-        "color": "#000000",
+        "color": "#484848",
         "bold": true,
         "fontSize": 12,
         "fontWeight": 500,
