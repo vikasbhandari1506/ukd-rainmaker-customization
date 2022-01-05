@@ -953,7 +953,7 @@
           -40
         ],
         "bold": true,
-        "color": "#000000",
+        "color": "#484848",
         "alignment": "center"
       },
       "footer-bottom": {
@@ -964,7 +964,7 @@
           0
         ],
         "bold": true,
-        "color": "#000000",
+        "color": "#484848",
         "alignment": "right"
       }
     }
