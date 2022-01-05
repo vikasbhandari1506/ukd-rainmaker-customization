@@ -73,7 +73,7 @@
             ]
           ]
         },
-        "layout": "noBorders"
+        "layout": {}
       },
       {
         "style": "noc-table",
@@ -210,7 +210,7 @@
                 "style": "receipt-table"
               },
               {
-                "text": " ",
+                "text": "",
                 "border": [
                   false,
                   false,
