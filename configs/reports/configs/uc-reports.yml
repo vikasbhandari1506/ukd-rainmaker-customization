@@ -317,6 +317,11 @@ ReportDefinitions:
         type: string
         source: uc
         total: false
+      - name: receipts
+        label: reports.uc.receipts
+        type: string
+        source: uc
+        total: true
       - name: servicecategory
         label: reports.uc.businessdetails
         type: string
@@ -370,16 +375,22 @@ ReportDefinitions:
         searchClause: AND rh.tenantid = $ulb
     query: |
         -- Use CTE to force query plan, compute & use CTE later
-        SELECT
-          rh.tenantid as ulb,rh.businessdetails as servicecategory, count(*) as receipts,
+        SELECT 
+          initcap(split_part(rh.tenantid, '.', 2)) as ulb,
+          (select message from message where locale ='en_IN'and code =(CONCAT('BILLINGSERVICE_BUSINESSSERVICE_',UPPER(replace(replace(rh.businessservice,'-','_'),'.','_'))))) as servicecategory,count(distinct py.*) as receipts,
           SUM(CASE WHEN taxheadcode LIKE '%_FIELD_FEE' THEN adjustedamount ELSE 0 END) as fieldcollection,
           SUM(CASE WHEN taxheadcode LIKE '%_TAX' THEN adjustedamount ELSE 0 END) as tax, 
           SUM(CASE WHEN taxheadcode LIKE '%_CGST' THEN adjustedamount ELSE 0 END) as cgst, 
           SUM(CASE WHEN taxheadcode LIKE '%_SGST' THEN adjustedamount ELSE 0 END) as sgst, 
-          sum(totalamount) as totalamount
-        from egcl_receiptheader_v1 rh, egcl_receiptdetails_v1 as rd
-        WHERE rh.id=rd.receiptheader and rh.status != 'Cancelled'  AND rh.tenantid!='uk.testing' AND receiptnumber like 'MP%' 
-    groupby: group by rh.tenantid,rh.businessdetails
+          (SUM(CASE WHEN taxheadcode LIKE '%_TAX' THEN adjustedamount ELSE 0 END)  + SUM(CASE WHEN taxheadcode LIKE '%_CGST' THEN adjustedamount ELSE 0 END) +SUM(CASE WHEN taxheadcode LIKE '%_SGST' THEN adjustedamount ELSE 0 END) +SUM(CASE WHEN taxheadcode LIKE '%_FIELD_FEE' THEN adjustedamount ELSE 0 END) )as totalamount
+        from egcl_payment as py
+        JOIN egcl_paymentdetail AS rh ON py.id=rh.paymentid
+        JOIN egcl_bill as bi ON bi.id=rh.billid
+        JOIN egcl_billdetial as bd ON bd.billid=bi.id
+        JOIN egcl_billaccountdetail as ba ON bd.id=ba.billdetailid
+        WHERE bi.status != 'CANCELLED'  AND bi.consumercode like 'UC%'
+        and rh.tenantid != 'uk.testing'
+    groupby: group by rh.tenantid,rh.businessservice
     orderby: order by rh.tenantid
 
   - reportName: MiscReceiptState
@@ -397,26 +408,6 @@ ReportDefinitions:
         type: string
         source: uc
         total: true
-      - name: tax
-        label: reports.uc.tax
-        type: string
-        source: uc
-        total: true
-      - name: cgst
-        label: reports.uc.cgst
-        type: string
-        source: uc
-        total: true
-      - name: sgst
-        label: reports.uc.sgst
-        type: string
-        source: uc
-        total: true
-      - name: fieldcollection
-        label: reports.uc.fieldCollection
-        type: string
-        source: uc
-        total: true
       - name: totalamount
         label: reports.uc.totalamount
         type: string
@@ -428,13 +419,13 @@ ReportDefinitions:
         type: epoch
         source: uc
         isMandatory: false
-        searchClause: AND rh.receiptdate >= $fromDate
+        searchClause: AND pd.receiptdate >= $fromDate
       - name: toDate
         label: reports.uc.toDate
         type: epoch
         source: uc
         isMandatory: false
-        searchClause: AND rh.receiptdate <= $toDate
+        searchClause: AND pd.receiptdate <= $toDate
       - name: ulb
         label: reports.uc.ulb
         type: singlevaluelist
@@ -442,23 +433,19 @@ ReportDefinitions:
         source: uc
         wrapper: true
         isMandatory: false
-        searchClause: AND rh.tenantid = $ulb
+        searchClause: AND pd.tenantid = $ulb
     query: |
-        -- Use CTE to force query plan, compute & use CTE later
         SELECT
-          rh.tenantid as ulb,
-          count(*) as noofreceipts,
-          SUM(CASE WHEN taxheadcode LIKE '%_TAX' THEN adjustedamount ELSE 0 END) as tax, 
-          SUM(CASE WHEN taxheadcode LIKE '%_CGST' THEN adjustedamount ELSE 0 END) as cgst, 
-          SUM(CASE WHEN taxheadcode LIKE '%_SGST' THEN adjustedamount ELSE 0 END) as sgst, 
-          SUM(CASE WHEN taxheadcode LIKE '%_FIELD_FEE' THEN adjustedamount ELSE 0 END) as fieldcollection,
-          sum(amount) as totalamount
-        from egcl_receiptheader_v1 rh, egcl_receiptdetails_v1 as rd
-        WHERE rh.id=rd.receiptheader and rh.status != 'Cancelled' AND rh.tenantid!='uk.testing' AND receiptnumber like 'MP%' 
-    groupby: group by rh.tenantid
-
-
-
+        initcap(split_part(p.tenantid, '.', 2)) as ulb,
+        count(*) as noofreceipts,
+        sum(totalamountpaid) as totalamount
+        from egcl_payment p, egcl_paymentdetail as pd
+        WHERE p.id=pd.paymentid
+        and p.paymentstatus != 'Cancelled'
+        AND p.tenantid!='uk.testing'
+        and pd.businessservice not in ('PT','TL','WC','FIRENOC','PT.MUTATION')
+    groupby: group by p.tenantid
+    
   - reportName: MiscCollectionState
     summary: State Miscellaneous Collection Register 
     version: 1.0.0
