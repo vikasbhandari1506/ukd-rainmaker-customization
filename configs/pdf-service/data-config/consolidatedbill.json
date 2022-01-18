@@ -135,6 +135,18 @@
                }
               },
               {
+                "variable": "bill_info",
+                "value": {
+                  "path": "PDF_STATIC_LABEL_CONSOLIDATED_BILL_INFO"
+                },
+                "type": "label",
+                "localisation":{
+                  "required":true,
+                  "prefix": null,
+                  "module":"rainmaker-common"
+               }
+              },
+              {
                 "variable": "billing_summary_property_tax",
                 "value": {
                   "path": "PDF_STATIC_LABEL_CONSOLIDATED_BILL_BILLING_SUMMARY"
