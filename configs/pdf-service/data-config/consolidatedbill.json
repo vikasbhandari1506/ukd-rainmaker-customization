@@ -513,102 +513,59 @@
                 }
               },
               {
-                "variable": "taxCharge",
+                "variable": "financialYear",
                 "value": {
-                  "path": "$.billDetails[(@.length-1)].billAccountDetails[?(@.taxHeadCode == 'PT_TAX' || @.taxHeadCode == 'TL_TAX' || @.taxHeadCode == 'FIRENOC_TAXES' || @.taxHeadCode == 'WS_CHARGE' || @.taxHeadCode == 'SW_CHARGE' )].amount"
+                    "path": "$.additionalDetails.financialYear"
                 }
-              },
-              {
-                "variable": "timeRebate",
+            },
+            {
+                "variable": "propertyTax",
                 "value": {
-                  "path": "$.billDetails[(@.length-1)].billAccountDetails[?(@.taxHeadCode == 'PT_TIME_REBATE' || @.taxHeadCode == 'WS_TIME_REBATE' || @.taxHeadCode == 'SW_TIME_REBATE')].amount"
+                    "path": "$.additionalDetails.tax"
                 }
-              },
-              {
-                "variable": "adhocRebate",
+            },
+            {
+                "variable": "arrears",
                 "value": {
-                  "path": "$.billDetails[(@.length-1)].billAccountDetails[?(@.taxHeadCode == 'PT_ADHOC_REBATE' || @.taxHeadCode == 'TL_ADHOC_REBATE' || @.taxHeadCode == 'FIRENOC_ADHOC_REBATE')].amount"
+                    "path": "$.additionalDetails.arrear"
                 }
-              },
-              
-              {
-                "variable": "timePenalty",
+            },
+            {
+                "variable": "swatchatha",
                 "value": {
-                  "path": "$.billDetails[(@.length-1)].billAccountDetails[?(@.taxHeadCode == 'PT_TIME_PENALTY' || @.taxHeadCode == 'WS_TIME_PENALTY' || @.taxHeadCode == 'SW_TIME_PENALTY')].amount"
+                    "path": "$.additionalDetails.swatchatha"
                 }
-              },
-              {
-                "variable": "adjustment",
+            },
+            {
+                "variable": "penalty",
                 "value": {
-                  "path": "$.billDetails[(@.length-1)].billAccountDetails[?(@.taxHeadCode == 'TL_ADVANCE_CARRYFORWARD' || @.taxHeadCode == 'WS_ADVANCE_CARRYFORWARD' || @.taxHeadCode == 'SW_ADVANCE_CARRYFORWARD' || @.taxHeadCode == 'FIRENOC_ADVANCE_CARRYFORWARD' || @.taxHeadCode == 'PT_ADVANCE_CARRYFORWARD')].amount"
+                    "path": "$.additionalDetails.penalty"
                 }
-              },
-              {
-                "variable": "adhocPenalty",
+            },
+            {
+                "variable": "Rebate",
                 "value": {
-                  "path": "$.billDetails[(@.length-1)].billAccountDetails[?(@.taxHeadCode == 'PT_ADHOC_PENALTY' || @.taxHeadCode == 'TL_ADHOC_PENALTY' || @.taxHeadCode == 'FIRENOC_ADHOC_PENALTY')].amount"
+                    "path": "$.additionalDetails.rebate"
                 }
-              },
-              {
-                "variable": "firecess",
+            },
+            {
+                "variable": "interest",
                 "value": {
-                  "path": "$.billDetails[(@.length-1)].billAccountDetails[?(@.taxHeadCode == 'PT_FIRE_CESS')].amount"
+                    "path": "$.additionalDetails.interest"
                 }
-              },
-              {
-                "variable": "usageExemption",
+            },
+            {
+                "variable": "roundOff",
                 "value": {
-                  "path": "$.billDetails[(@.length-1)].billAccountDetails[?(@.taxHeadCode == 'PT_UNIT_USAGE_EXEMPTION')].amount"
+                    "path": "$.additionalDetails.roundOff"
                 }
-              },
-              {
-                "variable": "roundoff",
+            },
+            {
+                "variable": "total",
                 "value": {
-                  "path": "$.billDetails[(@.length-1)].billAccountDetails[?(@.taxHeadCode == 'PT_ROUNDOFF' || @.taxHeadCode == 'TL_ROUNDOFF' || @.taxHeadCode == 'FIRENOC_ROUNDOFF' || @.taxHeadCode == 'WS_Round_Off' || @.taxHeadCode == 'SW_Round_Off')].amount"
+                    "path": "$.totalAmount"
                 }
-              },
-              {
-                "variable": "fees",
-                "value": {
-                  "path": "$.billDetails[(@.length-1)].billAccountDetails[?(@.taxHeadCode == 'FIRENOC_FEES')].amount"
-                }
-              },
-              {
-                "variable": "ownerExemption",
-                "value": {
-                  "path": "$.billDetails[(@.length-1)].billAccountDetails[?(@.taxHeadCode == 'PT_OWNER_EXEMPTION')].amount"
-                }
-              },
-              {
-                "variable": "cancerCess",
-                "value": {
-                  "path": "$.billDetails[(@.length-1)].billAccountDetails[?(@.taxHeadCode == 'PT_CANCER_CESS')].amount"
-                }
-              },
-              {
-                "variable": "waterCess",
-                "value": {
-                  "path": "$.billDetails[(@.length-1)].billAccountDetails[?(@.taxHeadCode == 'WS_WATER_CESS')].amount"
-                }
-              },
-              {
-                "variable": "timeInterest",
-                "value": {
-                  "path": "$.billDetails[(@.length-1)].billAccountDetails[?(@.taxHeadCode == 'PT_TIME_INTEREST' || @.taxHeadCode == 'WS_TIME_INTEREST' || @.taxHeadCode == 'SW_TIME_INTEREST')].amount"
-                }
-              },
-              {
-                "variable": "ceilingDebit",
-                "value": {
-                  "path": "$.billDetails[(@.length-1)].billAccountDetails[?(@.taxHeadCode == 'PT_DECIMAL_CEILING_DEBIT')].amount"
-                }
-              },
-              {
-                "variable": "ceilingCredit",
-                "value": {
-                  "path": "$.billDetails[(@.length-1)].billAccountDetails[?(@.taxHeadCode == 'PT_DECIMAL_CEILING_CREDIT')].amount"
-                }
-              },
+            },
               {
                 "variable": "consumerID",
                 "value": {
@@ -623,11 +580,305 @@
                 "type": "date"
               },
               {
-                "variable": "WS_arrears",
-                "value":{
-                  "path": "$.arrearAmount"
+                "variable": "financial_year",
+                "value": {
+                    "path": "PT_RECEIPT_LABEL_FINANCIAL_YEAR"
+                },
+                "type": "label",
+                "localisation": {
+                    "required": true,
+                    "prefix": null,
+                    "module": "rainmaker-receipt"
                 }
+            },
+            {
+                "variable": "existing_pt_id",
+                "value": {
+                    "path": "PT_RECEIPT_LABEL_EXISTING_PT_ID"
+                },
+                "type": "label",
+                "localisation": {
+                    "required": true,
+                    "prefix": null,
+                    "module": "rainmaker-receipt"
+                }
+            },
+            {
+                "variable": "payment_date",
+                "value": {
+                    "path": "PT_RECEIPT_LABEL_DATE"
+                },
+                "type": "label",
+                "localisation": {
+                    "required": true,
+                    "prefix": null,
+                    "module": "rainmaker-receipt"
+                }
+            },
+            {
+                "variable": "property_address",
+                "value": {
+                    "path": "PT_RECEIPT_LABEL_PROPERTY_ADDRESS"
+                },
+                "type": "label",
+                "localisation": {
+                    "required": true,
+                    "prefix": null,
+                    "module": "rainmaker-receipt"
+                }
+            },
+            {
+                "variable": "door_no",
+                "value": {
+                    "path": "PT_RECEIPT_LABEL_DOOR_NO"
+                },
+                "type": "label",
+                "localisation": {
+                    "required": true,
+                    "prefix": null,
+                    "module": "rainmaker-receipt"
+                }
+            },
+            {
+                "variable": "building_name",
+                "value": {
+                    "path": "PT_RECEIPT_LABEL_BUILDING_NAME"
+                },
+                "type": "label",
+                "localisation": {
+                    "required": true,
+                    "prefix": null,
+                    "module": "rainmaker-receipt"
+                }
+            },
+            {
+                "variable": "street_name",
+                "value": {
+                    "path": "PT_RECEIPT_LABEL_STREET_NAME"
+                },
+                "type": "label",
+                "localisation": {
+                    "required": true,
+                    "prefix": null,
+                    "module": "rainmaker-receipt"
+                }
+            },
+            {
+                "variable": "locality_mohalla",
+                "value": {
+                    "path": "PT_RECEIPT_LABEL_LOCALITY"
+                },
+                "type": "label",
+                "localisation": {
+                    "required": true,
+                    "prefix": null,
+                    "module": "rainmaker-receipt"
+                }
+            },
+            {
+                "variable": "owner_info",
+                "value": {
+                    "path": "PT_RECEIPT_LABEL_OWNERSHIP_INFORMATION"
+                },
+                "type": "label",
+                "localisation": {
+                    "required": true,
+                    "prefix": null,
+                    "module": "rainmaker-receipt"
+                }
+            },
+            {
+                "variable": "owner_name",
+                "value": {
+                    "path": "PT_RECEIPT_LABEL_OWNER_NAME"
+                },
+                "type": "label",
+                "localisation": {
+                    "required": true,
+                    "prefix": null,
+                    "module": "rainmaker-receipt"
+                }
+            },
+            {
+                "variable": "gaurdian_name",
+                "value": {
+                    "path": "PT_RECEIPT_LABEL_GAURDIAN_NAME"
+                },
+                "type": "label",
+                "localisation": {
+                    "required": true,
+                    "prefix": null,
+                    "module": "rainmaker-receipt"
+                }
+            },
+            {
+                "variable": "payable_amount",
+                "value": {
+                    "path": "PT_RECEIPT_LABEL_PAYABLE_AMOUNT"
+                },
+                "type": "label",
+                "localisation": {
+                    "required": true,
+                    "prefix": null,
+                    "module": "rainmaker-receipt"
+                }
+            },
+            {
+                "variable": "pt_tax_arrear",
+                "value": {
+                    "path": "PT_RECEIPT_LABEL_PT_TAX_ARREAR"
+                },
+                "type": "label",
+                "localisation": {
+                    "required": true,
+                    "prefix": null,
+                    "module": "rainmaker-receipt"
+                }
+            },
+            {
+                "variable": "pt_tax_current",
+                "value": {
+                    "path": "PT_RECEIPT_LABEL_PT_TAX_CURRENT"
+                },
+                "type": "label",
+                "localisation": {
+                    "required": true,
+                    "prefix": null,
+                    "module": "rainmaker-receipt"
+                }
+            },
+            {
+                "variable": "pt_swatchatha",
+                "value": {
+                    "path": "PT_RECEIPT_LABEL_PT_SWATCHATHA"
+                },
+                "type": "label",
+                "localisation": {
+                    "required": true,
+                    "prefix": null,
+                    "module": "rainmaker-receipt"
+                }
+            },
+            {
+                "variable": "pt_penalty",
+                "value": {
+                    "path": "PT_RECEIPT_LABEL_PT_PENALTY"
+                },
+                "type": "label",
+                "localisation": {
+                    "required": true,
+                    "prefix": null,
+                    "module": "rainmaker-receipt"
+                }
+            },
+            {
+                "variable": "pt_rebate",
+                "value": {
+                    "path": "PT_RECEIPT_LABEL_PT_REBATE"
+                },
+                "type": "label",
+                "localisation": {
+                    "required": true,
+                    "prefix": null,
+                    "module": "rainmaker-receipt"
+                }
+            },
+            {
+                "variable": "pt_interest",
+                "value": {
+                    "path": "PT_RECEIPT_LABEL_PT_INTEREST"
+                },
+                "type": "label",
+                "localisation": {
+                    "required": true,
+                    "prefix": null,
+                    "module": "rainmaker-receipt"
+                }
+            },
+            {
+                "variable": "pt_round_off",
+                "value": {
+                    "path": "PT_RECEIPT_LABEL_PT_ROUND_OFF"
+                },
+                "type": "label",
+                "localisation": {
+                    "required": true,
+                    "prefix": null,
+                    "module": "rainmaker-receipt"
+                }
+            },
+            {
+                "variable": "pt_total",
+                "value": {
+                    "path": "PT_RECEIPT_LABEL_PT_TOTAL"
+                },
+                "type": "label",
+                "localisation": {
+                    "required": true,
+                    "prefix": null,
+                    "module": "rainmaker-receipt"
+                }
+            },
+            {
+              "variable": "note",
+              "value": {
+                  "path": "PT_RECEIPT_LABEL_NOTE"
               },
+              "type": "label",
+              "localisation": {
+                  "required": true,
+                  "prefix": null,
+                  "module": "rainmaker-receipt"
+              }
+          },
+          {
+              "variable": "disclaimer1",
+              "value": {
+                  "path": "PT_RECEIPT_LABEL_DISCLAIMER1"
+              },
+              "type": "label",
+              "localisation": {
+                  "required": true,
+                  "prefix": null,
+                  "module": "rainmaker-receipt"
+              }
+          },
+          {
+              "variable": "disclaimer2",
+              "value": {
+                  "path": "PT_RECEIPT_LABEL_DISCLAIMER2"
+              },
+              "type": "label",
+              "localisation": {
+                  "required": true,
+                  "prefix": null,
+                  "module": "rainmaker-receipt"
+              }
+          },
+          {
+              "variable": "disclaimer3",
+              "value": {
+                  "path": "PT_RECEIPT_LABEL_DISCLAIMER3"
+              },
+              "type": "label",
+              "localisation": {
+                  "required": true,
+                  "prefix": null,
+                  "module": "rainmaker-receipt"
+              }
+          },
+          {
+              "variable": "disclaimer4",
+              "value": {
+                  "path": "PT_RECEIPT_LABEL_DISCLAIMER4"
+              },
+              "type": "label",
+              "localisation": {
+                  "required": true,
+                  "prefix": null,
+                  "module": "rainmaker-receipt"
+              }
+          },
               {
                 "variable":"scissorImage",
                 "url":"http://www.pngall.com/wp-content/uploads/2016/03/Scissor-PNG-Clipart.png",
@@ -638,29 +889,17 @@
           {
             "derived": [
               {
-                "variable": "charge",
-                "formula": "{{taxCharge}}+{{fees}}"
-              },
-              {
-                "variable": "penalty",
-                "formula": "{{timePenalty}}+{{adhocPenalty}}"
-              },
-              {
+                "variable": "pendingAmount",
+                "formula": "{{dueAmount}}-{{paidAmount}}"
+            },
+            {
                 "variable": "rebate",
-                "formula": "{{timeRebate}}+{{adhocRebate}}"
-              },
-              {
-                "variable": "others",
-                "formula": "{{cancerCess}}+{{roundoff}}+{{timeInterest}}+{{ceilingDebit}}+{{ceilingCredit}}+{{firecess}}+{{waterCess}}"
-              },
-              {
-                "variable": "arrears",
-                "formula": "{{WS_arrears}}"
-              },
-              {
-                "variable": "adjustments/paid",
-                "formula": "{{adjustment}}"
-              }
+                "formula": "{{Rebate}}"
+            },
+{
+                "variable": "currentTax",
+                "formula": "({{propertyTax}}).toFixed(1)"
+            }
             ]
           },
           {
@@ -699,6 +938,67 @@
                       "prefix": "TENANT_TENANTS",
                       "module":"rainmaker-common"
                       }
+                    },
+                    { 
+                      "path": "http://property-services:8080/property-services/property/_plainsearch",
+                      "queryParam": "tenantId=$.tenantId,propertyIds=$.consumerCode",
+                      "apiRequest": null,
+                      "responseMapping":[
+                        {             
+                          "variable":"oldPropertyId",
+                          "value":"$.Properties[0].oldPropertyId"
+                        },
+                        {
+                          "variable":"houseNo",
+                          "value":"$.Properties[0].address.doorNo"
+                        },
+                        {
+                          "variable":"buildingName",
+                          "value":"$.Properties[0].address.buildingName"
+                        },
+                        {
+                          "variable": "street",                        
+                          "value":"$.Properties[0].address.street"
+                                 
+                        },
+                        {
+                          "variable": "locality",                        
+                          "value":"$.Properties[0].address.locality.name"                             
+                        },
+                         {             
+                         "variable":"fatherHusbandName",
+                         "value":"$.Properties[0].owners[0].fatherOrHusbandName"
+                       },
+     
+                        {
+                         "variable": "var_owners",                        
+                         "value":"$.Properties[0].owners[?(@.active== true && @.status== 'ACTIVE')]",
+                          "type":"array",
+                          "format":{                            
+                             "type":"string",
+                             "scema":[
+                                {
+                                   "variable":"name2",
+                                   "value":"name"
+                                },
+                                {
+                                   "variable":"fatherOrHusbandName2",
+                                   "value":"fatherOrHusbandName"
+                                }]
+                         } 
+                      }
+                      ]
+                    },
+                                   { 
+                      "path": "http://property-services:8080/property-services/assessment/_search",
+                      "queryParam": "tenantId=$.tenantId,propertyIds=$.consumerCode",
+                      "apiRequest": null,
+                      "responseMapping":[
+                        {
+                          "variable":"assessmentNumber",
+                          "value":"$.Assessments[0].assessmentNumber"
+                        }
+                      ]
                     }
                   ]
               }
