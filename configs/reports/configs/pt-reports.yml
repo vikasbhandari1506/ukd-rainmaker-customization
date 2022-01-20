@@ -96,7 +96,7 @@ ReportDefinitions:
   - name: paymentMode
     label: Payment Mode
     type: singlevaluelist
-    pattern: 'list://CASH:CASH,Online:Online,CARD:CARD,DD:DD,CHEQUE:CHEQUE,POS:POS,NEFT:NEFT,RTGS:RTGS'
+    pattern: 'list://CASH:CASH,ONLINE:ONLINE,CARD:CARD,DD:DD,CHEQUE:CHEQUE,POS:POS,NEFT:NEFT,RTGS:RTGS'
     source: pt
     isMandatory: false
     searchClause: AND trim(SUBSTRING(paymentmode , position('_' in paymentmode)+1,LENGTH(paymentmode))) = $paymentMode
