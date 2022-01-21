@@ -374,7 +374,7 @@ ReportDefinitions:
   - name: paymentMode
     label: Payment Mode
     type: singlevaluelist
-    pattern: 'list://CASH:CASH,Online:Online,CARD:CARD,DD:DD,CHEQUE:CHEQUE'
+    pattern: 'list://CASH:CASH,ONLINE:ONLINE,CARD:CARD,DD:DD,CHEQUE:CHEQUE'
     source: pt
     isMandatory: false
     searchClause: AND paymentmode = $paymentMode
