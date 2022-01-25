@@ -112,31 +112,31 @@
                           {
                               "variable": "licenseTax",
                               "value": {
-                                  "path": "$.paymentDetails[0].bill.additionalDetails.tax"
+                                  "path": "$.paymentDetails[0].bill.billDetails[0].billAccountDetails[?(@.taxHeadCode=='TL_RENEWAL_TAX')].amount"
                               }
                           },
                           {
                               "variable": "adhocrebate",
                               "value": {
-                                  "path": "$.paymentDetails[0].bill.additionalDetails.adhocRebate"
+                                  "path": "$.paymentDetails[0].bill.billDetails[0].billAccountDetails[?(@.taxHeadCode=='TL_ADHOC_REBATE')].amount"
                               }
                           },
                           {
                               "variable": "penalty",
                               "value": {
-                                  "path": "$.paymentDetails[0].bill.additionalDetails.penalty"
+                                  "path": "$.paymentDetails[0].bill.billDetails[0].billAccountDetails[?(@.taxHeadCode=='TL_RENEWAL_PENALTY')].amount"
                               }
                           },
                           {
                               "variable": "Rebate",
                               "value": {
-                                  "path": "$.paymentDetails[0].bill.additionalDetails.rebate"
+                                  "path": "$.paymentDetails[0].bill.billDetails[0].billAccountDetails[?(@.taxHeadCode=='TL_RENEWAL_REBATE')].amount"
                               }
                           },
                           {
                               "variable": "adhocPenalty",
                               "value": {
-                                  "path": "$.paymentDetails[0].bill.additionalDetails.adhocPenalty"
+                                  "path": "$.paymentDetails[0].bill.billDetails[0].billAccountDetails[?(@.taxHeadCode=='TL_ADHOC_PENALTY')].amount"
                               }
                           },
                           {
