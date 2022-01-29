@@ -1116,11 +1116,21 @@ ReportDefinitions:
     type: string
     source: pt
     total: true
+   - name: bbps_sum
+    label: reports.pt.total
+    type: string
+    source: pt
+    total: true
   - name: count
     label: reports.pt.count
     type: string
     source: pt
-    total: true    
+    total: true  
+  - name: bbps_count
+    label: reports.pt.count
+    type: string
+    source: pt
+    total: true
   searchParams:
   - name: fromDate
     label: reports.pt.fromDate
@@ -1143,11 +1153,15 @@ ReportDefinitions:
     isMandatory: false
     searchClause: AND p.tenantId = $ulb
   query: |
-    select initcap(split_part(p.tenantId, '.', 2)) as tenantId, p.paymentmode ,sum(p.totalamountpaid), count(p.id)
-    FROM egcl_payment p, egcl_paymentdetail pd 
-    WHERE p.id=pd.paymentid  and pd.businessservice ='PT'
-  groupby: GROUP BY p.tenantid, p.paymentmode
-  orderby: ORDER BY p.tenantId asc
+    SELECT * FROM 
+      (select initcap(split_part(p.tenantid, '.', 2)) as tenantId, p.paymentmode, sum(p.totalamountpaid) as sum, cast(sum(p.totalamountpaid) as int) * 0 as bbps_sum, count(p.id), cast(count(p.id) as int) * 0 as bbps_count 
+      from egcl_payment p, egcl_paymentdetail pd where p.id = pd.paymentid and pd.businessservice = 'PT' and p.tenantId != 'uk.testing' and p.createdby in (select id::text from eg_user where username not in ('BBPS_ADMIN')) 
+      group by p.tenantId, p.paymentmode 
+      UNION ALL 
+      select initcap(split_part(p.tenantid, '.', 2)) as tenantId, p.paymentmode, cast(sum(p.totalamountpaid) as int) * 0 as sum, sum(p.totalamountpaid) as bbps_sum, cast(count(p.id) as int) * 0 as count, count(p.id)  as bbps_count
+      from egcl_payment p, egcl_paymentdetail pd where p.id = pd.paymentid and pd.businessservice = 'PT'and p.tenantId != 'uk.testing' and p.createdby in (select id::text from eg_user where username in ('BBPS_ADMIN')) 
+      group by p.tenantId, p.paymentmode) bbps_table 
+  orderby: ORDER BY tenantId asc;
 
 - reportName: PTAdoptionReport
   summary: Number of applications
