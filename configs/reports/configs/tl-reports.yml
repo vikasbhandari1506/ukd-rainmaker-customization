@@ -644,8 +644,6 @@ ReportDefinitions:
   groupby: GROUP BY status
   orderby: ORDER BY status
 
-
-
 - reportName: StateLevelTradeWiseCollection
   reportLabel: report.state.level.trade.wise.collection
   summary: Collection according to tradeTypes state level

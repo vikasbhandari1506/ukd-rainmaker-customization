@@ -86,6 +86,7 @@ ServiceMaps:
           - inJsonPath: $.MdmsRes.tenant.tenants
             outJsonPath: $.Data.tenantData
             
+            
   - topic: update-tl-workflow
     configKey: INDEX
     indexes:

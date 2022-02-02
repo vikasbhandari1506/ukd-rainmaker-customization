@@ -3,7 +3,7 @@
     "operation": "shift",
     "spec": {
       "tradelicense": {
-        "tenantId": "tenantId",
+        "tenantId": "tradelicense.tenantId",
         "calculation": "tradelicense.calculation",
         "licenseNumber": "tradelicense.licenseNumber",
         "commencementDate": "tradelicense.commencementDate",
@@ -20,7 +20,3 @@
     }
   }
 ]
-
-
-
-
