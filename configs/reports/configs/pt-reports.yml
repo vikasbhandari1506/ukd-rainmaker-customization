@@ -1116,7 +1116,7 @@ ReportDefinitions:
     type: string
     source: pt
     total: true
-   - name: bbps_sum
+  - name: bbps_sum
     label: reports.pt.total
     type: string
     source: pt
