@@ -44,6 +44,7 @@
                                 },
                                 "localisation": {
                                     "required": true,
+                                    "prefix": "MODULE",
                                     "module": "rainmaker-common"
                                 }
                             },
@@ -657,7 +658,7 @@
                             },
 			    {
                                 "variable": "currentTax",
-                                "formula": "({{propertyTax}}).toFixed(1)"
+                                "formula": "({{propertyTax}}+{{Rebate}}).toFixed(1)"
                             }
                         ]
                     },

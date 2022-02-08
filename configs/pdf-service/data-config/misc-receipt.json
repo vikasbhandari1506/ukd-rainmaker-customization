@@ -86,12 +86,6 @@
                  }
                 },
                 {
-                  "variable": "bankName",
-                  "value": {
-                    "path": "$.bankName"
-                  }
-                },
-                {
                   "variable": "G8ReceiptNo",
                   "value": {
                     "path": "$.paymentDetails[0].manualReceiptNumber"
@@ -536,8 +530,8 @@
                         "value":"$.MdmsRes.tenant.tenants[0].code",
                         "localisation":{
                           "required":true,
-                          "prefix": "TENANT_TENANTS",
-                          "module":"rainmaker-pgr"
+                          "prefix": "RECEIPT_MUNICIPALITY",
+                          "module":"rainmaker-receipt"
                           }
                       }
                     ]

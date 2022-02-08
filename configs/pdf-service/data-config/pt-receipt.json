@@ -199,54 +199,47 @@
                    ]
                },
                { 
-                 "path": "http://property-services:8080/property-services/property/_search",
-                 "queryParam": "tenantId=$.Payments.*.paymentDetails[0].tenantId,propertyIds=$.Payments.*.paymentDetails[0].bill.consumerCode",
+                 "path": "http://pt-services-v2:8080/pt-services-v2/property/_search",
+                 "queryParam": "tenantId=$.paymentDetails[0].tenantid&ids=$.paymentDetails[0].bill.consumerCode",
                  "apiRequest": null,
                  "responseMapping":[
                    {             
                      "variable":"oldPropertyId",
-                     "value":"$.Properties[0].oldPropertyId"
+                     "value":"$.Properties.oldPropertyId"
+                   },
+                   {
+                     "variable":"assessmentNumber",
+                     "value":"$.Properties.propertyDetails[0].assessmentNumber"
                    },
                    {
                      "variable":"houseNo",
-                     "value":"$.Properties[0].address.doorNo"
+                     "value":"$.Properties.address.doorNo"
                    },
                    {
                      "variable":"buildingName",
-                     "value":"$.Properties[0].address.buildingName"
+                     "value":"$.Properties.address.buildingName"
                    },
                    {
                      "variable": "street",                        
-                     "value":"$Properties[0].address.street"
+                     "value":"$.Properties.address.street"
                             
                    },
                    {
                      "variable": "locality",                        
-                     "value":"$.Properties[0].address.locality.name"                             
+                     "value":"$.Properties.address.locality.name"                             
                    },
                    {
                      "variable": "ownerName",                        
-                     "value":"$.Properties[0].owners[0].name"
+                     "value":"$.Properties.propertyDetails[0].owners[0].name"
                             
                    },
                    {
                      "variable": "gaurdianName",                        
-                     "value":"$.Properties[0].owners[0].fatherOrHusbandName"                             
-                   }
-                 ]
-               },
-               { 
-                 "path": "http://property-services:8080/property-services/assessment/_search",
-                 "queryParam": "tenantId=$.Payments.*.paymentDetails[0].tenantId,propertyIds=$.Payments.*.paymentDetails[0].bill.consumerCode",
-                 "apiRequest": null,
-                 "responseMapping":[
-                   {
-                     "variable":"assessmentNumber",
-                     "value":"$.Assessments[0].assessmentNumber"
+                     "value":"$.Properties.propertyDetails[0].owners[0].fatherOrHusbandName"                             
                    },
                    {
                      "variable": "financialYear",                        
-                     "value":"$.Assessments[0].financialYear"                             
+                     "value":"$.Properties.propertyDetails[0].financialYear"                             
                    }
                  ]
                }

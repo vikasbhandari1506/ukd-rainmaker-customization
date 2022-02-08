@@ -35,7 +35,7 @@
                       "style": "receiptlogoheader"
                     },
                     {
-                      "text": "{{serviceType}} {{paymentMode}} {{payment_receipt}} ",
+                      "text": "{{serviceType}} {{payment_receipt}}",
                       "style": "receiptlogosubheader"
                     }
                   ],
@@ -81,7 +81,7 @@
               ]
             ]
           },
-          "layout": {}
+          "layout": "{}"
         },
       {
         "style": "receiptapprover",
@@ -734,7 +734,7 @@
                                 "style": "receipttablevalue"
                             },
                             {
-                                "text": "{{bankName}}",
+                                "text": "{{bankName}}, {{branchName}}",
                                 "border": [
                                     false,
                                     true,
