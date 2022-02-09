@@ -63,7 +63,12 @@
                   "variable": "billNo", 
                   "value": {
                     "path": "$.billNo"
-                  }
+                  },
+                  "localisation":{
+                    "required":true,
+                    "prefix":null,   
+                    "module":"rainmaker-uc"
+                 }
                 },
                 {
                   "variable": "billDate", 
