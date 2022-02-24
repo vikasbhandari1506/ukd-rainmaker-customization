@@ -163,7 +163,7 @@
       {
         "style": "nextnoctable",
         "table": {
-          "widths": ["*", "*", "*", "*"],
+          "widths": ["25%", "25%", "25%", "25%"],
           "body": [
             [
               {
