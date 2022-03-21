@@ -50,18 +50,6 @@
                 }
               },
               {
-                "variable": "form_rule8",
-                "value": {
-                  "path": "PDF_STATIC_LABEL_FORM_RULE8"
-                },
-                "type": "label",
-                "localisation": {
-                  "required": true,
-                  "prefix": null,
-                  "module": "rainmaker-common"
-                }
-              },
-              {
                 "variable": "municipalityName",
                 "value": {
                   "path": "$.tenantId"
@@ -577,7 +565,7 @@
                 "type": "date"
               },
               {
-                "variable": "toperiod",
+                "variable": "toPeriod",
                 "value": {
                   "path": "$.billDetails[0].toPeriod"
                 },
@@ -675,10 +663,6 @@
               {
                 "variable": "timerebate",
                 "formula": "-{{timeRebate}}"
-              },
-              {
-                "variable": "toPeriod",
-                "formula": "{{toperiod}}-20000000"
               }
             ]
           },
@@ -726,71 +710,71 @@
                 "queryParam": "tenantId=$.tenantId,applicationNumber=$.consumerCode",
                 "apiRequest": null,
                 "responseMapping": [
-                    {
-                        "variable": "oldLicenseNo",
-                        "value": "$.Licenses[0].oldLicenseNumber"
-                    },
-                    {
-                        "variable": "applicationType",
-                        "value": "$.Licenses[0].tradeLicenseDetail.additionalDetail.applicationType",
-                        "localisation": {
-                            "required": true,
-                            "prefix": "TRADELICENSE_APPLICATIONTYPE",
-                            "module": "rainmaker-tl"
-                        }
-                    },
-                    {
-                        "variable": "houseNo",
-                        "value": "$.Licenses[0].tradeLicenseDetail.address.doorNo"
-                    },
-                    {
-                        "variable": "buildingName",
-                        "value": "$.Licenses[0].tradeLicenseDetail.address.buildingName"
-                    },
-                    {
-                        "variable": "street",
-                        "value": "$.Licenses[0].tradeLicenseDetail.address.street"
-                    },
-                    {
-                        "variable": "locality",
-                        "value": "$.Licenses[0].tradeLicenseDetail.address.locality.name"
-                    },
-                    {
-                        "variable": "ownerName",
-                        "value": "$.Licenses[0].tradeLicenseDetail.owners[0].name"
-                    },
-                    {
-                        "variable": "gaurdianName",
-                        "value": "$.Licenses[0].tradeLicenseDetail.owners[0].fatherOrHusbandName"
-                    },
-                    {
-                        "variable": "financialYear",
-                        "value": "$.Licenses[0].financialYear"
-                    },
-                    {
-                        "variable": "tradeName",
-                        "value": "$.Licenses[0].tradeName"
-                    },
-                    {
-                        "variable": "tradeType",
-                        "value": "$.Licenses[0].tradeLicenseDetail.tradeUnits[0].tradeType",
-                        "localisation": {
-                            "required": true,
-                            "prefix": "TRADELICENSE_TRADETYPE",
-                            "module": "rainmaker-tl"
-                        }
-                    },
-                    {
-                        "variable": "occupancyType",
-                        "value": "$.Licenses[0].tradeLicenseDetail.additionalDetail.occupancyType",
-                        "localisation": {
-                            "required": true,
-                            "prefix": "TRADELICENSE_OCCUPANCYTYPE",
-                            "module": "rainmaker-tl"
-                        }
+                  {
+                    "variable": "oldLicenseNo",
+                    "value": "$.Licenses[0].oldLicenseNumber"
+                  },
+                  {
+                    "variable": "applicationType",
+                    "value": "$.Licenses[0].tradeLicenseDetail.additionalDetail.applicationType",
+                    "localisation": {
+                      "required": true,
+                      "prefix": "TRADELICENSE_APPLICATIONTYPE",
+                      "module": "rainmaker-tl"
                     }
+                  },
+                  {
+                    "variable": "houseNo",
+                    "value": "$.Licenses[0].tradeLicenseDetail.address.doorNo"
+                  },
+                  {
+                    "variable": "buildingName",
+                    "value": "$.Licenses[0].tradeLicenseDetail.address.buildingName"
+                  },
+                  {
+                    "variable": "street",
+                    "value": "$.Licenses[0].tradeLicenseDetail.address.street"
+                  },
+                  {
+                    "variable": "locality",
+                    "value": "$.Licenses[0].tradeLicenseDetail.address.locality.name"
+                  },
+                  {
+                    "variable": "ownerName",
+                    "value": "$.Licenses[0].tradeLicenseDetail.owners[0].name"
+                  },
+                  {
+                    "variable": "gaurdianName",
+                    "value": "$.Licenses[0].tradeLicenseDetail.owners[0].fatherOrHusbandName"
+                  },
+                  {
+                    "variable": "financialYear",
+                    "value": "$.Licenses[0].financialYear"
+                  },
+                  {
+                    "variable": "tradeName",
+                    "value": "$.Licenses[0].tradeName"
+                  },
+                  {
+                    "variable": "tradeType",
+                    "value": "$.Licenses[0].tradeLicenseDetail.tradeUnits[0].tradeType",
+                    "localisation": {
+                      "required": true,
+                      "prefix": "TRADELICENSE_TRADETYPE",
+                      "module": "rainmaker-tl"
+                    }
+                  },
+                  {
+                    "variable": "occupancyType",
+                    "value": "$.Licenses[0].tradeLicenseDetail.additionalDetail.occupancyType",
+                    "localisation": {
+                      "required": true,
+                      "prefix": "TRADELICENSE_OCCUPANCYTYPE",
+                      "module": "rainmaker-tl"
+                    }
+                  }
                 ]
-            }
+              }
             ]
           }
         ]

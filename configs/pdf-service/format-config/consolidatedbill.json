@@ -32,10 +32,6 @@
                     "style": "receipt-logo-header"
                   },
                   {
-                    "text": "{{form_rule8}}",
-                    "style": "receipt-logo-sub-header"
-                  },
-                  {
                     "text": "{{challan}}",
                     "style": "receipt-logo-sub-header"
                   }
