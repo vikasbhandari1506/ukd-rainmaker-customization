@@ -112,7 +112,7 @@
               {
                 "variable": "licenseTax",
                 "value": {
-                  "path": "$.paymentDetails[0].bill.billDetails[0].billAccountDetails[?(@.taxHeadCode=='TL_RENEWAL_TAX')].amount"
+                  "path": "$.paymentDetails[0].bill.billDetails[0].billAccountDetails[?(@.taxHeadCode=='TL_RENEWAL_TAX'||@.taxHeadCode=='TL_TAX')].amount"
                 }
               },
               {
