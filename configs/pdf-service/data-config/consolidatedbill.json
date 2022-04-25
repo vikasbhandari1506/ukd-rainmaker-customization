@@ -718,118 +718,109 @@
             ]
           },
           {
-            "externalAPI": [
-              {
-                "path": "http://egov-mdms-service:8080/egov-mdms-service/v1/_get",
-                "queryParam": "moduleName=tenant&masterName=tenants&tenantId=uk&filter=%5B?(@.code=='{$.tenantId}')%5D",
-                "apiRequest": null,
-                "responseMapping": [
-                  {
-                    "variable": "address",
-                    "value": "$.MdmsRes.tenant.tenants[0].address"
-                  },
-                  {
-                    "variable": "phoneNumber",
-                    "value": "$.MdmsRes.tenant.tenants[0].contactNumber"
-                  },
-                  {
-                    "variable": "website",
-                    "value": "$.MdmsRes.tenant.tenants[0].domainUrl"
-                  },
-                  {
-                    "variable": "email",
-                    "value": "$.MdmsRes.tenant.tenants[0].emailId"
-                  },
-                  {
-                    "variable": "logoImage",
-                    "value": "$.MdmsRes.tenant.tenants[0].logoId",
-                    "type": "image"
-                  },
-                  {
-                    "variable": "logo_header",
-                    "value": "$.MdmsRes.tenant.tenants[0].code",
-                    "localisation": {
-                      "required": true,
-                      "prefix": "TENANT_TENANTS",
-                      "module": "rainmaker-common"
+              "externalAPI": [     
+                { 
+                  "path": "http://egov-mdms-service:8080/egov-mdms-service/v1/_get",
+                  "queryParam": "moduleName=tenant&masterName=tenants&tenantId=uk&filter=%5B?(@.code=='{$.tenantId}')%5D",
+                    "apiRequest": null,
+                    "responseMapping":[
+                      {             
+                        "variable":"address",
+                        "value":"$.MdmsRes.tenant.tenants[0].address"
+                      },
+                      {
+                        "variable":"phoneNumber",
+                        "value":"$.MdmsRes.tenant.tenants[0].contactNumber"
+                      },
+                      {
+                        "variable":"website",
+                        "value":"$.MdmsRes.tenant.tenants[0].domainUrl"
+                      },
+                      {
+                        "variable":"email",
+                        "value":"$.MdmsRes.tenant.tenants[0].emailId"
+                      },
+                      {
+                        "variable": "logoImage",
+                        "value":"$.MdmsRes.tenant.tenants[0].logoId",
+                        "type": "image"
+                      },
+                      {
+                        "variable": "logo_header",
+                        "value":"$.MdmsRes.tenant.tenants[0].code",
+                        "localisation":{
+                        "required":true,
+                        "prefix": "TENANT_TENANTS",
+                        "module":"rainmaker-common"
+                        }
+                      }
+                    ]
+                },
+                { 
+                    "path": "http://property-services:8080/property-services/property/_plainsearch",
+                    "queryParam": "tenantId=$.tenantId,propertyIds=$.consumerCode",
+                    "apiRequest": null,
+                    "responseMapping":[
+                      {             
+                        "variable":"oldPropertyId",
+                        "value":"$.Properties[0].oldPropertyId"
+                      },
+                      {
+                        "variable":"houseNo",
+                        "value":"$.Properties[0].address.doorNo"
+                      },
+                      {
+                        "variable":"buildingName",
+                        "value":"$.Properties[0].address.buildingName"
+                      },
+                      {
+                        "variable": "street",                        
+                        "value":"$.Properties[0].address.street"
+                               
+                      },
+                      {
+                        "variable": "locality",                        
+                        "value":"$.Properties[0].address.locality.name"                             
+                      },
+                       {             
+                       "variable":"fatherHusbandName",
+                       "value":"$.Properties[0].owners[0].fatherOrHusbandName"
+                     },
+   
+                      {
+                       "variable": "var_owners",                        
+                       "value":"$.Properties[0].owners[?(@.active== true && @.status== 'ACTIVE')]",
+                        "type":"array",
+                        "format":{                            
+                           "type":"string",
+                           "scema":[
+                              {
+                                 "variable":"name2",
+                                 "value":"name"
+                              },
+                              {
+                                 "variable":"fatherOrHusbandName2",
+                                 "value":"fatherOrHusbandName"
+                              }]
+                       } 
                     }
-                  }
-                ]
-              },
-              {
-                "path": "http://tl-services:8080/tl-services/v1/_search",
-                "queryParam": "tenantId=$.tenantId,applicationNumber=$.consumerCode",
-                "apiRequest": null,
-                "responseMapping": [
-                    {
-                        "variable": "oldLicenseNo",
-                        "value": "$.Licenses[0].oldLicenseNumber"
-                    },
-                    {
-                        "variable": "applicationType",
-                        "value": "$.Licenses[0].tradeLicenseDetail.additionalDetail.applicationType",
-                        "localisation": {
-                            "required": true,
-                            "prefix": "TRADELICENSE_APPLICATIONTYPE",
-                            "module": "rainmaker-tl"
-                        }
-                    },
-                    {
-                        "variable": "houseNo",
-                        "value": "$.Licenses[0].tradeLicenseDetail.address.doorNo"
-                    },
-                    {
-                        "variable": "buildingName",
-                        "value": "$.Licenses[0].tradeLicenseDetail.address.buildingName"
-                    },
-                    {
-                        "variable": "street",
-                        "value": "$.Licenses[0].tradeLicenseDetail.address.street"
-                    },
-                    {
-                        "variable": "locality",
-                        "value": "$.Licenses[0].tradeLicenseDetail.address.locality.name"
-                    },
-                    {
-                        "variable": "ownerName",
-                        "value": "$.Licenses[0].tradeLicenseDetail.owners[0].name"
-                    },
-                    {
-                        "variable": "gaurdianName",
-                        "value": "$.Licenses[0].tradeLicenseDetail.owners[0].fatherOrHusbandName"
-                    },
-                    {
-                        "variable": "financialYear",
-                        "value": "$.Licenses[0].financialYear"
-                    },
-                    {
-                        "variable": "tradeName",
-                        "value": "$.Licenses[0].tradeName"
-                    },
-                    {
-                        "variable": "tradeType",
-                        "value": "$.Licenses[0].tradeLicenseDetail.tradeUnits[0].tradeType",
-                        "localisation": {
-                            "required": true,
-                            "prefix": "TRADELICENSE_TRADETYPE",
-                            "module": "rainmaker-tl"
-                        }
-                    },
-                    {
-                        "variable": "occupancyType",
-                        "value": "$.Licenses[0].tradeLicenseDetail.additionalDetail.occupancyType",
-                        "localisation": {
-                            "required": true,
-                            "prefix": "TRADELICENSE_OCCUPANCYTYPE",
-                            "module": "rainmaker-tl"
-                        }
-                    }
-                ]
+                    ]
+                },
+                { 
+                    "path": "http://property-services:8080/property-services/assessment/_search",
+                    "queryParam": "tenantId=$.tenantId,propertyIds=$.consumerCode",
+                    "apiRequest": null,
+                    "responseMapping":[
+                      {
+                        "variable":"assessmentNumber",
+                        "value":"$.Assessments[0].assessmentNumber"
+                      }
+                    ]
+                }
+              ]
             }
-            ]
-          }
-        ]
-      }
-    ]
+          ]
+        }
+      ]
+    }
   }
-}
