@@ -43,6 +43,41 @@
                   "path": "PDF_STATIC_LABEL_CHALLAN"
                 },
                 "type": "label",
+                "localisation":{
+                  "required":true,
+                  "prefix": null,
+                  "module":"rainmaker-common"
+               }
+              },
+              {
+                                "variable": "muncipalityName",
+                                "value": {
+                                    "path": "$.tenantId"
+                                },
+                                "localisation": {
+                                    "required": true,
+                                    "prefix": "RECEIPT_MUNICIPALITY",
+                                    "module": "rainmaker-receipt"
+                                }
+              },
+              {
+                "variable": "commissioner_eo",
+                "value": {
+                  "path": "PDF_STATIC_LABEL_CONSOLIDATED_RECEIPT_COMMISSIONER_EO"
+                },
+                "type": "label",
+                "localisation":{
+                  "required":true,
+                  "prefix": null,
+                  "module":"rainmaker-common"
+               }
+              },
+              {
+                "variable": "challan",
+                "value": {
+                  "path": "PDF_STATIC_LABEL_CHALLAN"
+                },
+                "type": "label",
                 "localisation": {
                   "required": true,
                   "prefix": null,
