@@ -13,7 +13,7 @@
             "direct": [
               {
                   "variable": "logoImage",                        
-                  "url":"https://nagarsewa-uat.uk.gov.in/ukd-assets/uk.dehradun/logo.png",
+                  "url":"https://ukd-dev.egovernments.org/ukd-assets/Stateimages/logo.png",
                   "type":"image"      
               },
               {
