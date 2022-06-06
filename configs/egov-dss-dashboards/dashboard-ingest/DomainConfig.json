@@ -2,6 +2,34 @@
   "domainConfig": [
     {
       "id": "1",
+      "domain": "PT",
+      "indexName": "property-services",
+      "documentType": "",
+      "query": "{\"query\":{\"bool\":{\"must\":[{\"match_phrase\":{\"Data.propertyId\":\"value\"}}]}}}",
+      
+         "targetReferences": [
+        {
+          "fieldName": "propertyId",
+          "argument": "Data.propertyId",
+          "dataType": "String",
+           "value": "$value",
+          "seperator": " ",
+          "expression": "propertyId"
+        }
+      ],
+      "sourceReferences": [
+        {
+          "fieldName": "consumerCode",
+          "argument": "Bill.billDetails.consumerCode",
+          "dataType": "String",
+           "value": "$value",
+          "seperator": " ",
+          "expression": "propertyId"
+        }
+      ]
+    },
+    {
+      "id": "2",
       "domain": "TL",
       "indexName": "tlindex-v1",
       "documentType": "",
