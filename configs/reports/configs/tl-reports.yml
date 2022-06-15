@@ -1,6 +1,7 @@
 ---
 ReportDefinitions:
 - reportName: TradeLicenseRegistryReport
+  decryptionPathId: TradeLicenseRegistryReport
   summary: TL Receipt Register Report
   version: 1.0.0
   moduleName: rainmaker-tl
@@ -122,6 +123,7 @@ ReportDefinitions:
     WHERE tl.Status in ('APPROVED', 'PAID', 'CANCELLED') AND tl.tenantId != 'uk.testing' AND tl.tenantId LIKE $tenantid
 
 - reportName: StateTradeLicenseCancelledRegistryReport
+  decryptionPathId: StateTradeLicenseCancelledRegistryReport
   summary: TL Cancelled Receipt Register Report
   version: 1.0.0
   moduleName: rainmaker-tl
@@ -258,6 +260,7 @@ ReportDefinitions:
     WHERE tl.tenantId != 'uk.testing'
 
 - reportName: TradeLicenseCancelledRegistryReport
+  decryptionPathId: TradeLicenseCancelledRegistryReport
   summary: TL Cancelled Receipt Register Report
   version: 1.0.0
   moduleName: rainmaker-tl
@@ -724,6 +727,7 @@ ReportDefinitions:
 
 
 - reportName: StateLevelTradeLicenseRegistryReport
+  decryptionPathId: StateLevelTradeLicenseRegistryReport
   summary: TL Basic Report State Level
   version: 1.0.0
   moduleName: rainmaker-tl
