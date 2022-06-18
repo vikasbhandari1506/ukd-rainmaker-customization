@@ -3,9 +3,9 @@
     {
       "id": "1",
       "businessType": "PT",
-      "indexName": "property-services",
+      "indexName": "ptindex-v1",
       "documentType": "",
-      "query": "{\"query\":{\"bool\":{\"must\":[{\"match_phrase\":{\"Data.acknowldgementNumber\":\"value\"}},{\"match_phrase\":{\"Data.propertyId\":\"value\"}}]}}}",
+      "query": "{\"query\":{\"bool\":{\"must\":[{\"match_phrase\":{\"Data.propertyDetails.assessmentNumber\":\"value\"}},{\"match_phrase\":{\"Data.propertyId\":\"value\"}}]}}}",
       "references": [
         {
           "fieldName": "consumerCode",
@@ -14,7 +14,7 @@
         },
         {
           "fieldName": "consumerCode",
-          "argument": "Data.acknowldgementNumber",
+          "argument": "Data.propertyDetails.assessmentNumber",
           "dataType": "String"
         }
       ]

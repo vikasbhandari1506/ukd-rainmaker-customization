@@ -2,30 +2,10 @@
   {
     "operation": "shift",
     "spec": {
-        "propertyId":"propertyId",
-        "tenantId":"tenantId",
-          "surveyId": "surveyId",
-          "linkedProperties": "linkedProperties",
-          "landArea": "landArea",
-          "superBuiltUpArea": "superBuiltUpArea",
-          "channel": "channel", 
-          "source": "source",
-          "propertyType": "propertyType",
-          "id": "id",
-          "propertyId": "propertyId",
-          "oldPropertyId": "oldPropertyId",
-          "address": "address",         
-          "creationReason": "creationReason",
-          "additionalDetails": "additionalDetails",
-          "accountId": "accountId",
-          "noOfFloors": "noOfFloors",
-          "ownershipCategory": "ownershipCategory",
-          "tenantId": "tenantId",
-          "status": "status",
-          "acknowldgementNumber": "acknowldgementNumber",
-          "usageCategory": "usageCategory",
-          "timestamp": "@timestamp",          
-        "ward" : "ward"     
+      "tenantId": "tenantId",
+      "propertyId": "propertyId",
+      "propertyDetails": "propertyDetails",
+      "ward" : "ward"
     }
   }
 ]

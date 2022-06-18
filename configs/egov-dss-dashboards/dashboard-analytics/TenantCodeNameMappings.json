@@ -1,17 +1,17 @@
 {
-  "comment" : "Testing purpose",
-    "ulbCityNamesMappings": [
-		{
-			"tenantCode":"uk.dehradun",
-			"tenantValue":"Dehradun"
-		},
-		{
-			"tenantCode": "uk.kashipur",
-			"tenantValue":"kashipur"
-		},
-		{
-			"tenantCode": "uk.roorkee",
-			"tenantValue":"Roorkee"
-		}
-    ]
+  "comment": "Testing purpose",
+  "ulbCityNamesMappings": [
+    {
+      "tenantCode": "uk.dehradun",
+      "tenantValue": "Dehradun"
+    },
+    {
+      "tenantCode": "uk.kashipur",
+      "tenantValue": "kashipur"
+    },
+    {
+      "tenantCode": "uk.roorkee",
+      "tenantValue": "Roorkee"
     }
+  ]
+}
