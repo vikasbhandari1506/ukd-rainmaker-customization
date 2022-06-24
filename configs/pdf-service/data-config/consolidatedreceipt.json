@@ -171,13 +171,6 @@
                 "type": "date"
               },
               {
-                "variable": "instrumentDate",
-                "value": {
-                  "path": "$.instrumentDate"
-                },
-                "type": "date"
-              },
-              {
                 "variable": "consumerID",
                 "value": {
                   "path": "$.paymentDetails[0].bill.consumerCode"
@@ -661,11 +654,11 @@
               },
               {
                 "variable": "rebate",
-                "formula": "{{Rebate}}"
+                "formula": "-{{Rebate}}"
               },
               {
                 "variable": "currentTax",
-                "formula": "({{propertyTax}}).toFixed(1)"
+                "formula": "({{propertyTax}}+{{Rebate}}).toFixed(1)"
               }
             ]
           },
