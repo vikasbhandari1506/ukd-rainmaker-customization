@@ -658,7 +658,7 @@
                             },
 			    {
                                 "variable": "currentTax",
-                                "formula": "({{propertyTax}}+{{Rebate}}).toFixed(1)"
+                                "formula": "({{propertyTax}}).toFixed(1)"
                             }
                         ]
                     },
