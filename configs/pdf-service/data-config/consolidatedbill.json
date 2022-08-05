@@ -431,54 +431,6 @@
                 }
               },
               {
-                "variable": "tl_penalty",
-                "value": {
-                  "path": "TL_RECEIPT_LABEL_TL_PENALTY"
-                },
-                "type": "label",
-                "localisation": {
-                  "required": true,
-                  "prefix": null,
-                  "module": "rainmaker-receipt"
-                }
-              },
-              {
-                "variable": "tl_rebate",
-                "value": {
-                  "path": "TL_RECEIPT_LABEL_TL_REBATE"
-                },
-                "type": "label",
-                "localisation": {
-                  "required": true,
-                  "prefix": null,
-                  "module": "rainmaker-receipt"
-                }
-              },
-              {
-                "variable": "tl_adhoc_penalty",
-                "value": {
-                  "path": "TL_RECEIPT_LABEL_TL_ADHOC_PENALTY"
-                },
-                "type": "label",
-                "localisation": {
-                  "required": true,
-                  "prefix": null,
-                  "module": "rainmaker-receipt"
-                }
-              },
-              {
-                "variable": "tl_adhoc_rebate",
-                "value": {
-                  "path": "TL_RECEIPT_LABEL_TL_ADHOC_REBATE"
-                },
-                "type": "label",
-                "localisation": {
-                  "required": true,
-                  "prefix": null,
-                  "module": "rainmaker-receipt"
-                }
-              },
-              {
                 "variable": "tl_total",
                 "value": {
                   "path": "TL_RECEIPT_LABEL_TL_TOTAL"
@@ -606,31 +558,7 @@
               {
                 "variable": "licenseTax",
                 "value": {
-                  "path": "$.additionalDetails.tax"
-                }
-              },
-              {
-                "variable": "adhocrebate",
-                "value": {
-                  "path": "$.additionalDetails.adhocRebate"
-                }
-              },
-              {
-                "variable": "timepenalty",
-                "value": {
-                  "path": "$.additionalDetails.penalty"
-                }
-              },
-              {
-                "variable": "timeRebate",
-                "value": {
-                  "path": "$.additionalDetails.rebate"
-                }
-              },
-              {
-                "variable": "adhocPenalty",
-                "value": {
-                  "path": "$.additionalDetails.adhocPenalty"
+                  "path": "$.totalAmount"
                 }
               },
               {
@@ -650,18 +578,6 @@
                 "variable": "scissorImage",
                 "url": "http://www.pngall.com/wp-content/uploads/2016/03/Scissor-PNG-Clipart.png",
                 "type": "image"
-              }
-            ]
-          },
-          {
-            "derived": [
-              {
-                "variable": "adhocRebate",
-                "formula": "-{{adhocrebate}}"
-              },
-              {
-                "variable": "timerebate",
-                "formula": "-{{timeRebate}}"
               }
             ]
           },
