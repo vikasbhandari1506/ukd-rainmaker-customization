@@ -170,13 +170,6 @@
                                 },
                                 "type":"date"
                             },
-			    {
-                                "variable": "instrumentDate",
-                                "value": {
-                                    "path": "$.instrumentDate"
-                                },
-                                "type":"date"
-                            },
                             {
                                 "variable": "consumerID",
                                 "value": {
@@ -661,7 +654,7 @@
                             },
                             {
                                 "variable": "rebate",
-                                "formula": "{{Rebate}}"
+                                "formula": "-{{Rebate}}"
                             },
 			    {
                                 "variable": "currentTax",
@@ -700,7 +693,7 @@
                                 ]
                             },
                { 
-                 "path": "http://property-services:8080/property-services/property/_search",
+                 "path": "http://property-services:8080/property-services/property/_plainsearch",
                  "queryParam": "tenantId=$.paymentDetails[0].tenantId,propertyIds=$.paymentDetails[0].bill.consumerCode",
                  "apiRequest": null,
                  "responseMapping":[
