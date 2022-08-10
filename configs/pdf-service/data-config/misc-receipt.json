@@ -387,30 +387,7 @@
                     "module":"rainmaker-common"
                  }
                 },
-                {
-                  "variable": "disclamer_4",
-                  "value": {
-                    "path": "PDF_STATIC_LABEL_CONSOLIDATED_RECEIPT_DISCLAIMER_FOURTH_LINE"
-                  },
-                  "type": "label",
-                  "localisation":{
-                    "required":true,
-                    "prefix": null,
-                    "module":"rainmaker-common"
-                 }
-                },
-                {
-                  "variable": "disclamer_5",
-                  "value": {
-                    "path": "PDF_STATIC_LABEL_CONSOLIDATED_RECEIPT_DISCLAIMER_FIFTH_LINE"
-                  },
-                  "type": "label",
-                  "localisation":{
-                    "required":true,
-                    "prefix": null,
-                    "module":"rainmaker-common"
-                 }
-                },
+                
                 {
                   "variable": "to",
                   "value": {

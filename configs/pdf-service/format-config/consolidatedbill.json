@@ -32,10 +32,6 @@
                     "style": "receipt-logo-header"
                   },
                   {
-                    "text": "{{form_rule8}}",
-                    "style": "receipt-logo-sub-header"
-                  },
-                  {
                     "text": "{{challan}}",
                     "style": "receipt-logo-sub-header"
                   }
@@ -261,102 +257,6 @@
               },
               {
                 "text": "{{licenseTax}}",
-                "border": [
-                  true,
-                  true,
-                  true,
-                  true
-                ],
-                "style": "receipt-table-value",
-                "alignment": "right"
-              }
-            ],
-            [
-              {
-                "text": "{{tl_penalty}}",
-                "border": [
-                  true,
-                  true,
-                  true,
-                  true
-                ],
-                "style": "receipt-table-value",
-                "alignment": "left"
-              },
-              {
-                "text": "{{timepenalty}}",
-                "border": [
-                  true,
-                  true,
-                  true,
-                  true
-                ],
-                "style": "receipt-table-value",
-                "alignment": "right"
-              }
-            ],
-            [
-              {
-                "text": "{{tl_rebate}}",
-                "border": [
-                  true,
-                  true,
-                  true,
-                  true
-                ],
-                "style": "receipt-table-value",
-                "alignment": "left"
-              },
-              {
-                "text": "{{timerebate}}",
-                "border": [
-                  true,
-                  true,
-                  true,
-                  true
-                ],
-                "style": "receipt-table-value",
-                "alignment": "right"
-              }
-            ],
-            [
-              {
-                "text": "{{tl_adhoc_penalty}}",
-                "border": [
-                  true,
-                  true,
-                  true,
-                  true
-                ],
-                "style": "receipt-table-value",
-                "alignment": "left"
-              },
-              {
-                "text": "{{adhocPenalty}}",
-                "border": [
-                  true,
-                  true,
-                  true,
-                  true
-                ],
-                "style": "receipt-table-value",
-                "alignment": "right"
-              }
-            ],
-            [
-              {
-                "text": "{{tl_adhoc_rebate}}",
-                "border": [
-                  true,
-                  true,
-                  true,
-                  true
-                ],
-                "style": "receipt-table-value",
-                "alignment": "left"
-              },
-              {
-                "text": "{{adhocRebate}}",
                 "border": [
                   true,
                   true,
