@@ -367,7 +367,7 @@ ReportDefinitions:
         -- Use CTE to force query plan, compute & use CTE later
         SELECT 
           initcap(split_part(rh.tenantid, '.', 2)) as ulb,
-          (select message from message where locale ='en_IN'and code =(CONCAT('BILLINGSERVICE_BUSINESSSERVICE_',UPPER(replace(replace(rh.businessservice,'-','_'),'.','_'))))) as servicecategory,count(distinct py.*) as receipts,
+          (select message from message where locale ='en_IN'and code =(CONCAT('BILLINGSERVICE_BUSINESSSERVICE_',UPPER(replace(replace(rh.businessservice,'-','_'),'.','_'))))limit 1) as servicecategory,count(distinct py.*) as receipts,
           SUM(CASE WHEN taxheadcode LIKE '%_FIELD_FEE' THEN adjustedamount ELSE 0 END) as fieldcollection,
           SUM(CASE WHEN taxheadcode LIKE '%_TAX' THEN adjustedamount ELSE 0 END) as tax, 
           SUM(CASE WHEN taxheadcode LIKE '%_CGST' THEN adjustedamount ELSE 0 END) as cgst, 
