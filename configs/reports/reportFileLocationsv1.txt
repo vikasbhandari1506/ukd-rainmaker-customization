@@ -1,0 +1,4 @@
+rainmaker-pgr=file:///work-dir/ukd-rainmaker-customization/configs/reports/configs/pgr-reports.yml
+rainmaker-pt=file:///work-dir/ukd-rainmaker-customization/configs/reports/configs/pt-reports.yml
+rainmaker-tl=file:///work-dir/ukd-rainmaker-customization/configs/reports/configs/tl-reports.yml
+rainmaker-uc=file:///work-dir/ukd-rainmaker-customization/configs/reports/configs/uc-reports.yml

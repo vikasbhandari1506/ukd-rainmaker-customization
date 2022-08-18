@@ -80,7 +80,7 @@
                         ]
                     ]
                 },
-                "layout": "{}"
+                "layout": {}
             },
             {
                 "style": "receiptapprover",
@@ -660,7 +660,7 @@
                                 "style": "receipttablevalue"
                             },
                             {
-                                "text": "{{instrumentDate}}",
+                                "text": "{{paymentDate}}",
                                 "border": [
                                     false,
                                     true,
