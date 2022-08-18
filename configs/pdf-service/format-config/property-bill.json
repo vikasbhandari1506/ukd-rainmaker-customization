@@ -779,7 +779,7 @@
                   "widths": [
                     "100%"
                   ],
-                  "body": ["[{\"text\": \"{{important_message}}\",\"border\":[false,false,false,false],\"style\":\"bill-message-header\"}],{{#variable11}}[{\"text\":\"{{disclaimerContent}}\",\"border\":[false,false,false,false],\"style\":\"bill-message-value\"}]{{/variable11}}"]
+                  "body": ["[{\"text\": \"{{important_message}}\",\"border\":[false,false,false,false],\"style\":\"bill-message-header\"}][{\"text\":\"{{disclaimerContent}}\",\"border\":[false,false,false,false],\"style\":\"bill-message-value\"}]"]
                 }
               }
             ]
