@@ -293,7 +293,7 @@ ReportDefinitions:
         JOIN receipt_breakup ON bd.id = receipt_breakup.receiptheader
         JOIN egcl_billaccountdetail as ba ON bd.id=ba.billdetailid
         JOIN eg_user ON py.createdby::INTEGER=eg_user.id
-        WHERE  bi.status != 'CANCELLED'  AND bi.consumercode like 'UC%'
+        WHERE  bi.status != 'CANCELLED'  AND (bi.consumercode LIKE '%UC%' OR bi.consumercode LIKE '%UK%')
         AND rh.tenantid=$tenantid AND rh.tenantid != 'uk.testing'
     orderby: ORDER BY receiptdate DESC
 
@@ -378,7 +378,7 @@ ReportDefinitions:
         JOIN egcl_bill as bi ON bi.id=rh.billid
         JOIN egcl_billdetial as bd ON bd.billid=bi.id
         JOIN egcl_billaccountdetail as ba ON bd.id=ba.billdetailid
-        WHERE bi.status != 'CANCELLED'  AND bi.consumercode like 'UC%'
+        WHERE bi.status != 'CANCELLED'  AND (bi.consumercode LIKE '%UC%' OR bi.consumercode LIKE '%UK%')
         and rh.tenantid != 'uk.testing'
     groupby: group by rh.tenantid,rh.businessservice
     orderby: order by rh.tenantid
@@ -580,7 +580,7 @@ ReportDefinitions:
         FROM egcl_billaccountdetail as ba, egcl_paymentdetail AS rh
         JOIN egcl_bill as bi ON bi.id=rh.billid
         JOIN egcl_billdetial as bd ON bd.billid=bi.id
-        WHERE bd.id=ba.billdetailid and bd.billid=bi.id and bi.id=rh.billid and bi.status != 'CANCELLED' AND rh.tenantid=$tenantid AND rh.tenantid != 'uk.testing' AND  bi.consumercode like 'UC%'
+        WHERE bd.id=ba.billdetailid and bd.billid=bi.id and bi.id=rh.billid and bi.status != 'CANCELLED' AND rh.tenantid=$tenantid AND rh.tenantid != 'uk.testing' AND  (bi.consumercode LIKE '%UC%' OR bi.consumercode LIKE '%UK%')
     groupby:   GROUP BY rh.businessservice
     orderby:   ORDER BY rh.businessservice
 
@@ -714,7 +714,7 @@ ReportDefinitions:
         JOIN receipt_breakup ON bd.id = receipt_breakup.receiptheader
         JOIN egcl_billaccountdetail as ba ON bd.id=ba.billdetailid
         JOIN eg_user ON py.createdby::INTEGER=eg_user.id
-        WHERE  bi.status = 'CANCELLED'  AND bi.consumercode like 'UC%'
+        WHERE  bi.status = 'CANCELLED'  AND (bi.consumercode LIKE '%UC%' OR bi.consumercode LIKE '%UK%')
         AND rh.tenantid=$tenantid AND rh.tenantid != 'uk.testing'
     orderby: ORDER BY receiptdate DESC
 
