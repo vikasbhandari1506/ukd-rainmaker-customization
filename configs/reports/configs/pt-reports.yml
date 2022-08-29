@@ -62,7 +62,7 @@ ReportDefinitions:
     source: pt
     total: true
   - name: name
-    label: reports.pt.collectorname
+    label: reports.pt.name
     type: string
     source: pt
     total: false
