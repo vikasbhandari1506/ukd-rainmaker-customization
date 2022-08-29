@@ -81,6 +81,11 @@ ReportDefinitions:
     type: string
     source: pt
     total: false
+  - name: user_uuid
+    label: reports.pt.user_uuid
+    type: string
+    source: pt
+    showColumn: false
   searchParams:
   - name: fromDate
     label: reports.pt.fromDate
@@ -124,7 +129,8 @@ ReportDefinitions:
     un.name as name,
     msg.message as mohallaname,
     addr.doorno as doorno,
-    eu.name as ownername
+    eu.name as ownername,
+    eu.uuid as user_uuid
     from egcl_payment pay,
     egcl_paymentdetail pd,
     egcl_bill bill,
