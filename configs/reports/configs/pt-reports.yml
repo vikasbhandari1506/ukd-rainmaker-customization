@@ -85,6 +85,7 @@ ReportDefinitions:
     label: reports.pt.user_uuid
     type: string
     source: pt
+    total: false
     showColumn: false
   searchParams:
   - name: fromDate
