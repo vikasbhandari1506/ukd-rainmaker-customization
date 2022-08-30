@@ -86,6 +86,7 @@ ReportDefinitions:
     type: string
     source: pt
     total: false
+    showColumn: false
   searchParams:
   - name: fromDate
     label: reports.pt.fromDate
