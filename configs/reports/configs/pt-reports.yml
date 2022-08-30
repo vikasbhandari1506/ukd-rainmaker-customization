@@ -61,8 +61,8 @@ ReportDefinitions:
     type: string
     source: pt
     total: true
-  - name: name
-    label: reports.pt.name
+  - name: username
+    label: reports.pt.collectorname
     type: string
     source: pt
     total: false
@@ -76,7 +76,7 @@ ReportDefinitions:
     type: string
     source: pt
     total: false
-  - name: username
+  - name: name
     label: reports.pt.ownername
     type: string
     source: pt
@@ -126,10 +126,10 @@ ReportDefinitions:
     SUM(CASE WHEN taxheadcode LIKE 'SWATCHATHA_TAX%' THEN bad.amount ELSE 0 END) as swatchathatax,
     SUM(CASE WHEN taxheadcode LIKE 'PT_TAX%' or taxheadcode like 'PT_TIME_REBATE' or taxheadcode like 'PT_PROMOTIONAL_REBATE' THEN bad.amount ELSE 0 END) as propertytax,
     pd.amountpaid as totalcollection,
-    un.name as name,
+    un.name as username,
     msg.message as mohallaname,
     addr.doorno as doorno,
-    eu.name as username,
+    eu.name as name,
     eu.uuid as user_uuid
     from egcl_payment pay,
     egcl_paymentdetail pd,
