@@ -76,7 +76,7 @@ ReportDefinitions:
     type: string
     source: pt
     total: false
-  - name: ownername
+  - name: username
     label: reports.pt.ownername
     type: string
     source: pt
@@ -129,7 +129,7 @@ ReportDefinitions:
     un.name as name,
     msg.message as mohallaname,
     addr.doorno as doorno,
-    eu.name as ownername,
+    eu.name as username,
     eu.uuid as user_uuid
     from egcl_payment pay,
     egcl_paymentdetail pd,
