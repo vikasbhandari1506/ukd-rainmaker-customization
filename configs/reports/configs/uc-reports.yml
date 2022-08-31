@@ -585,6 +585,7 @@ ReportDefinitions:
     orderby:   ORDER BY rh.businessservice
 
   - reportName: MiscReceiptULBCancelled
+    decryptionPathId: MiscReceiptULBCancelled
     summary: Cancelled Receipt Miscellaneous
     version: 1.0.0
     moduleName: rainmaker-uc
@@ -647,11 +648,17 @@ ReportDefinitions:
         type: string
         source: uc
         total: false
-      - name: collectorname
+      - name: username
         label: reports.uc.collectorname
         type: string
         source: uc
         total: false
+      - name: user_uuid
+        label: reports.pt.user_uuid
+        type: string
+        source: pt
+        total: false
+        showColumn: true
       - name: totalamount
         label: reports.uc.totalamount
         type: string
@@ -704,7 +711,8 @@ ReportDefinitions:
           receipt_breakup.*,
           (case when py.paymentmode like 'CASH' then '' else  transactionnumber end) as ddorchequenumber,
           bi.totalamount as TotalAmount,
-          eg_user.name as collectorname,
+          eg_user.name as username,
+          eg_user.uuid as user_uuid,
           py.paymentmode as paymentMode,
           bi.status as status
         FROM egcl_payment as py
