@@ -1,6 +1,7 @@
 ---
 ReportDefinitions:
 - reportName: ReceiptRegister
+  decryptionPathId: ReceiptRegister
   summary: Receipt Register
   version: 1.0.0
   moduleName: rainmaker-pt
@@ -60,7 +61,7 @@ ReportDefinitions:
     type: string
     source: pt
     total: true
-  - name: collectorname
+  - name: username
     label: reports.pt.collectorname
     type: string
     source: pt
@@ -75,11 +76,17 @@ ReportDefinitions:
     type: string
     source: pt
     total: false
-  - name: ownername
+  - name: name
     label: reports.pt.ownername
     type: string
     source: pt
     total: false
+  - name: user_uuid
+    label: reports.pt.user_uuid
+    type: string
+    source: pt
+    total: false
+    showColumn: true
   searchParams:
   - name: fromDate
     label: reports.pt.fromDate
@@ -120,10 +127,11 @@ ReportDefinitions:
     SUM(CASE WHEN taxheadcode LIKE 'SWATCHATHA_TAX%' THEN bad.amount ELSE 0 END) as swatchathatax,
     SUM(CASE WHEN taxheadcode LIKE 'PT_TAX%' or taxheadcode like 'PT_TIME_REBATE' or taxheadcode like 'PT_PROMOTIONAL_REBATE' THEN bad.amount ELSE 0 END) as propertytax,
     pd.amountpaid as totalcollection,
-    un.name as collectorname,
+    un.name as username,
     msg.message as mohallaname,
     addr.doorno as doorno,
-    eu.name as ownername
+    eu.name as name,
+    eu.uuid as user_uuid
     from egcl_payment pay,
     egcl_paymentdetail pd,
     egcl_bill bill,
@@ -148,7 +156,7 @@ ReportDefinitions:
     pay.tenantid LIKE $tenantid and 
     pd.businessservice='PT'and 
     pay.paymentstatus != 'CANCELLED' AND pay.tenantid != 'uk.testing'
-  groupby: GROUP BY pay.tenantid,pd.receiptnumber,bill.consumercode,pd.receiptdate,pay.transactionnumber,pay.paymentmode,un.name,msg.message,addr.doorno,eu.name,pd.amountpaid
+  groupby: GROUP BY pay.tenantid,pd.receiptnumber,bill.consumercode,pd.receiptdate,pay.transactionnumber,pay.paymentmode,un.name,msg.message,addr.doorno,eu.name,pd.amountpaid,eu.uuid
 
 - reportName: ReceiptRegister_v1
   summary: Receipt Register
