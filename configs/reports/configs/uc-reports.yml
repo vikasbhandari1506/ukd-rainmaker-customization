@@ -727,6 +727,7 @@ ReportDefinitions:
     orderby: ORDER BY receiptdate DESC
 
   - reportName: MiscReceiptULBShort
+    decryptionPathId: MiscReceiptULBShort
     summary: Receipt Register Miscellaneous
     version: 1.0.0
     moduleName: rainmaker-uc
@@ -764,11 +765,17 @@ ReportDefinitions:
         type: string
         source: uc
         total: false
-      - name: collectorname
+      - name: username
         label: reports.uc.collectorname
         type: string
         source: uc
         total: false
+      - name: user_uuid
+        label: reports.pt.user_uuid
+        type: string
+        source: pt
+        total: false
+        showColumn: false
     searchParams:
       - name: fromDate
         label: reports.uc.fromDate
@@ -792,7 +799,8 @@ ReportDefinitions:
         searchClause: AND eg_user.id = $collectorname::INTEGER
     query: |
         -- Use CTE to force query plan, compute & use CTE later
-        select eg_user.name as collectorname,
+        select eg_user.name as username,
+        eg_user.uuid as user_uuid,
         py.payername as consumername, 
         py.mobilenumber as mobilenumber,
         bi.totalamount as amount,
