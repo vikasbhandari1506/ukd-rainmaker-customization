@@ -775,7 +775,7 @@ ReportDefinitions:
         type: string
         source: pt
         total: false
-        showColumn: false
+        showColumn: true
     searchParams:
       - name: fromDate
         label: reports.uc.fromDate
