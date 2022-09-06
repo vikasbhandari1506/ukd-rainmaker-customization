@@ -2,9 +2,11 @@ package org.egov.ukdcustomservice.service;
 
 import java.util.Calendar;
 import java.util.List;
+import java.util.Map;
 
 import org.egov.common.contract.request.RequestInfo;
 import org.egov.ukdcustomservice.producer.Producer;
+import org.egov.ukdcustomservice.web.models.NotificationRequest;
 import org.egov.ukdcustomservice.web.models.Notifications;
 import org.egov.ukdcustomservice.web.models.SMS;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,48 +45,49 @@ public class NotificationService {
     @Value("${egov.notify.pt.url.format}")
     private String urlFormat;
 
-    public void NotificationPush(List<Notifications> notifications, String key, RequestInfo requestInfo) {
+    public void NotificationPush(List<Notifications> notifications, String key, RequestInfo requestInfo, NotificationRequest notificationRequest) {
 
         SMS sms = new SMS();
 
-        String message = getMessage(key, requestInfo);
-        String ulbname = getTenant(notifications.get(0).getTenantId(), requestInfo);
-
+        String message = getMessage(key, requestInfo, notificationRequest);
         notifications.forEach(val -> {
-            sms.setMobileNumber(val.getMobileNumber());
-            String longURL = String.format(urlFormat, domainName, val.getConsumerNumber(), val.getTenantId());
-            String url = urlShorterService.getUrl(longURL);
-            log.info("Shorth url: "+ url);
-            // message.replace("<ownername>", val.getOwnerName());
-            String content = message.replace("<taxamount>", val.getPendingAmount());
-            content = content.replace("<domain>", domainName);
-            content = content.replace("<url>", url);
-            content = content.replace("<propertyid>", val.getConsumerNumber());
-            content = content.replace("<tenantid>", val.getTenantId());
-            content = content.replace("<FY>", getFY());
-            content = content.replace("<ulbname>", ulbname);
-
-            sms.setMessage(content);
-            log.info(val.getMobileNumber() + " " + content);
-
-            // format the message
-            if (shouldPush)
-                producer.pushToSMSTopic(sms);
+        	if(Long.valueOf(val.getPendingAmount()) > 10 && val.getOwnerNameMobileNo() != null && !val.getOwnerNameMobileNo().isEmpty())
+	        	for(Map.Entry<String, String> nameMob : val.getOwnerNameMobileNo().entrySet()) {
+	        		sms.setMobileNumber(nameMob.getKey());
+	                String longURL = String.format(urlFormat, domainName, val.getPropertyId(), val.getTenantId());
+	                String url = urlShorterService.getUrl(longURL);
+	                log.info("Shorth url: {}", url);
+	                String content = message.replace("{ownername}", nameMob.getValue());
+	                content = content.replace("{domain}", domainName);
+	                content = content.replace("{url}", url);
+	                content = content.replace("{propertyid}", val.getPropertyId());
+	                content = content.replace("{tenantid}", val.getTenantId());
+	                content = content.replace("{FY}", getFY());
+	                content = content.replace("{ulbname}", val.getTenantId());
+	
+	                sms.setMessage(content);
+	                log.info(nameMob.getKey() + " " + content);
+	
+	                // format the message
+	                if (shouldPush)
+	                    producer.pushToSMSTopic(sms);
+	        	}
         });
 
     }
 
-    private String getTenant(String tenantid, RequestInfo requestInfo) {
-        return localizationService.getResult("TENANT_TENANTS_".concat(tenantid.replace(".", "_").toUpperCase()),
-                "rainmaker-common", requestInfo);
-    }
+	/*
+	 * private String getTenant(String tenantid, RequestInfo requestInfo) { return
+	 * localizationService.getResult("TENANT_TENANTS_".concat(tenantid.replace(".",
+	 * "_").toUpperCase()), "rainmaker-common", requestInfo); }
+	 */
 
-    private String getMessage(String key, RequestInfo requestInfo) {
+    private String getMessage(String key, RequestInfo requestInfo, NotificationRequest notificationRequest) {
 
         String message = "";
 
         if (key.equals("PT")) {
-            message = localizationService.getResult(ptKey, ptModule, requestInfo);
+            message = localizationService.getResult(ptKey, ptModule, requestInfo, notificationRequest);
         }
 
         return message;

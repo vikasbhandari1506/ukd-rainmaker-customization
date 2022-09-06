@@ -40,14 +40,15 @@
 
 package org.egov.ukdcustomservice.web.controller;
 
+import org.egov.common.contract.request.RequestInfo;
+import org.egov.ukdcustomservice.service.PropertyNotifyService;
+import org.egov.ukdcustomservice.web.models.NotificationRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.egov.common.contract.request.RequestInfo;
-import org.egov.ukdcustomservice.service.PropertyNotifyService;
 
 @RestController
 @RequestMapping("/pt/notify")
@@ -57,8 +58,9 @@ public class PropertyNotifyController {
     private PropertyNotifyService propertyNotifyService;
 
     @PostMapping
-    public String notifyPT(@RequestBody RequestInfo requestInfo, @RequestParam String tenantId) {
-        return propertyNotifyService.PTNotify(tenantId, requestInfo);
+    public String notifyPT(@RequestBody RequestInfo requestInfo, @ModelAttribute NotificationRequest notificationRequest) {
+    	System.out.println(notificationRequest.toString());
+        return propertyNotifyService.PTNotify(notificationRequest, requestInfo);
     }
 
 }
