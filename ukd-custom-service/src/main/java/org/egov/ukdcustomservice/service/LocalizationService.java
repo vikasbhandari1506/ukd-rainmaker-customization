@@ -41,6 +41,7 @@ public class LocalizationService {
 
         StringBuilder uri = new StringBuilder();
         String locale = language;
+        log.info("locale: {}",locale);
         if(notificationRequest.getLocale() != null)
         	locale = notificationRequest.getLocale();
         uri.append(localizartionHost).append(endpoint).append("?tenantId=uk").append("&module=").append(module)

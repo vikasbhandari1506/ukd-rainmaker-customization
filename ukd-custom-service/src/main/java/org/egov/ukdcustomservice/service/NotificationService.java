@@ -50,18 +50,17 @@ public class NotificationService {
 
         SMS sms = new SMS();
 
-        String message = getMessage(key, requestInfo, notificationRequest);
         notifications.forEach(val -> {
 			if (val.getPendingAmount() != null && new BigDecimal(val.getPendingAmount()).compareTo(BigDecimal.valueOf(10)) > 0
 					&& val.getOwnerNameMobileNo() != null && !val.getOwnerNameMobileNo().isEmpty())
 	        	for(Map.Entry<String, String> nameMob : val.getOwnerNameMobileNo().entrySet()) {
+	        		String message = getMessage(key, requestInfo, notificationRequest);
 	        		sms.setMobileNumber(nameMob.getKey());
 	                String longURL = String.format(urlFormat, domainName, val.getPropertyId(), val.getTenantId());
 	                String url = urlShorterService.getUrl(longURL);
 	                log.info("Shorth url: {}", url);
 	                String content = message.replace("{ownername}", nameMob.getValue());
-	                content = content.replace("{domain}", domainName);
-	                content = content.replace("{url}", url);
+	                content = content.replace("{domain}", url);
 	                content = content.replace("{propertyid}", val.getPropertyId());
 	                content = content.replace("{tenantid}", val.getTenantId());
 	                content = content.replace("{FY}", getFY());
@@ -87,7 +86,7 @@ public class NotificationService {
     private String getMessage(String key, RequestInfo requestInfo, NotificationRequest notificationRequest) {
 
         String message = "";
-
+        log.info(ptKey);
         if (key.equals("PT")) {
             message = localizationService.getResult(ptKey, ptModule, requestInfo, notificationRequest);
         }
