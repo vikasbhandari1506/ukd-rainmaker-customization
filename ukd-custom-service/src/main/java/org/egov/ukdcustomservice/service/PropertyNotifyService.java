@@ -71,7 +71,7 @@ public class PropertyNotifyService {
 				}
                 PropertyResponse propertyResponse = mapper.convertValue(obj, PropertyResponse.class);
                 log.info("propertyResponse:: {}", propertyResponse.toString());
-                Iterator<OwnerInfo> ownerItr = propertyResponse.getProperties().get(0).getPropertyDetails().get(0).getOwners().iterator();
+                Iterator<OwnerInfo> ownerItr = propertyResponse.getProperties().get(0).getOwners().iterator();
                 while(ownerItr.hasNext()) {
                 	OwnerInfo owner = ownerItr.next();
                 	Matcher match = ptrn.matcher(owner.getMobileNumber());  

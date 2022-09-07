@@ -1,10 +1,10 @@
 package org.egov.ukdcustomservice.web.models;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.validation.annotation.Validated;
@@ -29,12 +29,10 @@ import lombok.ToString;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Property extends PropertyInfo{
-
+public class Property extends PropertyInfo {
 
 	@JsonProperty("auditDetails")
 	private AuditDetails auditDetails;
-
 
 	public enum CreationReasonEnum {
 		NEWPROPERTY("NEWPROPERTY"),
@@ -70,102 +68,17 @@ public class Property extends PropertyInfo{
 	@JsonProperty("occupancyDate")
 	private Long occupancyDate;
 
+	private String propertyId;
+
+	@NotEmpty
+	private String tenantId;
+	private String acknowldgementNumber;
+	private String oldPropertyId;
+	private StatusEnum status;
+
+	@JsonProperty("owners")
 	@Valid
-	@JsonProperty("propertyDetails")
-	private List<PropertyDetail> propertyDetails;
-
-
-	public Property addpropertyDetailsItem(PropertyDetail propertyDetailsItem) {
-		if (this.propertyDetails == null) {
-			this.propertyDetails = new ArrayList<>();
-		}
-		this.propertyDetails.add(propertyDetailsItem);
-		return this;
-	}
-
-
-	public static PropertyBuilder builder(){
-		return new PropertyBuilder();
-	}
-
-    public static class PropertyBuilder{
-
-		private CreationReasonEnum creationReason;
-		private Long occupancyDate;
-		
-		@NotNull
-		@Valid
-		private List<PropertyDetail>  propertyDetails;
-		private AuditDetails auditDetails;
-
-		private String propertyId;
-		
-		@NotEmpty
-		private String tenantId;
-		private String acknowldgementNumber;
-		private String oldPropertyId;
-		private StatusEnum status;
-		
-
-		public PropertyBuilder creationReason(CreationReasonEnum creationReason){
-			this.creationReason=creationReason;
-			return this;
-		}
-
-		public PropertyBuilder occupancyDate(Long occupancyDate){
-			this.occupancyDate=occupancyDate;
-			return this;
-		}
-
-		public PropertyBuilder propertyDetail( List<PropertyDetail> propertyDetails){
-			this.propertyDetails=propertyDetails;
-			return this;
-		}
-
-		public PropertyBuilder auditDetails(AuditDetails auditDetails){
-			this.auditDetails=auditDetails;
-			return this;
-		}
-
-		public PropertyBuilder propertyId(String propertyId){
-			this.propertyId =propertyId ;
-			return this;
-		}
-
-		public PropertyBuilder tenantId(String tenantId){
-			this.tenantId =tenantId ;
-			return this;
-		}
-
-		public PropertyBuilder acknowldgementNumber(String acknowldgementNumber){
-			this.acknowldgementNumber =acknowldgementNumber ;
-			return this;
-		}
-
-		public PropertyBuilder oldPropertyId(String oldPropertyId){
-			this.oldPropertyId=oldPropertyId;
-			return this;
-		}
-
-		public PropertyBuilder status(StatusEnum status){
-			this.status = status;
-			return this;
-		}
-
-		public Property build(){
-			return new Property(this);
-		}
-
-
-	}
-
-
-	public Property(PropertyBuilder builder) {
-		super(builder.propertyId,builder.tenantId,builder.acknowldgementNumber,builder.oldPropertyId,builder.status);
-		this.auditDetails = builder.auditDetails;
-		this.creationReason = builder.creationReason;
-		this.occupancyDate = builder.occupancyDate;
-		this.propertyDetails = builder.propertyDetails;
-
-	}
+	@NotNull
+	@Size(min = 1)
+	private Set<OwnerInfo> owners;
 }
