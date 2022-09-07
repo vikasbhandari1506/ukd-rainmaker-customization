@@ -31,7 +31,7 @@ public class NotificationService {
     @Autowired
     private URLShorterService urlShorterService;
 
-    @Value("${egov.notify.pt.message.key}")
+    @Value("${egov.pt.unpaid.send.sms.key}")
     private String ptKey;
 
     @Value("${egov.notify.pt.message.module}")
@@ -48,12 +48,11 @@ public class NotificationService {
 
     public void NotificationPush(List<Notifications> notifications, String key, RequestInfo requestInfo, NotificationRequest notificationRequest) {
 
-        SMS sms = new SMS();
-
         notifications.forEach(val -> {
 			if (val.getPendingAmount() != null && new BigDecimal(val.getPendingAmount()).compareTo(BigDecimal.valueOf(10)) > 0
 					&& val.getOwnerNameMobileNo() != null && !val.getOwnerNameMobileNo().isEmpty())
 	        	for(Map.Entry<String, String> nameMob : val.getOwnerNameMobileNo().entrySet()) {
+	        		SMS sms = new SMS();
 	        		String message = getMessage(key, requestInfo, notificationRequest);
 	        		sms.setMobileNumber(nameMob.getKey());
 	                String longURL = String.format(urlFormat, domainName, val.getPropertyId(), val.getTenantId());

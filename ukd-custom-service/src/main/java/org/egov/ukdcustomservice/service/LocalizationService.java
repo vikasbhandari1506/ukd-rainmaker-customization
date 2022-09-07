@@ -34,7 +34,7 @@ public class LocalizationService {
     @Value("${egov.localization.search.endpoint}")
     private String endpoint;
 
-    @Value("${egov.localization.language}")
+    @Value("${egov.pt.unpaid.sms.locale}")
     private String language;
 
     public String getResult(String key, String module, RequestInfo requestInfo, NotificationRequest notificationRequest) {
