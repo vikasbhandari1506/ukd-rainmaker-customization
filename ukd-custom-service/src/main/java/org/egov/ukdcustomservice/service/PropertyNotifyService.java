@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import lombok.extern.slf4j.Slf4j;
@@ -61,8 +62,14 @@ public class PropertyNotifyService {
                 url.append("&");
                 url.append("propertyIds=");
                 url.append(notifys.getPropertyId());
-
-                PropertyResponse propertyResponse = mapper.convertValue(repository.fetchResult(url, requestInfoWrapper), PropertyResponse.class);
+                
+                Object obj = repository.fetchResult(url, requestInfoWrapper);
+                try {
+					log.info(mapper.writeValueAsString(obj));
+				} catch (JsonProcessingException e) {
+					log.error("Error occurred on parsing::: {}", e.getMessage());
+				}
+                PropertyResponse propertyResponse = mapper.convertValue(obj, PropertyResponse.class);
                 log.info("propertyResponse:: {}", propertyResponse.toString());
                 Iterator<OwnerInfo> ownerItr = propertyResponse.getProperties().get(0).getPropertyDetails().get(0).getOwners().iterator();
                 while(ownerItr.hasNext()) {
