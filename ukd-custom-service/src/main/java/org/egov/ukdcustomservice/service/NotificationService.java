@@ -1,5 +1,6 @@
 package org.egov.ukdcustomservice.service;
 
+import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
@@ -51,7 +52,8 @@ public class NotificationService {
 
         String message = getMessage(key, requestInfo, notificationRequest);
         notifications.forEach(val -> {
-        	if(Long.valueOf(val.getPendingAmount()) > 10 && val.getOwnerNameMobileNo() != null && !val.getOwnerNameMobileNo().isEmpty())
+			if (val.getPendingAmount() != null && new BigDecimal(val.getPendingAmount()).compareTo(BigDecimal.valueOf(10)) > 0
+					&& val.getOwnerNameMobileNo() != null && !val.getOwnerNameMobileNo().isEmpty())
 	        	for(Map.Entry<String, String> nameMob : val.getOwnerNameMobileNo().entrySet()) {
 	        		sms.setMobileNumber(nameMob.getKey());
 	                String longURL = String.format(urlFormat, domainName, val.getPropertyId(), val.getTenantId());
