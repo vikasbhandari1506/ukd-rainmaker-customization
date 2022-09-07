@@ -34,10 +34,10 @@ public class PropertyNotifyService {
     @Autowired
     private NotificationService notificationService;
     
-    @Value("egov.pt.registry.host")
+    @Value("${egov.pt.registry.host}")
     private String propertyHost;
     
-    @Value("egov.pt.registry.search")
+    @Value("${egov.pt.registry.search}")
     private String propertySearch;
     
     @Autowired

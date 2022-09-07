@@ -20,7 +20,7 @@ public class Notifications {
     private String tenantId;
     private Map<String, String> ownerNameMobileNo = new HashMap<>();
     
-    public Notifications(String tenantId, String propertyId, String pendingAmount) {
+    public Notifications(String propertyId, String pendingAmount, String tenantId) {
     	this.tenantId = tenantId;
     	this.propertyId = propertyId;
     	this.pendingAmount = pendingAmount;
