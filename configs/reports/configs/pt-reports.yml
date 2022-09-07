@@ -136,6 +136,8 @@ ReportDefinitions:
     SUM(CASE WHEN taxheadcode LIKE 'PT_TIME_PENALTY%' or taxheadcode LIKE 'PT_LATE_ASSESSMENT_PENALTY' THEN bad.amount ELSE 0 END) as penalty,
     SUM(CASE WHEN taxheadcode LIKE 'SWATCHATHA_TAX%' THEN bad.amount ELSE 0 END) as swatchathatax,
     SUM(CASE WHEN taxheadcode LIKE 'PT_TAX%' or taxheadcode like 'PT_TIME_REBATE' or taxheadcode like 'PT_PROMOTIONAL_REBATE' THEN bad.amount ELSE 0 END) as propertytax,
+    pt.currenttax as currenttax,
+    pt.arreartax as arreartax,
     pd.amountpaid as totalcollection,
     un.name as username,
     msg.message as mohallaname,
