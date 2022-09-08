@@ -55,7 +55,7 @@ public class NotificationService {
 	        		SMS sms = new SMS();
 	        		String message = getMessage(key, requestInfo, notificationRequest);
 	        		sms.setMobileNumber(nameMob.getKey());
-	                String longURL = String.format(urlFormat, domainName, val.getPropertyId(), val.getTenantId());
+	                String longURL = urlFormat.replace("$host", domainName).replace("$propertyId", val.getPropertyId()).replace("$tenantId", val.getTenantId());
 	                String url = urlShorterService.getUrl(longURL);
 	                log.info("Shorth url: {}", url);
 	                String content = message.replace("{ownername}", nameMob.getValue());
@@ -69,8 +69,10 @@ public class NotificationService {
 	                log.info(nameMob.getKey() + " " + content);
 	
 	                // format the message
-	                if (shouldPush)
+	                if (shouldPush) {
+	                	log.info("Pushing to kafka!!!!!");
 	                    producer.pushToSMSTopic(sms);
+	                }
 	        	}
         });
 

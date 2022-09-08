@@ -12,6 +12,7 @@ import org.egov.ukdcustomservice.repository.ServiceRequestRepository;
 import org.egov.ukdcustomservice.web.models.NotificationRequest;
 import org.egov.ukdcustomservice.web.models.Notifications;
 import org.egov.ukdcustomservice.web.models.OwnerInfo;
+import org.egov.ukdcustomservice.web.models.OwnerInfo.OwnerStatus;
 import org.egov.ukdcustomservice.web.models.PropertyResponse;
 import org.egov.ukdcustomservice.web.models.RequestInfoWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,6 +52,7 @@ public class PropertyNotifyService {
     	List<Object> preparedStmtList = new ArrayList<>();
         List<Notifications> notifications = propertyNotifyRepository.getNotifications(notificationRequest, preparedStmtList);
         log.info("Total messages: {}", notifications.size());
+        int totalSentSMS = 0;
         if(!notifications.isEmpty()) {
         	RequestInfoWrapper requestInfoWrapper = RequestInfoWrapper.builder().requestInfo(requestInfo).build();
         	Pattern ptrn = Pattern.compile("(^$|[6-9][0-9]{9})");
@@ -76,14 +78,18 @@ public class PropertyNotifyService {
                 	OwnerInfo owner = ownerItr.next();
                 	Matcher match = ptrn.matcher(owner.getMobileNumber());  
                 	// Send SMS only to valid mobile numbers
-                	if(match.find() && match.group().equals(owner.getMobileNumber()))
+					if (match.find() && match.group().equals(owner.getMobileNumber())
+							&& !owner.getMobileNumber().equals("9999999999")
+							&& owner.getStatus().equals(OwnerStatus.ACTIVE)) {
                 		notifys.getOwnerNameMobileNo().put(owner.getMobileNumber(), owner.getName());
+                		totalSentSMS++;
+					}
                 }
             }
         }
         
         notificationService.NotificationPush(notifications, "PT", requestInfo, notificationRequest);
-        return "SMS Sent Successfully to the valid mobile numbers only!!!!";
+        return String.format("SMS Sent Successfully to the valid mobile numbers only!!!! %d", totalSentSMS);
     }
 
 }

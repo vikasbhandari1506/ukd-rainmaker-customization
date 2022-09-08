@@ -78,6 +78,10 @@ public class PropertyNotifyRepository {
 			builder.append("property.propertyid IN (").append(createQuery(propertyIds)).append(")");
 			addToPreparedStatementWithUpperCase(preparedStmtList, propertyIds);
 		}
+		
+		addClauseIfRequired(preparedStmtList, builder);
+		builder.append("property.status='ACTIVE'");
+		
 		builder.append(" group by propertyid,property.tenantid,plastmodifiedtime ");
 		
 		return jdbcTemplate.query(addPaginationWrapper(builder.toString(), preparedStmtList, notificationRequest),
