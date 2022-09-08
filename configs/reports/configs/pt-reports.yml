@@ -41,11 +41,6 @@ ReportDefinitions:
     type: string
     source: pt
     total: true
-  - name: arreartax
-    label: reports.pt.arreartax
-    type: string
-    source: pt
-    total: true
   - name: currenttax
     label: reports.pt.currenttax
     type: string
