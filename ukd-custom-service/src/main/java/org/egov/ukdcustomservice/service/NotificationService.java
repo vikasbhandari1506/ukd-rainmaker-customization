@@ -63,7 +63,7 @@ public class NotificationService {
 	                content = content.replace("{propertyid}", val.getPropertyId());
 	                content = content.replace("{tenantid}", val.getTenantId());
 	                content = content.replace("{FY}", getFY());
-	                content = content.replace("{ulbname}", val.getTenantId().split(".")[1]);
+	                content = content.replace("{ulbname}", val.getTenantId().split("\\.").length == 1 ? val.getTenantId() : val.getTenantId().split("\\.")[1]);
 	
 	                sms.setMessage(content);
 	                log.info(nameMob.getKey() + " " + content);

@@ -50,7 +50,7 @@ public class PropertyNotifyService {
     public String PTNotify(NotificationRequest notificationRequest, RequestInfo requestInfo) {
     	if(notificationRequest.isEmpty())
     		return "The TenantID is Mandatory. Please enter TenantID value.";
-    	if(notificationRequest.getTenantId() != null && notificationRequest.getTenantId().split(".").length == 1)
+    	if(notificationRequest.getTenantId() != null && notificationRequest.getTenantId().split("\\.").length == 1)
     		return "Invalid TenantID. Please enter full TenantID value.";
     	List<Object> preparedStmtList = new ArrayList<>();
         List<Notifications> notifications = propertyNotifyRepository.getNotifications(notificationRequest, preparedStmtList);
