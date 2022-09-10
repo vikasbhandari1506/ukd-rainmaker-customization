@@ -72,11 +72,11 @@ public class PropertyNotifyService {
 					log.error("Error occurred on parsing::: {}", e.getMessage());
 				}
                 PropertyResponse propertyResponse = mapper.convertValue(obj, PropertyResponse.class);
-                log.info("propertyResponse:: {}", propertyResponse.toString());
                 Iterator<OwnerInfo> ownerItr = propertyResponse.getProperties().get(0).getOwners().iterator();
                 while(ownerItr.hasNext()) {
                 	OwnerInfo owner = ownerItr.next();
-                	Matcher match = ptrn.matcher(owner.getMobileNumber());  
+                	Matcher match = ptrn.matcher(owner.getMobileNumber());
+                	log.info("Mobile Number!!!!! {} and Status {} and isvalid {}", owner.getMobileNumber(), owner.getStatus().name(), !owner.getMobileNumber().equals("9999999999"));
                 	// Send SMS only to valid mobile numbers
 					if (match.find() && match.group().equals(owner.getMobileNumber())
 							&& !owner.getMobileNumber().equals("9999999999")
@@ -89,6 +89,8 @@ public class PropertyNotifyService {
         }
         
         notificationService.NotificationPush(notifications, "PT", requestInfo, notificationRequest);
+        if(totalSentSMS == 0)
+        	return "No message sent. No valid mobile numbers found!!!!!";
         return String.format("SMS Sent Successfully to the valid mobile numbers only!!!! %d", totalSentSMS);
     }
 
