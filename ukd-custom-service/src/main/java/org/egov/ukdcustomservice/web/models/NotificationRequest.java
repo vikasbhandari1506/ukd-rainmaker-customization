@@ -23,4 +23,8 @@ public class NotificationRequest {
 	private Long limit;
 	private String locale;
 
+	
+	public boolean isEmpty() {
+		return this.tenantId == null;
+	}
 }

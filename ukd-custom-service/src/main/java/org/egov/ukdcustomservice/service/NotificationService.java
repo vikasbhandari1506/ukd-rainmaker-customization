@@ -63,16 +63,12 @@ public class NotificationService {
 	                content = content.replace("{propertyid}", val.getPropertyId());
 	                content = content.replace("{tenantid}", val.getTenantId());
 	                content = content.replace("{FY}", getFY());
-	                content = content.replace("{ulbname}", val.getTenantId());
+	                content = content.replace("{ulbname}", val.getTenantId().split(".")[1]);
 	
 	                sms.setMessage(content);
 	                log.info(nameMob.getKey() + " " + content);
-	
-	                // format the message
-	                if (shouldPush) {
-	                	log.info("Pushing to kafka!!!!!");
-	                    producer.pushToSMSTopic(sms);
-	                }
+	               log.info("Pushing to kafka!!!!!");
+	               producer.pushToSMSTopic(sms);
 	        	}
         });
 
@@ -87,7 +83,6 @@ public class NotificationService {
     private String getMessage(String key, RequestInfo requestInfo, NotificationRequest notificationRequest) {
 
         String message = "";
-        log.info(ptKey);
         if (key.equals("PT")) {
             message = localizationService.getResult(ptKey, ptModule, requestInfo, notificationRequest);
         }

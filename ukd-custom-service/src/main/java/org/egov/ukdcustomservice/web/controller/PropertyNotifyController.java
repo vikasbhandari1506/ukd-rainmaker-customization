@@ -59,7 +59,6 @@ public class PropertyNotifyController {
 
     @PostMapping
     public String notifyPT(@RequestBody RequestInfo requestInfo, @ModelAttribute NotificationRequest notificationRequest) {
-    	System.out.println(notificationRequest.toString());
         return propertyNotifyService.PTNotify(notificationRequest, requestInfo);
     }
 

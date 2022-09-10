@@ -19,7 +19,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import lombok.extern.slf4j.Slf4j;
@@ -49,6 +48,10 @@ public class PropertyNotifyService {
     private ObjectMapper mapper;
 
     public String PTNotify(NotificationRequest notificationRequest, RequestInfo requestInfo) {
+    	if(notificationRequest.isEmpty())
+    		return "The TenantID is Mandatory. Please enter TenantID value.";
+    	if(notificationRequest.getTenantId() != null && notificationRequest.getTenantId().split(".").length == 1)
+    		return "Invalid TenantID. Please enter full TenantID value.";
     	List<Object> preparedStmtList = new ArrayList<>();
         List<Notifications> notifications = propertyNotifyRepository.getNotifications(notificationRequest, preparedStmtList);
         log.info("Total messages: {}", notifications.size());
@@ -66,11 +69,6 @@ public class PropertyNotifyService {
                 url.append(notifys.getPropertyId());
                 
                 Object obj = repository.fetchResult(url, requestInfoWrapper);
-                try {
-					log.info(mapper.writeValueAsString(obj));
-				} catch (JsonProcessingException e) {
-					log.error("Error occurred on parsing::: {}", e.getMessage());
-				}
                 PropertyResponse propertyResponse = mapper.convertValue(obj, PropertyResponse.class);
                 Iterator<OwnerInfo> ownerItr = propertyResponse.getProperties().get(0).getOwners().iterator();
                 while(ownerItr.hasNext()) {
