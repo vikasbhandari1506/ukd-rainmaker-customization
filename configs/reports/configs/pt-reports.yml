@@ -1050,6 +1050,11 @@ ReportDefinitions:
     type: string
     source: pt
     total: true
+  - name: currentrebate
+    label: reports.pt.CurrentRebate
+    type: string
+    source: pt
+    total: true
   - name: arreartax
     label: reports.pt.arreartax
     type: string
