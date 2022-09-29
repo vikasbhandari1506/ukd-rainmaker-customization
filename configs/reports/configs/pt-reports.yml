@@ -1156,11 +1156,11 @@ ReportDefinitions:
     SELECT * FROM 
       ((select initcap(split_part(p.tenantid, '.', 2)) as tenantId, p.paymentmode, sum(p.totalamountpaid) as sum, 0 as bbps_sum, count(p.id), 0 as bbps_count 
       FROM egcl_payment p, egcl_paymentdetail pd 
-      WHERE p.id = pd.paymentid and pd.businessservice = 'PT' and p.tenantId != 'uk.testing' and p.createdby in (select id::text from eg_user where username not in ('BBPS_ADMIN')) group by p.tenantid, p.paymentmode ORDER BY p.tenantid asc)
+      WHERE p.id = pd.paymentid and pd.businessservice = 'PT' and p.tenantId != 'uk.testing' and p.createdby != '565228' group by p.tenantid, p.paymentmode ORDER BY p.tenantid asc)
       UNION ALL
       (select initcap(split_part(p.tenantid, '.', 2)) as tenantId, p.paymentmode, 0 as sum, sum(p.totalamountpaid) as bbps_sum, 0 as count, count(p.id) as bbps_count
       FROM egcl_payment p, egcl_paymentdetail pd
-      WHERE p.id  = pd.paymentid and p.tenantId != 'uk.testing' and p.createdby in (select id::text from eg_user where username in ('BBPS_ADMIN')) and pd.businessservice = 'PT'
+      WHERE p.id  = pd.paymentid and p.tenantId != 'uk.testing' and p.createdby = '565228' and pd.businessservice = 'PT'
     GROUP BY p.tenantid, p.paymentmode ORDER BY p.tenantid asc)) stbl 
 
 - reportName: PTAdoptionReport
