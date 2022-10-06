@@ -44,22 +44,6 @@ public class DcbRefreshService {
 				"     prop.createdtime AS createddate,"+
 				"     pd.usagecategoryminor AS usage,"+
 				"     prop.tenantid as tenantid,"+
-				"   (select  u.name ||',' || u.mobilenumber from eg_pt_owner_v2 po, eg_user u   where "+
-				"	 po.userid=u.uuid and "+
-				"	 po.propertydetail = "+
-				"     ("+
-				"     SELECT"+
-				"     assessmentnumber "+
-				"     FROM"+
-				"     eg_pt_propertydetail_v2 "+
-				"     WHERE"+
-				"     property = prop.propertyid "+
-				"		 and "+
-				"		 tenantid=prop.tenantid"+
-				"     ORDER BY"+
-				"     substr(financialyear, 0, 5)::INTEGER DESC LIMIT 1"+
-				"     ) limit 1)  "+
-				" AS ownernamemobile ,"+
 				"     COALESCE(("+
 				"     SELECT"+
 				"     SUM(dd.taxamount) "+
@@ -240,7 +224,23 @@ public class DcbRefreshService {
 				"     ORDER BY"+
 				"     substr(financialyear, 0, 5)::INTEGER DESC LIMIT 1"+
 				"     ) limit 1)  "+
-				" AS name "+
+				" AS name, "+
+				"   (select  u.mobilenumber from eg_pt_owner_v2 po, eg_user u   where "+
+				"	 po.userid=u.uuid and "+
+				"	 po.propertydetail = "+
+				"     ("+
+				"     SELECT"+
+				"     assessmentnumber "+
+				"     FROM"+
+				"     eg_pt_propertydetail_v2 "+
+				"     WHERE"+
+				"     property = prop.propertyid "+
+				"		 and "+
+				"		 tenantid=prop.tenantid"+
+				"     ORDER BY"+
+				"     substr(financialyear, 0, 5)::INTEGER DESC LIMIT 1"+
+				"     ) limit 1)  "+
+				" AS mobilenumber "+
 				"     FROM "+
 				"     eg_pt_property_v2 prop,"+
 				"     eg_pt_propertydetail_v2 pd,"+
