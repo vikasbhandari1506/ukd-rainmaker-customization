@@ -265,7 +265,7 @@ public class DcbRefreshService {
 				"     FROM"+
 				"     now())*1000 BETWEEN demand.taxperiodfrom AND demand.taxperiodto"+
 				"     )"+
-				"     AND demand.consumercode = prop.propertyid), 0) currentRebate "+
+				"     AND demand.consumercode = prop.propertyid), 0) currentrebate "+
 				"     FROM "+
 				"     eg_pt_property_v2 prop,"+
 				"     eg_pt_propertydetail_v2 pd,"+
