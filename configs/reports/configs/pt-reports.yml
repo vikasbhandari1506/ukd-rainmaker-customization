@@ -1036,11 +1036,6 @@ ReportDefinitions:
     type: string
     source: pt
     total: false
-  - name: ownernamemobile
-    label: reports.pt.Owners
-    type: string
-    total: false
-    source: pt
   - name: name
     label: reports.pt.name
     type: string
