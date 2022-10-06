@@ -224,7 +224,7 @@ public class DcbRefreshService {
 				"     AND demand.id = dd.demandid "+
 				"     AND dd.taxheadcode not like '%REBATE%'"+
 				"     AND demand.consumercode = prop.propertyid), 0) totalcollected , "+
-				"	    now() AS updatedtime " +
+				"	    now() AS updatedtime," +
 				"   (select  u.name from eg_pt_owner_v2 po, eg_user u   where "+
 				"	 po.userid=u.uuid and "+
 				"	 po.propertydetail = "+
