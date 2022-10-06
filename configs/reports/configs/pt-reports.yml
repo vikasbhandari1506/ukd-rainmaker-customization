@@ -1101,6 +1101,12 @@ ReportDefinitions:
     type: string
     source: pt
     total: true
+  - name: user_uuid
+    label: reports.pt.user_uuid
+    type: string
+    source: pt
+    total: false
+    showColumn: true
   searchParams:
   - name: fromDate
     label: reports.pt.fromDate
@@ -1123,7 +1129,38 @@ ReportDefinitions:
     isMandatory: false
     searchClause: AND trim(SUBSTRING(mohalla , position('-' in mohalla)+1,LENGTH(mohalla))) = $Wardname
   query: | 
-    select * from dcb where tenantid = $tenantid
+    select  d.propertyid as propertyid,
+    d.oldpropertyid as oldpropertyid, 
+    d.doorno as doorno, 
+    d.mohalla as mohalla,
+    d.propertytype as propertytype,
+    d.createddate as createddate,
+    d.usage as usage,
+    d.tenantid as tenantid, 
+    d.currenttax as currenttax,
+    d.currentarv as currentarv,
+    d.oldarv as oldarv,
+    d.arreartax as arreartax,
+    d.penaltytax as penaltytax,
+    d.rebate as rebate,        
+    d.totaltax as totaltax, 
+    d.currentcollected as currentcollected, 
+    d.arrearcollected as arrearcollected, 
+    d.penaltycollected as penaltycollected, 
+    d.totalcollected as totalcollected, 
+    d.updatedtime as updatedtime, 
+    d.name as name, 
+    d.mobilenumber as mobilenumber, 
+    d.currentrebate as currentrebate,
+    eu.uuid as user_uuid
+    from dcb d,
+    eg_user eu,
+    eg_pt_property pt,
+    eg_pt_owner poo
+    where d.propertyid = pt.propertyid and 
+    poo.propertyid = pt.id and
+    poo.userid = eu.uuid and
+    eu.uuid = (select poo.userid from eg_pt_owner poo where poo.propertyid=pt.id and poo.tenantid = $tenantid fetch first 1 row only)
     
 - reportName: PTCollectionCount
   reporptabel: report.state.level.pt.collection
