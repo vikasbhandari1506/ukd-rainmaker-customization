@@ -240,7 +240,32 @@ public class DcbRefreshService {
 				"     ORDER BY"+
 				"     substr(financialyear, 0, 5)::INTEGER DESC LIMIT 1"+
 				"     ) limit 1)  "+
-				" AS mobilenumber "+
+				" AS mobilenumber, "+
+				"     COALESCE(("+
+				"     SELECT"+
+				"     SUM(dd.taxamount) "+
+				"     FROM"+
+				"     egbs_demand_v1 demand, egbs_demanddetail_v1 dd "+
+				"     WHERE"+
+				"      demand.tenantid = dd.tenantid "+
+				"     AND demand.id = dd.demandid "+
+				"     AND demand.consumercode = prop.propertyid), 0) totaltax,"+
+				"     COALESCE(("+
+				"     SELECT"+
+				"     SUM(dd.collectionamount) "+
+				"     FROM"+
+				"     egbs_demand_v1 demand, egbs_demanddetail_v1 dd "+
+				"     WHERE"+
+				"      demand.tenantid = dd.tenantid "+
+				"     AND demand.id = dd.demandid "+
+				"     AND dd.taxheadcode like '%REBATE%'"+
+				"     AND "+
+				"     ("+
+				"     EXTRACT(epoch "+
+				"     FROM"+
+				"     now())*1000 BETWEEN demand.taxperiodfrom AND demand.taxperiodto"+
+				"     )"+
+				"     AND demand.consumercode = prop.propertyid), 0) currentRebate "+
 				"     FROM "+
 				"     eg_pt_property_v2 prop,"+
 				"     eg_pt_propertydetail_v2 pd,"+
