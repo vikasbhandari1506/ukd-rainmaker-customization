@@ -243,15 +243,6 @@ public class DcbRefreshService {
 				" AS mobilenumber, "+
 				"     COALESCE(("+
 				"     SELECT"+
-				"     SUM(dd.taxamount) "+
-				"     FROM"+
-				"     egbs_demand_v1 demand, egbs_demanddetail_v1 dd "+
-				"     WHERE"+
-				"      demand.tenantid = dd.tenantid "+
-				"     AND demand.id = dd.demandid "+
-				"     AND demand.consumercode = prop.propertyid), 0) totaltax,"+
-				"     COALESCE(("+
-				"     SELECT"+
 				"     SUM(dd.collectionamount) "+
 				"     FROM"+
 				"     egbs_demand_v1 demand, egbs_demanddetail_v1 dd "+
