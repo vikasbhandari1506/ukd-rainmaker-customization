@@ -225,22 +225,6 @@ public class DcbRefreshService {
 				"     substr(financialyear, 0, 5)::INTEGER DESC LIMIT 1"+
 				"     ) limit 1)  "+
 				" AS name, "+
-				"   (select  u.mobilenumber from eg_pt_owner_v2 po, eg_user u   where "+
-				"	 po.userid=u.uuid and "+
-				"	 po.propertydetail = "+
-				"     ("+
-				"     SELECT"+
-				"     assessmentnumber "+
-				"     FROM"+
-				"     eg_pt_propertydetail_v2 "+
-				"     WHERE"+
-				"     property = prop.propertyid "+
-				"		 and "+
-				"		 tenantid=prop.tenantid"+
-				"     ORDER BY"+
-				"     substr(financialyear, 0, 5)::INTEGER DESC LIMIT 1"+
-				"     ) limit 1)  "+
-				" AS mobilenumber, "+
 				"     COALESCE(("+
 				"     SELECT"+
 				"     SUM(dd.collectionamount) "+
