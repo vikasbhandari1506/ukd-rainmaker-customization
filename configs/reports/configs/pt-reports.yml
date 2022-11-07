@@ -982,6 +982,7 @@ ReportDefinitions:
     where rh.tenantid = $tenantid AND rh.tenantid != 'uk.testing'
     
 - reportName: DemandRegisterReport
+  decryptionPathId: DemandRegisterReport
   summary: Reports for Reconcillation of data in PT
   version: 1.0.0
   moduleName: rainmaker-pt
@@ -1016,8 +1017,8 @@ ReportDefinitions:
     type: string
     source: pt
     total: false
-  - name: ownernamemobile
-    label: reports.pt.Owners
+  - name: name
+    label: reports.pt.name
     type: string
     total: false
     source: pt
@@ -1028,6 +1029,11 @@ ReportDefinitions:
     total: true    
   - name: currenttax
     label: reports.pt.CurrentTax
+    type: string
+    source: pt
+    total: true
+  - name: currentrebate
+    label: reports.pt.CurrentRebate
     type: string
     source: pt
     total: true
