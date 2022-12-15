@@ -359,6 +359,18 @@
                  }
               },
               {
+                "variable": "initiated_by",
+                "value": {
+                  "path": "PDF_STATIC_LABEL_CONSOLIDATED_TLCERTIFICATE_INITIATED_BY"
+                },
+                "type": "label",
+                "localisation": {
+                  "required": true,
+                  "prefix": null,
+                  "module": "rainmaker-common"
+                }
+              },
+              {
                   "variable": "commissioner",
                   "value": {
                     "path": "PDF_STATIC_LABEL_CONSOLIDATED_TLCERTIFICATE_COMMISSIONER"
@@ -434,8 +446,11 @@
             {            
               "variable":"approvedBy",
               "value":"$.ProcessInstances[?(@.action == 'APPROVE')].assigner.name"
+            },
+            {
+              "variable": "initiatedBy",
+              "value": "$.ProcessInstances[?(@.action == 'INITIATE')].assigner.name"
             }
-
           ]
       }
         
