@@ -71,7 +71,7 @@
                 {
                   "variable": "comments", 
                   "value": {
-                    "path": "$additionalDetails"
+                    "path": "$.additionalDetails"
                   }
                 },
                 {
