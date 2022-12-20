@@ -86,7 +86,7 @@ serviceMaps:
  - version: 1.0
    name: pt-calculator
    description: Persists the pt-calculator related records to db
-   fromTopic: save-pt-assessment
+   fromTopic: save-pt-assessment1
    isTransaction: true
    queryMaps:
     - query: INSERT INTO eg_pt_assessment(uuid, tenantId, assessmentNumber, demandId, propertyId, assessmentYear, createdby, createdtime, lastmodifiedby, lastmodifiedtime) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
@@ -118,7 +118,7 @@ serviceMaps:
  - version: 1.0
    name: pt-calculator
    description: Persists the pt-calculator related records to db
-   fromTopic: update-pt-assessment
+   fromTopic: update-pt-assessment1
    isTransaction: true
    queryMaps:
 
