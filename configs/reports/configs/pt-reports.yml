@@ -1100,7 +1100,7 @@ ReportDefinitions:
     searchClause: AND trim(SUBSTRING(mohalla , position('-' in mohalla)+1,LENGTH(mohalla))) = $Wardname
   query: | 
     select * from dcb where tenantid = $tenantid
-    
+
 - reportName: PTCollectionCount
   reporptabel: report.state.level.pt.collection
   summary: Shows the total properties and collection
@@ -1122,21 +1122,11 @@ ReportDefinitions:
     type: string
     source: pt
     total: true
-  - name: bbps_sum
-    label: reports.pt.total
-    type: string
-    source: pt
-    total: true
   - name: count
     label: reports.pt.count
     type: string
     source: pt
-    total: true  
-  - name: bbps_count
-    label: reports.pt.count
-    type: string
-    source: pt
-    total: true
+    total: true    
   searchParams:
   - name: fromDate
     label: reports.pt.fromDate
@@ -1159,16 +1149,13 @@ ReportDefinitions:
     isMandatory: false
     searchClause: AND p.tenantId = $ulb
   query: |
-    SELECT * FROM 
-      ((select initcap(split_part(p.tenantid, '.', 2)) as tenantId, p.paymentmode, sum(p.totalamountpaid) as sum, 0 as bbps_sum, count(p.id), 0 as bbps_count 
-      FROM egcl_payment p, egcl_paymentdetail pd 
-      WHERE p.id = pd.paymentid and pd.businessservice = 'PT' and p.tenantId != 'uk.testing' and p.createdby != '565228' group by p.tenantid, p.paymentmode ORDER BY p.tenantid asc)
-      UNION ALL
-      (select initcap(split_part(p.tenantid, '.', 2)) as tenantId, p.paymentmode, 0 as sum, sum(p.totalamountpaid) as bbps_sum, 0 as count, count(p.id) as bbps_count
-      FROM egcl_payment p, egcl_paymentdetail pd
-      WHERE p.id  = pd.paymentid and p.tenantId != 'uk.testing' and p.createdby = '565228' and pd.businessservice = 'PT'
-    GROUP BY p.tenantid, p.paymentmode ORDER BY p.tenantid asc)) stbl 
-
+    select initcap(split_part(p.tenantId, '.', 2)) as tenantId, p.paymentmode ,sum(p.totalamountpaid), count(p.id)
+    FROM egcl_payment p, egcl_paymentdetail pd 
+    WHERE p.id=pd.paymentid  and pd.businessservice ='PT'
+  groupby: GROUP BY p.tenantid, p.paymentmode
+  orderby: ORDER BY p.tenantId asc
+     
+     
 - reportName: PTAdoptionReport
   summary: Number of applications
   version: 1.0.0
