@@ -280,18 +280,6 @@
                 }
               },
               {
-                "variable": "important_message",
-                "value": {
-                  "path": "PDF_STATIC_LABEL_CONSOLIDATED_BILL_IMPORTANT_MESSAGE"
-                },
-                "type": "label",
-                "localisation": {
-                  "required": true,
-                  "prefix": null,
-                  "module": "rainmaker-common"
-                }
-              },
-              {
                 "variable": "payment_received",
                 "value": {
                   "path": "PDF_STATIC_LABEL_CONSOLIDATED_BILL_PAYMENT_RECEIVED"
