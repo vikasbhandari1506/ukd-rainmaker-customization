@@ -764,49 +764,9 @@
         },
         "layout": {}
       },
-
-      {
-        "style" : "noc-table3",
-        "table" : {
-          "widths": [
-            "103%"
-          ],
-          "body":[
-            [
-              {
-                "style": "noc-table3",
-                "table": {
-                  "widths": [
-                    "100%"
-                  ],
-                  "body": ["[{\"text\": \"{{important_message}}\",\"border\":[false,false,false,false],\"style\":\"bill-message-header\"}][{\"text\":\"{{disclaimerContent}}\",\"border\":[false,false,false,false],\"style\":\"bill-message-value\"}]"]
-                }
-              }
-            ]
-          ]
-
-        }
-      },
-      {
-        "canvas": [
-          {
-            "type": "line",
-            "x1": -40,
-            "y1": 30,
-            "x2": 700,
-            "y2": 30,
-            "dash": {
-              "length": 10,
-              "space": 5
-            }
-          }
-        ]
-      },
-
       {
         "text": "{{acknowledgement_for}}",
         "style": "footer-header"
-
       },
       {
         "style": "noc-table4",
