@@ -16,7 +16,7 @@
           "body": [
             [
               {
-                "image": "{{logoImage}}",
+                "image": "{{logo_Image}}",
                 "width": 50,
                 "height": 61.25
               },
@@ -800,17 +800,6 @@
               "space": 5
             }
           }
-        ]
-      },
-      {
-        "image": "{{scissorImage}}",
-        "width": 24,
-        "height": 24,
-        "margin": [
-          -30,
-          -11.2,
-          0,
-          0
         ]
       },
 
