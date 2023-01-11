@@ -909,17 +909,12 @@
       },
       {
         "text": "{{receivers_signature}}",
-        "style": "footer-bottom"
+        "style": "footer-bottom1"
       }
     ],
     "styles": {
       "noc-head": {
-        "margin": [
-          -25,
-          -30,
-          0,
-          1
-        ]
+        "margin": [-25, -30, 0, 1]
       },
       "receipt-logo-header": {
         "color": "#484848",
@@ -927,12 +922,7 @@
         "fontSize": 14,
         "bold": true,
         "letterSpacing": 0.74,
-        "margin": [
-          0,
-          -10,
-          0,
-          5
-        ]
+        "margin": [0, -10, 0, 5]
       },
       "receipt-logo-sub-header": {
         "color": "#484848",
@@ -943,134 +933,74 @@
       "noc-table": {
         "fontSize": 12,
         "color": "#484848",
-        "margin": [
-          -25,
-          10,
-          -8,
-          -8
-        ]
+        "margin": [-25, 10, -8, -8]
       },
       "noc-table4": {
         "fontSize": 12,
         "color": "#484848",
-        "margin": [
-          -25,
-          75,
-          -8,
-          -8
-        ]
+        "margin": [-25, 75, -8, -8]
       },
       "noc-table2": {
         "fontSize": 12,
         "color": "#484848",
-        "margin": [
-          -25,
-          18,
-          -8,
-          -8
-        ]
+        "margin": [-25, 18, -8, -8]
       },
       "noc-table3": {
         "fontSize": 12,
         "color": "#484848",
-        "margin": [
-          -25,
-          30,
-          -8,
-          -8
-        ]
+        "margin": [-25, 30, -8, -8]
       },
       "receipt-table-value": {
         "color": "#000000",
         "bold": true,
         "fontSize": 12,
         "fontWeight": 500,
-        "margin": [
-          8,
-          5,
-          0,
-          0
-        ]
+        "margin": [8, 5, 0, 0]
       },
       "receipt-table-value2": {
         "color": "#000000",
         "bold": true,
         "fontSize": 12,
         "fontWeight": 500,
-        "margin": [
-          3,
-          5,
-          0,
-          0
-        ]
+        "margin": [3, 5, 0, 0]
       },
       "receipt-table": {
         "color": "#484848",
         "bold": true,
         "fontSize": 12,
         "fontWeight": 400,
-        "margin": [
-          -10,
-          5,
-          0,
-          0
-        ]
+        "margin": [-10, 5, 0, 0]
       },
       "receipt-table2": {
         "color": "#484848",
         "bold": true,
         "fontSize": 11,
         "fontWeight": 400,
-        "margin": [
-          3,
-          8,
-          0,
-          10
-        ]
+        "margin": [3, 8, 0, 10]
       },
       "right-receipt-table": {
         "color": "#000000",
         "bold": true,
         "fontSize": 12,
         "fontWeight": 500,
-        "margin": [
-          8,
-          5,
-          0,
-          10
-        ]
+        "margin": [8, 5, 0, 10]
       },
       "right-receipt-table2": {
         "color": "#484848",
         "bold": true,
         "fontSize": 12,
         "fontWeight": 400,
-        "margin": [
-          -10,
-          5,
-          0,
-          0
-        ]
+        "margin": [-10, 5, 0, 0]
       },
       "receipt-approver": {
         "fontSize": 12,
         "bold": true,
-        "margin": [
-          -27,
-          50,
-          -10,
-          0
-        ],
+        "margin": [-27, 50, -10, 0],
         "color": "#484848"
       },
       "no-signature": {
         "fontSize": 12,
-        "margin": [
-          -27,
-          35,
-          -10,
-          0
-        ],
+        "margin": [-27, 35, -10, 0],
         "color": "#484848"
       },
       "amount-due": {
@@ -1081,63 +1011,39 @@
       },
       "pt-disclaimer": {
         "fontSize": 12,
-        "margin": [
-          -27,
-          30,
-          -10,
-          0
-        ],
+        "margin": [-27, 30, -10, 0],
         "color": "#484848"
       },
       "pt-disclaimer-value": {
         "fontSize": 12,
-        "margin": [
-          2,
-          5,
-          0,
-          0
-        ],
+        "margin": [2, 5, 0, 0],
         "color": "#484848"
-       },
+      },
       "qr-text": {
         "fontSize": 12,
-        "margin": [
-          40,
-          0,
-          0,
-          0
-        ],
+        "margin": [40, 0, 0, 0],
         "color": "#484848",
         "alignment": "left"
       },
       "qr-image": {
-        "margin": [
-          -40,
-          -1,
-          -3,
-          0
-        ],
+        "margin": [-40, -1, -3, 0],
         "color": "#484848",
         "alignment": "right"
       },
       "footer-header": {
-        "margin": [
-          0,
-          15,
-          0,
-          -40
-        ],
+        "margin": [0, 15, 0, -40],
         "bold": true,
         "color": "#000000",
         "alignment": "center"
       },
       "footer-bottom": {
-        "margin": [
-          0,
-          50,
-          0,
-          0
-        ],
+        "margin": [0, 50, 0, 0],
+        "bold": true,
+        "color": "#000000",
+        "alignment": "right"
+      },
+      "footer-bottom1": {
+        "margin": [0, 15, 0, 0],
         "bold": true,
         "color": "#000000",
         "alignment": "right"
@@ -1147,34 +1053,19 @@
         "bold": true,
         "fontSize": 12,
         "fontWeight": 500,
-        "margin": [
-          28,
-          -15,
-          0,
-          10
-        ]
+        "margin": [28, -15, 0, 10]
       },
       "bill-message-value": {
         "color": "#484848",
         "fontSize": 12,
         "fontWeight": 500,
-        "margin": [
-          28,
-          -5,
-          0,
-          10
-        ]
+        "margin": [28, -5, 0, 10]
       },
       "disclaimer-table": {
         "fontSize": 12,
         "bold": false,
         "color": "#FC8019",
-        "margin": [
-          -25,
-          16,
-          -8,
-          -8
-        ]
+        "margin": [-25, 16, -8, -8]
       }
     }
   }
