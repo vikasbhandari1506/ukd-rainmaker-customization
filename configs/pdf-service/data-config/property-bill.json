@@ -548,13 +548,13 @@
               {
                 "variable": "pt_adhoc_penalty",
                 "value": {
-                  "path": "$.billDetails[(@.length-1)].billAccountDetails[?(@.taxHeadCode == 'PT_ADHOC_PENALTY')].amount"
+                  "path": "$.billDetails[(@.length-1)].billAccountDetails[?(@.taxHeadCode == 'PT_LATE_ASSESSMENT_PENALTY')].amount"
                 }
               },
               {
                 "variable": "pt_adhoc_rebate",
                 "value": {
-                  "path": "$.billDetails[(@.length-1)].billAccountDetails[?(@.taxHeadCode == 'PT_ADHOC_REBATE')].amount"
+                  "path": "$.billDetails[(@.length-1)].billAccountDetails[?(@.taxHeadCode == 'PT_PROMOTIONAL_REBATE')].amount"
                 }
               },
               {
