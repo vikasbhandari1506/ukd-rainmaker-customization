@@ -12,7 +12,7 @@
           "body": [
             [
               {
-                "image": "{{logoImage}}",
+                "image": "{{logo_Image}}",
                 "width": 50,
                 "height": 61.25
               },
@@ -429,48 +429,6 @@
         },
         "layout": {}
       },
-
-      {
-        "style": "noc-table3",
-        "table": {
-          "widths": ["103%"],
-          "body": [
-            [
-              {
-                "style": "noc-table3",
-                "table": {
-                  "widths": ["100%"],
-                  "body": [
-                    "[{\"text\": \"{{important_message}}\",\"border\":[false,false,false,false],\"style\":\"bill-message-header\"}][{\"text\":\"{{disclaimerContent}}\",\"border\":[false,false,false,false],\"style\":\"bill-message-value\"}]"
-                  ]
-                }
-              }
-            ]
-          ]
-        }
-      },
-      {
-        "canvas": [
-          {
-            "type": "line",
-            "x1": -40,
-            "y1": 30,
-            "x2": 700,
-            "y2": 30,
-            "dash": {
-              "length": 10,
-              "space": 5
-            }
-          }
-        ]
-      },
-      {
-        "image": "{{scissorImage}}",
-        "width": 24,
-        "height": 24,
-        "margin": [-30, -11.2, 0, 0]
-      },
-
       {
         "text": "{{acknowledgement_for}}",
         "style": "footer-header"
@@ -551,7 +509,7 @@
       },
       {
         "text": "{{receivers_signature}}",
-        "style": "footer-bottom"
+        "style": "footer-bottom1"
       }
     ],
     "styles": {
@@ -680,6 +638,12 @@
       },
       "footer-bottom": {
         "margin": [0, 50, 0, 0],
+        "bold": true,
+        "color": "#000000",
+        "alignment": "right"
+      },
+      "footer-bottom1": {
+        "margin": [0, 5, 0, 0],
         "bold": true,
         "color": "#000000",
         "alignment": "right"
