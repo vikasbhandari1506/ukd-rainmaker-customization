@@ -5,7 +5,7 @@
     "moduleName": "PT",
     "version": "1.0.0",
     "baseKeyPath": "$.Bill.*",
-    "entityIdPath":"$.id",
+    "entityIdPath": "$.id",
     "isCommonTableBorderRequired": true,
     "mappings": [
       {
@@ -230,7 +230,18 @@
                   "module": "rainmaker-common"
                 }
               },
-
+              {
+                "variable": "swatchathatax_label",
+                "value": {
+                  "path": "PDF_STATIC_LABEL_CONSOLIDATED_BILL_SWATCHATHATAX"
+                },
+                "type": "label",
+                "localisation": {
+                  "required": true,
+                  "prefix": null,
+                  "module": "rainmaker-common"
+                }
+              },
               {
                 "variable": "penalty_label",
                 "value": {
@@ -534,6 +545,12 @@
                 }
               },
               {
+                "variable": "swatchatha_tax",
+                "value": {
+                  "path": "$.billDetails[(@.length-1)].billAccountDetails[?(@.taxHeadCode == 'SWATCHATHA_TAX')].amount"
+                }
+              },
+              {
                 "variable": "pt_penalty",
                 "value": {
                   "path": "$.billDetails[(@.length-1)].billAccountDetails[?(@.taxHeadCode == 'PT_TIME_PENALTY')].amount"
@@ -812,6 +829,10 @@
                 "formula": "{{fees}}"
               },
               {
+                "variable": "swatchathatax",
+                "formula": "{{swatchatha_tax}}"
+              },
+              {
                 "variable": "penalty",
                 "formula": "{{pt_penalty}}"
               },
@@ -874,49 +895,49 @@
             ]
           },
           {
-            "externalAPI": [     
-              { 
+            "externalAPI": [
+              {
                 "path": "http://egov-mdms-service:8080/egov-mdms-service/v1/_get",
                 "queryParam": "moduleName=tenant&masterName=tenants&tenantId=uk&filter=%5B?(@.code=='{$.tenantId}')%5D",
-                  "apiRequest": null,
-                  "responseMapping":[
-                    {             
-                      "variable":"address",
-                      "value":"$.MdmsRes.tenant.tenants[0].address"
-                    },
-                    {
-                      "variable":"phoneNumber",
-                      "value":"$.MdmsRes.tenant.tenants[0].contactNumber"
-                    },
-                    {
-                      "variable":"website",
-                      "value":"$.MdmsRes.tenant.tenants[0].domainUrl"
-                    },
-                    {
-                      "variable":"email",
-                      "value":"$.MdmsRes.tenant.tenants[0].emailId"
-                    },
-                    {
-                      "variable": "logo_header",
-                      "value":"$.MdmsRes.tenant.tenants[0].code",
-                      "localisation":{
+                "apiRequest": null,
+                "responseMapping":[
+                  {
+                    "variable":"address",
+                    "value":"$.MdmsRes.tenant.tenants[0].address"
+                  },
+                  {
+                    "variable":"phoneNumber",
+                    "value":"$.MdmsRes.tenant.tenants[0].contactNumber"
+                  },
+                  {
+                    "variable":"website",
+                    "value":"$.MdmsRes.tenant.tenants[0].domainUrl"
+                  },
+                  {
+                    "variable":"email",
+                    "value":"$.MdmsRes.tenant.tenants[0].emailId"
+                  },
+                  {
+                    "variable": "logo_header",
+                    "value":"$.MdmsRes.tenant.tenants[0].code",
+                    "localisation":{
                       "required":true,
                       "prefix": "TENANT_TENANTS",
                       "module":"rainmaker-common"
-                      }
                     }
-                  ]
+                  }
+                ]
               }
             ]
           },
           {
             "qrcodeConfig": [
-               {
-                  "variable": "qrcodeimage",
-                  "value":"{{hostname}}citizen/egov-common/pay?consumerCode={{propertyID}}&tenantId={{tenantId}}&businessService={{businessServiceCode}}"
-               }
+              {
+                "variable": "qrcodeimage",
+                "value":"{{hostname}}citizen/egov-common/pay?consumerCode={{propertyID}}&tenantId={{tenantId}}&businessService={{businessServiceCode}}"
+              }
             ]
-         }
+          }
         ]
       }
     ]
