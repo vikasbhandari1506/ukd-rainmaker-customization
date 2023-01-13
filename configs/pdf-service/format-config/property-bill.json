@@ -226,11 +226,16 @@
             [
               {
                 "table": {
-                  "widths": ["10%", "11%", "10%", "15%", "11%", "20%"],
+                  "widths": ["10%", "15%", "11%", "10%", "15%", "11%", "20%"],
                   "body": [
                     [
                       {
                         "text": "{{charge_label}}",
+                        "border": [false, false, false, false],
+                        "style": "receipt-table-value2"
+                      },
+                      {
+                        "text": "{{swatchathatax_label}}",
                         "border": [false, false, false, false],
                         "style": "receipt-table-value2"
                       },
@@ -263,6 +268,11 @@
                     [
                       {
                         "text": "{{charge}}",
+                        "border": [false, false, false, false],
+                        "style": "receipt-table2"
+                      },
+                      {
+                        "text": "{{swatchathatax}}",
                         "border": [false, false, false, false],
                         "style": "receipt-table2"
                       },
