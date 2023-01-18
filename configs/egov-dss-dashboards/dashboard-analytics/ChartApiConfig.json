@@ -476,7 +476,7 @@
         "dateRefField": "dataObject.paymentDetails.receiptDate",
         "requestQueryMap": "{\"wardId\" : \"domainObject.ward.name.keyword\",\"module\" : \"dataObject.paymentDetails.businessService.keyword\", \"tenantId\" : \"dataObject.tenantId\", \"district\" : \"dataObject.tenantData.city.districtCode\"}",
         "indexName": "dss-collection_v2",
-        "aggrQuery": "{\"aggs\":{\"AGGR\":{\"filter\":{\"bool\":{\"must_not\":[{\"term\":{\"dataObject.tenantId.keyword\":\"uk.testing\"}},{\"terms\":{\"dataObject.paymentDetails.bill.status.keyword\":[\"Cancelled\"]}}]}}},\"aggs\":{\"Today's Collection\":{\"sum\":{\"field\":\"dataObject.paymentDetails.totalAmountPaid\"}}}}}"
+        "aggrQuery": "{\"aggs\":{\"AGGR\":{\"filter\":{\"bool\":{\"must_not\":[{\"term\":{\"dataObject.tenantId.keyword\":\"uk.testing\"}},{\"terms\":{\"dataObject.paymentDetails.bill.status.keyword\":[\"Cancelled\"]}}]}},\"aggs\":{\"Today's Collection\":{\"sum\":{\"field\":\"dataObject.paymentDetails.totalAmountPaid\"}}}}}}"
       }
     ],
     "chartType": "metric",
@@ -1646,7 +1646,7 @@
        "module": "PT",
        "dateRefField": "Data.@timestamp",
        "requestQueryMap": "{\"wardId\" : \"Data.ward.name.keyword\", \r\n  \"district\" : \"Data.tenantData.city.districtCode\", \r\n\"tenantId\" : \"Data.tenantId.keyword\" \r\n}",
-       "indexName": "property-service",
+       "indexName": "property-services",
        "aggrQuery": "{\"aggs\":{\"AGGR\":{\"filter\":{\"bool\":{\"must_not\":[{\"term\":{\"Data.tenantId.keyword\":\"uk.testing\"}}]}},\"aggs\":{\"Total Application\":{\"date_histogram\":{\"field\":\"Data.@timestamp\",\"interval\":\"intervalvalue\"},\"aggs\":{\"Count\":{\"value_count\":{\"field\":\"Data.propertyId.keyword\"}}}},\"Closed Application\":{\"date_histogram\":{\"field\":\"Data.@timestamp\",\"interval\":\"intervalvalue\"},\"aggs\":{\"Applications Closed\":{\"filter\":{\"bool\":{\"must\":[{\"terms\":{\"Data.status.keyword\":[\"closed\",\"resolved\"]}}]}},\"aggs\":{\"Count\":{\"value_count\":{\"field\":\"Data.propertyId.keyword\"}}}}}}}}}}"
      },
       {
@@ -1911,7 +1911,7 @@
        "module": "PT",
        "requestQueryMap": "{\"wardId\" : \"Data.ward.name.keyword\", \"tenantId\" : \"Data.tenantId\"}",
        "dateRefField": "Data.@timestamp",
-       "indexName": "property-service",
+       "indexName": "property-services",
        "aggrQuery": "{\"aggs\":{\"AGGR\":{\"filter\":{\"bool\":{\"must_not\":[{\"term\":{\"Data.tenantId.keyword\":\"uk.testing\"}}]}},\"aggs\":{\"Active ULBs\":{\"cardinality\":{\"field\":\"Data.tenantId.keyword\"}}}}}}"
      },
       {
