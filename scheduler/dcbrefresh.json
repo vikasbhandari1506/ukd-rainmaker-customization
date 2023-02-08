@@ -14,5 +14,5 @@ spec:
             args:
             - /bin/sh
             - -c
-            - wget http://ukd-custom-service:8080/ukd-custom-service/v1/pt/dcb/_refresh
+            - wget http://ukd-custom-service.egov:8080/ukd-custom-service/v1/pt/dcb/_refresh
           restartPolicy: OnFailure
