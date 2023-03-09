@@ -938,7 +938,7 @@
         "requestQueryMap": "{\"wardId\" : \"Data.ward.name.keyword\", \"tenantId\" : \"Data.code.keyword\"}",
         "dateRefField": "Data.@timestamp",
         "indexName": "property_services",
-        "aggrQuery": "{\"aggs\":{\"AGGR\":{\"filter\":{\"bool\":{\"must_not\":[{\"term\":{\"Data.code.keyword\":\"uk.testing\"}}]}},\"aggs\":{\"Active ULBs\":{\"cardinality\":{\"field\":\"Data.code.keyword\"}}}}}}"
+        "aggrQuery": "{\"aggs\":{\"AGGR\":{\"filter\":{\"bool\":{\"must_not\":[{\"term\":{\"Data.tenantId.keyword\":\"uk.testing\"}}]}},\"aggs\":{\"Active ULBs\":{\"cardinality\":{\"field\":\"Data.tenantId.keyword\"}}}}}}"
       }
     ],
     "chartType": "metric",
