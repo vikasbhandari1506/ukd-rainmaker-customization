@@ -937,7 +937,7 @@
         "module": "PT",
         "requestQueryMap": "{\"wardId\" : \"Data.ward.name.keyword\", \"tenantId\" : \"Data.code.keyword\"}",
         "dateRefField": "Data.@timestamp",
-        "indexName": "property_services",
+        "indexName": "property-services",
         "aggrQuery": "{\"aggs\":{\"AGGR\":{\"filter\":{\"bool\":{\"must_not\":[{\"term\":{\"Data.tenantId.keyword\":\"uk.testing\"}}]}},\"aggs\":{\"Active ULBs\":{\"cardinality\":{\"field\":\"Data.tenantId.keyword\"}}}}}}"
       }
     ],
