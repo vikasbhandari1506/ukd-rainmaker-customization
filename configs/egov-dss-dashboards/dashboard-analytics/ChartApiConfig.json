@@ -127,7 +127,7 @@
     "chartName": "DSS_TOTAL_COLLECTION",
     "queries": [
       {
-        "module": "TL",
+        "module": "MCOLLECT",
         "dateRefField": "dataObject.paymentDetails.receiptDate",
         "requestQueryMap": "{\"wardId\" : \"domainObject.ward.name.keyword\",\"module\" : \"dataObject.paymentDetails.businessService.keyword\", \"tenantId\" : \"dataObject.tenantId\"}",
         "indexName": "dss-collection_v2",
