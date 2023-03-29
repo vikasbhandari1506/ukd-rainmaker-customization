@@ -48,7 +48,7 @@
     "chartName": "DSS_TOTAL_COLLECTION",
     "queries": [
       {
-        "module": "TL",
+        "module": "MCOLLECT",
         "dateRefField": "dataObject.paymentDetails.receiptDate",
         "requestQueryMap": "{\"wardId\" : \"domainObject.ward.name.keyword\",\"module\" : \"dataObject.paymentDetails.businessService.keyword\", \"tenantId\" : \"dataObject.tenantId\", \"district\" : \"dataObject.tenantData.city.districtCode\"}",
         "indexName": "dss-collection_v2",
@@ -535,7 +535,7 @@
     "chartName": "DSS_MC_COLLECTION:_CATEGORY_WISE",
     "queries": [
       {
-        "module": "MC",
+        "module": "MCOLLECT",
         "requestQueryMap": "{\"wardId\" : \"domainObject.ward.name.keyword\", \"tenantId\" : \"dataObject.tenantId\", \"district\" : \"dataObject.tenantData.cityDistrictCode\"}",
         "dateRefField": "dataObject.paymentDetails.receiptDate",
         "indexName": "dss-collection_v2",
@@ -555,7 +555,7 @@
     "chartName": "DSS_TL_LICENSE_BY_TYPE",
     "queries": [
       {
-        "module": "MC",
+        "module": "MCOLLECT",
         "requestQueryMap": "{\"module\" : \"dataObject.paymentDetails.businessService.keyword\", \"tenantId\" : \"dataObject.tenantId\"}",
         "dateRefField": "dataObject.paymentDetails.receiptDate",
         "indexName": "dss-collection_v2",
@@ -1738,7 +1738,7 @@
     "chartName": "DSS_MC_DEMAND_COLLECTION_BOUNDARYDDR",
     "queries": [
       {
-        "module": "MC",
+        "module": "MCOLLECT",
         "requestQueryMap": "{\"wardId\" : \"domainObject.ward.name.keyword\", \"tenantId\" : \"dataObject.tenantId\", \"district\" : \"dataObject.tenantData.cityDistrictCode\"}",
         "dateRefField": "dataObject.paymentDetails.receiptDate",
         "indexName": "dss-collection_v2",
