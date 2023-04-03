@@ -3,7 +3,6 @@ package org.egov.ukdcustomservice.service;
 import java.math.BigDecimal;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -97,11 +96,11 @@ public class RollOverService {
     @Value("${persister.rollover.batch.count.topic}")
     private String rollOverBatchCountTopic;
 
-    @Value("${rollover.current.finyear}")
-    private String rollOverCurrFinYear;
+    @Value("${rollover.from.finyear}")
+    private String rollOverFromFinYear;
 
-    @Value("${rollover.next.finyear}")
-    private String rollOverNextFinYear;
+    @Value("${rollover.to.finyear}")
+    private String rollOverToFinYear;
 
     private Integer count2=0;
 
@@ -126,8 +125,6 @@ public class RollOverService {
     
     public static final String INVALID_TENANT_ID_MDMS_KEY = "INVALID TENANTID";
     public static final String INVALID_TENANT_ID_MDMS_MSG = "No data found for this tenantID";
-    public static final String CURR_FinYear = "2020-21";
-    public static final String NEXT_FinYear = "2021-22";
     		
     public Map<String, String> initiateProcess(RequestInfoWrapper requestInfoWrapper,PropertyCriteria propertyCriteria,Map<String, String> errorMap, List<String> tenantIdList){
 
@@ -181,8 +178,8 @@ public class RollOverService {
 		log.info("Count Props:"+failedProps.size());
 		RequestInfo requestInfo =  requestInfoWrapper.getRequestInfo();
         Map<String, String> responseMap = new HashMap<>();
-		List<Map<String, Object>> currentFinYear = masters.stream().filter(master -> master.get("code").equals("2021-22")).collect(Collectors.toList());
-		List<Map<String, Object>> previousFinYear = masters.stream().filter(master -> master.get("code").equals(CURR_FinYear)).collect(Collectors.toList());
+		List<Map<String, Object>> currentFinYear = masters.stream().filter(master -> master.get("code").equals(rollOverToFinYear)).collect(Collectors.toList());
+		List<Map<String, Object>> previousFinYear = masters.stream().filter(master -> master.get("code").equals(rollOverFromFinYear)).collect(Collectors.toList());
 
 		for (Map<String, Object> prop : failedProps) {
 			DemandSearchCriteria criteria = new DemandSearchCriteria();
@@ -194,7 +191,7 @@ public class RollOverService {
 					new RequestInfoWrapper(requestInfo))).get(), DemandResponse.class);
 			if (res.getDemands().size() == 0) {
 				rollOverRepository.saveRollOver(prop.get("propertyid").toString(), prop.get("tenantid").toString(),
-						"2021-22", "NOTINITIATED", "No Demands found this property ");
+						rollOverToFinYear, "NOTINITIATED", "No Demands found this property ");
 			} else {
 				demands.addAll(res.getDemands());
 				List<Demand> currDemand = demands.stream()
@@ -208,7 +205,7 @@ public class RollOverService {
 							.collect(Collectors.toList());
 					if(CollectionUtils.isEmpty(prevDemand)){
 						rollOverRepository.saveRollOver(prop.get("propertyid").toString(), prop.get("tenantid").toString(),
-								"2021-22", "NOTINITIATED", "No Demands found this property ");
+								rollOverToFinYear, "NOTINITIATED", "No Demands found this property ");
 					}
 					else if (prevDemand.get(0) != null) {
 						List<Demand> newDemands = prepareDemandRequest(prevDemand.get(0), masters);
@@ -218,25 +215,25 @@ public class RollOverService {
 									prop.get("propertyid").toString());
 
 							rollOverRepository.saveRollOver(prop.get("propertyid").toString(),
-									prop.get("tenantid").toString(), "2021-22", "SUCCESS",
+									prop.get("tenantid").toString(), rollOverToFinYear, "SUCCESS",
 									"Roll Over is Successfully Done");
 							responseMap.put(prop.get("propertyid").toString(), "Success");
 						} catch (Exception e) {
 							log.error("Assessment Creation Failed " + e.toString());
 							rollOverRepository.saveRollOver(prop.get("propertyid").toString(),
-									prop.get("tenantid").toString(), "2021-22", "FAILED",
+									prop.get("tenantid").toString(), rollOverToFinYear, "FAILED",
 									"Assessment or Demand Creation Failed");
 							responseMap.put(prop.get("propertyid").toString(), "Failure");
 						}
 					} else {
 						rollOverRepository.saveRollOver(prop.get("propertyid").toString(),
-								prop.get("tenantid").toString(), "2021-22", "NOTINITIATED",
+								prop.get("tenantid").toString(), rollOverToFinYear, "NOTINITIATED",
 								"No Demands found this property ");
 					}
 				}
 				else if (currDemand.get(0) != null) {
 					rollOverRepository.saveRollOver(prop.get("propertyid").toString(), prop.get("tenantid").toString(),
-							"2021-22", "SUCCESS", "Roll Over is Successfully Done");
+							rollOverToFinYear, "SUCCESS", "Roll Over is Successfully Done");
 					responseMap.put(prop.get("propertyid").toString(), "Success");
 				} 
 			}
@@ -298,7 +295,7 @@ public class RollOverService {
 	private List<Property> rollOverProperty(RequestInfo requestInfo, List<Property> properties,
 			List<Map<String, Object>> masters, Map<String, String> errorMap) {
 
-		List<Map<String, Object>> previousFinYear = masters.stream().filter(master -> master.get("code").equals(CURR_FinYear)).collect(Collectors.toList());
+		List<Map<String, Object>> previousFinYear = masters.stream().filter(master -> master.get("code").equals(rollOverFromFinYear)).collect(Collectors.toList());
 
 		if (!CollectionUtils.isEmpty(properties)) {
 			for (Property property : properties) {
@@ -321,21 +318,21 @@ public class RollOverService {
 					try{
 						createAssessmentForRollOver(newDemands, requestInfo, property.getTenantId(), property.getPropertyId());
 					
-						rollOverRepository.saveRollOver(property.getPropertyId(), property.getTenantId(), "2021-22", "SUCCESS",
+						rollOverRepository.saveRollOver(property.getPropertyId(), property.getTenantId(), rollOverToFinYear, "SUCCESS",
 								"Roll Over is Successfully Done");
 					}
 					catch(Exception e)
 					{						
 						log.error("Assessment Creation Failed "+e.toString());
-						rollOverRepository.saveRollOver(property.getPropertyId(), property.getTenantId(), "2021-22", "FAILED",
+						rollOverRepository.saveRollOver(property.getPropertyId(), property.getTenantId(), rollOverToFinYear, "FAILED",
 								"Assessment or Demand Creation Failed");
 					}
 					}else{
-						rollOverRepository.saveRollOver(property.getPropertyId(), property.getTenantId(), "2021-22", "SUCCESS",
+						rollOverRepository.saveRollOver(property.getPropertyId(), property.getTenantId(), rollOverToFinYear, "SUCCESS",
 								"Roll Over is Successfully Done");
 					}
 					} else {
-					rollOverRepository.saveRollOver(property.getPropertyId(), property.getTenantId(), "2021-22", "NOTINITIATED",
+					rollOverRepository.saveRollOver(property.getPropertyId(), property.getTenantId(), rollOverToFinYear, "NOTINITIATED",
 							"No Demand found for the Current Financial Year");
 				}
 			}
@@ -367,7 +364,7 @@ public class RollOverService {
 	}
 
 	private Assessment createAssessmentForRollOver(List<Demand> newDemands, RequestInfo requestInfo, String tenantId,String propertyId) {
-		Assessment assessment = Assessment.builder().assessmentDate(ZonedDateTime.now().toInstant().toEpochMilli()).financialYear("2021-22").channel(Channel.CFC_COUNTER).source(Source.LEGACY_RECORD).tenantId(tenantId).propertyId(propertyId).build();
+		Assessment assessment = Assessment.builder().assessmentDate(ZonedDateTime.now().toInstant().toEpochMilli()).financialYear(rollOverToFinYear).channel(Channel.CFC_COUNTER).source(Source.LEGACY_RECORD).tenantId(tenantId).propertyId(propertyId).build();
 		ObjectNode additionalDetails = new ObjectMapper().createObjectNode();
 		assessment.setAdditionalDetails(additionalDetails.set("Demands", new ObjectMapper().valueToTree(newDemands)));
 		assessment.setAdditionalDetails(additionalDetails.set("RequestInfo", new ObjectMapper().valueToTree(requestInfo)));
@@ -385,7 +382,7 @@ public class RollOverService {
 		List<Demand> newDemands = new ArrayList<Demand>();
 		List<DemandDetail> details = demand.getDemandDetails().stream().filter(dmnddtls -> dmnddtls.getTaxHeadMasterCode().equals("PT_TAX") || dmnddtls.getTaxHeadMasterCode().equals("SWATCHATHA_TAX")).collect(Collectors.toList());
 		List<DemandDetail> newDetails = new ArrayList<DemandDetail>();
-		Map<String, Object> financialYear = finYears.stream().filter(finYear -> finYear.get("code").equals(NEXT_FinYear)).collect(Collectors.toList()).get(0);		
+		Map<String, Object> financialYear = finYears.stream().filter(finYear -> finYear.get("code").equals(rollOverToFinYear)).collect(Collectors.toList()).get(0);		
 		details.forEach( detail -> {
 			DemandDetail newDetail = new DemandDetail();
 			newDetail.setTaxHeadMasterCode(detail.getTaxHeadMasterCode());
