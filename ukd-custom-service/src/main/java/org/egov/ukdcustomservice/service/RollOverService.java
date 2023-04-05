@@ -42,6 +42,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
+import org.json.JSONObject;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
@@ -372,6 +373,10 @@ public class RollOverService {
 		AssessmentRequest request = AssessmentRequest.builder().requestInfo(requestInfo).assessment(assessment).build();
 		
 		StringBuilder url = new StringBuilder(ptHost).append(assessmentCreateEndpoint);
+		System.out.println("****assessment call****");
+		log.info(url.toString());
+		String jsonString = new JSONObject(request).toString();
+        	System.out.println(jsonString);
 		AssessmentResponse res = mapper.convertValue(rollOverRepository.fetchServiceResult(url, request), AssessmentResponse.class);
 		
 		return res.getAssessments().get(0);
