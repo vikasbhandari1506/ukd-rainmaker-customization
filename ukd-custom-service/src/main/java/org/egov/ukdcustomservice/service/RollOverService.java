@@ -297,7 +297,8 @@ public class RollOverService {
 			List<Map<String, Object>> masters, Map<String, String> errorMap) {
 
 		List<Map<String, Object>> previousFinYear = masters.stream().filter(master -> master.get("code").equals(rollOverFromFinYear)).collect(Collectors.toList());
-
+		System.out.println("***previousFinYear***");
+		System.out.println(previousFinYear);
 		if (!CollectionUtils.isEmpty(properties)) {
 			for (Property property : properties) {
 				DemandSearchCriteria criteria = new DemandSearchCriteria();
