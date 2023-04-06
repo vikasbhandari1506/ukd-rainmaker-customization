@@ -262,7 +262,7 @@ public class RollOverService {
 	                try {
 	                    properties= rollOverProperty(requestInfo,properties,masters,errorMap);
 	                } catch (Exception e) {
-
+	                	e.printStackTrace();
 	                    log.error("Migration failed at batch count of : " + startBatch);
 	                    responseMap.put( "Migration failed at batch count : " + startBatch, e.getMessage());
 	                    return responseMap;
