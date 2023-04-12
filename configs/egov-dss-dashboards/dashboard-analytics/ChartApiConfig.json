@@ -692,7 +692,7 @@
         "aggrQuery": "{\"aggs\":{\"Target Collection\":{\"terms\":{\"field\":\"tenantIdForMunicipalCorporation.keyword\",\"size\":\"200\",\"order\":{\"Sum\":\"asc\"}},\"aggs\":{\"Sum\":{\"sum\":{\"field\":\"budgetProposedForMunicipalCorporation\"}}}}}}"
       },
       {
-        "module": "",
+        "module": "COMMON",
         "requestQueryMap": "{\"wardId\" : \"domainObject.ward.name.keyword\", \"tenantId\" : \"dataObject.tenantId\" }",
         "dateRefField": "dataObject.paymentDetails.receiptDate",
         "indexName": "dss-collection_v2",
