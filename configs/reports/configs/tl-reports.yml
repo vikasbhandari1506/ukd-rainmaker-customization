@@ -98,8 +98,8 @@ ReportDefinitions:
       to_char(To_timestamp(pd.receiptdate / 1000), 'DD/MM/YYYY') as receiptIssueDate , 
       pd.receiptnumber,
       tradeTypeName,
-      name,
-      tlown.mobilenumber,
+      split_part(tlown.name,',',1) as name,  -- showing first name as decryption service not able to decrypt multiple comma seperated encrypted names
+      split_part(tlown.mobilenumber,',',1) as mobilenumber,  -- similary showing first mobilenumber only
       pay.transactionnumber,
       pay.paymentmode as instrumenttype,
       totalamount,
