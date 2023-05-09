@@ -120,7 +120,7 @@ ReportDefinitions:
     INNER JOIN egcl_bill bill ON bill.consumercode = tl.applicationnumber  and bill.status != 'Cancelled'
     LEFT OUTER JOIN egcl_paymentdetail as pd ON pd.billid = bill.id
     LEFT OUTER JOIN egcl_payment as pay ON pay.id = pd.paymentid and pay.paymentstatus != 'CANCELLED'
-    WHERE tl.Status in ('APPROVED', 'PAID', 'CANCELLED') AND tl.tenantId != 'uk.testing' AND tl.tenantId LIKE $tenantid
+    WHERE tl.Status in ('APPROVED', 'PAID', 'CANCELLED') AND tl.tenantId LIKE $tenantid
 
 - reportName: StateTradeLicenseCancelledRegistryReport
   decryptionPathId: StateTradeLicenseCancelledRegistryReport
