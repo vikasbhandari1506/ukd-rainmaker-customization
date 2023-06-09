@@ -130,8 +130,8 @@ ReportDefinitions:
     un.name as username,
     msg.message as mohallaname,
     addr.doorno as doorno,
-    eu.name as name,
-    eu.uuid as user_uuid
+    un.name as name,
+    un.uuid as user_uuid
     from egcl_payment pay,
     egcl_paymentdetail pd,
     egcl_bill bill,
@@ -156,7 +156,7 @@ ReportDefinitions:
     pay.tenantid LIKE $tenantid and 
     pd.businessservice='PT'and 
     pay.paymentstatus != 'CANCELLED' AND pay.tenantid != 'uk.testing'
-  groupby: GROUP BY pay.tenantid,pd.receiptnumber,bill.consumercode,pd.receiptdate,pay.transactionnumber,pay.paymentmode,un.name,msg.message,addr.doorno,eu.name,pd.amountpaid,eu.uuid
+  groupby: GROUP BY pay.tenantid,pd.receiptnumber,bill.consumercode,pd.receiptdate,pay.transactionnumber,pay.paymentmode,un.name,msg.message,addr.doorno,un.name,pd.amountpaid,un.uuid
 
 - reportName: ReceiptRegister_v1
   summary: Receipt Register
