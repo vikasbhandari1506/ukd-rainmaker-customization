@@ -1640,3 +1640,82 @@ ReportDefinitions:
     WHERE pi.tenantid != 'uk.testing'
   groupby: GROUP BY tenantid
   orderby: ORDER BY tenantid asc
+  
+- reportName: PTAssessmentReport
+  summary: Property Tax Assessment Register
+  version: 1.0.0
+  moduleName: rainmaker-pt
+  sourceColumns:
+  - name: tenantId
+    label: reports.pt.tenantid
+    type: string
+    source: pt
+    total: false
+  - name: propertyid
+    label: reports.pt.propertyid
+    type: string
+    source: pt
+    total: false
+  - name: totaldemand
+    label: reports.pt.taxamount
+    type: string
+    source: pt
+    total: true
+  - name: totalrevenuecollected
+    label: reports.pt.collectionamount
+    type: string
+    source: pt
+    total: true
+  - name: createdDate
+    label: reports.pt.createdtime
+    type: epoch
+    source: pt
+    total: false
+  - name: applicationStatus
+    label: reports.pt.status
+    type: string
+    source: pt
+    total: false
+  - name: usagecategory
+    label: reports.pt.usagecategory
+    type: string
+    source: pt
+    total: false
+  searchParams:
+  - name: fromDate
+    label: reports.pt.fromDate
+    type: epoch
+    source: pt
+    isMandatory: true
+    searchClause: AND pt.createdtime >= $fromDate
+  - name: toDate
+    label: reports.pi.toDate
+    type: epoch
+    source: pt
+    isMandatory: true
+    searchClause: AND pt.createdtime <= $toDate
+  - name: usagetype
+    label: reports.pt.usagetype
+    type: singlevaluelist
+    pattern: http://egov-mdms-service:8080/egov-mdms-service/v1/_get?tenantId=$tenantid&moduleName=PropertyTax&masterName=UsageCategory&filter=%24.%2A%5B%3F%28%40.code%20%3D~%20%2F%5BA-Z%5D%2A%5C.%5BA-Z%5D%2A%5C.%5BA-Z%5D%2A%5C.%5BA-z%5D%2A%2F%29%5D|$.MdmsRes.PropertyTax.UsageCategory.*.code|$.MdmsRes.PropertyTax.UsageCategory.*.name
+    source: pt
+    wrapper: true
+    isMandatory: false
+    searchClause: AND usagecategory = $usagetype
+  query: |
+    SELECT
+      initcap(split_part(pt.tenantid, '.', 2)) as tenantid,
+      pt.propertyid,
+      COALESCE(SUM(dd.taxamount), 0) AS totaldemand,
+      SUM(dd.collectionamount) AS totalrevenuecollected,
+      TO_CHAR(TO_TIMESTAMP(pt.createdtime / 1000), 'DD/MM/YYYY') AS CreatedDate
+      pt.status as applicationStatus,
+      pt.usagecategory as usageType
+    FROM eg_pt_property AS pt
+    LEFT OUTER JOIN
+      egbs_demand_v1 d ON d.consumercode = pt.propertyid
+    LEFT OUTER JOIN
+      egbs_demanddetail_v1 dd ON dd.demandid = d.id
+    WHERE pt.tenantid = $tenantid 
+    groupby: GROUP BY pt.propertyid, pt.status, TO_CHAR(TO_TIMESTAMP(pt.createdtime / 1000), 'DD/MM/YYYY'), pt.usagecategory
+    orderby: ORDER BY pt.tenantid;
