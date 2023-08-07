@@ -1701,7 +1701,7 @@ ReportDefinitions:
     source: pt
     wrapper: true
     isMandatory: false
-    searchClause: AND usagecategorymajor = $usage
+    searchClause: AND split_part(usagecategory, '.', 1) = $usage
   query: |
     SELECT
       initcap(split_part(pt.tenantid, '.', 2)) as tenantid,
