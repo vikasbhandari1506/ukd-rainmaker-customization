@@ -145,7 +145,7 @@
       "Total Collection"
     ],
     "insight": {
-      "chartResponseMap": "totalCollection",
+      "chartResponseMap": "mcTotalCollection",
       "action": "differenceOfNumbers",
       "upwardIndicator": "positive",
       "downwardIndicator": "negative",
