@@ -1136,7 +1136,6 @@
               "id": 121,
               "name": "DSS_M_COLLECT",
               "vizType": "module",
-              "moduleLevel": "TL",
               "ref": {
                 "url": "mCollect",
                 "logoUrl": "",
@@ -1158,7 +1157,6 @@
               "id": 141,
               "name": "DSS_TRADE_LICENCE",
               "vizType": "module",
-              "moduleLevel": "TL",
               "ref": {
                 "url": "tradelicense",
                 "logoUrl": "",
@@ -1905,7 +1903,6 @@
               "id": 151,
               "name": "DSS_M_COLLECT",
               "vizType": "module",
-              "moduleLevel": "TL",
               "ref": {
                 "url": "ulb-mCollect",
                 "logoUrl": "",
@@ -1927,7 +1924,6 @@
               "id": 131,
               "name": "DSS_TRADE_LICENCE",
               "vizType": "module",
-              "moduleLevel": "TL",
               "ref": {
                 "url": "ulb-tradeLicense",
                 "logoUrl": "",
