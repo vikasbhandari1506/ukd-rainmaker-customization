@@ -1717,7 +1717,7 @@ ReportDefinitions:
     LEFT OUTER JOIN
       egbs_demanddetail_v1 dd ON dd.demandid = d.id
     WHERE pt.tenantid = $tenantid 
-    groupby: GROUP BY pt.tenantid, pt.propertyid, pt.status, CreatedDate, pt.usagecategory
+  groupby: GROUP BY pt.tenantid, pt.propertyid, pt.status, CreatedDate, pt.usagecategory
 
 - reportName: PT Update Mobile No Report
   summary: Property Update Mobile No
@@ -1761,4 +1761,4 @@ ReportDefinitions:
     LEFT OUTER JOIN eg_user u 
     ON pto.userid = u.uuid 
     WHERE pt.status = 'ACTIVE' AND pt.tenantid != 'uk.testing' AND u.active = 't' AND pt.tenantid = $tenantid 
-    groupby: GROUP BY pt.propertyid, u.mobilenumber;
+  groupby: GROUP BY pt.propertyid, u.mobilenumber;
