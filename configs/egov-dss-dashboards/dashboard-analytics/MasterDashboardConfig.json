@@ -1150,6 +1150,14 @@
                   "chartType": "metric",
                   "filter": "",
                   "headers": []
+                },
+                {
+                  "id": "mcTotalReceipts",
+                  "name": "DSS_MC_TOTAL_RECEIPTS",
+                  "code": "",
+                  "chartType": "metric",
+                  "filter": "",
+                  "headers": []
                 }
               ]
             },
