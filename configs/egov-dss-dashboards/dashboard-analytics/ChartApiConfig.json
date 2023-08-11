@@ -935,7 +935,7 @@
       "Total Application"
     ],
     "insight": {
-      "chartResponseMap": "totalApplication",
+      "chartResponseMap": "ptTotalApplication",
       "action": "differenceOfNumbers",
       "upwardIndicator": "positive",
       "downwardIndicator": "negative",
@@ -1032,7 +1032,7 @@
       "Active ULBs"
     ],
     "insight": {
-      "chartResponseMap": "activeUlbs",
+      "chartResponseMap": "ptActiveUlbs",
       "action": "differenceOfNumbers",
       "upwardIndicator": "positive",
       "downwardIndicator": "negative",
