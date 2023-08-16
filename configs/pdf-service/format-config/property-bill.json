@@ -12,7 +12,7 @@
           "body": [
             [
               {
-                "image": "{{logoImage}}",
+                "image": "{{logo_Image}}",
                 "width": 50,
                 "height": 61.25
               },
