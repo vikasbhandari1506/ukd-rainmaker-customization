@@ -1669,16 +1669,6 @@ ReportDefinitions:
     type: epoch
     source: pt
     total: false
-  - name: applicationStatus
-    label: reports.pt.status
-    type: string
-    source: pt
-    total: false
-  - name: usagecategory
-    label: reports.pt.usagecategory
-    type: string
-    source: pt
-    total: false
   searchParams:
   - name: fromDate
     label: reports.pt.fromDate
@@ -1707,15 +1697,14 @@ ReportDefinitions:
       COALESCE(SUM(dd.taxamount), 0) AS totaldemand,
       SUM(dd.collectionamount) AS totalrevenuecollected,
       TO_CHAR(TO_TIMESTAMP(pt.createdtime / 1000), 'DD/MM/YYYY') AS CreatedDate
-      pt.status as applicationStatus,
-      pt.usagecategory as usageType
     FROM eg_pt_property AS pt
     LEFT OUTER JOIN
       egbs_demand_v1 d ON d.consumercode = pt.propertyid
     LEFT OUTER JOIN
       egbs_demanddetail_v1 dd ON dd.demandid = d.id
-    WHERE pt.tenantid = $tenantid 
-  groupby: GROUP BY pt.tenantid, pt.propertyid, pt.status, CreatedDate, pt.usagecategory
+    WHERE pt.tenantid = $tenantid AND
+    pt.status = 'ACTIVE'
+  groupby: GROUP BY pt.tenantid, pt.propertyid, pt.createdtime
 
 - reportName: PT Update Mobile No Report
   summary: Property Update Mobile No
