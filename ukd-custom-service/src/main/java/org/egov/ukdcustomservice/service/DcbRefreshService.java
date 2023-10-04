@@ -80,7 +80,7 @@ public class DcbRefreshService {
 				"     SELECT"+
 				"     SUM(unit.arv) "+
 				"     FROM"+
-				"      eg_pt_unit_v2 unit,eg_pt_asmt_assessment  ptd, eg_pt_asmt_unitusage auu"+
+				"      eg_pt_unit unit,eg_pt_asmt_assessment  ptd, eg_pt_asmt_unitusage auu"+
 				"	where ptd.propertyid=prop.propertyid"+
 				"   and auu.assessmentid=ptd.id"+
 				"   and auu.unitid=unit.id"+
