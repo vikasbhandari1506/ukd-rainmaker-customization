@@ -1317,7 +1317,7 @@
     "drillChart": "none",
     "aggregationPaths": ["Total Application"],
     "insight": {
-      "chartResponseMap": "totalApplication",
+      "chartResponseMap": "ptTotalApplication",
       "action": "differenceOfNumbers",
       "upwardIndicator": "positive",
       "downwardIndicator": "negative",
@@ -1408,7 +1408,7 @@
     "drillChart": "none",
     "aggregationPaths": ["Active ULBs"],
     "insight": {
-      "chartResponseMap": "activeUlbs",
+      "chartResponseMap": "ptActiveUlbs",
       "action": "differenceOfNumbers",
       "upwardIndicator": "positive",
       "downwardIndicator": "negative",
