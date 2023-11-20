@@ -1648,7 +1648,7 @@ ReportDefinitions:
     label: reports.pt.propertyid
     type: string
     source: pt
-    total: true
+    total: false
   - name: houseno
     label: reports.pt.houseno
     type: string
