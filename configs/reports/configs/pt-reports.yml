@@ -1644,16 +1644,16 @@ ReportDefinitions:
   version: 1.0.0
   moduleName: rainmaker-pt
   sourceColumns:
-  - name: tenantId
-    label: reports.pt.tenantid
-    type: string
-    source: pt
-    total: false
   - name: propertyid
     label: reports.pt.propertyid
     type: string
     source: pt
-    total: false
+    total: true
+  - name: houseno
+    label: reports.pt.houseno
+    type: string
+    source: pt
+    total: false  
   - name: totaldemand
     label: reports.pt.taxamount
     type: string
@@ -1664,9 +1664,9 @@ ReportDefinitions:
     type: string
     source: pt
     total: true
-  - name: createdDate
-    label: reports.pt.createdtime
-    type: epoch
+  - name: mohallaname
+    label: reports.pt.mohallaname
+    type: string
     source: pt
     total: false
   searchParams:
@@ -1692,20 +1692,26 @@ ReportDefinitions:
     searchClause: AND split_part(usagecategory, '.', 1) = $usage
   query: |
     SELECT
-      initcap(split_part(pt.tenantid, '.', 2)) as tenantid,
-      pt.propertyid,
+      distinct pt.propertyid,
+      pta.doorno AS HouseNo
       COALESCE(SUM(dd.taxamount), 0) AS totaldemand,
       SUM(dd.collectionamount) AS totalrevenuecollected,
-      TO_CHAR(TO_TIMESTAMP(pt.createdtime / 1000), 'DD/MM/YYYY') AS CreatedDate
+      msg.message AS mohallaname,
     FROM eg_pt_property AS pt
     LEFT OUTER JOIN
       egbs_demand_v1 d ON d.consumercode = pt.propertyid
     LEFT OUTER JOIN
       egbs_demanddetail_v1 dd ON dd.demandid = d.id
+    LEFT OUTER JOIN 
+      eg_pt_address pta ON pt.id = pta.propertyid
+    LEFT OUTER JOIN 
+      message msg ON RIGHT(msg.code,5)=pta.locality  
     WHERE pt.tenantid = $tenantid AND
-    pt.status = 'ACTIVE'
-  groupby: GROUP BY pt.tenantid, pt.propertyid, pt.createdtime
-
+      pt.status = 'ACTIVE' AND
+      msg.tenantid = pt.tenantid AND
+      msg.locale = 'hi_IN'
+  groupby: GROUP BY pt.propertyid, msg.message, pta.doorno
+  
 - reportName: PT Update Mobile No Report
   summary: Property Update Mobile No
   version: 1.0.0
