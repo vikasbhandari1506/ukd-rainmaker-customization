@@ -1693,7 +1693,7 @@ ReportDefinitions:
   query: |
     SELECT
       distinct pt.propertyid,
-      pta.doorno AS HouseNo
+      pta.doorno AS HouseNo,
       COALESCE(SUM(dd.taxamount), 0) AS totaldemand,
       SUM(dd.collectionamount) AS totalrevenuecollected,
       msg.message AS mohallaname,
