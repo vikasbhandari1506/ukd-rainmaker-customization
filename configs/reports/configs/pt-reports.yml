@@ -1622,3 +1622,76 @@ ReportDefinitions:
     WHERE pi.tenantid != 'uk.testing'
   groupby: GROUP BY tenantid
   orderby: ORDER BY tenantid asc
+
+  - reportName: PTAssessmentReport
+  summary: Property Tax Assessment Register
+  version: 1.0.0
+  moduleName: rainmaker-pt
+  sourceColumns:
+  - name: propertyid
+    label: reports.pt.propertyid
+    type: string
+    source: pt
+    total: false
+  - name: houseno
+    label: reports.pt.houseno
+    type: string
+    source: pt
+    total: false  
+  - name: totaldemand
+    label: reports.pt.taxamount
+    type: string
+    source: pt
+    total: true
+  - name: totalrevenuecollected
+    label: reports.pt.collectionamount
+    type: string
+    source: pt
+    total: true
+  - name: mohallaname
+    label: reports.pt.mohallaname
+    type: string
+    source: pt
+    total: false
+  searchParams:
+  - name: fromDate
+    label: reports.pt.fromDate
+    type: epoch
+    source: pt
+    isMandatory: true
+    searchClause: AND pt.createdtime >= $fromDate
+  - name: toDate
+    label: reports.pt.toDate
+    type: epoch
+    source: pt
+    isMandatory: true
+    searchClause: AND pt.createdtime <= $toDate
+  - name: usage
+    label: Usage
+    type: singlevaluelist
+    pattern: http://egov-mdms-service:8080/egov-mdms-service/v1/_get?tenantId=$tenantid&moduleName=PropertyTax&masterName=UsageCategoryMajor|$..code|$..name
+    source: pt
+    wrapper: true
+    isMandatory: false
+    searchClause: AND split_part(usagecategory, '.', 1) = $usage
+  query: |
+    SELECT
+      distinct pt.propertyid,
+      pta.doorno AS HouseNo,
+      COALESCE(SUM(dd.taxamount), 0) AS totaldemand,
+      SUM(dd.collectionamount) AS totalrevenuecollected,
+      msg.message AS mohallaname
+    FROM eg_pt_property AS pt
+    LEFT OUTER JOIN
+      egbs_demand_v1 d ON d.consumercode = pt.propertyid
+    LEFT OUTER JOIN
+      egbs_demanddetail_v1 dd ON dd.demandid = d.id
+    LEFT OUTER JOIN 
+      eg_pt_address pta ON pt.id = pta.propertyid
+    LEFT OUTER JOIN 
+      message msg ON RIGHT(msg.code,5)=pta.locality  
+    WHERE pt.tenantid = $tenantid AND
+      pt.status = 'ACTIVE' AND
+      msg.tenantid = pt.tenantid AND
+      msg.locale = 'hi_IN'
+  groupby: GROUP BY pt.propertyid, msg.message, pta.doorno
