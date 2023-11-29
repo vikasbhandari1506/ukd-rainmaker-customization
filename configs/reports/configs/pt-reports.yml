@@ -1623,7 +1623,7 @@ ReportDefinitions:
   groupby: GROUP BY tenantid
   orderby: ORDER BY tenantid asc
 
-  - reportName: PTAssessmentReport
+- reportName: PTAssessmentReport
   summary: Property Tax Assessment Register
   version: 1.0.0
   moduleName: rainmaker-pt
