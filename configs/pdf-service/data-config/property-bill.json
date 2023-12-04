@@ -579,12 +579,6 @@
                 }
               },
               {
-                "variable": "adjustment",
-                "value": {
-                  "path": "$.billDetails[(@.length-1)].billAccountDetails[?(@.taxHeadCode == 'PT_ADJUSTMENT')].amount"
-                }
-              },
-              {
                 "variable": "consumerID",
                 "value": {
                   "path": "$.consumerCode"
