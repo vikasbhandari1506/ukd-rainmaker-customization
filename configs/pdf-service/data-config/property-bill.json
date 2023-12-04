@@ -151,7 +151,6 @@
                   "module": "rainmaker-common"
                 }
               },
-
               {
                 "variable": "bill_issue_date",
                 "value": {
@@ -450,21 +449,18 @@
                   "path": "$.totalAmount"
                 }
               },
-
               {
                 "variable": "payerName",
                 "value": {
                   "path": "$.payerName"
                 }
               },
-
               {
                 "variable": "mobileNo",
                 "value": {
                   "path": "$.mobileNumber"
                 }
               },
-
               {
                 "variable": "payerAddress",
                 "value": {
@@ -477,7 +473,6 @@
                   "path": "$.payerAddress"
                 }
               },
-
               {
                 "variable": "billNo",
                 "value": {
@@ -510,7 +505,6 @@
                 },
                 "type": "date"
               },
-
               {
                 "variable": "billIssueDate",
                 "value": {
@@ -518,7 +512,6 @@
                 },
                 "type": "date"
               },
-
               {
                 "variable": "billDueDate",
                 "value": {
@@ -568,60 +561,6 @@
                 }
               },
               {
-                "variable": "pt_adhoc_penalty",
-                "value": {
-                  "path": "$.billDetails[(@.length-1)].billAccountDetails[?(@.taxHeadCode == 'PT_LATE_ASSESSMENT_PENALTY')].amount"
-                }
-              },
-              {
-                "variable": "pt_adhoc_rebate",
-                "value": {
-                  "path": "$.billDetails[(@.length-1)].billAccountDetails[?(@.taxHeadCode == 'PT_PROMOTIONAL_REBATE')].amount"
-                }
-              },
-              {
-                "variable": "pt_owner_exemption",
-                "value": {
-                  "path": "$.billDetails[(@.length-1)].billAccountDetails[?(@.taxHeadCode == 'PT_OWNER_EXEMPTION')].amount"
-                }
-              },
-              {
-                "variable": "pt_unit_usage_exemption",
-                "value": {
-                  "path": "$.billDetails[(@.length-1)].billAccountDetails[?(@.taxHeadCode == 'PT_UNIT_USAGE_EXEMPTION')].amount"
-                }
-              },
-              {
-                "variable": "pt_fire_cess",
-                "value": {
-                  "path": "$.billDetails[(@.length-1)].billAccountDetails[?(@.taxHeadCode == 'PT_FIRE_CESS')].amount"
-                }
-              },
-              {
-                "variable": "pt_cancer_cess",
-                "value": {
-                  "path": "$.billDetails[(@.length-1)].billAccountDetails[?(@.taxHeadCode == 'PT_CANCER_CESS')].amount"
-                }
-              },
-              {
-                "variable": "pt_time_interest",
-                "value": {
-                  "path": "$.billDetails[(@.length-1)].billAccountDetails[?(@.taxHeadCode == 'PT_TIME_INTEREST')].amount"
-                }
-              },
-              {
-                "variable": "pt_decimal_ceiling_debit",
-                "value": {
-                  "path": "$.billDetails[(@.length-1)].billAccountDetails[?(@.taxHeadCode == 'PT_DECIMAL_CEILING_DEBIT')].amount"
-                }
-              },
-              {
-                "variable": "pt_decimal_ceiling_credit",
-                "value": {
-                  "path": "$.billDetails[(@.length-1)].billAccountDetails[?(@.taxHeadCode == 'PT_DECIMAL_CEILING_CREDIT')].amount"
-                }
-              },
-              {
                 "variable": "pt_roundoff",
                 "value": {
                   "path": "$.billDetails[(@.length-1)].billAccountDetails[?(@.taxHeadCode == 'PT_ROUNDOFF')].amount"
@@ -665,30 +604,6 @@
                 }
               },
               {
-                "variable": "adhoc_penalty_label",
-                "value": {
-                  "path": "PDF_STATIC_LABEL_CONSOLIDATED_BILL_ADHOC_PENALTY"
-                },
-                "type": "label",
-                "localisation": {
-                  "required": true,
-                  "prefix": null,
-                  "module": "rainmaker-common"
-                }
-              },
-              {
-                "variable": "adhoc_rebate_label",
-                "value": {
-                  "path": "PDF_STATIC_LABEL_CONSOLIDATED_BILL_ADHOC_REBATE"
-                },
-                "type": "label",
-                "localisation": {
-                  "required": true,
-                  "prefix": null,
-                  "module": "rainmaker-common"
-                }
-              },
-              {
                 "variable": "advance_carryforward_label",
                 "value": {
                   "path": "PDF_STATIC_LABEL_CONSOLIDATED_BILL_DECIMAL_ADVANCE_CARRYFORWARD"
@@ -723,18 +638,6 @@
                   "prefix": null,
                   "module": "rainmaker-common"
                 }
-              },
-              {
-                "variable": "adjustment_label",
-                "value": {
-                  "path": "PDF_STATIC_LABEL_CONSOLIDATED_BILL_ADJUSTMENT"
-                },
-                "type": "label",
-                "localisation": {
-                  "required": true,
-                  "prefix": null,
-                  "module": "rainmaker-common"
-                }
               }
             ]
           },
@@ -757,42 +660,6 @@
                 "formula": "{{pt_rebate}}"
               },
               {
-                "variable": "adhoc_penalty",
-                "formula": "{{pt_adhoc_penalty}}"
-              },
-              {
-                "variable": "adhoc_rebate",
-                "formula": "{{pt_adhoc_rebate}}"
-              },
-              {
-                "variable": "owner_exemption",
-                "formula": "{{pt_owner_exemption}}"
-              },
-              {
-                "variable": "unit_usage_exemption",
-                "formula": "{{pt_unit_usage_exemption}}"
-              },
-              {
-                "variable": "fire_cess",
-                "formula": "{{pt_owner_exemption}}"
-              },
-              {
-                "variable": "cancer_cess",
-                "formula": "{{pt_cancer_cess}}"
-              },
-              {
-                "variable": "time_interest",
-                "formula": "{{pt_time_interest}}"
-              },
-              {
-                "variable": "decimal_ceiling_debit",
-                "formula": "{{pt_decimal_ceiling_debit}}"
-              },
-              {
-                "variable": "decimal_ceiling_credit",
-                "formula": "{{pt_decimal_ceiling_credit}}"
-              },
-              {
                 "variable": "advance_carryforward",
                 "formula": "{{pt_advance_carryforward}}"
               },
@@ -803,10 +670,6 @@
               {
                 "variable": "arrearrs",
                 "formula": "{{totalAmountDue}} - {{pt_arrearrs}}"
-              },
-              {
-                "variable": "adjustments/paid",
-                "formula": "{{adjustment}}"
               }
             ]
           },
@@ -816,30 +679,30 @@
                 "path": "http://egov-mdms-service:8080/egov-mdms-service/v1/_get",
                 "queryParam": "moduleName=tenant&masterName=tenants&tenantId=uk&filter=%5B?(@.code=='{$.tenantId}')%5D",
                 "apiRequest": null,
-                "responseMapping":[
+                "responseMapping": [
                   {
-                    "variable":"address",
-                    "value":"$.MdmsRes.tenant.tenants[0].address"
+                    "variable": "address",
+                    "value": "$.MdmsRes.tenant.tenants[0].address"
                   },
                   {
-                    "variable":"phoneNumber",
-                    "value":"$.MdmsRes.tenant.tenants[0].contactNumber"
+                    "variable": "phoneNumber",
+                    "value": "$.MdmsRes.tenant.tenants[0].contactNumber"
                   },
                   {
-                    "variable":"website",
-                    "value":"$.MdmsRes.tenant.tenants[0].domainUrl"
+                    "variable": "website",
+                    "value": "$.MdmsRes.tenant.tenants[0].domainUrl"
                   },
                   {
-                    "variable":"email",
-                    "value":"$.MdmsRes.tenant.tenants[0].emailId"
+                    "variable": "email",
+                    "value": "$.MdmsRes.tenant.tenants[0].emailId"
                   },
                   {
                     "variable": "logo_header",
-                    "value":"$.MdmsRes.tenant.tenants[0].code",
-                    "localisation":{
-                      "required":true,
+                    "value": "$.MdmsRes.tenant.tenants[0].code",
+                    "localisation": {
+                      "required": true,
                       "prefix": "TENANT_TENANTS",
-                      "module":"rainmaker-common"
+                      "module": "rainmaker-common"
                     }
                   }
                 ]
@@ -850,7 +713,7 @@
             "qrcodeConfig": [
               {
                 "variable": "qrcodeimage",
-                "value":"{{hostname}}citizen/egov-common/pay?consumerCode={{propertyID}}&tenantId={{tenantId}}&businessService={{businessServiceCode}}"
+                "value": "{{hostname}}citizen/egov-common/pay?consumerCode={{propertyID}}&tenantId={{tenantId}}&businessService={{businessServiceCode}}"
               }
             ]
           }
