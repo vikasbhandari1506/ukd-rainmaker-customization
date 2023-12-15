@@ -1035,7 +1035,17 @@ ReportDefinitions:
     label: reports.pt.name
     type: string
     total: false
-    source: pt    
+    source: pt 
+  - name: guardianname
+    label: reports.pt.guardianname
+    type: string
+    total: false
+    source: pt 
+  - name: mobilenumber
+    label: reports.pt.mobilenumber
+    type: string
+    total: false
+    source: pt     
   - name: currenttax
     label: reports.pt.CurrentTax
     type: string
