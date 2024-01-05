@@ -225,7 +225,7 @@ public class DcbRefreshService {
 				"     substr(financialyear, 0, 5)::INTEGER DESC LIMIT 1"+
 				"     ) limit 1)  "+
 				" AS name, "+
-				"   (select  u.guardianname from eg_pt_owner_v2 po, eg_user u   where "+
+				"   (select  u.guardian from eg_pt_owner_v2 po, eg_user u   where "+
 				"	 po.userid=u.uuid and "+
 				"	 po.propertydetail = "+
 				"     ("+
@@ -240,7 +240,7 @@ public class DcbRefreshService {
 				"     ORDER BY"+
 				"     substr(financialyear, 0, 5)::INTEGER DESC LIMIT 1"+
 				"     ) limit 1)  "+
-				" AS guardianname, "+
+				" AS guardian, "+
 				"   (select  u.mobilenumber from eg_pt_owner_v2 po, eg_user u   where "+
 				"	 po.userid=u.uuid and "+
 				"	 po.propertydetail = "+
