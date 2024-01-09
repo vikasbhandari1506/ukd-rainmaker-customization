@@ -1036,7 +1036,7 @@ ReportDefinitions:
     type: string
     total: false
     source: pt 
-  - name: guardianname
+  - name: guardian
     label: reports.pt.guardian
     type: string
     total: false
