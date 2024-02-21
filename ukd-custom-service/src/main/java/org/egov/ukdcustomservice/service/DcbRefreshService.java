@@ -225,6 +225,22 @@ public class DcbRefreshService {
 				"     substr(financialyear, 0, 5)::INTEGER DESC LIMIT 1"+
 				"     ) limit 1)  "+
 				" AS name, "+
+				"     COALESCE(("+
+				"     SELECT"+
+				"     SUM(dd.collectionamount) "+
+				"     FROM"+
+				"     egbs_demand_v1 demand, egbs_demanddetail_v1 dd "+
+				"     WHERE"+
+				"      demand.tenantid = dd.tenantid "+
+				"     AND demand.id = dd.demandid "+
+				"     AND dd.taxheadcode like '%REBATE%'"+
+				"     AND "+
+				"     ("+
+				"     EXTRACT(epoch "+
+				"     FROM"+
+				"     now())*1000 BETWEEN demand.taxperiodfrom AND demand.taxperiodto"+
+				"     )"+
+				"     AND demand.consumercode = prop.propertyid), 0) currentrebate "+
 				"   (select  u.guardian from eg_pt_owner_v2 po, eg_user u   where "+
 				"	 po.userid=u.uuid and "+
 				"	 po.propertydetail = "+
@@ -256,23 +272,7 @@ public class DcbRefreshService {
 				"     ORDER BY"+
 				"     substr(financialyear, 0, 5)::INTEGER DESC LIMIT 1"+
 				"     ) limit 1)  "+
-				" AS mobilenumber, "+
-				"     COALESCE(("+
-				"     SELECT"+
-				"     SUM(dd.collectionamount) "+
-				"     FROM"+
-				"     egbs_demand_v1 demand, egbs_demanddetail_v1 dd "+
-				"     WHERE"+
-				"      demand.tenantid = dd.tenantid "+
-				"     AND demand.id = dd.demandid "+
-				"     AND dd.taxheadcode like '%REBATE%'"+
-				"     AND "+
-				"     ("+
-				"     EXTRACT(epoch "+
-				"     FROM"+
-				"     now())*1000 BETWEEN demand.taxperiodfrom AND demand.taxperiodto"+
-				"     )"+
-				"     AND demand.consumercode = prop.propertyid), 0) currentrebate "+
+				" AS mobilenumber "+
 				"     FROM "+
 				"     eg_pt_property_v2 prop,"+
 				"     eg_pt_propertydetail_v2 pd,"+
