@@ -1053,7 +1053,7 @@ ReportDefinitions:
     total: true
   - name: currentrebate
     label: reports.pt.CurrentRebate
-    type: integer
+    type: string
     source: pt
     total: true
   - name: arreartax
