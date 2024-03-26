@@ -15,6 +15,41 @@
                     ],
                     "body": [
                         [
+   {
+                                "image": "https://nagarsewa.uk.gov.in/ukd-assets/Stateimages/vote.png",
+                                "alignment": "center",
+                                "border": [
+                                    true,
+                                    true,
+                                    true,
+                                    true
+                                ],
+                                "width": 150,
+                                "height": 61.25
+                            },
+                            {
+                                "stack": [
+                                    {
+                                        "text": "19 अप्रैल 2024 को अपने मताधिकार का प्रयोग अवश्य करें",
+                                        "style": "receiptlogoheader"
+                                    }
+                                ],
+                                "alignment": "center",
+                                "border": [
+                                    true,
+                                    true,
+                                    true,
+                                    true
+                                ],
+                                "margin": [
+                                    0,
+                                    10,
+                                    0,
+                                    0
+                                ]
+                            }
+                        ],
+                        [
                             {
                                 "image": "{{logoImage}}",
                                 "alignment": "center",
