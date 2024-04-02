@@ -689,6 +689,11 @@
                                         "variable": "logoImage",
                                         "value": "$.MdmsRes.tenant.tenants[0].logoId",
                                         "type": "image"
+                                    },
+                                    {
+                                        "variable": "voteImage",
+                                        "value": "$.MdmsRes.tenant.tenants[0].voteId",
+                                        "type": "image"
                                     }
                                 ]
                             },
